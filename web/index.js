@@ -3,6 +3,7 @@ const SeaLion = require("sea-lion");
 const Dion = require("dion");
 const seaLion = new SeaLion();
 const dion = new Dion(seaLion);
+const items = require("../items");
 const log = require("../log");
 
 let port = 4567;
@@ -23,6 +24,18 @@ seaLion.add({
   },
   "/`path...`": {
     GET: dion.serveDirectory("./build", mimeTypes)
+  },
+  "/items/create": {
+    POST: items.create
+  },
+  "/items/`id`": {
+    GET: items.get
+  },
+  "/items/update/`id`": {
+    POST: items.update
+  },
+  "/items/delete/`id`": {
+    POST: items.delete
   }
 });
 
