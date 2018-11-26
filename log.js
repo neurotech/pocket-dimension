@@ -1,13 +1,7 @@
 const symbols = require("log-symbols");
-const spacetime = require("spacetime");
-
-let timestampFormat = "dd-MM-yyyy hh:mm a";
 
 let log = (message, symbol) => {
-  let s = spacetime.now();
-  let logMessage = `[${s
-    .goto("Australia/Sydney")
-    .format(timestampFormat)}] ${symbol} ${message}`;
+  let logMessage = `${symbol} ${message}`;
 
   if (symbol === symbols.error) {
     console.error(logMessage);
