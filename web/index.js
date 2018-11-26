@@ -14,8 +14,7 @@ let mimeTypes = {
   ".gif": "image/gif",
   ".png": "image/png",
   ".jpg": "image/jpeg",
-  ".ico": "image/x-icon",
-  ".woff": "font/woff"
+  ".ico": "image/x-icon"
 };
 
 seaLion.add({
