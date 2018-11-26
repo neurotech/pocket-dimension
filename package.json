@@ -1,0 +1,29 @@
+{
+  "name": "pocket-dimension",
+  "version": "1.0.0",
+  "description": "A tiny place to store tiny things.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "predeploy": "set NODE_ENV=production&&node build.js",
+    "deploy": "now --public --local-config now.json && now alias --local-config now.json",
+    "clean": "now --local-config now.json rm soundbot --safe --yes",
+    "test": "node test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/neurotech/pocket-dimension.git"
+  },
+  "author": "Tim Douglas",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/neurotech/pocket-dimension/issues"
+  },
+  "homepage": "https://github.com/neurotech/pocket-dimension#readme",
+  "dependencies": {
+    "dion": "^2.0.0",
+    "log-symbols": "^2.2.0",
+    "sea-lion": "^2.0.2",
+    "spacetime": "^4.5.1"
+  }
+}
