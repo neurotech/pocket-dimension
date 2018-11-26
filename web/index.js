@@ -19,16 +19,16 @@ let mimeTypes = {
 };
 
 seaLion.add({
-  "/": {
-    GET: dion.serveFile("./build/index.html", "text/html")
-  },
-  "/`path...`": {
-    GET: dion.serveDirectory("./build", mimeTypes)
-  },
+  // "/": {
+  //   GET: dion.serveFile("./build/index.html", "text/html")
+  // },
+  // "/`path...`": {
+  //   GET: dion.serveDirectory("./build", mimeTypes)
+  // },
   "/items/create": {
     POST: items.create
   },
-  "/items/`id`": {
+  "/items": {
     GET: items.get
   },
   "/items/update/`id`": {
