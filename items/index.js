@@ -6,7 +6,7 @@ AWS.config.update({
     accessKeyId: process.env.POCKET_AWS_ACCESS_KEY_ID,
     secretAccessKey: process.env.POCKET_AWS_ACCESS_KEY_SECRET
   },
-  region: "us-west-1"
+  region: process.env.POCKET_AWS_REGION
 });
 
 let dynamo = new AWS.DynamoDB.DocumentClient();
