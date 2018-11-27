@@ -1,45 +1,34 @@
-const AWS = require("aws-sdk");
+const dynamo = require("../dynamo");
+const id = require("../id");
 const log = require("../log");
-
-AWS.config.update({
-  credentials: {
-    accessKeyId: process.env.POCKET_AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.POCKET_AWS_ACCESS_KEY_SECRET
-  },
-  region: process.env.POCKET_AWS_REGION
-});
-
-let dynamo = new AWS.DynamoDB.DocumentClient();
 
 function createItem(request, response, tokens) {
   let now = new Date();
   let query = {
     TableName: "pocket-dimension",
     Item: {
-      "item-id": Number(1),
+      id: id.generate(),
       timestamp: now.toString()
     }
   };
   dynamo.put(query, function(err, data) {
     if (err) log.error(err);
-
     console.log(data);
   });
 }
 
 function getItems(request, response, tokens) {
   let query = {
-    TableName: "pocket-dimension"
-    // ExpressionAttributeValues: {
-    //   ":t": timestamp
-    // }
-    // KeyConditionExpression: "discordToken = :t"
+    TableName: "pocket-dimension",
+    ExpressionAttributeValues: {
+      ":t": 0
+    },
+    FilterExpression: "id > :t"
   };
 
   dynamo.scan(query, function(err, data) {
     if (err || data.Items.length === 0) log.error(err);
-
-    console.log(data);
+    console.log(data.Items);
   });
 }
 
