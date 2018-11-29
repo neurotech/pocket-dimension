@@ -1,34 +1,17 @@
-const dynamo = require("../dynamo");
-const id = require("../id");
+if (process.env.NODE_ENV === "development") require("dotenv").config();
+
+const db = require("../db");
+const query = require("../query");
 const log = require("../log");
 
-function createItem(request, response, tokens) {
-  let now = new Date();
-  let query = {
-    TableName: "pocket-dimension",
-    Item: {
-      id: id.generate(),
-      timestamp: now.toString()
-    }
-  };
-  dynamo.put(query, function(err, data) {
-    if (err) log.error(err);
-    console.log(data);
-  });
-}
+function createItem(request, response, tokens) {}
 
 function getItems(request, response, tokens) {
-  let query = {
-    TableName: "pocket-dimension",
-    ExpressionAttributeValues: {
-      ":t": 0
-    },
-    FilterExpression: "id > :t"
-  };
-
-  dynamo.scan(query, function(err, data) {
-    if (err || data.Items.length === 0) log.error(err);
-    console.log(data.Items);
+  db.connect();
+  db.query("SELECT NOW()", (err, res) => {
+    if (err) console.error(err);
+    console.log(res.rows);
+    db.end();
   });
 }
 
