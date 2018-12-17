@@ -17,7 +17,7 @@ const util = {
     response.write(
       JSON.stringify({
         status: status,
-        result: message
+        message: message
       })
     );
     response.end();

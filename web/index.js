@@ -31,6 +31,9 @@ seaLion.add({
   "/items": {
     GET: items.get
   },
+  "/items/`id`": {
+    GET: items.get
+  },
   "/items/update/`id`": {
     POST: items.update
   },
