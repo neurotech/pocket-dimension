@@ -14,8 +14,8 @@ AWS.config.update({
 let dynamo = new AWS.DynamoDB.DocumentClient();
 
 let get = {
-  all: function getAll(count, callback) {
-    dynamo.scan(queries.getAll(count), function(err, data) {
+  all: function getAllItems(callback) {
+    dynamo.scan(queries.getAll(), function(err, data) {
       if (err) return callback(err);
       let all = data.Items.sort(function(a, b) {
         return a.timestamp < b.timestamp;

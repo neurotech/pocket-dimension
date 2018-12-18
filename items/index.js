@@ -4,7 +4,7 @@ const util = require("../util");
 const log = require("../log");
 
 function create(request, response) {
-  util.getPayload(request, function(err, payload) {
+  util.getJSONfromResponse(request, function(err, payload) {
     if (err) {
       util.respond.error(language.COULD_NOT_CREATE_POST, response);
       return log.error(`[pocket] [Get Payload] ${err}`);
@@ -26,10 +26,7 @@ function get(request, response, tokens) {
 
   switch (tokens.id) {
     case "latest":
-      db.get.all(10, function(err, data) {
-        if (err) return util.respond.error(err, response);
-        util.respond.success(data, response);
-      });
+      util.respond.success("latest", response);
       break;
 
     case "notes":
@@ -45,7 +42,10 @@ function get(request, response, tokens) {
       break;
 
     default:
-      util.respond.success("all", response);
+      db.get.all(function(err, data) {
+        if (err) return util.respond.error(err, response);
+        util.respond.success(data, response);
+      });
       break;
   }
 }

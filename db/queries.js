@@ -1,6 +1,6 @@
 module.exports = {
-  getAll: function queryGetAll(count = 10) {
-    let query = { TableName: "pocket-dimension" };
+  getAll: function queryGetAll() {
+    let query = { TableName: "pocket-dimension", Limit: count };
     return query;
   }
 };

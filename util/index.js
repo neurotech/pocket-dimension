@@ -1,4 +1,5 @@
 const uuid = require("../uuid");
+const now = require("../now");
 
 const contentType = { "Content-Type": "application/json" };
 
@@ -19,7 +20,7 @@ const util = {
       TableName: "pocket-dimension",
       Item: {
         id: uuid(),
-        timestamp: new Date().toISOString(),
+        timestamp: now(),
         title: payload.title || "",
         body: payload.body || "",
         type: payload.type || "note"
@@ -27,7 +28,7 @@ const util = {
     };
     return item;
   },
-  getPayload: function parsePayload(request, callback) {
+  getJSONfromResponse: function parsePayload(request, callback) {
     let payload = "";
     request.on("data", function(data) {
       payload += data;
