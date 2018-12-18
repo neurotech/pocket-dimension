@@ -1,4 +1,5 @@
 const AWS = require("aws-sdk");
+const queries = require("./queries");
 const util = require("../util");
 if (process.env.NODE_ENV === "development") require("dotenv").config();
 
@@ -11,6 +12,18 @@ AWS.config.update({
 });
 
 let dynamo = new AWS.DynamoDB.DocumentClient();
+
+let get = {
+  all: function getAll(count, callback) {
+    dynamo.scan(queries.getAll(count), function(err, data) {
+      if (err) return callback(err);
+      let all = data.Items.sort(function(a, b) {
+        return a.timestamp < b.timestamp;
+      });
+      callback(null, all);
+    });
+  }
+};
 
 function put(item, response, callback) {
   dynamo.put(item, function(err) {
@@ -27,4 +40,4 @@ function put(item, response, callback) {
   });
 }
 
-module.exports = { put };
+module.exports = { get, put };

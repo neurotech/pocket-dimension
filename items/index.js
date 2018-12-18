@@ -26,7 +26,10 @@ function get(request, response, tokens) {
 
   switch (tokens.id) {
     case "latest":
-      util.respond.success("latest", response);
+      db.get.all(10, function(err, data) {
+        if (err) return util.respond.error(err, response);
+        util.respond.success(data, response);
+      });
       break;
 
     case "notes":
