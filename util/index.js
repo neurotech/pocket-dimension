@@ -1,4 +1,32 @@
+const uuid = require("../uuid");
+
+const contentType = { "Content-Type": "application/json" };
+
+function responseHandler(code, status, data, response) {
+  response.writeHead(code, contentType);
+  response.write(
+    JSON.stringify({
+      status: status,
+      data: data
+    })
+  );
+  response.end();
+}
+
 const util = {
+  buildItem: function createItemObject(payload) {
+    let item = {
+      TableName: "pocket-dimension",
+      Item: {
+        id: uuid(),
+        timestamp: new Date().toISOString(),
+        title: payload.title || "",
+        body: payload.body || "",
+        type: payload.type || "note"
+      }
+    };
+    return item;
+  },
   getPayload: function parsePayload(request, callback) {
     let payload = "";
     request.on("data", function(data) {
@@ -12,15 +40,13 @@ const util = {
       callback(null, parsed);
     });
   },
-  respond: function performResponse(code, status, message, response) {
-    response.writeHead(code, { "Content-Type": "application/json" });
-    response.write(
-      JSON.stringify({
-        status: status,
-        message: message
-      })
-    );
-    response.end();
+  respond: {
+    success: function successResponse(data, response) {
+      return responseHandler(200, "SUCCESS", data, response);
+    },
+    error: function errorResponse(data, response) {
+      return responseHandler(500, "ERROR", data, response);
+    }
   }
 };
 
