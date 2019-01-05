@@ -19,25 +19,28 @@ let mimeTypes = {
 };
 
 seaLion.add({
-  // "/": {
-  //   GET: dion.serveFile("./build/index.html", "text/html")
-  // },
-  // "/`path...`": {
-  //   GET: dion.serveDirectory("./build", mimeTypes)
-  // },
-  "/items/create": {
+  "/": {
+    GET: dion.serveFile("./build/index.html", "text/html")
+  },
+  "/`path...`": {
+    GET: dion.serveDirectory("./build", mimeTypes)
+  },
+  "/api/item/`id`": {
+    GET: items.get
+  },
+  "/api/items/all": {
+    GET: items.get
+  },
+  "/api/items/latest": {
+    GET: items.get
+  },
+  "/api/items/create": {
     POST: items.create
   },
-  "/items": {
-    GET: items.get
-  },
-  "/items/`id`": {
-    GET: items.get
-  },
-  "/items/update/`id`": {
+  "/api/items/update/`id`": {
     POST: items.update
   },
-  "/items/delete/`id`": {
+  "/api/items/delete/`id`": {
     POST: items.delete
   }
 });

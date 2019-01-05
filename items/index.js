@@ -18,26 +18,27 @@ function create(request, response) {
 }
 
 function get(request, response, tokens) {
-  if (!tokens.id || tokens.id === "all")
-    return util.respond.success("all", response);
+  switch (request.url) {
+    case "/api/items/all":
+      db.get.all(function(err, data) {
+        if (err) return util.respond.error(err, response);
+        util.respond.success(data, response);
+      });
+      break;
 
-  if (!isNaN(parseInt(tokens.id, 10)))
-    return util.respond.success(`item ${tokens.id}`, response);
-
-  switch (tokens.id) {
-    case "latest":
+    case "/api/items/latest":
       util.respond.success("latest", response);
       break;
 
-    case "notes":
+    case "/api/items/notes":
       util.respond.success("notes", response);
       break;
 
-    case "links":
+    case "/api/items/links":
       util.respond.success("links", response);
       break;
 
-    case "todo":
+    case "/api/items/todo":
       util.respond.success("todo", response);
       break;
 
