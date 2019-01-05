@@ -1,6 +1,7 @@
 module.exports = function createSearchBoxComponent(fastn) {
   return fastn(
     "form",
+    { class: "search-box-form" },
     fastn("input", {
       class: "search-box",
       autofocus: true,

@@ -8,7 +8,7 @@ module.exports = function createTypeButtonComponent(
     "div",
     {
       class: fastn.binding("type", function(type) {
-        return `type-${buttonType}-button ${type === buttonType ? "active" : "inactive"}`;
+        return `type-button ${buttonType} ${type === buttonType && type !== "" ? "active" : "inactive"}`;
       })
     },
     buttonLabel

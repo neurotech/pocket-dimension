@@ -5,7 +5,35 @@ module.exports = function createListItemComponent(fastn) {
     "div",
     { class: "item" },
     fastn("div", { class: "item-title" }, fastn.binding("item.title")),
-    fastn("div", { class: "item-body" }, fastn.binding("item.body")),
+    fastn(
+      //fastn("div", { class: "item-body" }, fastn.binding("item.body")),
+      "templater",
+      {
+        data: fastn.binding("item.type", "item.body", (type, body) => ({
+          type,
+          body
+        })),
+        template: function(model) {
+          if (model.get("item.type") === "link") {
+            return fastn(
+              "a",
+              {
+                href: fastn.binding("item.body"),
+                target: "_blank",
+                class: "item-link"
+              },
+              fastn.binding("item.body")
+            );
+          } else {
+            return fastn(
+              "div",
+              { class: "item-body" },
+              fastn.binding("item.body")
+            );
+          }
+        }
+      }
+    ),
     fastn(
       "div",
       { class: "item-nicetime" },
@@ -17,6 +45,10 @@ module.exports = function createListItemComponent(fastn) {
           .format("{day} {date-ordinal} {month} {year} at {time}");
       })
     ),
-    fastn("div", { class: "item-type" }, fastn.binding("item.type"))
+    fastn(
+      "div",
+      { class: fastn.binding("item.type", type => `item-type ${type}`) },
+      fastn.binding("item.type")
+    )
   );
 };

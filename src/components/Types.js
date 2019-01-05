@@ -5,8 +5,8 @@ module.exports = function createTypesComponent(fastn, app) {
     "div",
     { class: "type-switcher" },
     TypeButton(fastn, app, "note", "Notes"),
-    TypeButton(fastn, app, "link", "Link"),
+    TypeButton(fastn, app, "link", "Links"),
     TypeButton(fastn, app, "journal", "Journal"),
-    TypeButton(fastn, app, "", "Reset")
+    TypeButton(fastn, app, "", "Clear")
   );
 };

@@ -3,3 +3,109 @@
 body {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
+
+.container {
+  display: flex;
+  flex-direction: column;
+  width: 55%;
+  margin: 0 auto;
+}
+
+.create-item-button {
+  margin: 0 auto;
+  padding: 1rem;
+  border-radius: 0.33rem;
+  cursor: pointer;
+  background-color: var(--orange);
+  color: white;
+  font-weight: bold;
+  text-align: center;
+}
+
+.create-item-dialog.hidden {
+  display: none;
+}
+
+.search-box-form {
+  display: flex;
+}
+
+.search-box {
+  margin: 0 auto;
+  padding: 1rem;
+  border-radius: 0.33rem;
+  text-align: center;
+}
+
+.type-switcher {
+  width: 50%;
+  display: flex;
+  flex-direction: row;
+  margin: 0 auto;
+}
+
+.type-button {
+  width: 25%;
+  cursor: pointer;
+  text-align: center;
+  border: 1px solid var(--gray);
+}
+
+.type-button.inactive {
+  color: var(--gray);
+}
+.type-button.active {
+  color: var(--blue);
+  border: 1px solid var(--blue);
+  cursor: not-allowed;
+}
+
+.item {
+  position: relative;
+  border-bottom: 2px solid var(--lightgray);
+  margin-bottom: 1.5rem;
+}
+
+.item-title {
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.item-body {
+  margin-bottom: 1rem;
+}
+
+.item-link {
+  font-size: 1.5rem;
+}
+
+.item-nicetime {
+  text-align: right;
+  font-style: italic;
+  margin-bottom: 1rem;
+}
+
+.item-type {
+  display: inline-block;
+  position: absolute;
+  top: 0;
+  right: 0;
+  min-width: 80px;
+  padding: 0.5rem 0;
+  color: white;
+  text-transform: capitalize;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 0.2rem;
+}
+
+.item-type.note {
+  background-color: var(--indigo);
+}
+.item-type.link {
+  background-color: var(--green);
+}
+.item-type.journal {
+  background-color: var(--red);
+}

@@ -4,5 +4,22 @@ A tiny place to store tiny things.
 
 ## TODO
 
-- Refactor util.respond() to util.respond.success() | util.respond.failure() | util.respond.error()
-  - Args: (message, response)
+### Get title of a webpage
+
+```js
+const url = "https://httpbin.org/";
+
+cpjax(url, function(error, data) {
+  if (error) console.error(error);
+  let title = "";
+  let doc = document.implementation.createHTMLDocument("titleContainer");
+  doc.documentElement.innerHTML = data;
+
+  if (doc.title !== "") {
+    title = doc.title;
+  } else {
+    title = url;
+  }
+  console.log(title);
+});
+```
