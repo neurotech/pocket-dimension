@@ -4,6 +4,7 @@ module.exports = function createSearchBoxComponent(fastn) {
     { class: "search-box-form" },
     fastn("input", {
       class: "search-box",
+      placeholder: "Search for a post",
       autofocus: true,
       value: fastn.binding("filter"),
       oninput: "value:value"

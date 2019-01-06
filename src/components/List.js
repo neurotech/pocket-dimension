@@ -6,14 +6,14 @@ module.exports = function createListComponent(fastn) {
       return `item-list ${isLoading ? "loading" : ""}`;
     }),
     items: fastn.binding("items|*", "filter", "type", (items, filter, type) => {
-      if ((filter === "" && type === "") || !items) return items;
+      if ((filter === "" && type === "all") || !items) return items;
 
       // Type selected, no filter
-      if (type !== "" && filter === "")
+      if (type !== "all" && filter === "")
         return items.filter(item => item.type === type);
 
       // Type selected, filter applied
-      if (type !== "" && filter !== "") {
+      if (type !== "all" && filter !== "") {
         var filtered = items.filter(
           item =>
             ~item.title.indexOf(filter.toLowerCase()) ||
@@ -23,7 +23,7 @@ module.exports = function createListComponent(fastn) {
       }
 
       // Filter applied, no type
-      if (filter !== "" && type == "") {
+      if (filter !== "" && type === "all") {
         return items.filter(
           item =>
             ~item.title.indexOf(filter.toLowerCase()) ||

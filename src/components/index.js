@@ -1,7 +1,6 @@
-const CreateItemButton = require("./CreateItemButton.js");
+const Toolbar = require("./Toolbar.js");
 const CreateItemDialog = require("./CreateItemDialog.js");
-const SearchBox = require("./SearchBox.js");
 const Types = require("./Types.js");
 const List = require("./List.js");
 
-module.exports = { CreateItemButton, CreateItemDialog, SearchBox, Types, List };
+module.exports = { Toolbar, CreateItemDialog, Types, List };

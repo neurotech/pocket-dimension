@@ -1,5 +1,25 @@
 const api = require("../api");
 
+function post(event, scope, app) {
+  scope.set("isLoading", true);
+  event.preventDefault();
+  api.post(
+    {
+      title: scope.get("itemTitle"),
+      body: scope.get("itemBody"),
+      type: "note"
+    },
+    function(err) {
+      scope.set("isLoading", false);
+      if (err) return console.error(err);
+      scope.set("dialogOpen", false);
+      scope.set("itemTitle", "");
+      scope.set("itemBody", "");
+      app.getAll(true);
+    }
+  );
+}
+
 module.exports = function createCreateItemDialogomponent(fastn, app) {
   return fastn(
     "form",
@@ -14,45 +34,52 @@ module.exports = function createCreateItemDialogomponent(fastn, app) {
       }),
       class: "create-item-title",
       placeholder: "Title",
+      required: true,
       value: fastn.binding("itemTitle"),
       onchange: "value:value"
     }),
-    fastn("input", {
+    fastn("textarea", {
       disabled: fastn.binding("dialogOpen", dialog => {
         return !dialog;
       }),
       class: "create-item-body",
       placeholder: "Body",
+      required: true,
       value: fastn.binding("itemBody"),
-      onchange: "value:value"
+      onkeydown: "value:value"
+    }).on("keydown", (event, scope) => {
+      if (!(event.ctrlKey && event.keyCode === 13)) return;
+      var target = event.target;
+      if (target.form) {
+        post(event, scope, app);
+      }
     }),
     fastn(
       "button",
       {
+        class: "create-item-submit",
         type: "submit",
         disabled: fastn.binding("dialogOpen", dialog => {
           return !dialog;
         })
       },
       "Submit"
-    )
+    ),
+    fastn(
+      "button",
+      {
+        class: "create-item-cancel",
+        type: "cancel",
+        disabled: fastn.binding("dialogOpen", dialog => {
+          return !dialog;
+        })
+      },
+      "Cancel"
+    ).on("click", (event, scope) => {
+      scope.set("dialogOpen", false);
+    })
   ).on("submit", (event, scope) => {
     event.preventDefault();
-    api.post(
-      {
-        title: scope.get("itemTitle"),
-        body: scope.get("itemBody"),
-        type: "note"
-      },
-      function(err, data) {
-        if (err) return console.error(err);
-
-        console.log(data);
-        app.getAll(true);
-        scope.set("dialogOpen", false);
-        scope.set("itemTitle", "");
-        scope.set("itemBody", "");
-      }
-    );
+    post(event, scope, app);
   });
 };

@@ -3,17 +3,11 @@ const cpjax = require("cpjax");
 module.exports = {
   get: {
     all: function getAllItems(callback) {
-      cpjax("https://httpbin.org/", function(error, data) {
+      cpjax("/api/items/all", function(error, data) {
         if (error) callback(error);
-        var doc = document.implementation.createHTMLDocument("titleContainer");
-        doc.documentElement.innerHTML = data;
-        console.log(doc.title);
+        let items = JSON.parse(data).data;
+        callback(null, items);
       });
-      // cpjax("/api/items/all", function(error, data) {
-      //   if (error) callback(error);
-      //   let items = JSON.parse(data).data;
-      //   callback(null, items);
-      // });
     }
   },
   post: function postItem(item, callback) {

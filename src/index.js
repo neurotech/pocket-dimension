@@ -8,7 +8,7 @@ window.addEventListener("load", function() {
   let state = {
     isLoading: false,
     filter: "",
-    type: "",
+    type: "all",
     dialogOpen: false,
     itemTitle: "",
     itemBody: ""
@@ -32,10 +32,13 @@ window.addEventListener("load", function() {
 
   const view = fastn(
     "div",
-    { class: "container" },
-    components.CreateItemButton(fastn),
+    {
+      class: fastn.binding("isLoading", isLoading => {
+        return `container ${isLoading ? "loading" : ""}`;
+      })
+    },
+    components.Toolbar(fastn),
     components.CreateItemDialog(fastn, app),
-    components.SearchBox(fastn),
     components.Types(fastn, app),
     components.List(fastn)
   );
