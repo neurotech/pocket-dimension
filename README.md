@@ -4,7 +4,7 @@ A tiny place to store tiny things.
 
 ## TODO
 
-### Get title of a webpage
+### Get title of a webpage (when creating/updating a link-type post)
 
 ```js
 const url = "https://httpbin.org/";
@@ -23,3 +23,7 @@ cpjax(url, function(error, data) {
   console.log(title);
 });
 ```
+
+### Modularise CSS
+
+i.e.: `_searchbox.css`, `_create-item-dialog`, etc.
