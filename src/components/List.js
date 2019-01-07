@@ -2,6 +2,7 @@ const ListItem = require("./ListItem");
 
 module.exports = function createListComponent(fastn) {
   return fastn("list", {
+    insertionFrameTime: 30,
     class: fastn.binding("isLoading", function(isLoading) {
       return `item-list ${isLoading ? "loading" : ""}`;
     }),
