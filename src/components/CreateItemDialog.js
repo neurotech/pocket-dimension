@@ -46,7 +46,8 @@ module.exports = function createCreateItemDialogomponent(fastn, app) {
       placeholder: "Body",
       required: true,
       value: fastn.binding("itemBody"),
-      onkeydown: "value:value"
+      onkeydown: "value:value",
+      onchange: "value:value"
     }).on("keydown", (event, scope) => {
       if (!(event.ctrlKey && event.keyCode === 13)) return;
       var target = event.target;
@@ -55,29 +56,33 @@ module.exports = function createCreateItemDialogomponent(fastn, app) {
       }
     }),
     fastn(
-      "button",
-      {
-        class: "create-item-submit",
-        type: "submit",
-        disabled: fastn.binding("dialogOpen", dialog => {
-          return !dialog;
-        })
-      },
-      "Submit"
-    ),
-    fastn(
-      "button",
-      {
-        class: "create-item-cancel",
-        type: "cancel",
-        disabled: fastn.binding("dialogOpen", dialog => {
-          return !dialog;
-        })
-      },
-      "Cancel"
-    ).on("click", (event, scope) => {
-      scope.set("dialogOpen", false);
-    })
+      "div",
+      { class: "create-item-buttons " },
+      fastn(
+        "button",
+        {
+          class: "create-item-submit",
+          type: "submit",
+          disabled: fastn.binding("dialogOpen", dialog => {
+            return !dialog;
+          })
+        },
+        "Submit"
+      ),
+      fastn(
+        "button",
+        {
+          class: "create-item-cancel",
+          type: "cancel",
+          disabled: fastn.binding("dialogOpen", dialog => {
+            return !dialog;
+          })
+        },
+        "Cancel"
+      ).on("click", (event, scope) => {
+        scope.set("dialogOpen", false);
+      })
+    )
   ).on("submit", (event, scope) => {
     event.preventDefault();
     post(event, scope, app);
