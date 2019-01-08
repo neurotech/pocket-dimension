@@ -1,6 +1,6 @@
 const ListItem = require("./ListItem");
 
-module.exports = function createListComponent(fastn) {
+module.exports = function createListComponent(fastn, app) {
   return fastn("list", {
     insertionFrameTime: 30,
     class: fastn.binding("isLoading", function(isLoading) {
@@ -33,7 +33,7 @@ module.exports = function createListComponent(fastn) {
       }
     }),
     template: function() {
-      return ListItem(fastn);
+      return ListItem(fastn, app);
     }
   });
 };

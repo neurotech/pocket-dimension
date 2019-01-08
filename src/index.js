@@ -40,7 +40,7 @@ window.addEventListener("load", function() {
     components.Toolbar(fastn),
     components.CreateItemDialog(fastn, app),
     components.Types(fastn, app),
-    components.List(fastn)
+    components.List(fastn, app)
   );
   view.attach(state);
   view.render();

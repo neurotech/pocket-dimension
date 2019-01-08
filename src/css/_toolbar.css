@@ -1,0 +1,43 @@
+.toolbar {
+  display: flex;
+  justify-content: space-between;
+}
+
+.search-box-form {
+  width: 70%;
+}
+
+.search-box {
+  width: 95%;
+  margin: 0 auto;
+  padding: 1rem;
+  outline: 0;
+  border: 2px solid var(--lightgray);
+  border-radius: 0.33rem;
+}
+
+.search-box:focus {
+  border-color: var(--lightindigo);
+}
+
+.create-item-button {
+  width: 20%;
+  padding: 1rem;
+  cursor: pointer;
+  border-radius: 0.33rem;
+  border-bottom: 3px solid var(--orange);
+  background-color: var(--yellow);
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  transition: background-color 0.15s;
+}
+
+.create-item-button:hover {
+  background-color: var(--orange);
+}
+
+.create-item-button:active {
+  padding-top: 1.1rem;
+  border-bottom-width: 1px;
+}

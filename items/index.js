@@ -1,3 +1,4 @@
+const querystring = require("querystring");
 const db = require("../db");
 const language = require("../language");
 const util = require("../util");
@@ -51,9 +52,40 @@ function get(request, response, tokens) {
   }
 }
 
+function update(request, response) {
+  util.getJSONfromResponse(request, function(err, payload) {
+    if (err) {
+      util.respond.error(language.COULD_NOT_CREATE_POST, response);
+      return log.error(`[pocket] [Get Payload] ${err}`);
+    } else {
+      db.update(payload, function(err) {
+        if (err) return util.respond.error(err, response);
+        util.respond.success("Successfully deleted item.", response);
+      });
+    }
+  });
+}
+
+function remove(request, response) {
+  var querystring = getQueryString(request.url);
+  if (querystring) {
+    db.remove(querystring.id, querystring.timestamp, function(err) {
+      if (err) return util.respond.error(err, response);
+      util.respond.success("Successfully deleted item.", response);
+    });
+  }
+}
+
+function getQueryString(url) {
+  var params = url.split("?")[1];
+  var qs = querystring.parse(params);
+
+  return qs;
+}
+
 module.exports = {
   create: create,
   get: get,
-  update: "",
-  delete: ""
+  update: update,
+  delete: remove
 };

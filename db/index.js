@@ -47,4 +47,18 @@ function put(item, response, callback) {
   });
 }
 
-module.exports = { get, put };
+function update(item, callback) {
+  dynamo.update(queries.updateItem(item), function(err) {
+    if (err) return callback(err);
+    return callback();
+  });
+}
+
+function remove(id, timestamp, callback) {
+  dynamo.delete(queries.removeItem(id, timestamp), function(err) {
+    if (err) return callback(err);
+    return callback();
+  });
+}
+
+module.exports = { get, put, update, remove };

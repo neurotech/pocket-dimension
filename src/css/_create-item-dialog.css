@@ -1,0 +1,78 @@
+.create-item-dialog {
+  display: flex;
+  flex-direction: column;
+  margin: 1rem 0;
+}
+
+.create-item-dialog.hidden {
+  display: none;
+}
+
+.create-item-title {
+  width: 50%;
+  padding: 1rem;
+  margin: 0 0 0.5rem 0;
+  outline: 0;
+  color: var(--gray);
+  border-radius: 0.33rem;
+  border: 2px solid var(--lightgray);
+  transition: border-color 0.33s;
+}
+
+.create-item-title:focus {
+  border-color: var(--green);
+  color: var(--darkgray);
+}
+
+.create-item-type {
+  width: 35%;
+}
+
+.create-item-body {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 1rem;
+  outline: 0;
+  border-radius: 0.33rem;
+  border: 2px solid var(--lightgray);
+  transition: border-color 0.33s;
+}
+
+.create-item-body:focus {
+  border-color: var(--green);
+}
+
+.create-item-buttons {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.create-item-submit,
+.create-item-cancel {
+  margin-top: 0.5rem;
+  width: 10%;
+  padding: 0.5rem;
+  outline: 0;
+  border-radius: 0.33rem;
+  border: none;
+  color: white;
+}
+
+.create-item-submit {
+  margin-right: 0.5rem;
+  background-color: var(--lightgreen);
+  border-bottom: 3px solid var(--green);
+}
+
+.create-item-submit:hover {
+  background-color: var(--green);
+}
+
+.create-item-cancel {
+  background-color: var(--lightred);
+  border-bottom: 3px solid var(--red);
+}
+
+.create-item-cancel:hover {
+  background-color: var(--red);
+}

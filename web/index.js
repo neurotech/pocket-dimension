@@ -37,11 +37,11 @@ seaLion.add({
   "/api/items/create": {
     POST: items.create
   },
-  "/api/items/update/`id`": {
-    POST: items.update
+  "/api/item/update/`params`": {
+    PUT: items.update
   },
-  "/api/items/delete/`id`": {
-    POST: items.delete
+  "/api/items/delete/`params`": {
+    DELETE: items.delete
   }
 });
 

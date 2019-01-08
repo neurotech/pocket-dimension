@@ -1,0 +1,44 @@
+@import "./_palette.css";
+
+:root {
+  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Segoe UI",
+    "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+    "Helvetica Neue", Arial, sans-serif;
+  --font-family-monospace: Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
+}
+
+.button {
+  cursor: pointer;
+  user-select: none;
+  min-width: 75px;
+  max-width: 150px;
+  padding: 0.5rem 1rem;
+  text-align: center;
+  color: var(--darkgray);
+  background-color: var(--lightgray);
+  border-radius: 0.33rem;
+  border-bottom: 3px solid var(--gray);
+  transition: background-color 0.1s;
+}
+
+.button:hover {
+  background-color: var(--palegray);
+}
+
+.button:active {
+  padding-top: 0.55rem;
+  border-bottom-width: 2px;
+  background-color: var(--palegray);
+}
+
+.icon {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  stroke: red;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
