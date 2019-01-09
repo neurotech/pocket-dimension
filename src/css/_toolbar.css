@@ -1,5 +1,5 @@
 .toolbar {
-  background-color: rgb(197, 255, 236);
+  background-color: var(--pink);
   height: 55px;
   display: flex;
   justify-content: space-between;
@@ -12,6 +12,7 @@
   padding: 0 0 0 1rem;
   font-size: 1.5rem;
   font-weight: bold;
+  color: rgb(126, 14, 76);
 }
 
 .search-and-create {

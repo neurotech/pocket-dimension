@@ -5,7 +5,7 @@
 .sidebar {
   width: 150px;
   padding: 1rem 0 0 1rem;
-  background-color: aquamarine;
+  background-color: var(--pink);
 }
 .sidebar-item {
   cursor: pointer;
@@ -13,14 +13,15 @@
   padding: 0.5rem 0;
   font-size: 1.2rem;
   font-weight: bold;
+  color: rgb(126, 14, 76);
   transition: color 0.1s;
 }
 .sidebar-item:hover {
-  color: rgb(224, 255, 245);
+  color: white;
 }
 .sidebar-item.active {
   cursor: not-allowed;
-  color: rgb(18, 134, 96);
+  color: rgb(255, 228, 75);
 }
 
 .content-area {
