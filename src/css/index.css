@@ -1,12 +1,11 @@
 @import "./_palette.css";
 @import "./_global.css";
 @import "./_toolbar.css";
-@import "./_create-item-dialog.css";
-@import "./_type-switcher.css";
-@import "./_item-list.css";
+@import "./_core.css";
 
 body {
   overflow-y: overlay;
+  height: 100%;
   font-family: var(--font-family-sans-serif);
   background-color: var(--palegray);
 }
@@ -15,8 +14,7 @@ body {
   opacity: 1;
   display: flex;
   flex-direction: column;
-  width: 55%;
-  margin: 1rem auto;
+  width: 100%;
   transition: opacity 0.2s;
 }
 

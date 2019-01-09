@@ -1,9 +1,9 @@
-module.exports = function createSearchBoxComponent(fastn) {
+module.exports = function createSearchBar(fastn, app) {
   return fastn(
     "form",
-    { class: "search-box-form" },
+    { class: "search-box" },
     fastn("input", {
-      class: "search-box",
+      class: "search-box-input",
       placeholder: "Search for a post",
       autofocus: true,
       value: fastn.binding("filter"),

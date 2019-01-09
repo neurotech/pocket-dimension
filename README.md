@@ -4,6 +4,10 @@ A tiny place to store tiny things.
 
 ## TODO
 
+### Create Post Dialog
+
+### ListItem/Diary.js | ListItem/Link.js | ListItem/Note.js specific layout etc
+
 ### Get title of a webpage (when creating/updating a link-type post)
 
 ```js
@@ -23,7 +27,3 @@ cpjax(url, function(error, data) {
   console.log(title);
 });
 ```
-
-### Modularise CSS
-
-i.e.: `_searchbox.css`, `_create-item-dialog`, etc.

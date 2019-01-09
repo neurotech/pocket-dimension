@@ -30,18 +30,7 @@ window.addEventListener("load", function() {
 
   app.getAll();
 
-  const view = fastn(
-    "div",
-    {
-      class: fastn.binding("isLoading", isLoading => {
-        return `container ${isLoading ? "loading" : ""}`;
-      })
-    },
-    components.Toolbar(fastn),
-    components.CreateItemDialog(fastn, app),
-    components.Types(fastn, app),
-    components.List(fastn, app)
-  );
+  const view = components(fastn, app);
   view.attach(state);
   view.render();
 

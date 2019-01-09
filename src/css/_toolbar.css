@@ -1,43 +1,37 @@
 .toolbar {
+  height: 55px;
   display: flex;
   justify-content: space-between;
+  align-items: center;
+  padding: 0.5rem 0;
 }
 
-.search-box-form {
-  width: 70%;
+.logo {
+  width: 250px;
+  padding: 0 0 0 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.search-and-create {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .search-box {
-  width: 95%;
-  margin: 0 auto;
-  padding: 1rem;
-  outline: 0;
-  border: 2px solid var(--lightgray);
-  border-radius: 0.33rem;
-}
-
-.search-box:focus {
-  border-color: var(--lightindigo);
-}
-
-.create-item-button {
-  width: 20%;
-  padding: 1rem;
-  cursor: pointer;
-  border-radius: 0.33rem;
-  border-bottom: 3px solid var(--orange);
-  background-color: var(--yellow);
-  color: white;
-  font-weight: bold;
+  width: 75%;
+  display: table;
   text-align: center;
-  transition: background-color 0.15s;
+  justify-content: center;
 }
-
-.create-item-button:hover {
-  background-color: var(--orange);
+.search-box-input {
+  width: 50%;
+  display: table-cell;
+  padding: 0.5rem;
 }
-
-.create-item-button:active {
-  padding-top: 1.1rem;
-  border-bottom-width: 1px;
+.create-post {
+  width: 15%;
+  justify-content: center;
 }

@@ -1,0 +1,50 @@
+.core {
+  display: flex;
+}
+.sidebar {
+  width: 250px;
+  padding: 1rem 0 0 1rem;
+}
+.sidebar-item {
+  cursor: pointer;
+  display: table;
+  padding: 0.5rem 0;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+.sidebar-item:hover {
+  color: gray;
+}
+.sidebar-item.active {
+  cursor: not-allowed;
+  color: blue;
+}
+.sidebar-item.active:hover {
+  animation-name: wobble;
+  animation-duration: 0.15s;
+}
+
+@keyframes wobble {
+  0% {
+    transform: translate3d(3px, -1px, 0px);
+  }
+  33% {
+    transform: translate3d(2px, 1px, 0px);
+  }
+  50% {
+    transform: translate3d(4px, -1px, 0px);
+  }
+  79% {
+    transform: translate3d(-2px, 1px, 0px);
+  }
+  100% {
+    transform: translate3d(1px, 1px, 0px);
+  }
+}
+
+.content-area {
+}
+
+.post-dialog {
+  display: none;
+}
