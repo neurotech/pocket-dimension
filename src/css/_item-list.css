@@ -31,6 +31,8 @@
 }
 
 .item-body {
+  display: flex;
+  align-items: center;
   margin-bottom: 1rem;
   line-height: 1.55rem;
   text-overflow: ellipsis;
@@ -52,6 +54,7 @@
 
 .item-link {
   font-size: 1.33rem;
+  line-height: 2rem;
 }
 
 .item-type {

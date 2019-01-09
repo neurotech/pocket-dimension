@@ -11,7 +11,7 @@ module.exports = function createDeleteItemButtonComponent(fastn, app) {
       api.delete.item(id, timestamp, function(err, res) {
         scope.set("isLoading", false);
         if (err) return console.error(err);
-        app.getAll(true);
+        app.getAll();
       });
     }
   );

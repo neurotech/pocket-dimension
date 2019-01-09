@@ -24,10 +24,6 @@
   color: var(--darkgray);
 }
 
-.create-item-type {
-  width: 35%;
-}
-
 .create-item-body {
   box-sizing: border-box;
   width: 100%;

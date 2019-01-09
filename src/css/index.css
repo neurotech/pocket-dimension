@@ -6,6 +6,7 @@
 @import "./_item-list.css";
 
 body {
+  overflow-y: overlay;
   font-family: var(--font-family-sans-serif);
   background-color: var(--palegray);
 }

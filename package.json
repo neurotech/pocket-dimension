@@ -33,7 +33,8 @@
   "devDependencies": {
     "cpjax": "^1.1.3",
     "cssnano": "^4.1.8",
-    "fastn": "^2.11.7",
+    "fastn": "^2.12.0",
+    "fastn-svg-component": "^1.0.0",
     "normalize.css": "^8.0.1",
     "spacetime": "^5.1.0"
   }

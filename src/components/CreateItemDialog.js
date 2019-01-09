@@ -15,7 +15,7 @@ function post(event, scope, app) {
       scope.set("dialogOpen", false);
       scope.set("itemTitle", "");
       scope.set("itemBody", "");
-      app.getAll(true);
+      app.getAll();
     }
   );
 }

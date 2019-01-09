@@ -33,7 +33,7 @@ module.exports = function createListItemComponent(fastn, app) {
             function(err) {
               scope.set("isLoading", false);
               if (err) return console.error(err);
-              app.getAll(true);
+              app.getAll();
             }
           );
         }
@@ -89,7 +89,7 @@ module.exports = function createListItemComponent(fastn, app) {
                     function(err) {
                       scope.set("isLoading", false);
                       if (err) return console.error(err);
-                      app.getAll(true);
+                      app.getAll();
                     }
                   );
                 }
@@ -124,7 +124,7 @@ module.exports = function createListItemComponent(fastn, app) {
                   function(err) {
                     scope.set("isLoading", false);
                     if (err) return console.error(err);
-                    app.getAll(true);
+                    app.getAll();
                   }
                 );
               }

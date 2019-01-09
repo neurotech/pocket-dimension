@@ -27,7 +27,6 @@
 }
 
 .button:active {
-  padding-top: 0.55rem;
   border-bottom-width: 2px;
   background-color: var(--palegray);
 }
@@ -36,7 +35,7 @@
   display: inline-block;
   width: 24px;
   height: 24px;
-  stroke: red;
+  stroke: var(--myblue);
   stroke-width: 2;
   stroke-linecap: round;
   stroke-linejoin: round;

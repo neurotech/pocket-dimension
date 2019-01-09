@@ -1,4 +1,5 @@
-const fastn = require("fastn")(require("fastn/domComponents")());
+const svg = require("fastn-svg-component");
+const fastn = require("fastn")(require("fastn/domComponents")({ svg }));
 const api = require("./api");
 const components = require("./components");
 
@@ -17,8 +18,7 @@ window.addEventListener("load", function() {
     setType: function(value) {
       fastn.Model.set(state, "type", value);
     },
-    getAll: function(clear) {
-      if (clear) fastn.Model.set(state, "items", []);
+    getAll: function() {
       fastn.Model.set(state, "isLoading", true);
       api.get.all(function(err, data) {
         fastn.Model.set(state, "isLoading", false);
