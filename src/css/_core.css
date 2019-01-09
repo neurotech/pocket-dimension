@@ -1,9 +1,11 @@
 .core {
   display: flex;
+  height: 100%;
 }
 .sidebar {
-  width: 250px;
+  width: 150px;
   padding: 1rem 0 0 1rem;
+  background-color: aquamarine;
 }
 .sidebar-item {
   cursor: pointer;
@@ -11,38 +13,18 @@
   padding: 0.5rem 0;
   font-size: 1.2rem;
   font-weight: bold;
+  transition: color 0.1s;
 }
 .sidebar-item:hover {
-  color: gray;
+  color: rgb(224, 255, 245);
 }
 .sidebar-item.active {
   cursor: not-allowed;
-  color: blue;
-}
-.sidebar-item.active:hover {
-  animation-name: wobble;
-  animation-duration: 0.15s;
-}
-
-@keyframes wobble {
-  0% {
-    transform: translate3d(3px, -1px, 0px);
-  }
-  33% {
-    transform: translate3d(2px, 1px, 0px);
-  }
-  50% {
-    transform: translate3d(4px, -1px, 0px);
-  }
-  79% {
-    transform: translate3d(-2px, 1px, 0px);
-  }
-  100% {
-    transform: translate3d(1px, 1px, 0px);
-  }
+  color: rgb(18, 134, 96);
 }
 
 .content-area {
+  padding: 0 1rem 1rem 1rem;
 }
 
 .post-dialog {

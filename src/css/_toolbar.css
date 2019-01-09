@@ -1,4 +1,5 @@
 .toolbar {
+  background-color: rgb(197, 255, 236);
   height: 55px;
   display: flex;
   justify-content: space-between;
