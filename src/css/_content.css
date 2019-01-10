@@ -1,0 +1,118 @@
+.content-area {
+}
+
+.content-header {
+  user-select: none;
+  padding: 1rem;
+  color: var(--pink);
+  font-weight: bold;
+  font-size: 2rem;
+  background-color: rgb(255, 240, 33);
+}
+
+.posts {
+  margin: 1rem;
+}
+
+.post {
+  padding: 1rem;
+  margin: 0 0 1rem 0;
+  border-radius: 0.33rem;
+  border: 2px solid lightgray;
+  background-color: white;
+}
+.item-title {
+  vertical-align: middle;
+  font-weight: bold;
+  font-size: 1.5rem;
+  padding-bottom: 1rem;
+  margin-bottom: 1rem;
+  border-bottom: 2px solid rgb(235, 235, 235);
+}
+
+.item-type {
+  user-select: none;
+  display: inline-block;
+  cursor: pointer;
+  border-radius: 0.33rem;
+  padding: 0.33rem 0.55rem;
+  margin-right: 0.75rem;
+  font-weight: 100;
+  transition: background-color 0.2s, color 0.2s;
+}
+
+.item-type.note {
+  background-color: var(--myblue);
+  border: 2px solid rgb(35, 64, 151);
+  color: rgb(35, 64, 151);
+}
+.item-type.note:hover {
+  background-color: rgb(60, 96, 209);
+  color: white;
+}
+
+.item-type.link {
+  background-color: #00b894;
+  border: 2px solid #006d57;
+  color: #006d57;
+}
+.item-type.link:hover {
+  background-color: #009779;
+  color: white;
+}
+
+.item-type.diary {
+  background-color: #ffb83c;
+  border: 2px solid #ad7719;
+  color: #ad7719;
+}
+.item-type.diary:hover {
+  background-color: #eba733;
+  color: white;
+}
+
+.item-timestamp {
+  width: 33%;
+  float: right;
+  text-align: right;
+  color: rgb(126, 126, 126);
+  font-size: 1rem;
+  line-height: 2.5rem;
+  font-weight: normal;
+  font-style: italic;
+}
+
+.item-body {
+  font-size: 1.25rem;
+}
+
+a.item-body {
+  font-family: var(--font-family-monospace);
+}
+
+a.item-body,
+a.item-body:visited {
+  color: var(--pink);
+}
+a.item-body:hover {
+  border-radius: 0.2rem;
+  background-color: var(--pink);
+  color: white;
+}
+
+/* Create Post */
+.post-dialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  padding: 10%;
+}
+
+.dialog-content {
+  background: white;
+  box-shadow: 0 0 0 10000px rgba(0, 0, 0, 0.66);
+  padding: 20px;
+  border: 1px solid rgb(197, 197, 197);
+}

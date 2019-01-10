@@ -13,27 +13,21 @@ module.exports = function createContentArea(fastn, app) {
       }),
       // Might have to bind to `items` instead if `items|*`
       // if this gets too slow
-      items: fastn.binding(
-        "items|*",
-        "filter",
-        "type",
-        (items, filter, type) => {
-          var results = items;
+      items: fastn.binding("items|*", "filter", "type", (items, filter, type) => {
+        var results = items;
 
-          if(type !== 'all'){
-            results = results.filter(item => item.type === type);
-          }
-
-          if(filter){
-            results = results.filter(item =>
-              ~item.title.indexOf(filter.toLowerCase()) ||
-              ~item.body.indexOf(filter.toLowerCase())
-            );
-          }
-
-          return results;
+        if (type !== "all") {
+          results = results.filter(item => item.type === type);
         }
-      ),
+
+        if (filter) {
+          results = results.filter(
+            item => ~item.title.indexOf(filter.toLowerCase()) || ~item.body.indexOf(filter.toLowerCase())
+          );
+        }
+
+        return results;
+      }),
       template: function() {
         return ListItem(fastn, app);
       }

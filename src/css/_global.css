@@ -1,21 +1,29 @@
 @import "./_palette.css";
 
 :root {
-  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Helvetica Neue",
-    Arial, sans-serif;
-  --font-family-monospace: Menlo, Monaco, Consolas, "Liberation Mono",
-    "Courier New", monospace;
+  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --font-family-monospace: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+::selection {
+  background: var(--pink); /* WebKit/Blink Browsers */
+  color: white;
+}
+::-moz-selection {
+  background: var(--pink); /* Gecko Browsers */
+  color: white;
 }
 
 .button {
   cursor: pointer;
   user-select: none;
-  padding: 0.33rem 0;
   min-width: 75px;
   max-width: 150px;
+  height: 2.25rem;
   text-align: center;
   color: white;
   background-color: gray;
   border-radius: 0.33rem;
+  border-width: 0;
   transition: background-color 0.1s;
 }

@@ -9,7 +9,7 @@ module.exports = function createListItem(fastn, app) {
     data: fastn.binding("item"),
     template: function(model) {
       var type = model.get("item.type");
-      return type in itemTypes && itemTypes[model.get("item.type")](fastn, app)
+      return type in itemTypes && itemTypes[model.get("item.type")](fastn, app);
     }
   });
 };

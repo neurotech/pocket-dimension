@@ -1,3 +1,3 @@
-module.exports = function createPostButton(fastn, app, title, styles) {
-  return fastn("button", { class: ["button", styles] }, title);
+module.exports = function createPostButton(fastn, app, title, icon) {
+  return fastn("button", { class: "button" }, fastn("span", { class: "title" }, title), icon);
 };

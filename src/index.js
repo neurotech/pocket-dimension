@@ -26,7 +26,7 @@ window.addEventListener("load", function() {
         fastn.Model.set(state, "items", data);
       });
     },
-    showCreatePost: function(){
+    showCreatePost: function() {
       fastn.Model.set(state, "dialogOpen", true);
     }
   };

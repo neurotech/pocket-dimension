@@ -1,0 +1,48 @@
+.sidebar {
+  flex: 0 0 14em;
+  order: -1;
+  user-select: none;
+  background-color: var(--pink);
+  color: white;
+}
+
+.logo {
+  padding: 1.5rem 0;
+  text-align: center;
+  transition: color 0.5s, text-shadow 0.6s;
+}
+
+.logo:hover {
+  color: rgb(255, 240, 33);
+  text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.33);
+}
+
+.logo-text {
+  display: inline-block;
+  font-variant: small-caps;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding-bottom: 0.5rem;
+  border-bottom: 2px dotted rgba(202, 24, 122, 1);
+  transition: border-bottom-color 0.33s;
+}
+.logo-text:hover {
+  border-bottom-color: rgb(255, 173, 218);
+}
+
+.sidebar-item {
+  cursor: pointer;
+  padding: 1rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: center;
+  color: rgb(145, 0, 80);
+  transition: color 0.1s;
+}
+.sidebar-item:hover {
+  color: white;
+}
+.sidebar-item.active {
+  cursor: not-allowed;
+  color: rgb(255, 240, 33);
+}

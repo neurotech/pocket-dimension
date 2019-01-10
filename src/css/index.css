@@ -1,28 +1,49 @@
 @import "./_palette.css";
 @import "./_global.css";
+@import "./_sidebar.css";
 @import "./_toolbar.css";
-@import "./_core.css";
+@import "./_content.css";
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
 
 html {
-  height: 100%;
+  box-sizing: border-box;
 }
 
 body {
   overflow-y: overlay;
-  min-height: 100%;
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
   font-family: var(--font-family-sans-serif);
   background-color: var(--palegray);
 }
 
-.container {
-  height: 100vh;
-  opacity: 1;
+#app {
   display: flex;
-  flex-direction: column;
-  width: 100%;
+  flex: 1;
+  border-spacing: 0;
   transition: opacity 0.2s;
+}
+
+.container {
+  display: contents;
 }
 
 .container.loading {
   opacity: 0.2;
+}
+
+.core {
+  width: 100%;
+  background-color: rgb(231, 231, 231);
 }

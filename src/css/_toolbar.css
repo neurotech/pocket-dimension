@@ -1,28 +1,22 @@
 .toolbar {
-  height: 55px;
+  width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0.5rem 0;
-  border-bottom: 1px solid rgb(197, 197, 197);
-}
-
-.logo {
-  width: 250px;
-  padding: 0 0 0 1rem;
-  font-size: 1.5rem;
-  font-weight: bold;
+  background-color: white;
+  padding: 1rem 0;
+  border-bottom: 2px solid rgb(197, 197, 197);
 }
 
 .search-and-create {
-  width: 100%;
   display: flex;
+  flex: 1;
   justify-content: space-between;
   align-items: center;
 }
 
 .search-box {
-  width: 75%;
+  flex: 1;
   display: table;
   text-align: center;
   justify-content: center;
@@ -30,9 +24,69 @@
 .search-box-input {
   width: 50%;
   display: table-cell;
-  padding: 0.5rem;
+  padding: 0.75rem;
+  outline: 0;
+  border-radius: 0.33rem;
+  border: 2px solid lightgrey;
+  color: lightgrey;
+  transition: border-color 0.2s;
 }
+.search-box-input:focus {
+  background-color: rgb(255, 239, 247);
+  border-color: var(--pink);
+  color: black;
+}
+.search-box-input::placeholder {
+  transition: color 0.2s;
+  color: lightgrey;
+}
+.search-box-input:focus::placeholder {
+  color: black;
+}
+
 .create-post {
-  width: 15%;
-  justify-content: center;
+  width: 200px;
+  text-align: center;
+  vertical-align: middle;
+}
+.create-post .button {
+  width: 100%;
+  height: 45px;
+  display: inline-block;
+  padding: 0;
+  font-size: 1rem;
+  line-height: 2rem;
+  font-weight: bold;
+  background-color: var(--pink);
+  border: 2px solid rgb(197, 0, 108);
+  transition: background-color 0.1s;
+}
+
+.create-post .button:hover {
+  background-color: rgb(236, 0, 130);
+}
+
+.create-post .button:focus {
+  background-color: rgb(236, 0, 130);
+  outline: 0;
+}
+
+.create-post .button .title {
+  margin-right: 10px;
+}
+
+.create-post .button .icon {
+  background-color: rgb(197, 0, 108);
+  padding: 0.33rem;
+  font-weight: 100;
+  border-radius: 3rem;
+  stroke: white;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  fill: none;
+}
+
+.create-post .button .icon {
+  background-color: rgb(173, 0, 95);
 }
