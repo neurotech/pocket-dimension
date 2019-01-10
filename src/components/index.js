@@ -16,9 +16,10 @@ module.exports = function combineComponents(fastn, app) {
   return fastn(
     "div",
     {
-      class: fastn.binding("isLoading", isLoading => {
-        return `container ${isLoading ? "loading" : ""}`;
-      })
+      class: fastn.binding("isLoading", isLoading => [
+        "container",
+        isLoading && "loading"
+      ])
     },
     top,
     core

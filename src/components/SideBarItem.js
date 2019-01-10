@@ -6,7 +6,7 @@ module.exports = function createSideBarItem(fastn, app, title, itemType) {
         return [
           "sidebar-item",
           title.toLowerCase(),
-          `${type === itemType && type !== "" ? "active" : "inactive"}`
+          type === itemType && type !== "" ? "active" : "inactive"
         ];
       })
     },

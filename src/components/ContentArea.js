@@ -18,30 +18,20 @@ module.exports = function createContentArea(fastn, app) {
         "filter",
         "type",
         (items, filter, type) => {
-          if ((filter === "" && type === "all") || !items) return items;
+          var results = items;
 
-          // Type selected, no filter
-          if (type !== "all" && filter === "")
-            return items.filter(item => item.type === type);
-
-          // Type selected, filter applied
-          if (type !== "all" && filter !== "") {
-            var filtered = items.filter(
-              item =>
-                ~item.title.indexOf(filter.toLowerCase()) ||
-                ~item.body.indexOf(filter.toLowerCase())
-            );
-            return filtered.filter(item => item.type === type);
+          if(type !== 'all'){
+            results = results.filter(item => item.type === type);
           }
 
-          // Filter applied, no type
-          if (filter !== "" && type === "all") {
-            return items.filter(
-              item =>
-                ~item.title.indexOf(filter.toLowerCase()) ||
-                ~item.body.indexOf(filter.toLowerCase())
+          if(filter){
+            results = results.filter(item =>
+              ~item.title.indexOf(filter.toLowerCase()) ||
+              ~item.body.indexOf(filter.toLowerCase())
             );
           }
+
+          return results;
         }
       ),
       template: function() {
