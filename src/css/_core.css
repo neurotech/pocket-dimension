@@ -3,29 +3,30 @@
   height: 100%;
 }
 .sidebar {
-  width: 150px;
-  padding: 1rem 0 0 1rem;
-  background-color: var(--pink);
+  padding: 1rem 3rem 0 3rem;
+  border-right: 1px solid rgb(197, 197, 197);
 }
 .sidebar-item {
   cursor: pointer;
   display: table;
-  padding: 0.5rem 0;
+  padding: 1rem 0;
   font-size: 1.2rem;
   font-weight: bold;
-  color: rgb(126, 14, 76);
+  color: black;
   transition: color 0.1s;
 }
 .sidebar-item:hover {
-  color: white;
+  color: rgb(201, 201, 201);
 }
 .sidebar-item.active {
   cursor: not-allowed;
-  color: rgb(255, 228, 75);
+  color: var(--myblue);
 }
 
 .content-area {
+  width: 100%;
   padding: 0 1rem 1rem 1rem;
+  background-color: rgb(231, 231, 231);
 }
 
 .post-dialog {
