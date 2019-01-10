@@ -36,6 +36,7 @@
     "fastn": "^2.12.0",
     "fastn-svg-component": "^1.0.0",
     "normalize.css": "^8.0.1",
+    "parcel": "^1.11.0",
     "spacetime": "^5.1.0"
   }
 }

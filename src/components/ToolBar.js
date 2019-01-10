@@ -6,9 +6,7 @@ module.exports = function createToolBar(fastn, app) {
   var createPost = fastn(
     "div",
     { class: "create-post" },
-    Button(fastn, app, "Create Post").on("click", (event, scope) => {
-      scope.set("dialogOpen", true);
-    })
+    Button(fastn, app, "Create Post").on("click", app.showCreatePost)
   );
   return fastn(
     "div",

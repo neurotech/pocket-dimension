@@ -29,6 +29,18 @@
   background-color: rgb(231, 231, 231);
 }
 
-.post-dialog {
-  display: none;
+.post-dialog{
+  position: fixed;
+  top:0;
+  left:0;
+  right:0;
+  bottom:0;
+  padding: 10%;
+}
+
+.dialog-content{
+  background: white;
+  box-shadow: 0 0 0 10000px rgba(255,255,255,0.8);
+  padding: 20px;
+  border: 1px solid rgb(197, 197, 197);
 }
