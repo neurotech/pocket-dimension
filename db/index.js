@@ -18,14 +18,8 @@ let get = {
     dynamo.scan(queries.getAll(), function(err, data) {
       if (err) return callback(err);
       let all = data.Items.sort(function(a, b) {
-        // Thanks to:
-        // Sort using JavaScript Date
-        // https://stackoverflow.com/a/12192544
-        return a.timestamp > b.timestamp
-          ? -1
-          : a.timestamp < b.timestamp
-          ? 1
-          : 0;
+        // Thanks to @korynunn
+        return new Date(b.timestamp) - new Date(a.timestamp);
       });
       callback(null, all);
     });
