@@ -9,5 +9,7 @@ module.exports = function createSearchBar(fastn, app) {
       value: fastn.binding("filter"),
       oninput: "value:value"
     })
-  );
+  ).on("submit", event => {
+    event.preventDefault();
+  });
 };

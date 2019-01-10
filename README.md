@@ -6,8 +6,6 @@ A tiny place to store tiny things.
 
 ### Create Post Dialog
 
-### ListItem/Diary.js | ListItem/Link.js | ListItem/Note.js specific layout etc
-
 ### Get title of a webpage (when creating/updating a link-type post)
 
 ```js

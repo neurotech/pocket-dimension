@@ -3,7 +3,7 @@
 
 .content-header {
   user-select: none;
-  padding: 1rem;
+  padding: 1rem 1rem 1rem 2rem;
   color: var(--pink);
   font-weight: bold;
   font-size: 2rem;
@@ -72,7 +72,7 @@
 }
 
 .item-timestamp {
-  width: 33%;
+  width: 30%;
   float: right;
   text-align: right;
   color: rgb(126, 126, 126);
