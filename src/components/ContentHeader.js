@@ -1,7 +1,7 @@
 var typeHeadings = {
-  "all": "Home"
-  "note": "Notes"
-  "link": "Links"
+  "all": "Home",
+  "note": "Notes",
+  "link": "Links",
   "diary": "Diary"
 };
 
