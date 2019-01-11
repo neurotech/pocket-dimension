@@ -6,7 +6,7 @@
   "scripts": {
     "start": "node app.js",
     "build": "parcel build src/index.html --out-dir build --public-url ./",
-    "predeploy": "set NODE_ENV=production&&node build.js",
+    "predeploy": "set NODE_ENV=production&&npm run build",
     "deploy": "now --public --local-config now.json && now alias --local-config now.json",
     "clean": "now --local-config now.json rm pocket-dimension --safe --yes",
     "test": "node test",
