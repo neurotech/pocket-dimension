@@ -3,6 +3,7 @@
   "type": "npm",
   "alias": "pocket-dimension.space",
   "env": {
+    "NODE_ENV": "production"
   },
   "scale": {
     "sfo1": {
@@ -10,7 +11,21 @@
       "max": 1
     }
   },
+  "files": [
+    "build",
+    "db",
+    "items",
+    "language",
+    "now",
+    "util",
+    "uuid",
+    "web",
+    "app.js",
+    "LICENSE",
+    "log.js"
+  ],
   "github": {
     "enabled": false
-  }
+  },
+  "version": 1
 }
