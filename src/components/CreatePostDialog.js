@@ -14,16 +14,16 @@ module.exports = function createPostDialog(fastn, app) {
     placeholder: "Post Body",
     required: true,
     value: fastn.binding("post.body"),
-    onchange: "value:value",
-    onkeydown: "value:value"
-  }).on("keydown", (event, scope) => {
-    if (!(event.ctrlKey && event.keyCode === 13)) return;
-    var action = scope.get("action");
-    if (action === "create") {
-      app.createPost(event, scope);
-    }
-    if (action === "update") {
-      app.updatePost(event, scope);
+    onchange: "value:value"
+  }).on("keypress", (event, scope) => {
+    if (event.ctrlKey && event.keyCode === 10) {
+      var action = scope.get("action");
+      if (action === "create") {
+        app.createPost(event, scope);
+      }
+      if (action === "update") {
+        app.updatePost(event, scope);
+      }
     }
   });
 
