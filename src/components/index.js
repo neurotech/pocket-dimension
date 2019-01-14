@@ -16,7 +16,7 @@ module.exports = function combineComponents(fastn, app) {
   return fastn(
     "div",
     {
-      class: fastn.binding("isLoading", isLoading => ["container", isLoading && "loading"])
+      class: "container"
     },
     sideBar,
     core

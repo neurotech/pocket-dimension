@@ -4,7 +4,7 @@
   justify-content: space-between;
   align-items: center;
   background-color: white;
-  padding: 1rem 0;
+  padding: 1rem;
   border-bottom: 2px solid rgb(197, 197, 197);
 }
 
@@ -15,14 +15,8 @@
   align-items: center;
 }
 
-.search-box {
-  flex: 1;
-  display: table;
-  text-align: center;
-  justify-content: center;
-}
 .search-box-input {
-  width: 50%;
+  width: 65%;
   display: table-cell;
   padding: 0.75rem;
   background-color: rgb(248, 248, 248);
@@ -47,8 +41,8 @@
 }
 
 .create-post {
-  width: 200px;
-  text-align: center;
+  min-width: 150px;
+  text-align: right;
   vertical-align: middle;
 }
 .create-post .button {

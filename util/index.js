@@ -1,5 +1,5 @@
 const uuid = require("../uuid");
-const now = require("../now");
+const now = require("../get-now");
 
 const contentType = { "Content-Type": "application/json" };
 

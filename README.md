@@ -4,7 +4,7 @@ A tiny place to store tiny things.
 
 ## TODO
 
-### Create Post Dialog
+### Create a separate space for "temp" actions like editing a post, creating a post to avoid data binding the itemlist
 
 ### Get title of a webpage (when creating/updating a link-type post)
 

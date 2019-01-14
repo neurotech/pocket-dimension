@@ -27,3 +27,15 @@
   border-width: 0;
   transition: background-color 0.1s;
 }
+
+input,
+textarea {
+  border-radius: 0.33rem;
+  outline: 0;
+  border: 2px solid lightgray;
+}
+
+input:focus,
+textarea:focus {
+  border-color: var(--myblue);
+}

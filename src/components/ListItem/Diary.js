@@ -1,7 +1,13 @@
 const spacetime = require("spacetime");
 
 module.exports = function createListItemDiary(fastn, app) {
-  var type = fastn("div", { class: "item-type diary" }, "☰");
+  var typeButton = fastn("button", { class: "item-edit diary" }, "☰").on("click", (event, scope) => {
+    app.setPost(scope.get("item"));
+  });
+  var removeButton = fastn("button", { class: "item-remove" }, "×").on("click", (event, scope) => {
+    app.deletePost(scope.get("item.id"), scope.get("item.timestamp"));
+  });
+  var title = fastn("div", { class: "item-title-text" }, fastn.binding("item.title"));
   var timestamp = fastn(
     "div",
     { class: "item-timestamp" },
@@ -15,8 +21,8 @@ module.exports = function createListItemDiary(fastn, app) {
   );
   return fastn(
     "div",
-    { class: ["diary", "post"] },
-    fastn("div", { class: "item-title" }, type, fastn.binding("item.title"), timestamp),
+    { class: ["note", "post"] },
+    fastn("div", { class: "item-title" }, typeButton, removeButton, title, timestamp),
     fastn("div", { class: "item-body" }, fastn.binding("item.body"))
   );
 };
