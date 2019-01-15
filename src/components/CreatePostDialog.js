@@ -18,7 +18,7 @@ module.exports = function createPostDialog(fastn, app) {
   }).on("keypress", (event, scope) => {
     if (event.ctrlKey && event.keyCode === 10) {
       event.preventDefault();
-      app.savePost(scope);
+      app.savePost(scope.get('.'));
     }
   });
 
@@ -28,7 +28,7 @@ module.exports = function createPostDialog(fastn, app) {
     event,
     scope
   ) {
-    app.savePost(scope);
+    app.savePost(scope.get('.'));
   });
 
   var cancelButton = Button(fastn, app, "Cancel", arrow, ["create-post-cancelbutton"]).on("click", app.hideCreatePost);

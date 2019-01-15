@@ -58,8 +58,7 @@ window.addEventListener("load", function() {
         app.getAll();
       });
     },
-    savePost: function(scope){
-      var post = scope.get(".");
+    savePost: function(post){
       var action = post.id ? "update" : "create";
 
       loading(api[action])(post, function(error) {
