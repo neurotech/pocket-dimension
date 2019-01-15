@@ -6,7 +6,7 @@ A tiny place to store tiny things.
 
 ### Create a separate space for "temp" actions like editing a post, creating a post to avoid data binding the itemlist
 
-### Get/set `body` as Markdown, parse using https://www.npmjs.com/package/marked at render time
+### Modularise highlighter
 
 ### Get title of a webpage (when creating/updating a link-type post)
 
