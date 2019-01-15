@@ -34,6 +34,7 @@
     "cpjax": "^1.1.3",
     "cssnano": "^4.1.8",
     "fastn": "^2.12.0",
+    "fastn-markdown-component": "^1.0.1",
     "fastn-svg-component": "^1.0.0",
     "normalize.css": "^8.0.1",
     "parcel": "^1.11.0",
