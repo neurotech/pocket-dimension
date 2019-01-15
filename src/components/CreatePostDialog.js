@@ -10,7 +10,7 @@ module.exports = function createPostDialog(fastn, app) {
       placeholder: "Post Title",
       required: true,
       value: fastn.binding("title"),
-      onchange: "value:value"
+      oninput: "value:value"
     })
     .on('insert', function(){
       laidout(this.element, () => this.element.focus());
@@ -21,7 +21,7 @@ module.exports = function createPostDialog(fastn, app) {
       placeholder: "Post Body",
       required: true,
       value: fastn.binding("body"),
-      onchange: "value:value"
+      oninput: "value:value"
     }).on("keypress", (event, scope) => {
       if (event.ctrlKey && event.keyCode === 10) {
         event.preventDefault();
@@ -31,7 +31,7 @@ module.exports = function createPostDialog(fastn, app) {
 
     var arrow = fastn("span", { class: "icon" }, "☵");
 
-    var createButton = Button(fastn, app, "Create", arrow, ["create-post-createbutton"]).on("click", function(
+    var createButton = Button(fastn, app, fastn.binding("id", id => id ? "Update" : "Create"), arrow, ["create-post-createbutton"]).on("click", function(
       event,
       scope
     ) {
