@@ -23,6 +23,6 @@ module.exports = function createListItemDiary(fastn, app) {
     "div",
     { class: ["note", "post"] },
     fastn("div", { class: "item-title" }, typeButton, removeButton, title, timestamp),
-    fastn("div", { class: "item-body" }, fastn.binding("item.body"))
+    fastn("markdown", { content: fastn.binding("item.body"), class: "item-body" })
   );
 };
