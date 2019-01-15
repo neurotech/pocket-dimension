@@ -1,4 +1,10 @@
 const spacetime = require("spacetime");
+const hljs = require("highlight.js");
+
+function highlighter(code, lang, callback) {
+  var highlighted = hljs.highlight(lang, code, false);
+  callback(null, highlighted.value);
+}
 
 module.exports = function createListItemDiary(fastn, app) {
   var typeButton = fastn("button", { class: "item-edit diary" }, "☰").on("click", (event, scope) => {
@@ -23,6 +29,10 @@ module.exports = function createListItemDiary(fastn, app) {
     "div",
     { class: ["note", "post"] },
     fastn("div", { class: "item-title" }, typeButton, removeButton, title, timestamp),
-    fastn("markdown", { content: fastn.binding("item.body"), class: "item-body" })
+    fastn("markdown", {
+      options: { highlight: highlighter },
+      content: fastn.binding("item.body"),
+      class: "item-body"
+    })
   );
 };
