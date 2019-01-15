@@ -23,6 +23,10 @@ module.exports = function createListItemLink(fastn, app) {
     "div",
     { class: ["link", "post"] },
     fastn("div", { class: "item-title" }, typeButton, removeButton, title, timestamp),
-    fastn("a", { class: "item-body", href: fastn.binding("item.body"), target: "_blank" }, fastn.binding("item.body"))
+    fastn(
+      "a",
+      { class: "item-body", href: fastn.binding("item.body"), target: "_blank" },
+      fastn.binding("item.body")
+    )
   );
 };

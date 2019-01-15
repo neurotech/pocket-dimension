@@ -29,7 +29,10 @@ module.exports = {
     );
   },
   create: function postItem(item, callback) {
-    cpjax({ url: "/api/items/create", method: "POST", data: JSON.stringify(item) }, function(error, data) {
+    cpjax({ url: "/api/items/create", method: "POST", data: JSON.stringify(item) }, function(
+      error,
+      data
+    ) {
       if (error) {
         return callback(error);
       }

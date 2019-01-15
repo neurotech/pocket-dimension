@@ -28,15 +28,27 @@ module.exports = function createPostDialog(fastn, app) {
 
     var arrow = fastn("span", { class: "icon" }, "☵");
 
-    var createButton = Button(fastn, app, fastn.binding("id", id => (id ? "Update" : "Create")), null, [
-      "create-post-createbutton"
-    ]).on("click", function(event, scope) {
+    var createButton = Button(
+      fastn,
+      app,
+      fastn.binding("id", id => (id ? "Update" : "Create")),
+      null,
+      ["create-post-createbutton"]
+    ).on("click", function(event, scope) {
       app.savePost(scope.get("."));
     });
 
-    var cancelButton = Button(fastn, app, "Cancel", null, ["create-post-cancelbutton"]).on("click", app.hideEditPost);
+    var cancelButton = Button(fastn, app, "Cancel", null, ["create-post-cancelbutton"]).on(
+      "click",
+      app.hideEditPost
+    );
 
-    var buttons = fastn("div", { class: "create-post-button-container" }, createButton, cancelButton);
+    var buttons = fastn(
+      "div",
+      { class: "create-post-button-container" },
+      createButton,
+      cancelButton
+    );
 
     return fastn(
       "div",
