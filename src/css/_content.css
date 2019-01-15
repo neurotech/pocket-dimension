@@ -170,6 +170,12 @@ textarea.create-post-body {
 .create-post-createbutton,
 .create-post-cancelbutton {
   margin-right: 1rem;
+  display: inline-block;
+  padding: 0;
+  font-size: 1rem;
+  line-height: 2rem;
+  font-weight: bold;
+  transition: background-color 0.1s;
 }
 
 textarea.create-post-body {
