@@ -1,6 +1,6 @@
 const markdown = require("fastn-markdown-component");
 const svg = require("fastn-svg-component");
-const fastn = require("fastn")(require("fastn/domComponents")({ svg, markdown }));
+const fastn = require("fastn")(require("fastn/domComponents")({ svg, markdown }), true);
 const api = require("./api");
 const components = require("./components");
 
@@ -12,12 +12,7 @@ window.addEventListener("load", function() {
     filter: "",
     type: "all",
     dialogOpen: false,
-    action: "create",
-    post: {
-      title: "",
-      body: "",
-      type: ""
-    }
+    action: "create"
   };
   function loading(fn){
     app.setLoading(true);
@@ -36,7 +31,6 @@ window.addEventListener("load", function() {
     },
     editPost: function(post) {
       fastn.Model.set(state, "post", post);
-      app.showCreatePost("update");
     },
     getAll: function() {
       loading(api.get.all)(function(error, data) {
@@ -46,7 +40,6 @@ window.addEventListener("load", function() {
     },
     showCreatePost: function() {
       fastn.Model.set(state, "post", {});
-      document.querySelector(".create-post-title").focus();
     },
     hideEditPost: function() {
       fastn.Model.remove(state, "post");

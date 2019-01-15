@@ -2,7 +2,7 @@ const spacetime = require("spacetime");
 
 module.exports = function createListItemLink(fastn, app) {
   var typeButton = fastn("button", { class: "item-edit link" }, "☲").on("click", (event, scope) => {
-    app.setPost(scope.get("item"));
+    app.editPost(scope.get("item"));
   });
   var removeButton = fastn("button", { class: "item-remove" }, "×").on("click", (event, scope) => {
     app.deletePost(scope.get("item.id"), scope.get("item.timestamp"));
