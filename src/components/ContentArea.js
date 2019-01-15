@@ -12,6 +12,10 @@ module.exports = function createContentArea(fastn, app) {
     items: fastn.binding("items|*", "filter", "type", (items, filter, type) => {
       var results = items;
 
+      if(!results){
+        return;
+      }
+
       if (type !== "all") {
         results = results.filter(item => item.type === type);
       }
