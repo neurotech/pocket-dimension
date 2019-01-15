@@ -46,7 +46,12 @@ module.exports = function createPostDialog(fastn, app) {
       "div",
       { class: "create-post-dialog" },
       fastn("div", { class: "create-post-dialog-content" }, titleInput, bodyInput, buttons)
-    );
+    )
+    .on('click', function(event){
+      if(event.target === this.element){
+        app.hideEditPost();
+      }
+    });
   }
 
   return fastn("templater", {
