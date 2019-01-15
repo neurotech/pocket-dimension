@@ -36,7 +36,7 @@ module.exports = function createPostDialog(fastn, app) {
   var buttons = fastn("div", { class: "create-post-button-container" }, createButton, cancelButton);
 
   return fastn('templater', {
-    data: fastn.binding('targetPost'),
+    data: fastn.binding('post'),
     template: (model) => {
       var post = model.get('item');
       if(!post){
