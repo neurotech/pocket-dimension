@@ -17,8 +17,12 @@ window.addEventListener("load", function() {
   function loading(fn){
     app.setLoading(true);
     return function(){
-      app.setLoading(false);
-      fn.apply(null, arguments);
+      var args = Array.from(arguments);
+      var callback = args.pop();
+      fn.apply(null, args.concat(function(){
+        app.setLoading(false);
+        callback.apply(null, arguments);
+      }));
     }
   }
   let app = {

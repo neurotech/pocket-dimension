@@ -4,9 +4,10 @@ const ListItem = require("./ListItem");
 module.exports = function createContentArea(fastn, app) {
   return fastn("list", {
     insertionFrameTime: 30,
-    class: fastn.binding("isLoading", function(isLoading) {
-      return `posts ${isLoading ? "loading" : ""}`;
-    }),
+    class: fastn.binding("isLoading", isLoading => [
+      'posts',
+      isLoading && 'loading'
+    ]),
     // Might have to bind to `items` instead if `items|*`
     // if this gets too slow
     items: fastn.binding("items|*", "filter", "type", (items, filter, type) => {
