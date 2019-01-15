@@ -29,16 +29,13 @@ module.exports = {
     );
   },
   create: function postItem(item, callback) {
-    cpjax(
-      { url: "/api/items/create", method: "POST", data: JSON.stringify(item) },
-      function(error, data) {
-        if (error) {
-          return callback(error);
-        }
-        let items = JSON.parse(data).data;
-        callback(null, items);
+    cpjax({ url: "/api/items/create", method: "POST", data: JSON.stringify(item) }, function(error, data) {
+      if (error) {
+        return callback(error);
       }
-    );
+      let items = JSON.parse(data).data;
+      callback(null, items);
+    });
   },
   delete: {
     item: function deleteItem(id, timestamp, callback) {

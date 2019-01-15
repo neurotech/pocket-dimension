@@ -2,17 +2,14 @@ const Button = require("./Button");
 const laidout = require("laidout");
 
 module.exports = function createPostDialog(fastn, app) {
-
-  function renderModal(){
-
+  function renderModal() {
     var titleInput = fastn("input", {
       class: "create-post-title",
       placeholder: "Post Title",
       required: true,
       value: fastn.binding("title"),
       oninput: "value:value"
-    })
-    .on('insert', function(){
+    }).on("insert", function() {
       laidout(this.element, () => this.element.focus());
     });
 
@@ -31,14 +28,13 @@ module.exports = function createPostDialog(fastn, app) {
 
     var arrow = fastn("span", { class: "icon" }, "☵");
 
-    var createButton = Button(fastn, app, fastn.binding("id", id => id ? "Update" : "Create"), arrow, ["create-post-createbutton"]).on("click", function(
-      event,
-      scope
-    ) {
+    var createButton = Button(fastn, app, fastn.binding("id", id => (id ? "Update" : "Create")), null, [
+      "create-post-createbutton"
+    ]).on("click", function(event, scope) {
       app.savePost(scope.get("."));
     });
 
-    var cancelButton = Button(fastn, app, "Cancel", arrow, ["create-post-cancelbutton"]).on("click", app.hideEditPost);
+    var cancelButton = Button(fastn, app, "Cancel", null, ["create-post-cancelbutton"]).on("click", app.hideEditPost);
 
     var buttons = fastn("div", { class: "create-post-button-container" }, createButton, cancelButton);
 
@@ -46,9 +42,8 @@ module.exports = function createPostDialog(fastn, app) {
       "div",
       { class: "create-post-dialog" },
       fastn("div", { class: "create-post-dialog-content" }, titleInput, bodyInput, buttons)
-    )
-    .on('click', function(event){
-      if(event.target === this.element){
+    ).on("click", function(event) {
+      if (event.target === this.element) {
         app.hideEditPost();
       }
     });
@@ -56,10 +51,10 @@ module.exports = function createPostDialog(fastn, app) {
 
   return fastn("templater", {
     data: fastn.binding("post"),
-    template: (model) => {
+    template: model => {
       var post = model.get("item");
 
-      if(!post){
+      if (!post) {
         return;
       }
 

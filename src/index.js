@@ -14,20 +14,23 @@ window.addEventListener("load", function() {
     dialogOpen: false,
     action: "create"
   };
-  function loading(fn){
+  function loading(fn) {
     app.setLoading(true);
-    return function(){
+    return function() {
       var args = Array.from(arguments);
       var callback = args.pop();
-      fn.apply(null, args.concat(function(){
-        app.setLoading(false);
-        callback.apply(null, arguments);
-      }));
-    }
+      fn.apply(
+        null,
+        args.concat(function() {
+          app.setLoading(false);
+          callback.apply(null, arguments);
+        })
+      );
+    };
   }
   let app = {
     state,
-    setLoading: function(isLoading){
+    setLoading: function(isLoading) {
       fastn.Model.set(state, "isLoading", isLoading);
     },
     setType: function(value) {
@@ -55,11 +58,10 @@ window.addEventListener("load", function() {
         app.getAll();
       });
     },
-    savePost: function(post){
+    savePost: function(post) {
       var action = post.id ? "update" : "create";
 
       loading(api[action])(post, function(error) {
-
         if (error) {
           return console.error(error);
         }
