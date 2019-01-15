@@ -1,4 +1,5 @@
 const Button = require("./Button");
+const laidout = require("laidout");
 
 module.exports = function createPostDialog(fastn, app) {
 
@@ -9,8 +10,10 @@ module.exports = function createPostDialog(fastn, app) {
       placeholder: "Post Title",
       required: true,
       value: fastn.binding("title"),
-      onchange: "value:value",
-      autofocus: true
+      onchange: "value:value"
+    })
+    .on('insert', function(){
+      laidout(this.element, () => this.element.focus());
     });
 
     var bodyInput = fastn("textarea", {
