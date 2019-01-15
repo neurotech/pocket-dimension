@@ -9,6 +9,10 @@
   opacity: 0.25;
 }
 
+.posts:last-child {
+  margin-bottom: 0;
+}
+
 .post {
   padding: 1rem;
   margin: 0 0 1rem 0;
@@ -105,15 +109,15 @@
   font-size: 1.25rem;
 }
 
-a.item-body {
+a {
   font-family: var(--font-family-monospace);
 }
 
-a.item-body,
-a.item-body:visited {
+a,
+a:visited {
   color: var(--pink);
 }
-a.item-body:hover {
+a:hover {
   border-radius: 0.2rem;
   background-color: var(--pink);
   color: white;
@@ -171,11 +175,29 @@ textarea.create-post-body {
 .create-post-cancelbutton {
   margin-right: 1rem;
   display: inline-block;
-  padding: 0;
+  padding: 0 1rem;
   font-size: 1rem;
   line-height: 2rem;
   font-weight: bold;
   transition: background-color 0.1s;
+}
+
+.create-post-createbutton {
+  background-color: var(--myblue);
+  border: 2px solid rgb(35, 64, 151);
+  color: white;
+}
+.create-post-createbutton:hover {
+  background-color: rgb(60, 96, 209);
+}
+
+.create-post-cancelbutton {
+  background-color: lightgray;
+  border: 2px solid darkgray;
+  color: rgb(133, 133, 133);
+}
+.create-post-cancelbutton:hover {
+  background-color: rgb(189, 189, 189);
 }
 
 textarea.create-post-body {

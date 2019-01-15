@@ -1,8 +1,29 @@
-@import "./_palette.css";
-
 :root {
   --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
-  --font-family-monospace: Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-family-monospace: "Fira Mono Medium", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+}
+
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html {
+  box-sizing: border-box;
+}
+
+body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+  font-family: var(--font-family-sans-serif);
+  background-color: var(--palegray);
 }
 
 ::selection {
@@ -12,6 +33,22 @@
 ::-moz-selection {
   background: var(--pink); /* Gecko Browsers */
   color: white;
+}
+
+#app {
+  display: flex;
+  flex: 1;
+  border-spacing: 0;
+  transition: opacity 0.2s;
+}
+
+.container {
+  display: contents;
+}
+
+.core {
+  width: 100%;
+  background-color: rgb(231, 231, 231);
 }
 
 .button {

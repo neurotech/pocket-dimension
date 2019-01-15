@@ -3,43 +3,4 @@
 @import "./_sidebar.css";
 @import "./_toolbar.css";
 @import "./_content.css";
-
-* {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-*,
-*:before,
-*:after {
-  box-sizing: inherit;
-}
-
-html {
-  box-sizing: border-box;
-  font-size: 0.8em;
-}
-
-body {
-  display: flex;
-  min-height: 100vh;
-  flex-direction: column;
-  font-family: var(--font-family-sans-serif);
-  background-color: var(--palegray);
-}
-
-#app {
-  display: flex;
-  flex: 1;
-  border-spacing: 0;
-  transition: opacity 0.2s;
-}
-
-.container {
-  display: contents;
-}
-
-.core {
-  width: 100%;
-  background-color: rgb(231, 231, 231);
-}
+@import "./_code.css";
