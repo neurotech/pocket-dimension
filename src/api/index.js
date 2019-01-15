@@ -3,8 +3,10 @@ const cpjax = require("cpjax");
 module.exports = {
   get: {
     all: function getAllItems(callback) {
-      cpjax("/api/items/all", function(error, data) {
-        if (error) callback(error);
+      cpjax({ url: "/api/items/all", json: true }, function(error, data) {
+        if (error) {
+          return callback(error);
+        }
         let items = JSON.parse(data).data;
         callback(null, items);
       });
@@ -18,17 +20,21 @@ module.exports = {
         data: JSON.stringify(item)
       },
       function(error, data) {
-        if (error) callback(error);
+        if (error) {
+          return callback(error);
+        }
         let status = JSON.parse(data).status;
         callback(null, status);
       }
     );
   },
-  post: function postItem(item, callback) {
+  create: function postItem(item, callback) {
     cpjax(
       { url: "/api/items/create", method: "POST", data: JSON.stringify(item) },
       function(error, data) {
-        if (error) callback(error);
+        if (error) {
+          return callback(error);
+        }
         let items = JSON.parse(data).data;
         callback(null, items);
       }
@@ -42,7 +48,9 @@ module.exports = {
           method: "DELETE"
         },
         function(error, data) {
-          if (error) callback(error);
+          if (error) {
+            return callback(error);
+          }
           let status = JSON.parse(data).status;
           callback(null, status);
         }

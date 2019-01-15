@@ -5,7 +5,7 @@ module.exports = function createPostDialog(fastn, app) {
     class: "create-post-title",
     placeholder: "Post Title",
     required: true,
-    value: fastn.binding("post.title"),
+    value: fastn.binding("title"),
     onchange: "value:value"
   });
 
@@ -13,17 +13,12 @@ module.exports = function createPostDialog(fastn, app) {
     class: "create-post-body",
     placeholder: "Post Body",
     required: true,
-    value: fastn.binding("post.body"),
+    value: fastn.binding("body"),
     onchange: "value:value"
   }).on("keypress", (event, scope) => {
     if (event.ctrlKey && event.keyCode === 10) {
-      var action = scope.get("action");
-      if (action === "create") {
-        app.createPost(event, scope);
-      }
-      if (action === "update") {
-        app.updatePost(event, scope);
-      }
+      event.preventDefault();
+      app.savePost(scope.get('.'));
     }
   });
 
@@ -33,22 +28,25 @@ module.exports = function createPostDialog(fastn, app) {
     event,
     scope
   ) {
-    var action = scope.get("action");
-    if (action === "create") {
-      app.createPost(event, scope, app);
-    }
-    if (action === "update") {
-      app.updatePost(event, scope, app);
-    }
+    app.savePost(scope.get('.'));
   });
 
   var cancelButton = Button(fastn, app, "Cancel", arrow, ["create-post-cancelbutton"]).on("click", app.hideCreatePost);
 
   var buttons = fastn("div", { class: "create-post-button-container" }, createButton, cancelButton);
 
-  return fastn(
-    "div",
-    { display: fastn.binding("dialogOpen"), class: "create-post-dialog" },
-    fastn("div", { class: "create-post-dialog-content" }, titleInput, bodyInput, buttons)
-  );
+  return fastn('templater', {
+    data: fastn.binding('post'),
+    template: (model) => {
+      var post = model.get('item');
+      if(!post){
+        return;
+      }
+      return fastn(
+        "div",
+        { class: "create-post-dialog" },
+        fastn("div", { class: "create-post-dialog-content" }, titleInput, bodyInput, buttons)
+      ).attach();
+    }
+  });
 };

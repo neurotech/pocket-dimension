@@ -7,7 +7,6 @@ module.exports = function createToolBar(fastn, app) {
     "div",
     { class: "create-post" },
     Button(fastn, app, "Create Post", arrow).on("click", () => {
-      app.setAction("create");
       app.showCreatePost();
     })
   );

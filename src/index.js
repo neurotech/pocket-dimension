@@ -19,63 +19,55 @@ window.addEventListener("load", function() {
       type: ""
     }
   };
+  function loading(fn){
+    app.setLoading(true);
+    return function(){
+      app.setLoading(false);
+      fn.apply(null, arguments);
+    }
+  }
   let app = {
+    state,
+    setLoading: function(isLoading){
+      fastn.Model.set(state, "isLoading", isLoading);
+    },
     setType: function(value) {
       fastn.Model.set(state, "type", value);
     },
-    setAction: function(value) {
-      fastn.Model.set(state, "action", value);
-    },
-    setPost: function(value) {
-      app.setAction("update");
-      fastn.Model.set(state, "post", value);
-      app.showCreatePost();
+    editPost: function(post) {
+      fastn.Model.set(state, "post", post);
+      app.showCreatePost("update");
     },
     getAll: function() {
-      fastn.Model.set(state, "isLoading", true);
-      api.get.all(function(err, data) {
-        fastn.Model.set(state, "isLoading", false);
-        if (err) console.error(err);
+      loading(api.get.all)(function(error, data) {
+        if (error) return console.error(error);
         fastn.Model.set(state, "items", data);
       });
     },
     showCreatePost: function() {
-      fastn.Model.set(state, "dialogOpen", true);
+      fastn.Model.set(state, "post", {});
       document.querySelector(".create-post-title").focus();
     },
-    hideCreatePost: function() {
-      fastn.Model.set(state, "dialogOpen", false);
+    hideEditPost: function() {
+      fastn.Model.remove(state, "post");
       document.querySelector(".search-box-input").focus();
     },
-    createPost: function(event, scope) {
-      fastn.Model.set(state, "isLoading", true);
-      app.hideCreatePost();
-      event.preventDefault();
-      api.post(scope.get("post"), function(err) {
-        fastn.Model.set(state, "isLoading", false);
-        if (err) return console.error(err);
-        fastn.Model.set(state, "dialogOpen", false);
-        fastn.Model.set(state, "post", {});
-        app.getAll();
-      });
-    },
-    updatePost: function(event, scope) {
-      fastn.Model.set(state, "isLoading", true);
-      app.hideCreatePost();
-      event.preventDefault();
-      api.update(scope.get("post"), function(err) {
-        fastn.Model.set(state, "isLoading", false);
-        if (err) return console.error(err);
-        fastn.Model.set(state, "dialogOpen", false);
-        fastn.Model.set(state, "post", {});
-        app.getAll();
-      });
-    },
     deletePost: function(id, timestamp) {
-      fastn.Model.set(state, "isLoading", true);
-      api.delete.item(id, timestamp, function(err, res) {
-        fastn.Model.set(state, "isLoading", false);
-        if (err) return console.error(err);
+      loading(api.delete.item)(id, timestamp, function(error, res) {
+        if (error) return console.error(error);
+        app.getAll();
+      });
+    },
+    savePost: function(post){
+      var action = post.id ? "update" : "create";
+
+      loading(api[action])(post, function(error) {
+
+        if (error) {
+          return console.error(error);
+        }
+
+        app.hideEditPost();
         app.getAll();
       });
     }
@@ -91,8 +83,8 @@ window.addEventListener("load", function() {
       isEscape = event.keyCode == 27;
     }
 
-    if (isEscape && fastn.Model.get(state, "dialogOpen")) {
-      app.hideCreatePost();
+    if (isEscape && fastn.Model.get(state, "post")) {
+      app.hideEditPost();
     }
   };
 

@@ -8,7 +8,6 @@ function highlighter(code, lang, callback) {
 
 module.exports = function createListItemNote(fastn, app) {
   var typeButton = fastn("button", { class: "item-edit note" }, "☷").on("click", (event, scope) => {
-    app.setAction("update");
     app.setPost(scope.get("item"));
   });
   var removeButton = fastn("button", { class: "item-remove" }, "×").on("click", (event, scope) => {
