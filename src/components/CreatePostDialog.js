@@ -35,9 +35,18 @@ module.exports = function createPostDialog(fastn, app) {
 
   var buttons = fastn("div", { class: "create-post-button-container" }, createButton, cancelButton);
 
-  return fastn(
-    "div",
-    { display: fastn.binding("dialogOpen").attach(app.state), class: "create-post-dialog" },
-    fastn("div", { class: "create-post-dialog-content" }, titleInput, bodyInput, buttons)
-  ).attach({});
+  return fastn('templater', {
+    data: fastn.binding('targetPost'),
+    template: (model) => {
+      var post = model.get('item');
+      if(!post){
+        return;
+      }
+      return fastn(
+        "div",
+        { class: "create-post-dialog" },
+        fastn("div", { class: "create-post-dialog-content" }, titleInput, bodyInput, buttons)
+      ).attach();
+    }
+  });
 };

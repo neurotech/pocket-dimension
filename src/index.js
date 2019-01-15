@@ -45,11 +45,11 @@ window.addEventListener("load", function() {
       });
     },
     showCreatePost: function() {
-      fastn.Model.set(state, "dialogOpen", true);
+      fastn.Model.set(state, "post", {});
       document.querySelector(".create-post-title").focus();
     },
-    hideCreatePost: function() {
-      fastn.Model.set(state, "dialogOpen", false);
+    hideEditPost: function() {
+      fastn.Model.remove(state, "post");
       document.querySelector(".search-box-input").focus();
     },
     deletePost: function(id, timestamp) {
@@ -59,21 +59,16 @@ window.addEventListener("load", function() {
       });
     },
     savePost: function(scope){
-      var post = scope.get("post");
+      var post = scope.get(".");
       var action = post.id ? "update" : "create";
 
-      app.hideCreatePost();
-
-      loading(api[action])(scope.get("post"), function(error) {
+      loading(api[action])(post, function(error) {
 
         if (error) {
           return console.error(error);
         }
 
-        fastn.Model.set(state, "dialogOpen", false);
-
-        fastn.Model.set(state, "post", {});
-
+        app.hideEditPost();
         app.getAll();
       });
     }
@@ -89,8 +84,8 @@ window.addEventListener("load", function() {
       isEscape = event.keyCode == 27;
     }
 
-    if (isEscape && fastn.Model.get(state, "dialogOpen")) {
-      app.hideCreatePost();
+    if (isEscape && fastn.Model.get(state, "post")) {
+      app.hideEditPost();
     }
   };
 
