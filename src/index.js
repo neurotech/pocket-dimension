@@ -36,6 +36,9 @@ window.addEventListener("load", function() {
     setType: function(value) {
       fastn.Model.set(state, "type", value);
     },
+    setPostType: function(value) {
+      fastn.Model.set(state, "post.type", value);
+    },
     editPost: function(post) {
       fastn.Model.set(state, "post", post);
     },
@@ -46,7 +49,9 @@ window.addEventListener("load", function() {
       });
     },
     showCreatePost: function() {
-      fastn.Model.set(state, "post", { type: "note" });
+      fastn.Model.set(state, "post", {});
+      app.setPostType("note");
+      var lblah = "";
     },
     hideEditPost: function() {
       fastn.Model.remove(state, "post");
