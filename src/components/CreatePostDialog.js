@@ -1,8 +1,11 @@
+const TypeSwitcher = require("./TypeSwitcher");
 const Button = require("./Button");
 const laidout = require("laidout");
 
 module.exports = function createPostDialog(fastn, app) {
   function renderModal() {
+    var typeSwitcher = TypeSwitcher(fastn, app);
+
     var titleInput = fastn("input", {
       class: "create-post-title",
       placeholder: "Post Title",
@@ -53,7 +56,14 @@ module.exports = function createPostDialog(fastn, app) {
     return fastn(
       "div",
       { class: "create-post-dialog" },
-      fastn("div", { class: "create-post-dialog-content" }, titleInput, bodyInput, buttons)
+      fastn(
+        "div",
+        { class: "create-post-dialog-content" },
+        typeSwitcher,
+        titleInput,
+        bodyInput,
+        buttons
+      )
     ).on("click", function(event) {
       if (event.target === this.element) {
         app.hideEditPost();

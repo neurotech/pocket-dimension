@@ -46,7 +46,7 @@ window.addEventListener("load", function() {
       });
     },
     showCreatePost: function() {
-      fastn.Model.set(state, "post", {});
+      fastn.Model.set(state, "post", { type: "note" });
     },
     hideEditPost: function() {
       fastn.Model.remove(state, "post");
