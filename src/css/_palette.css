@@ -1,4 +1,20 @@
 :root {
-  --myblue: rgb(80, 119, 243);
+  --blue: rgb(80, 119, 243);
+  --medium-blue: rgb(60, 96, 209);
+  --dark-blue: rgb(35, 64, 151);
   --pink: rgb(255, 0, 139);
+  --medium-pink: rgb(197, 0, 108);
+  --mediumer-pink: rgb(173, 0, 95);
+  --dark-pink: rgb(145, 0, 80);
+  --darker-pink: rgb(70, 0, 49);
+  --pale-pink: rgb(255, 173, 218);
+  --red: rgb(250, 20, 89);
+  --dark-red: rgb(190, 17, 69);
+  --yellow: rgb(255, 184, 60);
+  --medium-yellow: rgb(234, 167, 50);
+  --dark-yellow: rgb(173, 119, 25);
+  --bright-yellow: rgb(255, 240, 33);
+  --green: #00b894;
+  --medium-green: #009779;
+  --dark-green: #006d57;
 }

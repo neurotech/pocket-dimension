@@ -16,7 +16,7 @@
     "db",
     "items",
     "language",
-    "now",
+    "get-now",
     "util",
     "uuid",
     "web",

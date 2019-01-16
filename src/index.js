@@ -1,14 +1,17 @@
 const markdown = require("fastn-markdown-component");
 const svg = require("fastn-svg-component");
 const fastn = require("fastn")(require("fastn/domComponents")({ svg, markdown }), true);
+const spacetime = require("spacetime");
 const api = require("./api");
 const components = require("./components");
+const getPageTitle = require("./get-page-title");
 
 import "normalize.css";
 
 window.addEventListener("load", function() {
   let state = {
     isLoading: false,
+    isGenerating: false,
     filter: "",
     type: "all",
     dialogOpen: false,
@@ -33,11 +36,40 @@ window.addEventListener("load", function() {
     setLoading: function(isLoading) {
       fastn.Model.set(state, "isLoading", isLoading);
     },
+    setGenerating: function(isGenerating) {
+      fastn.Model.set(state, "isGenerating", isGenerating);
+    },
     setType: function(value) {
       fastn.Model.set(state, "type", value);
     },
     setPostType: function(value) {
       fastn.Model.set(state, "post.type", value);
+    },
+    generatePostTitle: function() {
+      if (fastn.Model.get(state, "post.type") === "diary") {
+        var now = spacetime.now();
+        var today = now.format("{date-ordinal} {month} {year}");
+        var newTitle = `Work diary for ${today}`;
+        app.setPostTitle(newTitle);
+      }
+
+      if (
+        fastn.Model.get(state, "post.type") === "link" &&
+        fastn.Model.get(state, "post.body") !== undefined
+      ) {
+        app.setLoading(true);
+        getPageTitle(fastn.Model.get(state, "post.body"), function(error, title) {
+          app.setLoading(false);
+          if (error) return console.error(error);
+          app.setPostTitle(title);
+        });
+      }
+    },
+    setPostTitle: function(title) {
+      fastn.Model.set(state, "post.title", title);
+    },
+    clearPostTitle: function() {
+      fastn.Model.remove(state, "post.title");
     },
     editPost: function(post) {
       fastn.Model.set(state, "post", post);

@@ -28,7 +28,7 @@ module.exports = function createListItemDiary(fastn, app) {
     { class: ["note", "post"] },
     fastn("div", { class: "item-title" }, typeButton, removeButton, title, timestamp),
     fastn("markdown", {
-      options: { highlight: syntax },
+      options: { highlight: syntax.highlight },
       content: fastn.binding("item.body"),
       class: "item-body"
     })

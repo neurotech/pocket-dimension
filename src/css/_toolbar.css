@@ -30,14 +30,14 @@
 .search-box-input:focus {
   background-color: rgb(255, 239, 247);
   border-color: var(--pink);
-  color: rgb(70, 0, 49);
+  color: var(--dark-pink);
 }
 .search-box-input::placeholder {
   transition: color 0.2s;
   color: lightgrey;
 }
 .search-box-input:focus::placeholder {
-  color: rgb(100, 7, 72);
+  color: var(--mediumer-pink);
 }
 
 .create-post {
@@ -54,16 +54,16 @@
   line-height: 2rem;
   font-weight: bold;
   background-color: var(--pink);
-  border: 2px solid rgb(197, 0, 108);
+  border: 2px solid var(--medium-pink);
   transition: background-color 0.1s;
 }
 
 .create-post .button:hover {
-  background-color: rgb(236, 0, 130);
+  background-color: var(--pink);
 }
 
 .create-post .button:focus {
-  background-color: rgb(236, 0, 130);
+  background-color: var(--pink);
   outline: 0;
 }
 
@@ -72,7 +72,7 @@
 }
 
 .create-post .button .icon {
-  background-color: rgb(197, 0, 108);
+  background-color: var(--medium-pink);
   padding: 0.33rem;
   font-weight: 100;
   border-radius: 3rem;
@@ -84,5 +84,5 @@
 }
 
 .create-post .button .icon {
-  background-color: rgb(173, 0, 95);
+  background-color: var(--mediumer-pink);
 }

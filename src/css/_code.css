@@ -31,7 +31,7 @@ p code {
 }
 
 .hljs-keyword {
-  color: var(--myblue);
+  color: var(--blue);
 }
 .hljs-string {
   color: var(--pink);
@@ -50,7 +50,7 @@ p code {
   font-style: italic;
 }
 .hljs-built_in {
-  color: var(--myblue);
+  color: var(--blue);
 }
 .hljs-literal {
   color: #9d97ff;

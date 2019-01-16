@@ -1,0 +1,138 @@
+.create-post-dialog {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.66);
+  padding: 3rem 14rem;
+}
+
+.create-post-dialog-content {
+  display: flex;
+  flex-direction: column;
+  background: white;
+  padding: 20px;
+  border-radius: 0.33rem;
+  border: 2px solid rgb(197, 197, 197);
+  z-index: 999;
+}
+
+.create-post-button-container {
+  display: flex;
+  flex-direction: row;
+}
+
+.type-switcher {
+  width: 100%;
+  display: inline-flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;
+}
+
+.type-switcher-item {
+  position: relative;
+  width: 25%;
+}
+
+.type-switcher-input {
+  opacity: 0;
+  position: absolute;
+  z-index: -1;
+  top: 0;
+  left: 0;
+}
+
+.type-switcher-button {
+  display: block;
+  border: 2px solid lightgray;
+  text-align: center;
+  padding: 1rem;
+  position: relative;
+  cursor: pointer;
+  border-radius: 0.33rem;
+  color: lightgray;
+  user-select: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  line-height: 1.5rem;
+  min-width: 2.375rem;
+}
+
+.type-switcher-input:checked + .type-switcher-button {
+  z-index: 1;
+  color: white;
+}
+
+.type-switcher-input:checked + .type-switcher-button.note {
+  border-color: var(--medium-blue);
+  background: var(--blue);
+}
+.type-switcher-input:checked + .type-switcher-button.link {
+  border-color: var(--medium-green);
+  background: var(--green);
+}
+.type-switcher-input:checked + .type-switcher-button.diary {
+  border-color: var(--dark-yellow);
+  background: var(--yellow);
+}
+
+.selectgroup-item + .selectgroup-item {
+  margin-left: -2px;
+}
+
+input.create-post-title {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+textarea.create-post-body {
+  font-size: 1.5rem;
+  height: 60vh;
+}
+
+input.create-post-title:focus,
+textarea.create-post-body:focus {
+  color: black;
+}
+
+input.create-post-title,
+textarea.create-post-body {
+  flex: 1;
+  padding: 1rem;
+}
+
+.create-post-createbutton,
+.create-post-cancelbutton {
+  margin-right: 1rem;
+  display: inline-block;
+  padding: 0 1rem;
+  font-size: 1rem;
+  line-height: 2rem;
+  font-weight: bold;
+  transition: background-color 0.1s;
+}
+
+.create-post-createbutton {
+  background-color: var(--blue);
+  border: 2px solid var(--dark-blue);
+  color: white;
+}
+.create-post-createbutton:hover {
+  background-color: var(--medium-blue);
+}
+
+.create-post-cancelbutton {
+  background-color: lightgray;
+  border: 2px solid darkgray;
+  color: rgb(133, 133, 133);
+}
+.create-post-cancelbutton:hover {
+  background-color: rgb(189, 189, 189);
+}
+
+textarea.create-post-body {
+  margin: 1rem 0;
+}

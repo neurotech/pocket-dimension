@@ -1,6 +1,7 @@
 :root {
   --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
-  --font-family-monospace: "Fira Mono Medium", Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace;
+  --font-family-monospace: "Fira Mono Medium", Menlo, Monaco, Consolas, "Liberation Mono",
+    "Courier New", monospace;
 }
 
 * {
@@ -23,15 +24,14 @@ body {
   min-height: 100vh;
   flex-direction: column;
   font-family: var(--font-family-sans-serif);
-  background-color: var(--palegray);
 }
 
 ::selection {
-  background: var(--pink); /* WebKit/Blink Browsers */
+  background: var(--pink);
   color: white;
 }
 ::-moz-selection {
-  background: var(--pink); /* Gecko Browsers */
+  background: var(--pink);
   color: white;
 }
 
@@ -74,5 +74,5 @@ textarea {
 
 input:focus,
 textarea:focus {
-  border-color: var(--myblue);
+  border-color: var(--blue);
 }

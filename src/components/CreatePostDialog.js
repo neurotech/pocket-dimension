@@ -11,7 +11,8 @@ module.exports = function createPostDialog(fastn, app) {
       placeholder: "Post Title",
       required: true,
       value: fastn.binding("title"),
-      oninput: "value:value"
+      oninput: "value:value",
+      disabled: fastn.binding("isLoading").attach(app.state)
     }).on("insert", function() {
       laidout(this.element, () => this.element.focus());
     });
@@ -21,15 +22,14 @@ module.exports = function createPostDialog(fastn, app) {
       placeholder: "Post Body",
       required: true,
       value: fastn.binding("body"),
-      oninput: "value:value"
+      oninput: "value:value",
+      disabled: fastn.binding("isLoading").attach(app.state)
     }).on("keypress", (event, scope) => {
       if (event.ctrlKey && event.keyCode === 10) {
         event.preventDefault();
         app.savePost(scope.get("."));
       }
     });
-
-    var arrow = fastn("span", { class: "icon" }, "☵");
 
     var createButton = Button(
       fastn,

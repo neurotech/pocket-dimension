@@ -14,7 +14,7 @@
 }
 
 .logo:hover {
-  color: rgb(255, 240, 33);
+  color: var(--bright-yellow);
   text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.33);
 }
 
@@ -27,7 +27,7 @@
   transition: border-bottom-color 0.33s;
 }
 .logo-text:hover {
-  border-bottom-color: rgb(255, 173, 218);
+  border-bottom-color: var(--pale-pink);
 }
 
 .sidebar-item {
@@ -36,7 +36,7 @@
   font-size: 1.5rem;
   font-weight: bold;
   text-align: center;
-  color: rgb(145, 0, 80);
+  color: var(--dark-pink);
   transition: color 0.1s;
 }
 .sidebar-item:hover {
@@ -44,5 +44,5 @@
 }
 .sidebar-item.active {
   cursor: not-allowed;
-  color: rgb(255, 240, 33);
+  color: var(--bright-yellow);
 }
