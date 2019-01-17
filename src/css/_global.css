@@ -55,7 +55,6 @@ body {
   cursor: pointer;
   user-select: none;
   min-width: 75px;
-  max-width: 150px;
   height: 2.25rem;
   text-align: center;
   color: white;
@@ -75,4 +74,21 @@ textarea {
 input:focus,
 textarea:focus {
   border-color: var(--blue);
+}
+
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+li {
+  padding-left: 1.75rem;
+  text-indent: -1rem;
+  margin: 1rem 0;
+}
+
+li:before {
+  content: "• ";
+  color: rgb(146, 146, 146); /* or whatever color you prefer */
 }

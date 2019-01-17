@@ -24,9 +24,12 @@
   "homepage": "https://github.com/neurotech/pocket-dimension#readme",
   "dependencies": {
     "aws-sdk": "^2.377.0",
+    "bcrypt": "^3.0.3",
+    "cryptr": "^4.0.2",
     "dion": "^2.0.0",
     "dotenv": "^6.1.0",
     "log-symbols": "^2.2.0",
+    "righto": "^5.1.0",
     "sea-lion": "^2.0.2",
     "tiny-json-http": "^7.0.2",
     "unescape": "^1.0.1"

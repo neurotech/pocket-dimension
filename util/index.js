@@ -47,6 +47,9 @@ const util = {
     },
     error: function errorResponse(data, response) {
       return responseHandler(500, "ERROR", data.message, response);
+    },
+    unauthorized: function unauthorizedResponse(data, response) {
+      return responseHandler(401, "UNAUTHORIZED", data, response);
     }
   }
 };

@@ -4,14 +4,48 @@ A tiny place to store tiny things.
 
 ## TODO
 
+### Create a separate space for "temp" actions like editing a post, creating a post to avoid data binding leading to the itemlist being updated
+
+---
+
 ### Auth
+
+> Note: `cryptr` uses SECRET-KEY to perform it's `decrypt`/`encrypt`
+
+#### Table Structure
+
+| *id | password | token       |
+| --- | -------- | ----------- |
+| `1` | `secret` | `aabbbc123` |
+
+#### Checking a Password
+
+1. Use `bcrypt` to compare the supplied plaintext password with hashed password that has been retrieved from a users table
+2. If valid password, create the session token
+
+#### Creating Session Token
+
+1. Create new TOKEN as UUID
+2. UPSERT record into AUTH-DB made up of supplied USERNAME and new "DECRYPTED"-TOKEN
+3. Use `cryptr.encrypt` to encrypt the TOKEN
+4. Return encrypted TOKEN as SESSION-TOKEN
+
+#### Checking Session Token
+
+1. Check that a SESSION-TOKEN is supplied by user, error if not
+2. Attempt to `cryptr.decrypt` SESSION-TOKEN, return error
+3. Lookup AUTH table for any records matching DECRYPTED-TOKEN
+4. If record, return record/"IS VALID"
+5. If !record, return error
+
+#### Abstract
 
 - User navigates to / - serve app
 - Login form visibility is bound to token presence
 - On boot, / checks for sessionStorage token
 - If token, POST token to /auth endpoint
   - If valid, set model.token to token
-  - if invalid, remove model.token
+  - If invalid, remove model.token
 - User enters password into form and POSTs password to /auth endpoint
 - /auth endpoint hashes password into token, validate token
   - If valid, respond with 200 and token, set model.token to token and store token in sessionStorage
@@ -28,5 +62,3 @@ loginForm:Bound to session token
 /login(user, pass) -> hash password, compare -> OK ? token : 400
 /user(token) -> check token exists against user -> OK ? user : 401
 ```
-
-### Create a separate space for "temp" actions like editing a post, creating a post to avoid data binding leading to the itemlist being updated
