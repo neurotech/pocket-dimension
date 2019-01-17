@@ -4,6 +4,7 @@ const Dion = require("dion");
 const seaLion = new SeaLion();
 const dion = new Dion(seaLion);
 const items = require("../items");
+const getPageInfo = require("../get-page-info");
 const log = require("../log");
 
 let port = 4567;
@@ -42,6 +43,9 @@ seaLion.add({
   },
   "/api/items/delete/`params`": {
     DELETE: items.delete
+  },
+  "/api/get-page-info": {
+    POST: getPageInfo
   }
 });
 

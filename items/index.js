@@ -5,7 +5,7 @@ const util = require("../util");
 const log = require("../log");
 
 function create(request, response) {
-  util.getJSONfromResponse(request, function(err, payload) {
+  util.getJSONfromRequest(request, function(err, payload) {
     if (err) {
       util.respond.error(language.COULD_NOT_CREATE_POST, response);
       return log.error(`[pocket] [Get Payload] ${err}`);
@@ -53,7 +53,7 @@ function get(request, response, tokens) {
 }
 
 function update(request, response) {
-  util.getJSONfromResponse(request, function(err, payload) {
+  util.getJSONfromRequest(request, function(err, payload) {
     if (err) {
       util.respond.error(language.COULD_NOT_CREATE_POST, response);
       return log.error(`[pocket] [Get Payload] ${err}`);

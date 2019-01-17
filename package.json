@@ -26,9 +26,10 @@
     "aws-sdk": "^2.377.0",
     "dion": "^2.0.0",
     "dotenv": "^6.1.0",
-    "laidout": "^1.1.0",
     "log-symbols": "^2.2.0",
-    "sea-lion": "^2.0.2"
+    "sea-lion": "^2.0.2",
+    "tiny-json-http": "^7.0.2",
+    "unescape": "^1.0.1"
   },
   "devDependencies": {
     "cpjax": "^1.1.3",
@@ -37,6 +38,7 @@
     "fastn-markdown-component": "^1.2.0",
     "fastn-svg-component": "^1.0.0",
     "highlight.js": "^9.13.1",
+    "laidout": "^1.1.0",
     "normalize.css": "^8.0.1",
     "parcel": "^1.11.0",
     "spacetime": "^5.2.1"

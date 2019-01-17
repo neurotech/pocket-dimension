@@ -56,5 +56,21 @@ module.exports = {
         }
       );
     }
+  },
+  pageInfo: function getPageInfo(url, callback) {
+    cpjax(
+      {
+        url: `/api/get-page-info`,
+        method: "POST",
+        data: JSON.stringify({ url })
+      },
+      function(error, data) {
+        if (error) {
+          return callback(error);
+        }
+        let info = JSON.parse(data).data;
+        callback(null, info);
+      }
+    );
   }
 };

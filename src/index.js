@@ -4,14 +4,12 @@ const fastn = require("fastn")(require("fastn/domComponents")({ svg, markdown })
 const spacetime = require("spacetime");
 const api = require("./api");
 const components = require("./components");
-const getPageTitle = require("./get-page-title");
 
 import "normalize.css";
 
 window.addEventListener("load", function() {
   let state = {
     isLoading: false,
-    isGenerating: false,
     filter: "",
     type: "all",
     dialogOpen: false,
@@ -36,9 +34,6 @@ window.addEventListener("load", function() {
     setLoading: function(isLoading) {
       fastn.Model.set(state, "isLoading", isLoading);
     },
-    setGenerating: function(isGenerating) {
-      fastn.Model.set(state, "isGenerating", isGenerating);
-    },
     setType: function(value) {
       fastn.Model.set(state, "type", value);
     },
@@ -57,11 +52,9 @@ window.addEventListener("load", function() {
         fastn.Model.get(state, "post.type") === "link" &&
         fastn.Model.get(state, "post.body") !== undefined
       ) {
-        app.setLoading(true);
-        getPageTitle(fastn.Model.get(state, "post.body"), function(error, title) {
-          app.setLoading(false);
+        loading(api.pageInfo)(fastn.Model.get(state, "post.body"), function(error, data) {
           if (error) return console.error(error);
-          app.setPostTitle(title);
+          app.setPostTitle(data.title);
         });
       }
     },
@@ -83,7 +76,6 @@ window.addEventListener("load", function() {
     showCreatePost: function() {
       fastn.Model.set(state, "post", {});
       app.setPostType("note");
-      var lblah = "";
     },
     hideEditPost: function() {
       fastn.Model.remove(state, "post");

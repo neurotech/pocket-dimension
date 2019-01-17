@@ -28,7 +28,7 @@ const util = {
     };
     return item;
   },
-  getJSONfromResponse: function parsePayload(request, callback) {
+  getJSONfromRequest: function parsePayload(request, callback) {
     let payload = "";
     request.on("data", function(data) {
       payload += data;
@@ -46,7 +46,7 @@ const util = {
       return responseHandler(200, "SUCCESS", data, response);
     },
     error: function errorResponse(data, response) {
-      return responseHandler(500, "ERROR", data, response);
+      return responseHandler(500, "ERROR", data.message, response);
     }
   }
 };
