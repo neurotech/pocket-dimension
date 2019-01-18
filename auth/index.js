@@ -23,7 +23,7 @@ module.exports = function authenticate(request, response) {
           if (error) {
             return util.respond.unauthorized(language.INVALID_AUTH, response);
           }
-
+          // create session token, respond with it:
           return util.respond.success(result, response);
         });
       }
