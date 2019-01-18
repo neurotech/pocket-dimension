@@ -1,9 +1,11 @@
-const ToolBar = require("./ToolBar");
+const LoginForm = require("./LoginForm");
 const SideBar = require("./SideBar");
+const ToolBar = require("./ToolBar");
 const ContentArea = require("./ContentArea");
 const CreatePostDialog = require("./CreatePostDialog");
 
 module.exports = function combineComponents(fastn, app) {
+  var loginForm = LoginForm(fastn, app);
   var sideBar = SideBar(fastn, app);
   var core = fastn(
     "div",
@@ -18,6 +20,7 @@ module.exports = function combineComponents(fastn, app) {
     {
       class: "container"
     },
+    loginForm,
     sideBar,
     core
   );

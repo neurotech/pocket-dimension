@@ -8,7 +8,13 @@ const components = require("./components");
 import "normalize.css";
 
 window.addEventListener("load", function() {
+  let tokenKey = "token";
   let state = {
+    login: {
+      token: "",
+      username: "",
+      password: ""
+    },
     isLoading: false,
     filter: "",
     type: "all",
@@ -31,6 +37,33 @@ window.addEventListener("load", function() {
   }
   let app = {
     state,
+    login: function() {
+      loading(api.login)(fastn.Model.get(state, "login"), function(error, token) {
+        if (error) return console.error(error);
+        app.clearCredentials();
+        app.setToken(token);
+        app.getAll();
+      });
+    },
+    logout: function() {
+      fastn.Model.remove(state, "items");
+      app.clearCredentials();
+      app.clearToken();
+    },
+    clearCredentials: function() {
+      fastn.Model.set(state, "login.username", "");
+      fastn.Model.set(state, "login.password", "");
+    },
+    clearToken: function() {
+      fastn.Model.set(state, "login.token", "");
+      sessionStorage.removeItem(tokenKey);
+    },
+    setToken: function(token) {
+      fastn.Model.set(state, "login.token", token);
+      if (token) {
+        sessionStorage.setItem(tokenKey, token);
+      }
+    },
     setLoading: function(isLoading) {
       fastn.Model.set(state, "isLoading", isLoading);
     },
@@ -74,8 +107,10 @@ window.addEventListener("load", function() {
       });
     },
     showCreatePost: function() {
-      fastn.Model.set(state, "post", {});
-      app.setPostType("note");
+      if (fastn.Model.get(state, "login.token")) {
+        fastn.Model.set(state, "post", {});
+        app.setPostType("note");
+      }
     },
     hideEditPost: function() {
       fastn.Model.remove(state, "post");
@@ -98,6 +133,10 @@ window.addEventListener("load", function() {
         app.hideEditPost();
         app.getAll();
       });
+    },
+    getTokenFromStorageAndSet: function() {
+      var token = sessionStorage.getItem(tokenKey);
+      app.setToken(token);
     }
   };
 
@@ -116,7 +155,10 @@ window.addEventListener("load", function() {
     }
   };
 
-  app.getAll();
+  app.getTokenFromStorageAndSet();
+  if (fastn.Model.get(state, "login.token")) {
+    app.getAll();
+  }
 
   const view = components(fastn, app);
   view.attach(state);

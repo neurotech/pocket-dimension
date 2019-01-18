@@ -48,8 +48,8 @@ seaLion.add({
   "/api/get-page-info": {
     POST: getPageInfo
   },
-  "/api/auth": {
-    POST: auth
+  "/api/login": {
+    POST: auth.login
   }
 });
 

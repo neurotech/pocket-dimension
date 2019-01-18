@@ -10,7 +10,9 @@ A tiny place to store tiny things.
 
 ### Auth
 
-> Note: `cryptr` uses SECRET-KEY to perform it's `decrypt`/`encrypt`
+#### Questions
+
+1. How do you validate the stored token in sessionStorage? Presence of the token seems very fallible.
 
 #### Table Structure
 

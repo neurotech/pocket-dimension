@@ -72,5 +72,18 @@ module.exports = {
         callback(null, info);
       }
     );
+  },
+  login: function postLogin(login, callback) {
+    var credentials = { username: login.username, password: login.password };
+    cpjax({ url: "/api/login", method: "POST", data: JSON.stringify(credentials) }, function(
+      error,
+      data
+    ) {
+      if (error) {
+        return callback(error);
+      }
+      let token = JSON.parse(data).data;
+      callback(null, token);
+    });
   }
 };

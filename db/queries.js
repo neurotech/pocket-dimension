@@ -21,5 +21,23 @@ module.exports = {
       }
     };
     return query;
+  },
+  storeToken: function queryStoreToken(payload) {
+    let query = {
+      TableName: "pocket-dimension-auth",
+      Key: { username: payload.username },
+      UpdateExpression: "set sessionToken = :t",
+      ExpressionAttributeValues: { ":t": payload.token }
+    };
+    return query;
+  },
+  getUser: function queryGetUser(username) {
+    let query = {
+      TableName: "pocket-dimension-auth",
+      ExpressionAttributeNames: { "#username": "username" },
+      ExpressionAttributeValues: { ":u": username },
+      KeyConditionExpression: "#username = :u"
+    };
+    return query;
   }
 };

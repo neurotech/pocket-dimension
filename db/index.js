@@ -29,10 +29,7 @@ let get = {
 function put(item, response, callback) {
   dynamo.put(item, function(err) {
     if (err) {
-      util.respond.error(
-        "Could not create your post. Please try again.",
-        response
-      );
+      util.respond.error("Could not create your post. Please try again.", response);
       return callback(err);
     } else {
       util.respond.success("Successfully created post.", response);
@@ -55,4 +52,18 @@ function remove(id, timestamp, callback) {
   });
 }
 
-module.exports = { get, put, update, remove };
+function storeToken(payload, callback) {
+  dynamo.update(queries.storeToken(payload), function(err) {
+    if (err) return callback(err);
+    return callback();
+  });
+}
+
+function getUser(username, callback) {
+  dynamo.query(queries.getUser(username), function(err, data) {
+    if (err) return callback(err);
+    callback(null, data.Items[0] || {});
+  });
+}
+
+module.exports = { get, put, update, remove, storeToken, getUser };
