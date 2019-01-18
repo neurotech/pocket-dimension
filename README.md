@@ -18,10 +18,15 @@ A tiny place to store tiny things.
 | --- | -------- | ----------- |
 | `1` | `secret` | `aabbbc123` |
 
+#### Creating a Hashed Password
+
+1. Use `bcrypt` to hash the password
+2. Store hashed password in users table
+
 #### Checking a Password
 
 1. Use `bcrypt` to compare the supplied plaintext password with hashed password that has been retrieved from a users table
-2. If valid password, create the session token
+2. If valid password, create the session token:
 
 #### Creating Session Token
 
