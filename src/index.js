@@ -49,6 +49,7 @@ window.addEventListener("load", function() {
       fastn.Model.remove(state, "items");
       app.clearCredentials();
       app.clearToken();
+      window.location.reload(true);
     },
     clearCredentials: function() {
       fastn.Model.set(state, "login.username", "");
@@ -85,10 +86,14 @@ window.addEventListener("load", function() {
         fastn.Model.get(state, "post.type") === "link" &&
         fastn.Model.get(state, "post.body") !== undefined
       ) {
-        loading(api.pageInfo)(fastn.Model.get(state, "post.body"), function(error, data) {
-          if (error) return console.error(error);
-          app.setPostTitle(data.title);
-        });
+        loading(api.pageInfo)(
+          fastn.Model.get(state, "login.token"),
+          fastn.Model.get(state, "post.body"),
+          function(error, data) {
+            if (error) return console.error(error);
+            app.setPostTitle(data.title);
+          }
+        );
       }
     },
     setPostTitle: function(title) {
@@ -101,7 +106,7 @@ window.addEventListener("load", function() {
       fastn.Model.set(state, "post", post);
     },
     getAll: function() {
-      loading(api.get.all)(function(error, data) {
+      loading(api.get.all)(fastn.Model.get(state, "login.token"), function(error, data) {
         if (error) return console.error(error);
         fastn.Model.set(state, "items", data);
       });
@@ -117,7 +122,10 @@ window.addEventListener("load", function() {
       document.querySelector(".search-box-input").focus();
     },
     deletePost: function(id, timestamp) {
-      loading(api.delete.item)(id, timestamp, function(error, res) {
+      loading(api.delete.item)(fastn.Model.get(state, "login.token"), id, timestamp, function(
+        error,
+        res
+      ) {
         if (error) return console.error(error);
         app.getAll();
       });
@@ -125,7 +133,7 @@ window.addEventListener("load", function() {
     savePost: function(post) {
       var action = post.id ? "update" : "create";
 
-      loading(api[action])(post, function(error) {
+      loading(api[action])(fastn.Model.get(state, "login.token"), post, function(error) {
         if (error) {
           return console.error(error);
         }

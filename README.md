@@ -4,15 +4,13 @@ A tiny place to store tiny things.
 
 ## TODO
 
+### Style LoginForm as modal dialog ala CreatePostDialog
+
 ### Create a separate space for "temp" actions like editing a post, creating a post to avoid data binding leading to the itemlist being updated
 
 ---
 
 ### Auth
-
-#### Questions
-
-1. How do you validate the stored token in sessionStorage? Presence of the token seems very fallible.
 
 #### Table Structure
 

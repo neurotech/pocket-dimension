@@ -66,4 +66,11 @@ function getUser(username, callback) {
   });
 }
 
-module.exports = { get, put, update, remove, storeToken, getUser };
+function getUserByToken(token, callback) {
+  dynamo.query(queries.getUserByToken(token), function(err, data) {
+    if (err) return callback(err);
+    callback(null, data.Items[0] || {});
+  });
+}
+
+module.exports = { get, put, update, remove, storeToken, getUser, getUserByToken };

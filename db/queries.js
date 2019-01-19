@@ -39,5 +39,15 @@ module.exports = {
       KeyConditionExpression: "#username = :u"
     };
     return query;
+  },
+  getUserByToken: function queryGetUser(sessionToken) {
+    let query = {
+      TableName: "pocket-dimension-auth",
+      IndexName: "sessionToken-index",
+      ExpressionAttributeNames: { "#sessionToken": "sessionToken" },
+      ExpressionAttributeValues: { ":t": sessionToken },
+      KeyConditionExpression: "#sessionToken = :t"
+    };
+    return query;
   }
 };

@@ -20,7 +20,8 @@ module.exports = function createContentArea(fastn, app) {
       if (filter) {
         results = results.filter(
           item =>
-            ~item.title.indexOf(filter.toLowerCase()) || ~item.body.indexOf(filter.toLowerCase())
+            ~item.title.toLowerCase().indexOf(filter.toLowerCase()) ||
+            ~item.body.toLowerCase().indexOf(filter.toLowerCase())
         );
       }
 
