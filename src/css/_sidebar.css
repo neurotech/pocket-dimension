@@ -1,4 +1,6 @@
 .sidebar {
+  display: flex;
+  flex-direction: column;
   flex: 0 0 9em;
   order: -1;
   user-select: none;
@@ -55,8 +57,13 @@
 
 .logout-button {
   width: 100%;
-  padding: 4rem 0 1rem 0;
+  padding: 2rem 1.5rem;
   text-align: center;
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  justify-content: flex-end;
+  margin: auto 0;
 }
 
 .logout-button button[hidden] {
