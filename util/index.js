@@ -23,7 +23,8 @@ const util = {
         timestamp: now(),
         title: payload.title || "",
         body: payload.body || "",
-        type: payload.type || "note"
+        type: payload.type || "note",
+        generateTitle: payload.generateTitle || null
       }
     };
     return item;
@@ -51,6 +52,15 @@ const util = {
     unauthorized: function unauthorizedResponse(data, response) {
       return responseHandler(401, "UNAUTHORIZED", data, response);
     }
+  },
+  matchTitle: function matchTitle(data) {
+    var match = data.match(/\<title.*\>([^]*)\<\/title\>/);
+
+    if (!match) {
+      return;
+    }
+
+    return match[1];
   }
 };
 
