@@ -19,7 +19,7 @@ module.exports = {
     tokenHash(callback);
   },
   check: function checkToken(sessionToken, callback) {
-    // Attempt to`cryptr.decrypt` SESSION - TOKEN, return error
+    // Attempt to`cryptr.decrypt` SESSION-TOKEN, return error
     var token = righto.sync(function() {
       try {
         return cryptr.decrypt(sessionToken);
@@ -42,7 +42,7 @@ module.exports = {
 
     result(callback);
   },
-  getSessionTokenFromHeaders: function getSessionToken(headers) {
+  getTokenFromHeaders: function getToken(headers) {
     var authorization = headers["authorization"];
 
     if (authorization) {

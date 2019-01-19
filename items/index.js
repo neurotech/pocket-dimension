@@ -7,7 +7,7 @@ const util = require("../util");
 const log = require("../log");
 
 function create(request, response) {
-  var sessionToken = token.getSessionTokenFromHeaders(request.headers);
+  var sessionToken = token.getTokenFromHeaders(request.headers);
   if (!sessionToken) {
     return util.respond.unauthorized(language.INVALID_AUTH, response);
   } else {
@@ -33,7 +33,7 @@ function create(request, response) {
 function get(request, response, tokens) {
   switch (request.url) {
     case "/api/items/all":
-      var sessionToken = token.getSessionTokenFromHeaders(request.headers);
+      var sessionToken = token.getTokenFromHeaders(request.headers);
       if (!sessionToken) {
         return util.respond.unauthorized(language.INVALID_AUTH, response);
       } else {
@@ -56,7 +56,7 @@ function get(request, response, tokens) {
 }
 
 function update(request, response) {
-  var sessionToken = token.getSessionTokenFromHeaders(request.headers);
+  var sessionToken = token.getTokenFromHeaders(request.headers);
   if (!sessionToken) {
     return util.respond.unauthorized(language.INVALID_AUTH, response);
   } else {
@@ -80,7 +80,7 @@ function update(request, response) {
 }
 
 function remove(request, response) {
-  var sessionToken = token.getSessionTokenFromHeaders(request.headers);
+  var sessionToken = token.getTokenFromHeaders(request.headers);
   if (!sessionToken) {
     return util.respond.unauthorized(language.INVALID_AUTH, response);
   } else {

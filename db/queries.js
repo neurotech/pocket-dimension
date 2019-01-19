@@ -40,14 +40,8 @@ module.exports = {
     };
     return query;
   },
-  getUserByToken: function queryGetUser(sessionToken) {
-    let query = {
-      TableName: "pocket-dimension-auth",
-      IndexName: "sessionToken-index",
-      ExpressionAttributeNames: { "#sessionToken": "sessionToken" },
-      ExpressionAttributeValues: { ":t": sessionToken },
-      KeyConditionExpression: "#sessionToken = :t"
-    };
+  getAllUsers: function queryGetAllUsers() {
+    let query = { TableName: "pocket-dimension-auth" };
     return query;
   }
 };

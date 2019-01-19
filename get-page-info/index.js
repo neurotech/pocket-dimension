@@ -5,18 +5,8 @@ const language = require("../language");
 const auth = require("../auth");
 const token = require("../auth/token");
 
-function matchTitle(data) {
-  var match = data.match(/\<title.*\>([^]*)\<\/title\>/);
-
-  if (!match) {
-    return;
-  }
-
-  return match[1];
-}
-
 module.exports = function(request, response) {
-  var sessionToken = token.getSessionTokenFromHeaders(request.headers);
+  var sessionToken = token.getTokenFromHeaders(request.headers);
   if (!sessionToken) {
     return util.respond.unauthorized(language.INVALID_AUTH, response);
   } else {
@@ -32,7 +22,7 @@ module.exports = function(request, response) {
           tiny.get({ url: payload }, function(error, data) {
             if (error) return util.respond.error(error, response);
 
-            var parsed = matchTitle(data.body);
+            var parsed = util.matchTitle(data.body);
             var title = !parsed ? payload : unescape(parsed);
 
             util.respond.success({ title }, response);
