@@ -3,7 +3,11 @@
   "type": "npm",
   "alias": "pocket-dimension.space",
   "env": {
-    "NODE_ENV": "production"
+    "NODE_ENV": "production",
+    "POCKET_AWS_ACCESS_KEY_ID": "@pocket-aws-access-key-id",
+    "POCKET_AWS_ACCESS_KEY_SECRET": "@pocket-aws-access-key-secret",
+    "POCKET_AWS_REGION": "@pocket-aws-region",
+    "POCKET_SECRET_KEY": "@pocket-secret-key"
   },
   "scale": {
     "sfo1": {
@@ -12,11 +16,14 @@
     }
   },
   "files": [
+    "auth",
     "build",
     "db",
     "items",
-    "language",
     "get-now",
+    "get-page-info",
+    "items",
+    "language",
     "util",
     "uuid",
     "web",
