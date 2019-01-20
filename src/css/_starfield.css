@@ -1,29 +1,43 @@
-.star {
+.star-container {
   position: fixed;
-  left: 0px;
-  top: 50px;
-  width: 2px;
-  height: 2px;
-  position: fixed;
-  animation-name: particleAnimation;
-  animation-timing-function: linear;
-  animation-iteration-count: infinite;
+  left: -4px;
+  width: 1px;
+  height: 1px;
+  background-color: white !important;
+  animation-name: fade-in, particleAnimation;
+  animation-timing-function: linear, linear;
+  animation-iteration-count: 1, infinite;
 }
 
-.star::before {
+.star {
+  position: relative;
+  width: 1px;
+  height: 1px;
+}
+.trail {
   position: absolute;
   display: block;
-  content: "";
   right: 1px;
   top: 0px;
   height: 2px;
 }
 
-@keyframes particleAnimation {
+@keyframes fade-in {
   from {
-    left: -100px;
+    opacity: 0;
   }
   to {
-    left: calc(100% + 100px);
+    opacity: 1;
+  }
+}
+
+@keyframes particleAnimation {
+  from {
+    /* left: -100px; */
+    transform: translateX(-100px);
+  }
+  to {
+    /* left: calc(100% + 100px); */
+    transform: translateX(calc(100vw + 100px));
   }
 }

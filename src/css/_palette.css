@@ -1,5 +1,5 @@
 :root {
-  --blue: #5077f3;
+  --blue: rgb(80, 119, 243);
   --medium-blue: rgb(60, 96, 209);
   --dark-blue: rgb(35, 64, 151);
   --pink: rgb(255, 0, 139);
@@ -15,9 +15,10 @@
   --medium-yellow: rgb(234, 167, 50);
   --dark-yellow: rgb(173, 119, 25);
   --bright-yellow: rgb(255, 240, 33);
-  --green: #00b894;
-  --medium-green: #009779;
-  --dark-green: #006d57;
-  --purple: #a29bfe;
-  --dark-purple: #6c5ce7;
+  --orange: rgb(255, 115, 0);
+  --green: rgb(0, 184, 148);
+  --medium-green: rgb(0, 151, 121);
+  --dark-green: rgb(0, 107, 85);
+  --purple: rgb(162, 155, 254);
+  --dark-purple: rgb(108, 92, 231);
 }

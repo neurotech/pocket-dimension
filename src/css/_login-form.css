@@ -18,9 +18,9 @@
   transform: translate(-50%, -50%);
   width: 30%;
   padding: 20px;
-  background: white;
+  background: #234096;
   border-radius: 0.33rem;
-  border: 2px solid rgb(197, 197, 197);
+  border: 2px solid rgb(79, 119, 243);
   z-index: 5;
 }
 
@@ -31,6 +31,13 @@
   padding: 1rem;
   font-size: 2rem;
   font-weight: bold;
+  border: 2px solid #0a1b4b;
+  background-color: hsla(225, 86%, 85%, 1);
+}
+
+.login-form-content .username-input::placeholder,
+.login-form-content .password-input::placeholder {
+  color: rgb(76, 93, 143);
 }
 
 .login-form-content .username-input:focus,
@@ -43,7 +50,7 @@
   padding: 0 1rem;
   height: 3rem;
   background-color: var(--blue);
-  border: 2px solid var(--dark-blue);
+  border: 2px solid rgb(13, 27, 70);
   color: white;
   font-size: 1.2rem;
   line-height: 2rem;
@@ -55,11 +62,8 @@
   background-color: var(--medium-blue);
 }
 
-/* Background pattern from Toptal Subtle Patterns */
 .login-form-content.loading {
   filter: grayscale(1);
-  background: url(https://www.toptal.com/designers/subtlepatterns/patterns/stripes-light.png);
-  animation: 100s scroll infinite linear;
 }
 
 .login-form-content.loading .username-input,
