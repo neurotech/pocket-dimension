@@ -41,14 +41,14 @@ function put(item, response, callback) {
     });
   }
 
-  if (item.Item.generateTitle) {
-    tiny.get({ url: item.Item.body }, function(error, data) {
+  if (item.generateTitle) {
+    tiny.get({ url: item.body }, function(error, data) {
       if (error) {
         return;
       }
       var parsed = util.matchTitle(data.body);
-      var title = !parsed ? item.Item.body : unescape(parsed);
-      item.Item.title = title;
+      var title = !parsed ? item.body : unescape(parsed);
+      item.title = title;
       putItem(item, callback);
     });
   } else {

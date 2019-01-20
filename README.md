@@ -14,6 +14,8 @@ A tiny place to store tiny things.
 
 ### Create a separate space for "temp" actions like editing a post, creating a post to avoid data binding leading to the itemlist being updated
 
+### Investigate why link titles aren't being generated when link is saved via API only
+
 ---
 
 ### Auth
