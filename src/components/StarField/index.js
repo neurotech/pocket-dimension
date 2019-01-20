@@ -7,7 +7,7 @@ function getRandomInt(min, max) {
 function generateStarfield(numStars) {
   var stars = [];
 
-  // Do CSS here
+  // Do CSS here instead
 
   for (var i = 1; i < numStars; i++) {
     stars.push({ id: i });
