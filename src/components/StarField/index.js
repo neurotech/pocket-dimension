@@ -30,12 +30,10 @@ function generateStarfield(numStars) {
 
 function spawnStar(fastn, app) {
   var starTravelTime = getRandomInt(2, 22);
+  var scaler = 1 / starTravelTime;
+  var trailLength = scaler * getRandomInt(40, 100);
+  var starHeight = scaler * 10 < 1 ? 1 : 2;
 
-  // The lower the starTravelTime, the longer the trail
-  // var trailLength = starTravelTime * getRandomInt(3, 5);
-  var trailLength = (1 / starTravelTime) * getRandomInt(40, 100);
-
-  var starHeight = 1;
   var star = fastn("div", {
     class: "star",
     style: {
@@ -46,8 +44,7 @@ function spawnStar(fastn, app) {
   var trail = fastn("div", {
     class: "trail",
     style: {
-      opacity: getRandomInt(25, 100) / 100,
-      background: `linear-gradient(to right, rgba(0, 0, 0, 0) 0%, ${getRandomColour()} ${getRandomInt(
+      background: `linear-gradient(to left, rgba(0, 0, 0, 0) 0%, ${getRandomColour()} ${getRandomInt(
         75,
         100
       )}%)`,
@@ -61,9 +58,10 @@ function spawnStar(fastn, app) {
     {
       class: "star-container",
       style: {
-        "animation-delay": "0ms, " + getRandomInt(50, 1000) + "ms",
-        "animation-duration": getRandomInt(3, 10) + "s, " + starTravelTime + "s",
-        top: getRandomInt(5, 95) + "%"
+        opacity: (1 / starTravelTime) * 3,
+        "animation-delay": getRandomInt(50, 1000) + "ms",
+        "animation-duration": starTravelTime + "s",
+        top: getRandomInt(2, 98) + "%"
       }
     },
     star,
@@ -72,7 +70,7 @@ function spawnStar(fastn, app) {
 }
 
 module.exports = function createStarField(fastn, app) {
-  var numStars = getRandomInt(24, 64);
+  var numStars = getRandomInt(48, 64);
   var stars = generateStarfield(numStars);
 
   var starfield = fastn("list", {

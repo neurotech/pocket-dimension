@@ -1,0 +1,6 @@
+@media (min-width: 300px), (max-width: 512px) {
+  .login-form-content {
+    left: 50%;
+    width: 80%;
+  }
+}

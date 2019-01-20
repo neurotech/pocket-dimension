@@ -1,12 +1,13 @@
 .star-container {
   position: fixed;
-  left: -4px;
+  transform: translateX(calc(100vw + 100px));
+  left: -2px;
   width: 1px;
   height: 1px;
   background-color: white !important;
-  animation-name: fade-in, particleAnimation;
-  animation-timing-function: linear, linear;
-  animation-iteration-count: 1, infinite;
+  animation-name: particleAnimation;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
 }
 
 .star {
@@ -17,7 +18,7 @@
 .trail {
   position: absolute;
   display: block;
-  right: 1px;
+  left: 1px;
   top: 0px;
   height: 2px;
 }
@@ -33,11 +34,9 @@
 
 @keyframes particleAnimation {
   from {
-    /* left: -100px; */
-    transform: translateX(-100px);
+    transform: translateX(calc(100vw + 100px));
   }
   to {
-    /* left: calc(100% + 100px); */
-    transform: translateX(calc(100vw + 100px));
+    transform: translateX(-100px);
   }
 }
