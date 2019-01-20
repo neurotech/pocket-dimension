@@ -1,4 +1,4 @@
-@media (min-width: 300px), (max-width: 512px) {
+@media (max-width: 512px), (orientation: landscape) and (max-width: 1024px) {
   .login-form-content {
     left: 50%;
     width: 80%;
