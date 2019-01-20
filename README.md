@@ -4,7 +4,9 @@ A tiny place to store tiny things.
 
 ## TODO
 
-### Style LoginForm as modal dialog ala CreatePostDialog
+### Favicon
+
+### Unfurl
 
 ### DRY up getting token, auth etc in `get-page-info\index.js` and `items\index.js`
 
