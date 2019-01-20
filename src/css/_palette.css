@@ -1,5 +1,5 @@
 :root {
-  --blue: rgb(80, 119, 243);
+  --blue: #5077f3;
   --medium-blue: rgb(60, 96, 209);
   --dark-blue: rgb(35, 64, 151);
   --pink: rgb(255, 0, 139);
@@ -11,6 +11,7 @@
   --red: rgb(250, 20, 89);
   --dark-red: rgb(190, 17, 69);
   --yellow: rgb(255, 184, 60);
+  --light-yellow: rgb(255, 214, 144);
   --medium-yellow: rgb(234, 167, 50);
   --dark-yellow: rgb(173, 119, 25);
   --bright-yellow: rgb(255, 240, 33);

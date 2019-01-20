@@ -1,6 +1,6 @@
 const LoginForm = require("./LoginForm");
 const SideBar = require("./SideBar");
-const ToolBar = require("./ToolBar");
+const ToolBar = require("./Toolbar");
 const ContentArea = require("./ContentArea");
 const CreatePostDialog = require("./CreatePostDialog");
 

@@ -1,0 +1,29 @@
+.star {
+  position: fixed;
+  left: 0px;
+  top: 50px;
+  width: 2px;
+  height: 2px;
+  position: fixed;
+  animation-name: particleAnimation;
+  animation-timing-function: linear;
+  animation-iteration-count: infinite;
+}
+
+.star::before {
+  position: absolute;
+  display: block;
+  content: "";
+  right: 1px;
+  top: 0px;
+  height: 2px;
+}
+
+@keyframes particleAnimation {
+  from {
+    left: -100px;
+  }
+  to {
+    left: calc(100% + 100px);
+  }
+}

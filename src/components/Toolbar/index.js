@@ -1,12 +1,12 @@
-const SearchBar = require("./SearchBar");
-const Button = require("./Button");
+const SearchBar = require("../SearchBar");
+const Button = require("../Button");
 
 module.exports = function createToolBar(fastn, app) {
-  var icon = fastn("span", { class: "icon" }, "☵");
+  var createPostIcon = fastn("span", { class: "icon" }, "☵");
   var createPost = fastn(
     "div",
     { class: "create-post" },
-    Button(fastn, app, "Create Post", icon).on("click", () => {
+    Button(fastn, app, "Create Post", createPostIcon).on("click", () => {
       app.showCreatePost();
     })
   );
