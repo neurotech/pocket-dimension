@@ -20,14 +20,6 @@ function getRandomInt(min, max) {
   return min + Math.floor(Math.random() * (max - min + 1));
 }
 
-function generateStarfield(numStars) {
-  var stars = [];
-  for (var i = 1; i < numStars; i++) {
-    stars.push({ id: i });
-  }
-  return stars;
-}
-
 function spawnStar(fastn, app) {
   var starTravelTime = getRandomInt(2, 22);
   var scaler = 1 / starTravelTime;
@@ -69,16 +61,22 @@ function spawnStar(fastn, app) {
   );
 }
 
-function addStars(fastn, starState){
-  var numberToAdd = Math.floor(starState.length / 5);
+function addStars(fastn, stars, numberToAdd){
   for(var i = 0; i < numberToAdd; i++){
-    fastn.Model.push(starState, { id: starState.length });
+    fastn.Model.push(stars, { id: stars.length });
   }
+}
+
+function addMoreStars(fastn, stars){
+  var numberToAdd = Math.floor(stars.length / 5);
+  addStars(fastn, stars, numberToAdd);
 }
 
 module.exports = function createStarField(fastn, app) {
   var numStars = getRandomInt(48, 64);
-  var starState = generateStarfield(numStars);
+  var stars = [];
+
+  addStars(fastn, stars, 50);
 
   var starfield = fastn("list", {
     insertionFrameTime: 30,
@@ -89,9 +87,9 @@ module.exports = function createStarField(fastn, app) {
     }
   },
     fastn('button', { class: 'addStars' }, 'Add stars')
-    .on('click', () => addStars(fastn, starState))
+    .on('click', () => addMoreStars(fastn, stars))
   )
-  .attach(starState);
+  .attach(stars);
 
   return starfield;
 };
