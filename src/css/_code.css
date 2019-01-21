@@ -21,7 +21,7 @@ pre {
   padding: 0.4rem 0;
   line-height: 1.85rem;
 }
-p code {
+p code, li code {
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
   overflow-wrap: break-word;
