@@ -6,15 +6,11 @@ A tiny place to store tiny things.
 
 ### Favicon
 
-### Unfurl
-
 ### Mobile
 
 ### DRY up getting token, auth etc in `get-page-info\index.js` and `items\index.js`
 
 ### Create a separate space for "temp" actions like editing a post, creating a post to avoid data binding leading to the itemlist being updated
-
-### Investigate why link titles aren't being generated when link is saved via API only
 
 ---
 
