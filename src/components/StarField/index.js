@@ -69,18 +69,29 @@ function spawnStar(fastn, app) {
   );
 }
 
+function addStars(fastn, starState){
+  var numberToAdd = Math.floor(starState.length / 5);
+  for(var i = 0; i < numberToAdd; i++){
+    fastn.Model.push(starState, { id: starState.length });
+  }
+}
+
 module.exports = function createStarField(fastn, app) {
   var numStars = getRandomInt(48, 64);
-  var stars = generateStarfield(numStars);
+  var starState = generateStarfield(numStars);
 
   var starfield = fastn("list", {
     insertionFrameTime: 30,
-    items: stars,
+    items: fastn.binding('.|*'),
     class: "starfield",
     template: function() {
       return spawnStar(fastn, app);
     }
-  });
+  },
+    fastn('button', { class: 'addStars' }, 'Add stars')
+    .on('click', () => addStars(fastn, starState))
+  )
+  .attach(starState);
 
   return starfield;
 };
