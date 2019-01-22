@@ -1,3 +1,10 @@
+.logo-container {
+  cursor: pointer;
+  width: var(--sidebar-width);
+  height: 5rem;
+  z-index: -1;
+}
+
 .logo-stars-container {
   position: absolute;
   width: var(--sidebar-width);
@@ -9,12 +16,6 @@
 
 .logo-stars {
   shape-rendering: geometricprecision;
-  width: var(--sidebar-width);
-  height: 5rem;
-}
-
-.logo-container {
-  cursor: pointer;
   width: var(--sidebar-width);
   height: 5rem;
 }
