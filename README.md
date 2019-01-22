@@ -4,7 +4,9 @@ A tiny place to store tiny things.
 
 ## TODO
 
-### Favicon
+### Top left logo - hover to partially reveal starfield, click to fully reveal (and getAll()) - generate starfield as a series of SVG lines with animated strokes
+
+ * For each "star", render two lines - one for the core, one for the trail
 
 ### Unfurl
 
