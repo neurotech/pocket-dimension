@@ -2,7 +2,6 @@
   cursor: pointer;
   width: var(--sidebar-width);
   height: 5rem;
-  z-index: -1;
 }
 
 .logo-stars-container {
@@ -15,9 +14,10 @@
 }
 
 .logo-stars {
-  shape-rendering: geometricprecision;
+  shape-rendering: crispEdges;
   width: var(--sidebar-width);
   height: 5rem;
+  z-index: -1;
 }
 
 .logo {
@@ -30,6 +30,7 @@
   color: white;
   text-align: center;
   transition: color 0.5s, text-shadow 0.6s, transform 0.35s;
+  z-index: 1;
 }
 
 .logo:hover {
