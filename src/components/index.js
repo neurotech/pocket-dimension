@@ -6,22 +6,13 @@ const CreatePostDialog = require("./CreatePostDialog");
 
 module.exports = function combineComponents(fastn, app) {
   var loginForm = LoginForm(fastn, app);
-  var sideBar = SideBar(fastn, app);
   var core = fastn(
     "div",
     { class: "core" },
-    ToolBar(fastn, app),
+    SideBar(fastn, app),
     ContentArea(fastn, app),
     CreatePostDialog(fastn, app)
   );
 
-  return fastn(
-    "div",
-    {
-      class: "container"
-    },
-    loginForm,
-    sideBar,
-    core
-  );
+  return fastn("div", { class: "container" }, loginForm, ToolBar(fastn, app), core);
 };

@@ -3,4 +3,25 @@
     left: 50%;
     width: 80%;
   }
+
+  .logo-container {
+    display: none;
+  }
+
+  .search-box-input {
+    width: auto;
+    margin: 0;
+  }
+
+  .create-post {
+    min-width: 30px;
+  }
+
+  .create-post button .title {
+    display: none;
+  }
+
+  .sidebar-container {
+    display: none;
+  }
 }

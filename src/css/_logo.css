@@ -1,0 +1,53 @@
+.logo-stars-container {
+  position: absolute;
+  width: var(--sidebar-width);
+  height: 5rem;
+  border-bottom: 2px solid var(--darker-pink);
+  display: block;
+  background-color: black;
+}
+
+.logo-stars {
+  shape-rendering: geometricprecision;
+  width: var(--sidebar-width);
+  height: 5rem;
+}
+
+.logo-container {
+  cursor: pointer;
+  width: var(--sidebar-width);
+  height: 5rem;
+}
+
+.logo {
+  width: var(--sidebar-width);
+  height: 5rem;
+  position: absolute;
+  display: block;
+  background-color: var(--pink);
+  padding: 1rem;
+  color: white;
+  text-align: center;
+  transition: color 0.5s, text-shadow 0.6s, transform 0.35s;
+}
+
+.logo:hover {
+  color: var(--bright-yellow);
+  text-shadow: 3px 3px 0 rgba(0, 0, 0, 0.33);
+}
+
+.logo-container:hover .logo {
+  transform: translateX(-144px);
+}
+
+.logo-text {
+  display: inline-block;
+  font-variant: small-caps;
+  font-size: 1.2rem;
+  font-weight: bold;
+  padding-bottom: 0.5rem;
+  transition: border-bottom-color 0.33s;
+}
+.logo-text:hover {
+  border-bottom-color: var(--pale-pink);
+}
