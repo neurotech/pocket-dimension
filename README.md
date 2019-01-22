@@ -8,6 +8,12 @@ A tiny place to store tiny things.
 
  * For each "star", render two lines - one for the core, one for the trail
 
+### crelns for svg
+
+`var svg = crelns.bind(null, 'http://www.w3.org/2000/svg')`
+
+`svg('g', {'class':'thing'});`
+
 ### Mobile
 
 ### Dark mode
