@@ -4,11 +4,8 @@ const svg = crelns.bind(null, "http://www.w3.org/2000/svg");
 function getRandomInt(min, max) {
   return min + Math.floor(Math.random() * (max - min + 1));
 }
-function getRandomFloat(min, max) {
-  return (Math.random() * (max - min) + min).toFixed(3);
-}
 
-function specialStop(colour) {
+function getStop(colour) {
   return [
     svg("stop", { offset: "33%", "stop-color": "rgb(0,0,0)" }),
     svg("stop", { offset: "90%", "stop-color": `${colour}` }),
@@ -16,36 +13,6 @@ function specialStop(colour) {
     svg("stop", { offset: "100%", "stop-color": "rgb(255,255,255)" })
   ];
 }
-
-var stops = {
-  slow: function getSlowStops(colour) {
-    return [
-      svg("stop", { offset: "0%", "stop-color": "rgb(0,0,0)" }),
-      svg("stop", { offset: "90%", "stop-color": "rgb(0,0,0)" }),
-      svg("stop", { offset: "90%", "stop-color": `${colour}` }),
-      svg("stop", { offset: "97%", "stop-color": `${colour}` }),
-      svg("stop", { offset: "100%", "stop-color": "rgb(255,255,255)" })
-    ];
-  },
-  medium: function getMediumStops(colour) {
-    return [
-      svg("stop", { offset: "0%", "stop-color": "rgb(0,0,0)" }),
-      svg("stop", { offset: "60%", "stop-color": "rgb(0,0,0)" }),
-      svg("stop", { offset: "90%", "stop-color": `${colour}` }),
-      svg("stop", { offset: "90%", "stop-color": `${colour}` }),
-      svg("stop", { offset: "100%", "stop-color": "rgb(255,255,255)" })
-    ];
-  },
-  fast: function getFastStops(colour) {
-    return [
-      svg("stop", { offset: "0%", "stop-color": "rgb(0,0,0)" }),
-      svg("stop", { offset: "10%", "stop-color": "rgb(0,0,0)" }),
-      svg("stop", { offset: "35%", "stop-color": `${colour}` }),
-      svg("stop", { offset: "95%", "stop-color": `${colour}` }),
-      svg("stop", { offset: "100%", "stop-color": "rgb(255,255,255)" })
-    ];
-  }
-};
 
 function getAnimate(id, speed) {
   var delay = getRandomInt(0.5, 3.5);
@@ -62,11 +29,11 @@ function getAnimate(id, speed) {
   });
 }
 
-function getGradient(id, speed, colour) {
+function getGradient(id, colour) {
   return svg(
     "linearGradient",
     { id: `gradient-${id}`, x1: "0%", y1: "0%", x2: "100%", y2: "0%" },
-    specialStop(colour)
+    getStop(colour)
   );
 }
 
@@ -121,7 +88,7 @@ module.exports = function createStars() {
       speedNumber = getRandomInt(1, 2);
     }
 
-    gradients.push(getGradient(i, speed, palette[Math.floor(Math.random() * palette.length)]));
+    gradients.push(getGradient(i, palette[Math.floor(Math.random() * palette.length)]));
 
     rects.push(getRect(i, speedNumber));
   }
