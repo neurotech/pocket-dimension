@@ -1,3 +1,5 @@
+var Konami = require('konami');
+
 function getRandomColour() {
   const palette = [
     "rgb(80, 119, 243)",
@@ -67,11 +69,6 @@ function addStars(fastn, stars, numberToAdd){
   }
 }
 
-function addMoreStars(fastn, stars){
-  var numberToAdd = Math.floor(stars.length / 5);
-  addStars(fastn, stars, numberToAdd);
-}
-
 module.exports = function createStarField(fastn, app) {
   var numStars = getRandomInt(48, 64);
   var stars = [];
@@ -85,10 +82,10 @@ module.exports = function createStarField(fastn, app) {
     template: function() {
       return spawnStar(fastn, app);
     }
-  },
-    fastn('button', { class: 'addStars' }, 'Add stars')
-    .on('click', () => addMoreStars(fastn, stars))
-  )
+  })
+  .on('render', () => {
+    new Konami(() => addStars(fastn, stars, 300))
+  })
   .attach(stars);
 
   return starfield;

@@ -21,7 +21,8 @@ pre {
   padding: 0.4rem 0;
   line-height: 1.85rem;
 }
-p code, li code {
+p code,
+li code {
   box-decoration-break: clone;
   -webkit-box-decoration-break: clone;
   overflow-wrap: break-word;
@@ -30,6 +31,15 @@ p code, li code {
   border-radius: 0.2rem;
   background-color: rgb(255, 242, 200);
   color: rgb(49, 49, 49);
+}
+a code {
+  padding: 0;
+  background-color: transparent;
+  color: var(--pink);
+}
+
+a code:hover {
+  color: white;
 }
 
 .hljs-keyword {
