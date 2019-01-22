@@ -4,21 +4,11 @@ A tiny place to store tiny things.
 
 ## TODO
 
-### Top left logo - hover to partially reveal starfield, click to fully reveal (and getAll()) - generate starfield as a series of SVG lines with animated strokes
-
- * For each "star", render two lines - one for the core, one for the trail
-
-### crelns for svg
-
-`var svg = crelns.bind(null, 'http://www.w3.org/2000/svg')`
-
-`svg('g', {'class':'thing'});`
+### DRY up getting token, auth etc in `get-page-info\index.js` and `items\index.js`
 
 ### Mobile
 
 ### Dark mode
-
-### DRY up getting token, auth etc in `get-page-info\index.js` and `items\index.js`
 
 ### Create a separate space for "temp" actions like editing a post, creating a post to avoid data binding leading to the itemlist being updated
 
