@@ -4,6 +4,13 @@ A tiny place to store tiny things.
 
 ## TODO
 
+### CSS
+
+```
+don't include native elements in selectors?
+use a class instead
+```
+
 ### Fix up error handling `/db/index.js` and elsewhere
 
 i.e.:
