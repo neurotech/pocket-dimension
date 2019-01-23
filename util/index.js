@@ -16,17 +16,21 @@ function responseHandler(code, status, data, response) {
 
 const util = {
   buildItem: function createItemObject(payload) {
+    var id = payload.id || uuid();
+    var timestamp = payload.timestamp || now();
+
     let item = {
-      TableName: "pocket-dimension",
-      Item: {
-        id: uuid(),
-        timestamp: now(),
+      key: { id: id, timestamp: timestamp },
+      item: {
+        id: id,
+        timestamp: timestamp,
         title: payload.title || "",
         body: payload.body || "",
         type: payload.type || "note",
-        generateTitle: payload.generateTitle || null
+        generateTitle: payload.generateTitle || false
       }
     };
+
     return item;
   },
   getJSONfromRequest: function parsePayload(request, callback) {

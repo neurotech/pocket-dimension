@@ -23,6 +23,8 @@ function create(request, response) {
           let item = util.buildItem(payload);
           db.put(item, response, function(err) {
             if (err) return util.respond.error(err, response);
+
+            return util.respond.success(language.POST_CREATED, response);
           });
         }
       });

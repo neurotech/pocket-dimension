@@ -1,24 +1,36 @@
-const AWS = require("aws-sdk");
+const alternator = require("alternator");
 const tiny = require("tiny-json-http");
-const queries = require("./queries");
 const util = require("../util");
 if (process.env.NODE_ENV === "development") require("dotenv").config();
 
-AWS.config.update({
-  credentials: {
+let dynamo = alternator(
+  {
     accessKeyId: process.env.POCKET_AWS_ACCESS_KEY_ID,
-    secretAccessKey: process.env.POCKET_AWS_ACCESS_KEY_SECRET
+    secretAccessKey: process.env.POCKET_AWS_ACCESS_KEY_SECRET,
+    region: process.env.POCKET_AWS_REGION
   },
-  region: process.env.POCKET_AWS_REGION
-});
-
-let dynamo = new AWS.DynamoDB.DocumentClient();
+  [
+    {
+      name: "pocket-dimension",
+      key: {
+        id: "hash",
+        timestamp: "range"
+      }
+    },
+    {
+      name: "pocket-dimension-auth",
+      key: {
+        username: "hash"
+      }
+    }
+  ]
+);
 
 let get = {
   all: function getAllItems(callback) {
-    dynamo.scan(queries.getAll(), function(err, data) {
+    dynamo.table("pocket-dimension").scan({}, function(err, data) {
       if (err) return callback(err);
-      let all = data.Items.sort(function(a, b) {
+      let all = data.rows.sort(function(a, b) {
         // Thanks to @korynunn
         return new Date(b.timestamp) - new Date(a.timestamp);
       });
@@ -29,16 +41,7 @@ let get = {
 
 function put(item, response, callback) {
   function putItem(item, callback) {
-    dynamo.put(item, function(error) {
-      if (error) {
-        console.error(error);
-        util.respond.error("Could not create your post. Please try again.", response);
-        return callback(error);
-      } else {
-        util.respond.success("Successfully created post.", response);
-        return callback();
-      }
-    });
+    dynamo.table("pocket-dimension").create(item, callback);
   }
 
   if (item.generateTitle) {
@@ -57,40 +60,54 @@ function put(item, response, callback) {
 }
 
 function update(item, callback) {
-  dynamo.update(queries.updateItem(item), function(err) {
-    if (err) return callback(err);
-    return callback();
-  });
+  dynamo.table("pocket-dimension").update(
+    {
+      key: { id: item.id, timestamp: item.timestamp },
+      item: {
+        title: item.title,
+        body: item.body
+      }
+    },
+    callback
+  );
 }
 
 function remove(id, timestamp, callback) {
-  dynamo.delete(queries.removeItem(id, timestamp), function(err) {
-    if (err) return callback(err);
-    return callback();
-  });
+  dynamo.table("pocket-dimension").remove({ key: { id, timestamp } }, callback);
 }
 
 function storeToken(payload, callback) {
-  dynamo.update(queries.storeToken(payload), function(err) {
-    if (err) return callback(err);
-    return callback();
-  });
+  dynamo.table("pocket-dimension-auth").update(
+    {
+      key: {
+        username: payload.username
+      },
+      item: {
+        sessionToken: payload.token
+      }
+    },
+    callback
+  );
 }
 
 function getUser(username, callback) {
-  dynamo.query(queries.getUser(username), function(err, data) {
-    if (err) return callback(err);
-    callback(null, data.Items[0] || {});
-  });
+  dynamo.table("pocket-dimension-auth").get(
+    {
+      key: {
+        username: username
+      }
+    },
+    callback
+  );
 }
 
 function getUserByToken(token, callback) {
-  dynamo.scan(queries.getAllUsers(), function(err, data) {
+  dynamo.table("pocket-dimension-auth").scan({}, function(err, data) {
     if (err) {
       return callback(err);
     }
-    if (data.Items.length > 0) {
-      var user = data.Items.filter(item => {
+    if (data.rows.length > 0) {
+      var user = data.rows.filter(item => {
         return item.sessionToken === token || item.apiToken === token;
       });
       return callback(null, user[0]);
