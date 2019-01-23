@@ -13,6 +13,8 @@ use a class instead
 
 ### DRY up getting token, auth etc in `get-page-info\index.js` and `items\index.js`
 
+### Toolbar - Move logout button to top right, create post to it's left, light/dark toggle to create post's left -- adjust searchbar width
+
 ### Mobile
 
 ### Dark mode
