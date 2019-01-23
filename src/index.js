@@ -1,6 +1,5 @@
 const markdown = require("fastn-markdown-component");
-const svg = require("fastn-svg-component");
-const fastn = require("fastn")(require("fastn/domComponents")({ svg, markdown }), true);
+const fastn = require("fastn")(require("fastn/domComponents")({ markdown }), true);
 const spacetime = require("spacetime");
 const api = require("./api");
 const components = require("./components");
