@@ -17,6 +17,8 @@ use a class instead
 
 ### Pattern background?
 
+### Increase favicon contrast between fold and fabric, crisp up stars
+
 ### Mobile
 
 ### Dark mode
