@@ -30,10 +30,8 @@ let dynamo = alternator(
 let get = {
   all: function getAllItems(callback) {
     let all = dynamo.table("pocket-dimension").scan({});
-    let result = all.get((data) =>
-      data.rows.sort((a, b) =>
-        new Date(b.timestamp) - new Date(a.timestamp)
-      )
+    let result = all.get(data =>
+      data.rows.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
     );
 
     result(callback);
@@ -46,12 +44,11 @@ function put(item, response, callback) {
   }
 
   if (item.generateTitle) {
-    item = righto(tiny.get, { url: item.body })
-      .get(data => {
-        let parsed = util.matchTitle(data.body);
-        item.title = !parsed ? item.body : unescape(parsed);
-        return item;
-      });
+    item = righto(tiny.get, { url: item.body }).get(data => {
+      let parsed = util.matchTitle(data.body);
+      item.title = !parsed ? item.body : unescape(parsed);
+      return item;
+    });
   }
 
   let saved = dynamo.table("pocket-dimension").create(item);
@@ -99,22 +96,17 @@ function getUser(username, callback) {
 }
 
 function getUserByToken(token, callback) {
-  let results = db.table("pocket-dimension-auth").scan({
-    expression: "sessionToken = :token or apiToken = :token",
-    attributeValues: {
-        ":token": token
+  dynamo.table("pocket-dimension-auth").scan({}, function(err, data) {
+    if (err) {
+      return callback(err);
     }
-  }, callback);
-
-  let result = results.get(items => {
-    if(!items.length){
-      return righto.fail({ code: 401, message: 'token not found' });
+    if (data.rows.length > 0) {
+      var user = data.rows.filter(item => {
+        return item.sessionToken === token || item.apiToken === token;
+      });
+      return callback(null, user[0]);
     }
-
-    return items[0];
   });
-
-  result(callback);
 }
 
 module.exports = { get, put, update, remove, storeToken, getUser, getUserByToken };
