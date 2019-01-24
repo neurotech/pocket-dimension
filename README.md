@@ -15,6 +15,8 @@ use a class instead
 
 ### Toolbar - Move logout button to top right, create post to it's left, light/dark toggle to create post's left -- adjust searchbar width
 
+### Pattern background?
+
 ### Mobile
 
 ### Dark mode
