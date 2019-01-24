@@ -19,7 +19,7 @@ use a class instead
 
 ### Increase favicon contrast between fold and fabric, crisp up stars
 
-### Mobile
+### Mobile - Create Post, maybe a fullscreen button per post
 
 ### Dark mode
 
