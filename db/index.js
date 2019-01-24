@@ -96,17 +96,22 @@ function getUser(username, callback) {
 }
 
 function getUserByToken(token, callback) {
-  dynamo.table("pocket-dimension-auth").scan({}, function(err, data) {
-    if (err) {
-      return callback(err);
-    }
-    if (data.rows.length > 0) {
-      var user = data.rows.filter(item => {
-        return item.sessionToken === token || item.apiToken === token;
-      });
-      return callback(null, user[0]);
+  let results = dynamo.table("pocket-dimension-auth").scan({
+    expression: "sessionToken = :token or apiToken = :token",
+    attributeValues: {
+        ":token": token
     }
   });
+
+  let result = results.get(results => {
+    if(!results.rows.length){
+      return righto.fail({ code: 401, message: 'token not found' });
+    }
+
+    return results.rows[0];
+  });
+
+  result(callback);
 }
 
 module.exports = { get, put, update, remove, storeToken, getUser, getUserByToken };
