@@ -2,16 +2,12 @@
   width: 100%;
   display: flex;
   flex-direction: column;
-  padding: 1rem;
+  padding: 1rem 1rem 0 1rem;
   transition: opacity 0.2s;
 }
 
 .posts.loading {
   opacity: 0.25;
-}
-
-.posts:last-child {
-  margin-bottom: 0;
 }
 
 .post {
