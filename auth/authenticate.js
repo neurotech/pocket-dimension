@@ -5,7 +5,7 @@ module.exports = function authenticate(sessionToken, callback) {
     return callback(false);
   } else {
     token.check(sessionToken, function(error, valid) {
-      if (error) {
+      if (error || !valid) {
         return callback(false);
       }
 
