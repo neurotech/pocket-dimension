@@ -47,8 +47,32 @@ body {
   flex-direction: column;
 }
 
-.container.error {
-  filter: grayscale(100%);
+.toast {
+  position: fixed;
+  width: 35%;
+  padding: 1rem;
+  margin: 1rem auto;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  border-radius: 0.33rem;
+  border: 2px solid var(--dark-pink);
+  background-color: var(--dark-red);
+  font-weight: bold;
+  color: white;
+  text-align: center;
+}
+.toast.slide-in {
+  animation-name: toast-slide-in;
+  animation-duration: 0.3s;
+  animation-iteration-count: 1;
+}
+
+.toast.slide-out {
+  animation-name: toast-slide-out;
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+  animation-fill-mode: both;
 }
 
 .core {

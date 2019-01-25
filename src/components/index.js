@@ -14,15 +14,5 @@ module.exports = function combineComponents(fastn, app) {
     CreatePostDialog(fastn, app)
   );
 
-  return fastn(
-    "div",
-    {
-      class: fastn.binding("error", hasError => {
-        return ["container", hasError && "error"];
-      })
-    },
-    loginForm,
-    ToolBar(fastn, app),
-    core
-  );
+  return fastn("div", { class: "container" }, loginForm, ToolBar(fastn, app), core);
 };

@@ -1,5 +1,6 @@
 const markdown = require("fastn-markdown-component");
 const fastn = require("fastn")(require("fastn/domComponents")({ markdown }), true);
+const crel = require("crel");
 const spacetime = require("spacetime");
 const api = require("./api");
 const components = require("./components");
@@ -69,12 +70,27 @@ window.addEventListener("load", function() {
     },
     setError: function(error) {
       fastn.Model.set(state, "error", true);
-      if (error.data) {
-        fastn.Model.set(state, "errorMessage", error.message);
+      if (error.message) {
+        fastn.Model.set(state, "errorMessage", JSON.parse(error.message).data);
       }
+      app.toastError();
     },
     clearError: function() {
       fastn.Model.set(state, "error", false);
+    },
+    toastError: function() {
+      var error = fastn.Model.get(state, "errorMessage");
+      var toastTime = 4000;
+      crel(document.body, crel("div", { class: "toast slide-in" }, error || "Unspecified error."));
+      setTimeout(() => {
+        document.querySelector(".toast").classList.remove("slide-in");
+      }, toastTime * 0.5);
+      setTimeout(() => {
+        document.querySelector(".toast").classList.add("slide-out");
+      }, toastTime);
+      setTimeout(() => {
+        document.querySelector(".toast").remove();
+      }, toastTime * 1.3);
     },
     setLoading: function(isLoading) {
       fastn.Model.set(state, "isLoading", isLoading);
