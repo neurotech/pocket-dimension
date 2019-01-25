@@ -13,6 +13,17 @@ use a class instead
 
 ### DRY up getting token, auth etc in `get-page-info\index.js` and `items\index.js`
 
+### Fix up error handling and how it's communicated to user:
+
+Refactor these:
+
+```js
+loading(api.get.all)(fastn.Model.get(state, "login.token"), function(error, data) {
+  if (error) return console.error(error);
+  fastn.Model.set(state, "items", data);
+});
+```
+
 ### Toolbar - Move logout button to top right, create post to it's left, light/dark toggle to create post's left -- adjust searchbar width
 
 ### Pattern background?
