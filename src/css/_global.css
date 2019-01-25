@@ -47,6 +47,10 @@ body {
   flex-direction: column;
 }
 
+.container.error {
+  filter: grayscale(100%);
+}
+
 .core {
   display: flex;
   flex-direction: row;

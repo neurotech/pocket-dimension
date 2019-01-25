@@ -78,18 +78,3 @@
   animation-iteration-count: infinite;
   animation-direction: alternate;
 }
-
-@keyframes scroll {
-  100% {
-    background-position: 3000px 0px;
-  }
-}
-
-@keyframes pulse {
-  from {
-    opacity: 0.6;
-  }
-  to {
-    opacity: 0.45;
-  }
-}

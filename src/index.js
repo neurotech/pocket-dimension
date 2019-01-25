@@ -15,6 +15,7 @@ window.addEventListener("load", function() {
       password: ""
     },
     isLoading: false,
+    error: false,
     filter: "",
     type: "all",
     dialogOpen: false,
@@ -38,7 +39,9 @@ window.addEventListener("load", function() {
     state,
     login: function() {
       loading(api.login)(fastn.Model.get(state, "login"), function(error, token) {
-        if (error) return console.error(error);
+        if (error) {
+          return app.setError(error);
+        }
         app.clearCredentials();
         app.setToken(token);
         app.getAll();
@@ -63,6 +66,15 @@ window.addEventListener("load", function() {
       if (token) {
         sessionStorage.setItem(tokenKey, token);
       }
+    },
+    setError: function(error) {
+      fastn.Model.set(state, "error", true);
+      if (error.data) {
+        fastn.Model.set(state, "errorMessage", error.message);
+      }
+    },
+    clearError: function() {
+      fastn.Model.set(state, "error", false);
     },
     setLoading: function(isLoading) {
       fastn.Model.set(state, "isLoading", isLoading);
@@ -89,7 +101,9 @@ window.addEventListener("load", function() {
           fastn.Model.get(state, "login.token"),
           fastn.Model.get(state, "post.body"),
           function(error, data) {
-            if (error) return console.error(error);
+            if (error) {
+              return app.setError(error);
+            }
             app.setPostTitle(data.title);
           }
         );
@@ -106,7 +120,9 @@ window.addEventListener("load", function() {
     },
     getAll: function() {
       loading(api.get.all)(fastn.Model.get(state, "login.token"), function(error, data) {
-        if (error) return console.error(error);
+        if (error) {
+          return app.setError(error);
+        }
         fastn.Model.set(state, "items", data);
       });
     },
@@ -125,7 +141,9 @@ window.addEventListener("load", function() {
         error,
         res
       ) {
-        if (error) return console.error(error);
+        if (error) {
+          return app.setError(error);
+        }
         app.getAll();
       });
     },
@@ -134,7 +152,7 @@ window.addEventListener("load", function() {
 
       loading(api[action])(fastn.Model.get(state, "login.token"), post, function(error) {
         if (error) {
-          return console.error(error);
+          return app.setError(error);
         }
 
         app.hideEditPost();
