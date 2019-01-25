@@ -13,6 +13,30 @@ use a class instead
 
 ### DRY up getting token, auth etc in `get-page-info\index.js` and `items\index.js`
 
+### Add error, errorMessage to state On 401 response to /api/ calls: 
+
+* set state.error = true
+* set state.errorMessage = "error message"
+
+Need to add a `<body>` (or `<#app>`?) `.error` class binding:
+
+```css
+.error {
+  animation-name: wobble;
+  animation-duration: 0.5s;
+  animation-iteration-count: 1;
+}
+
+@keyframes wobble {
+  0% { transform: translate(2px, -2px, 0px); }
+  20% { transform: translate(-2px, 2px, 0px); }
+  40% { transform: translate(-2px, -2px, 0px); }
+  60% { transform: translate(2px, -2px, 0px); }
+  80% { transform: translate(-2px, 2px, 0px); }
+  100% { transform: translate(2px, -2px, 0px); }
+}
+```
+
 ### Fix up error handling and how it's communicated to user:
 
 Refactor these:
