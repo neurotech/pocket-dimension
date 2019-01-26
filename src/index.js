@@ -8,6 +8,7 @@ const components = require("./components");
 import "normalize.css";
 
 window.addEventListener("load", function() {
+  let defaultTheme = "light";
   let tokenKey = "token";
   let state = {
     login: {
@@ -66,6 +67,24 @@ window.addEventListener("load", function() {
       fastn.Model.set(state, "login.token", token);
       if (token) {
         sessionStorage.setItem(tokenKey, token);
+      }
+    },
+    setTheme: function(toggle) {
+      if (!toggle) {
+        fastn.Model.set(state, "theme", "light");
+        localStorage.setItem("pocket-dimension:theme", "light");
+      }
+      if (toggle) {
+        fastn.Model.set(state, "theme", "dark");
+        localStorage.setItem("pocket-dimension:theme", "dark");
+      }
+    },
+    getTheme: function() {
+      var theme = localStorage.getItem("pocket-dimension:theme");
+      if (theme) {
+        fastn.Model.set(state, "theme", theme);
+      } else {
+        fastn.Model.set(state, "theme", defaultTheme);
       }
     },
     setError: function(error) {
@@ -200,6 +219,8 @@ window.addEventListener("load", function() {
   if (fastn.Model.get(state, "login.token")) {
     app.getAll();
   }
+
+  app.getTheme();
 
   const view = components(fastn, app);
   view.attach(state);

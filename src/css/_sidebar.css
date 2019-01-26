@@ -9,8 +9,7 @@
   width: var(--sidebar-width);
   padding: 1rem 0 0 0;
   user-select: none;
-  background-color: var(--pink);
-  color: white;
+  background-color: var(--sidebar-background);
 }
 
 .sidebar-item {
@@ -19,51 +18,13 @@
   font-size: 1.5rem;
   font-weight: bold;
   text-align: center;
-  color: var(--dark-pink);
+  color: var(--sidebar-link);
   transition: color 0.1s;
 }
 .sidebar-item:hover {
-  color: white;
+  color: var(--sidebar-link-hover);
 }
 .sidebar-item.active {
   cursor: not-allowed;
-  color: var(--bright-yellow);
-}
-
-.logout-button {
-  width: 100%;
-  padding: 2rem 1.5rem;
-  text-align: center;
-  display: flex;
-  flex: 1;
-  flex-direction: column;
-  justify-content: flex-end;
-  margin: auto 0;
-}
-
-.logout-button button[hidden] {
-  display: none;
-}
-.logout-button .button {
-  display: inline-block;
-  padding: 0;
-  font-size: 1rem;
-  line-height: 2rem;
-  font-weight: bold;
-  background-color: var(--medium-pink);
-  border: 2px solid var(--dark-pink);
-  transition: background-color 0.1s;
-}
-
-.logout-button .button:hover {
-  background-color: var(--pale-pink);
-}
-
-.logout-button .button:focus {
-  background-color: var(--pink);
-  outline: 0;
-}
-
-.logout-button .title {
-  color: rgb(124, 0, 69);
+  color: var(--sidebar-link-active);
 }

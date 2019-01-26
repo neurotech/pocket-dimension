@@ -3,7 +3,7 @@
   display: flex;
   justify-content: start;
   align-items: center;
-  background-color: white;
+  background-color: var(--toolbar-background);
   padding: 0;
 }
 
@@ -12,38 +12,36 @@
   flex: 1;
   height: 5rem;
   padding: 1rem;
-  border-bottom: 2px solid rgb(197, 197, 197);
+  border-bottom: 2px solid var(--toolbar-border);
 }
 
 .search-and-create {
   display: flex;
   flex: 1;
-  justify-content: space-between;
+  justify-content: flex-start;
 }
 
 .search-box-input {
-  width: 100%;
-  margin-right: 1rem;
+  width: 65%;
   padding: 0.75rem;
-  background-color: rgb(248, 248, 248);
+  background-color: var(--searchbar-background);
   outline: 0;
   border-radius: 0.33rem;
-  border: 2px solid lightgrey;
+  border: 2px solid var(--searchbar-border);
   font-weight: bold;
-  color: lightgrey;
   transition: border-color 0.2s;
 }
 .search-box-input:focus {
-  background-color: rgb(255, 239, 247);
-  border-color: var(--pink);
-  color: var(--dark-pink);
+  border-color: var(--searchbar-border-active);
+  background-color: var(--searchbar-background-active);
+  color: var(--searchbar-foeground-active);
 }
 .search-box-input::placeholder {
   transition: color 0.2s;
-  color: lightgrey;
+  color: var(--searchbar-foreground);
 }
 .search-box-input:focus::placeholder {
-  color: var(--mediumer-pink);
+  color: var(--searchbar-foreground-active);
 }
 
 .create-post {
@@ -59,17 +57,15 @@
   font-size: 1rem;
   line-height: 2rem;
   font-weight: bold;
-  background-color: var(--pink);
-  border: 2px solid var(--medium-pink);
   transition: background-color 0.1s;
 }
 
 .create-post .button:hover {
-  background-color: var(--pink);
+  background-color: var(--primary-button-background-hover);
 }
 
 .create-post .button:focus {
-  background-color: var(--pink);
+  background-color: var(--primary-button-background-hover);
   outline: 0;
 }
 
@@ -78,8 +74,51 @@
 }
 
 .create-post .button .icon {
-  background-color: var(--mediumer-pink);
+  background-color: var(--primary-button-icon-background);
   padding: 0.33rem;
   font-weight: 100;
   border-radius: 3rem;
+}
+
+.logout-button {
+  min-width: 150px;
+  text-align: right;
+  vertical-align: middle;
+}
+
+.logout-button button[hidden] {
+  display: none;
+}
+
+.logout-button .button {
+  width: 100%;
+  height: 45px;
+  display: inline-block;
+  padding: 0;
+  font-size: 1rem;
+  line-height: 2rem;
+  font-weight: bold;
+  border: 2px solid var(--primary-button-border);
+  background-color: var(--primary-button-background);
+  color: var(--primary-button-foreground);
+  transition: background-color 0.1s;
+}
+
+.dark-mode {
+  min-width: 150px;
+  text-align: center;
+  display: flex;
+  padding: 0 1rem;
+  align-content: space-between;
+  align-items: center;
+}
+.dark-mode-toggle {
+  width: 25px;
+  height: 25px;
+}
+
+.dark-mode-label {
+  margin-left: 0.5rem;
+  font-weight: bold;
+  color: var(--dark-mode-label-foreground);
 }

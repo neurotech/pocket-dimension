@@ -26,12 +26,12 @@ body {
 }
 
 ::selection {
-  background: var(--pink);
-  color: white;
+  background: var(--selection-background);
+  color: var(--selection-foreground);
 }
 ::-moz-selection {
-  background: var(--pink);
-  color: white;
+  background: var(--selection-background);
+  color: var(--selection-foreground);
 }
 
 #app {
@@ -54,12 +54,12 @@ body {
   margin: 1rem auto;
   left: 0;
   right: 0;
-  z-index: 9999;
+  z-index: 10;
   border-radius: 0.33rem;
-  border: 2px solid var(--dark-pink);
-  background-color: var(--dark-red);
+  border: 2px solid var(--toast-border);
+  background-color: var(--toast-background);
+  color: var(--toast-foreground);
   font-weight: bold;
-  color: white;
   text-align: center;
 }
 .toast.slide-in {
@@ -80,7 +80,7 @@ body {
   flex-direction: row;
   width: 100%;
   flex: 1;
-  background-color: rgb(231, 231, 231);
+  background-color: var(--page-background);
 }
 
 .button {
@@ -89,10 +89,10 @@ body {
   min-width: 75px;
   height: 2.25rem;
   text-align: center;
-  color: white;
-  background-color: gray;
   border-radius: 0.33rem;
-  border-width: 0;
+  border: 2px solid var(--primary-button-border);
+  background-color: var(--primary-button-background);
+  color: var(--primary-button-foreground);
   transition: background-color 0.1s;
 }
 
@@ -100,12 +100,12 @@ input,
 textarea {
   border-radius: 0.33rem;
   outline: 0;
-  border: 2px solid lightgray;
+  border: 2px solid var(--input-border);
 }
 
 input:focus,
 textarea:focus {
-  border-color: var(--blue);
+  border-color: var(--input-border-active);
 }
 
 ul {
@@ -122,5 +122,5 @@ li {
 
 li:before {
   content: "• ";
-  color: rgb(146, 146, 146); /* or whatever color you prefer */
+  color: var(--post-body-bullet);
 }

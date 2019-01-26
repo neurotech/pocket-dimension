@@ -14,8 +14,8 @@
   padding: 1rem;
   margin: 0 0 1rem 0;
   border-radius: 0.33rem;
-  border: 2px solid lightgray;
-  background-color: white;
+  border: 2px solid var(--post-body-border);
+  background-color: var(--post-body-background);
 }
 .item-title {
   vertical-align: middle;
@@ -23,7 +23,7 @@
   font-size: 1.5rem;
   padding-bottom: 0.25rem;
   margin-bottom: 1rem;
-  border-bottom: 2px solid rgb(235, 235, 235);
+  border-bottom: 2px solid var(--post-title-separator);
 }
 
 .item-edit {
@@ -77,26 +77,27 @@
   padding: 0.1rem 0.5rem;
   margin-left: 0.75rem;
   font-weight: 100;
-  background-color: lightgray;
-  border: 2px solid darkgray;
-  color: darkgray;
+  border: 2px solid var(--post-remove-border);
+  background-color: var(--post-remove-background);
+  color: var(--post-remove-foreground);
   transition: background-color 0.2s, border-color 0.2s, color 0.2s;
 }
 
 .item-remove:hover {
-  background-color: var(--red);
-  border-color: var(--dark-red);
-  color: white;
+  border-color: var(--post-remove-border-hover);
+  background-color: var(--post-remove-background-hover);
+  color: var(--post-remove-foreground-hover);
 }
 
 .item-title-text {
   font-size: 1.6rem;
   line-height: 2rem;
+  color: var(--post-title);
 }
 
 .item-timestamp {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
-  color: rgb(126, 126, 126);
+  color: var(--post-timestamp);
   font-size: 0.75rem;
   line-height: 1.5rem;
   font-weight: normal;
@@ -104,21 +105,18 @@
 
 .item-body {
   font-size: 1.25rem;
+  color: var(--post-body-foreground);
 }
 
 a {
   font-family: var(--font-family-monospace);
-  /* These are technically the same, but use both */
   overflow-wrap: break-word;
   word-wrap: break-word;
 
   -ms-word-break: break-all;
-  /* This is the dangerous one in WebKit, as it breaks things wherever */
   word-break: break-all;
-  /* Instead use this non-standard one: */
   word-break: break-word;
 
-  /* Adds a hyphen where the word breaks, if supported (No Blink) */
   -ms-hyphens: auto;
   -moz-hyphens: auto;
   -webkit-hyphens: auto;
@@ -127,10 +125,10 @@ a {
 
 a,
 a:visited {
-  color: var(--pink);
+  color: var(--post-link);
 }
 a:hover {
   border-radius: 0.2rem;
-  background-color: var(--pink);
-  color: white;
+  background-color: var(--post-link);
+  color: var(--post-link-hover);
 }

@@ -4,7 +4,7 @@
   left: -2px;
   width: 1px;
   height: 1px;
-  background-color: white !important;
+  background-color: black !important;
   animation-name: particleAnimation;
   animation-timing-function: linear;
   animation-iteration-count: infinite;

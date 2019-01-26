@@ -14,5 +14,11 @@ module.exports = function combineComponents(fastn, app) {
     CreatePostDialog(fastn, app)
   );
 
-  return fastn("div", { class: "container" }, loginForm, ToolBar(fastn, app), core);
+  return fastn(
+    "div",
+    { class: "container", "data-theme": fastn.binding("theme") },
+    loginForm,
+    ToolBar(fastn, app),
+    core
+  );
 };
