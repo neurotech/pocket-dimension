@@ -73,10 +73,14 @@
   --post-inline-text: hsl(0, 0%, 19%);
   --post-link: hsl(327, 100%, 50%);
   --input-border: lightgray;
-  --input-background: white;
   --input-border-active: rgb(80, 119, 243);
+  --input-background: white;
+  --input-foreground: #6b6b6b;
+  --input-foreground-focus: black;
+  --input-foreground-disabled: #34333f;
   --create-post-shade: hsla(0, 0%, 0%, 0.66);
   --create-post-border: hsl(0, 0%, 77%);
+  --create-post-background: #ffffff;
   --typeswitcher-border: hsl(0, 0%, 83%);
   --typeswitcher-foreground: hsl(0, 0%, 83%);
   --typeswitcher-foreground-checked: hsl(0, 0%, 103%);
@@ -91,16 +95,16 @@
 }
 
 .container[data-theme="dark"] {
-  --page-background: #29293d;
-  --sidebar-background: #1b1b27;
+  --page-background: #0e0e0e;
+  --sidebar-background: #17191d;
   --selection-background: hsl(327, 100%, 50%);
   --selection-foreground: hsl(0, 0%, 100%);
   --sidebar-link: #4c4c64;
   --sidebar-link-hover: hsl(0, 0%, 100%);
   --sidebar-link-active: hsl(327, 100%, 50%);
-  --toolbar-border: #1b1b27;
-  --toolbar-background: #373750;
-  --toolbar-logo-background: #1b1b27;
+  --toolbar-border: #000000;
+  --toolbar-background: #17191d;
+  --toolbar-logo-background: #17191d;
   --toolbar-logo-foreground: #9696bd;
   --toolbar-logo-stars-border: #1b1b27;
   --searchbar-border: #1b1b27;
@@ -114,25 +118,24 @@
   --primary-button-foreground: #bcbcf0;
   --primary-button-background-hover: hsl(249, 28%, 33%);
   --primary-button-icon-background: #292946;
-  --post-body-border: #1b1b27;
-  --post-body-background: #373750;
+  --post-body-border: #000000;
+  --post-body-background: #212328;
   --post-body-foreground: #adadca;
   --post-body-bullet: #727294;
-  --post-title: #adadca;
-  --post-timestamp: #8282ae;
+  --post-title: #d0d0fa;
+  --post-timestamp: #5f5f84;
   --post-remove-border: #1b1b27;
   --post-remove-background: #8282ae;
   --post-remove-foreground: #1b1b27;
   --post-remove-border-hover: hsl(342, 84%, 41%);
   --post-remove-background-hover: hsl(342, 96%, 53%);
   --post-remove-foreground-hover: hsl(0, 0%, 100%);
-  --post-title-separator: #1b1b27;
-  --post-inline-background: #4e4e74;
+  --post-title-separator: #4343434f;
+  --post-inline-background: #38384d;
   --post-inline-text: hsl(0, 0%, 19%);
   --post-link: hsl(50, 100%, 50%);
   --post-link-hover: black;
   --dark-mode-label-foreground: hsl(50, 100%, 50%);
-
   --input-border: #1b1b27;
   --input-background: #575779;
   --input-foreground: #1b1b27;
