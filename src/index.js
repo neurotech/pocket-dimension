@@ -100,7 +100,10 @@ window.addEventListener("load", function() {
     toastError: function() {
       var error = fastn.Model.get(state, "errorMessage");
       var toastTime = 4000;
-      crel(document.body, crel("div", { class: "toast slide-in" }, error || "Unspecified error."));
+      crel(
+        document.querySelector(".container"),
+        crel("div", { class: "toast slide-in" }, error || "Unspecified error.")
+      );
       setTimeout(() => {
         document.querySelector(".toast").classList.remove("slide-in");
       }, toastTime * 0.5);
