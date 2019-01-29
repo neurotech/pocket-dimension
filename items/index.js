@@ -5,6 +5,8 @@ const token = require("../auth/token");
 const language = require("../language");
 const util = require("../util");
 const log = require("../log");
+const righto = require("righto");
+const tiny = require("tiny-json-http");
 
 function create(request, response) {
   var sessionToken = token.getTokenFromHeaders(request.headers);
@@ -20,8 +22,19 @@ function create(request, response) {
           util.respond.error(language.COULD_NOT_CREATE_POST, response);
           return log.error(`[pocket] [Get Payload] ${err}`);
         } else {
-          let item = util.buildItem(payload);
-          db.put(item, response, function(err) {
+          if (payload.generateTitle) {
+            payload = righto(tiny.get, { url: payload.body }).get(data => {
+              let parsed = util.matchTitle(data.body);
+              payload.title = !parsed ? payload.body : unescape(parsed);
+              return payload;
+            });
+          }
+
+          let item = righto.sync(util.buildItem, payload);
+
+          let saved = righto(db.put, item);
+
+          saved(function(err) {
             if (err) return util.respond.error(err, response);
 
             return util.respond.success(language.POST_CREATED, response);

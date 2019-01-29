@@ -1,6 +1,5 @@
 const righto = require("righto");
 const alternator = require("alternator");
-const tiny = require("tiny-json-http");
 const util = require("../util");
 if (process.env.NODE_ENV === "development") require("dotenv").config();
 
@@ -38,19 +37,7 @@ let get = {
   }
 };
 
-function put(item, response, callback) {
-  function putItem(item, callback) {
-    dynamo.table("pocket-dimension").create(item, callback);
-  }
-
-  if (item.generateTitle) {
-    item = righto(tiny.get, { url: item.body }).get(data => {
-      let parsed = util.matchTitle(data.body);
-      item.title = !parsed ? item.body : unescape(parsed);
-      return item;
-    });
-  }
-
+function put(item, callback) {
   let saved = dynamo.table("pocket-dimension").create(item);
 
   saved(callback);
