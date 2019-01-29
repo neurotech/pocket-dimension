@@ -92,20 +92,22 @@
   --code-block-background: hsl(0, 0%, 98%);
   --code-block-foreground: hsl(0, 0%, 31%);
   --dark-mode-label-foreground: hsl(0, 0%, 52%);
+  --blockquote-border: #e8e8e8;
+  --blockquote-foreground: hsla(0, 0%, 45%, 1);
 }
 
 .container[data-theme="dark"] {
-  --page-background: #0e0e0e;
-  --sidebar-background: #17191d;
+  --page-background: hsla(233, 11%, 17%, 1);
+  --sidebar-background: #38384d;
   --selection-background: hsl(327, 100%, 50%);
   --selection-foreground: hsl(0, 0%, 100%);
-  --sidebar-link: #4c4c64;
+  --sidebar-link: #22222e;
   --sidebar-link-hover: hsl(0, 0%, 100%);
   --sidebar-link-active: hsl(327, 100%, 50%);
   --toolbar-border: #000000;
-  --toolbar-background: #17191d;
-  --toolbar-logo-background: #17191d;
-  --toolbar-logo-foreground: #9696bd;
+  --toolbar-background: hsla(245, 10%, 21%, 1);
+  --toolbar-logo-background: #38384d;
+  --toolbar-logo-foreground: #d0d0fa;
   --toolbar-logo-stars-border: #1b1b27;
   --searchbar-border: #1b1b27;
   --searchbar-background: #535372;
@@ -116,21 +118,21 @@
   --primary-button-border: #1b1b27;
   --primary-button-background: hsl(249, 36%, 42%);
   --primary-button-foreground: #bcbcf0;
-  --primary-button-background-hover: hsl(249, 28%, 33%);
+  --primary-button-background-hover: hsl(240, 16%, 26%);
   --primary-button-icon-background: #292946;
-  --post-body-border: #000000;
+  --post-body-border: hsla(233, 5%, 8%, 1);
   --post-body-background: #212328;
   --post-body-foreground: #adadca;
   --post-body-bullet: #727294;
   --post-title: #d0d0fa;
-  --post-timestamp: #5f5f84;
+  --post-timestamp: hsla(240, 16%, 58%, 1);
   --post-remove-border: #1b1b27;
   --post-remove-background: #8282ae;
   --post-remove-foreground: #1b1b27;
   --post-remove-border-hover: hsl(342, 84%, 41%);
   --post-remove-background-hover: hsl(342, 96%, 53%);
   --post-remove-foreground-hover: hsl(0, 0%, 100%);
-  --post-title-separator: #4343434f;
+  --post-title-separator: #131315;
   --post-inline-background: #38384d;
   --post-inline-text: hsl(0, 0%, 19%);
   --post-link: hsl(50, 100%, 50%);
@@ -152,4 +154,6 @@
   --create-post-cancel-button-background: #1b1b27;
   --create-post-cancel-button-foreground: #575779;
   --create-post-cancel-button-background-hover: #28283b;
+  --blockquote-border: #38384d;
+  --blockquote-foreground: hsla(238, 18%, 60%, 1);
 }

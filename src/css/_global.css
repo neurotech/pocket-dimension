@@ -120,7 +120,14 @@ li {
   margin: 1rem 0;
 }
 
-li:before {
+ul li:before {
   content: "• ";
   color: var(--post-body-bullet);
+}
+
+blockquote {
+  margin: 0.4rem 0;
+  padding: 0rem 1rem;
+  border-left: 4px solid var(--blockquote-border);
+  color: var(--blockquote-foreground);
 }

@@ -7,22 +7,28 @@
   padding: 0;
 }
 
-.search-and-create-container {
+.toolbar-container {
   display: flex;
   flex: 1;
+  justify-content: space-between;
   height: 5rem;
   padding: 1rem;
   border-bottom: 2px solid var(--toolbar-border);
 }
 
-.search-and-create {
+.search-bar-container {
+  width: 60%;
+}
+
+.controls-container {
+  /* width: 30%; */
   display: flex;
-  flex: 1;
-  justify-content: flex-start;
+  flex-direction: row;
+  justify-content: flex-end;
 }
 
 .search-box-input {
-  width: 65%;
+  width: 100%;
   padding: 0.75rem;
   background-color: var(--searchbar-background);
   outline: 0;
@@ -48,6 +54,7 @@
   min-width: 150px;
   text-align: right;
   vertical-align: middle;
+  margin: 0 1rem;
 }
 .create-post .button {
   width: 100%;
@@ -102,6 +109,10 @@
   background-color: var(--primary-button-background);
   color: var(--primary-button-foreground);
   transition: background-color 0.1s;
+}
+
+.logout-button .button:hover {
+  background-color: var(--primary-button-background-hover);
 }
 
 .dark-mode {
