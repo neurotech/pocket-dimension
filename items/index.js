@@ -21,25 +21,27 @@ function create(request, response) {
         if (err) {
           util.respond.error(language.COULD_NOT_CREATE_POST, response);
           return log.error(`[pocket] [Get Payload] ${err}`);
-        } else {
-          if (payload.generateTitle) {
-            payload = righto(tiny.get, { url: payload.body }).get(data => {
-              let parsed = util.matchTitle(data.body);
-              payload.title = !parsed ? payload.body : unescape(parsed);
-              return payload;
-            });
-          }
+        }
 
-          let item = righto.sync(util.buildItem, payload);
-
-          let saved = righto(db.put, item);
-
-          saved(function(err) {
-            if (err) return util.respond.error(err, response);
-
-            return util.respond.success(language.POST_CREATED, response);
+        if (payload.generateTitle) {
+          payload.title = righto(tiny.get, { url: payload.body }).get(data => {
+            let parsed = util.matchTitle(data.body);
+            return !parsed ? payload.body : unescape(parsed);
           });
         }
+
+        let resolvedPayload = righto.resolve(payload);
+
+        let item = righto.sync(util.buildItem, resolvedPayload);
+
+        let saved = righto(db.put, item);
+
+        saved(function(err) {
+          if (err) return util.respond.error(err, response);
+
+          return util.respond.success(language.POST_CREATED, response);
+        });
+
       });
     });
   }
