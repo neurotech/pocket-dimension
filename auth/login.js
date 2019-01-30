@@ -9,15 +9,16 @@ function handlePassword(payload, callback) {
   var user = righto(db.getUser, payload.username);
   var hashedPassword = user.get("hashedPassword");
   var validate = righto(hash.check, payload.password, hashedPassword);
-  var sessionToken = righto.handle(righto(token.create, payload.username, righto.after(validate)), (error, done) =>
-    done(util.errors.unauthorized(language.INVALID_PASSWORD))
+  var sessionToken = righto.handle(
+    righto(token.create, payload.username, righto.after(validate)),
+    (error, done) => done(util.errors.unauthorized(language.INVALID_PASSWORD))
   );
 
   var result = sessionToken.get(token => ({
     data: token
   }));
 
-  sessionToken(callback);
+  result(callback);
 }
 
 module.exports = function login(scope, tokens, data, callback) {
