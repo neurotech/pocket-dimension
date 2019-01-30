@@ -32,14 +32,14 @@ function responseHandler(method) {
         return;
       }
 
-      code = 200;
-      status = 'SUCCESS';
+      code = result.code || 200;
+      status = result.status || 'SUCCESS';
 
       response.writeHead(code, defaultHeaders);
       response.write(
         JSON.stringify({
-          status: status,
-          data: result
+          ...result,
+          status
         })
       );
       response.end();

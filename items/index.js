@@ -25,7 +25,7 @@ function create(scope, tokens, data, callback) {
 
   let saved = righto(db.put, item);
 
-  let result = saved.get(() => ({ status: language.POST_CREATED });
+  let result = saved.get(() => ({ status: language.POST_CREATED }));
 
   saved(callback);
 }
@@ -33,7 +33,9 @@ function create(scope, tokens, data, callback) {
 function get(scope, tokens, callback) {
   var authenticated = righto(validateSessionToken, scope);
 
-  var result = righto(db.get.all, righto.after(authenticated));
+  var items = righto(db.get.all, righto.after(authenticated));
+
+  let result = items.get(items => ({ data: items }));
 
   result(callback);
 }
@@ -42,6 +44,8 @@ function update(scope, tokens, data, callback) {
   var authenticated = righto(validateSessionToken, scope);
 
   var updated = righto(db.update, data, righto.after(authenticated))
+
+  let result = saved.get(() => ({ status: language.POST_UPDATED }));
 
   updated(callback);
 }

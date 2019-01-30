@@ -13,6 +13,10 @@ function handlePassword(payload, callback) {
     done(util.errors.unauthorized(language.INVALID_PASSWORD))
   );
 
+  var result = sessionToken.get(token => ({
+    data: token
+  }));
+
   sessionToken(callback);
 }
 
