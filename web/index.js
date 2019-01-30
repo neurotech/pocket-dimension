@@ -1,12 +1,14 @@
 const http = require("http");
 const SeaLion = require("sea-lion");
 const Dion = require("dion");
+const requestData = require("request-data");
 const seaLion = new SeaLion();
 const dion = new Dion(seaLion);
 const items = require("../items");
 const getPageInfo = require("../get-page-info");
 const auth = require("../auth");
 const log = require("../log");
+const responseHandler = require('../util').responseHandler;
 
 let port = 4567;
 let mimeTypes = {
@@ -28,28 +30,28 @@ seaLion.add({
     GET: dion.serveDirectory("./build", mimeTypes)
   },
   "/api/item/`id`": {
-    GET: items.get
+    GET: responseHandler(items.get)
   },
   "/api/items/all": {
-    GET: items.get
+    GET: responseHandler(items.get)
   },
   "/api/items/latest": {
-    GET: items.get
+    GET: responseHandler(items.get)
   },
   "/api/items/create": {
-    POST: items.create
+    POST: requestData(responseHandler(items.create))
   },
   "/api/item/update/`params`": {
-    PUT: items.update
+    PUT: requestData(responseHandler(items.update))
   },
   "/api/items/delete/`params`": {
-    DELETE: items.delete
+    DELETE: responseHandler(items.delete)
   },
   "/api/get-page-info": {
-    POST: getPageInfo
+    POST: requestData(responseHandler(getPageInfo))
   },
   "/api/login": {
-    POST: auth.login
+    POST: requestData(responseHandler(auth.login))
   }
 });
 

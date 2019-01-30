@@ -1,117 +1,62 @@
 const querystring = require("querystring");
 const db = require("../db");
 const auth = require("../auth");
-const token = require("../auth/token");
 const language = require("../language");
 const util = require("../util");
 const log = require("../log");
 const righto = require("righto");
 const tiny = require("tiny-json-http");
 
-function create(request, response) {
-  var sessionToken = token.getTokenFromHeaders(request.headers);
-  if (!sessionToken) {
-    return util.respond.unauthorized(language.INVALID_AUTH, response);
-  } else {
-    auth.authenticate(sessionToken, function(valid) {
-      if (!valid) {
-        return util.respond.unauthorized(language.INVALID_AUTH, response);
-      }
-      util.getJSONfromRequest(request, function(err, payload) {
-        if (err) {
-          util.respond.error(language.COULD_NOT_CREATE_POST, response);
-          return log.error(`[pocket] [Get Payload] ${err}`);
-        } else {
-          if (payload.generateTitle) {
-            payload = righto(tiny.get, { url: payload.body }).get(data => {
-              let parsed = util.matchTitle(data.body);
-              payload.title = !parsed ? payload.body : unescape(parsed);
-              return payload;
-            });
-          }
+const validateSessionToken = auth.validateSessionToken;
 
-          let item = righto.sync(util.buildItem, payload);
+function create(scope, tokens, data, callback) {
+  var authenticated = righto(validateSessionToken, scope);
 
-          let saved = righto(db.put, item);
+  if (data.generateTitle) {
+    var titleBody = righto(tiny.get, { url: data.body }, righto.after(authenticated));
 
-          saved(function(err) {
-            if (err) return util.respond.error(err, response);
-
-            return util.respond.success(language.POST_CREATED, response);
-          });
-        }
-      });
+    data.title = titleBody.get(data => {
+      let parsed = util.matchTitle(data.body);
+      return !parsed ? data.body : unescape(parsed);
     });
   }
+
+  let item = righto.sync(util.buildItem, righto.resolve(data), righto.after(authenticated));
+
+  let saved = righto(db.put, item);
+
+  saved(callback);
 }
 
-function get(request, response, tokens) {
-  switch (request.url) {
-    case "/api/items/all":
-      var sessionToken = token.getTokenFromHeaders(request.headers);
-      if (!sessionToken) {
-        return util.respond.unauthorized(language.INVALID_AUTH, response);
-      } else {
-        auth.authenticate(sessionToken, function(valid) {
-          if (!valid) {
-            return util.respond.unauthorized(language.INVALID_AUTH, response);
-          }
-          db.get.all(function(err, data) {
-            if (err) return util.respond.error(err, response);
-            return util.respond.success(data, response);
-          });
-        });
-      }
-      break;
+function get(scope, tokens, callback) {
+  var authenticated = righto(validateSessionToken, scope);
 
-    default:
-      util.respond.unauthorized(language.INVALID_AUTH, response);
-      break;
-  }
+  var result = righto(db.get.all, righto.after(authenticated));
+
+  result(callback);
 }
 
-function update(request, response) {
-  var sessionToken = token.getTokenFromHeaders(request.headers);
-  if (!sessionToken) {
-    return util.respond.unauthorized(language.INVALID_AUTH, response);
-  } else {
-    auth.authenticate(sessionToken, function(valid) {
-      if (!valid) {
-        return util.respond.unauthorized(language.INVALID_AUTH, response);
-      }
-      util.getJSONfromRequest(request, function(err, payload) {
-        if (err) {
-          util.respond.error(language.COULD_NOT_UPDATE_POST, response);
-          return log.error(`[pocket] [Update Post] ${err}`);
-        } else {
-          db.update(payload, function(err) {
-            if (err) return util.respond.error(err, response);
-            util.respond.success("Successfully updated post.", response);
-          });
-        }
-      });
-    });
-  }
+function update(scope, tokens, data, callback) {
+  var authenticated = righto(validateSessionToken, scope);
+
+  var updated = righto(db.update, data, righto.after(authenticated))
+
+  updated(callback);
 }
 
-function remove(request, response) {
-  var sessionToken = token.getTokenFromHeaders(request.headers);
-  if (!sessionToken) {
-    return util.respond.unauthorized(language.INVALID_AUTH, response);
-  } else {
-    auth.authenticate(sessionToken, function(valid) {
-      if (!valid) {
-        return util.respond.unauthorized(language.INVALID_AUTH, response);
-      }
-      var querystring = getQueryString(request.url);
-      if (querystring) {
-        db.remove(querystring.id, querystring.timestamp, function(err) {
-          if (err) return util.respond.error(err, response);
-          util.respond.success("Successfully deleted item.", response);
-        });
-      }
-    });
+function remove(scope, tokens, callback) {
+  var querystring = getQueryString(scope.request.url);
+  var authenticated = righto(validateSessionToken, scope);
+
+  if (!querystring || !querystring.id || !querystring.timestamp) {
+    return callback(url.errors.badRequest("querystring values of timestamp and id are required"));
   }
+
+  var removed = righto(db.remove, querystring.id, querystring.timestamp, righto.after(authenticated));
+
+  var result = removed.get(() => ({ status: "Successfully deleted item." }));
+
+  result(callback);
 }
 
 function getQueryString(url) {

@@ -4,31 +4,21 @@ const util = require("../util");
 const language = require("../language");
 const auth = require("../auth");
 const token = require("../auth/token");
+const righto = require("righto");
 
-module.exports = function(request, response) {
-  var sessionToken = token.getTokenFromHeaders(request.headers);
-  if (!sessionToken) {
-    return util.respond.unauthorized(language.INVALID_AUTH, response);
-  } else {
-    util.getJSONfromRequest(request, function(err, payload) {
-      if (err) {
-        util.respond.error(language.COULD_NOT_PARSE_REQUEST_BODY, response);
-        return log.error(`[pocket] [Get Page Info] ${err}`);
-      } else {
-        auth.authenticate(sessionToken, function(valid) {
-          if (!valid) {
-            return util.respond.unauthorized(language.INVALID_AUTH, response);
-          }
-          tiny.get({ url: payload }, function(error, data) {
-            if (error) return util.respond.error(error, response);
+const validateSessionToken = auth.validateSessionToken;
 
-            var parsed = util.matchTitle(data.body);
-            var title = !parsed ? payload : unescape(parsed);
+module.exports = function(scope, tokens, callback) {
+  var authenticated = righto(validateSessionToken, scope);
 
-            util.respond.success({ title }, response);
-          });
-        });
-      }
-    });
-  }
+  var titleBody = righto(tiny.get, { url: payload.body }, righto.after(authenticated));
+
+  var title = titleBody.get(data => {
+    let parsed = util.matchTitle(data.body);
+    return !parsed ? payload.body : unescape(parsed);
+  });
+
+  var result = title.get(title => ({ title }));
+
+  result(callback);
 };
