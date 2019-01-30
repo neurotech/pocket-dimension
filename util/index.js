@@ -1,20 +1,54 @@
 const uuid = require("../uuid");
 const now = require("../get-now");
 
-const contentType = { "Content-Type": "application/json" };
+const defaultHeaders = { "Content-Type": "application/json" };
 
-function responseHandler(code, status, data, response) {
-  response.writeHead(code, contentType);
-  response.write(
-    JSON.stringify({
-      status: status,
-      data: data
-    })
-  );
-  response.end();
+function responseHandler(method) {
+  return function(){
+    var [request, response, ...args] = Array.from(arguments);
+    var scope = {
+      request,
+      response
+    };
+
+    method.apply(null, [scope].concat(args).concat(function(error, result){
+      var code, status;
+
+      if(error){
+        var message = 'An error occured';
+        var code = 500;
+        if(error.code){
+          code = error.code;
+          message = error.message;
+        }
+        status = error.status || 'ERROR';
+        response.writeHead(code, defaultHeaders);
+        response.end(
+          JSON.stringify({
+            status,
+            data: message
+          })
+        );
+        return;
+      }
+
+      code = result.code || 200;
+      status = result.status || 'SUCCESS';
+
+      response.writeHead(code, defaultHeaders);
+      response.write(
+        JSON.stringify({
+          ...result,
+          status
+        })
+      );
+      response.end();
+    }));
+  }
 }
 
 const util = {
+  responseHandler,
   buildItem: function createItemObject(payload) {
     var id = payload.id || uuid();
     var timestamp = payload.timestamp || now();
@@ -46,15 +80,15 @@ const util = {
       callback(null, parsed);
     });
   },
-  respond: {
-    success: function successResponse(data, response) {
-      return responseHandler(200, "SUCCESS", data, response);
+  errors: {
+    error: function errorError(message) {
+      return { code: 500, status: "ERROR", message };
     },
-    error: function errorResponse(data, response) {
-      return responseHandler(500, "ERROR", data.message, response);
+    unauthorized: function unauthorizedError(message) {
+      return { code: 401, status: "UNAUTHORIZED", message };
     },
-    unauthorized: function unauthorizedResponse(data, response) {
-      return responseHandler(401, "UNAUTHORIZED", data, response);
+    badRequest: function unauthorizedError(message) {
+      return { code: 400, status: "BAD REQUEST", message };
     }
   },
   matchTitle: function matchTitle(data) {

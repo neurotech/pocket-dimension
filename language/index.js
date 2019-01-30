@@ -5,5 +5,6 @@ module.exports = {
   INVALID_AUTH: "Invalid authentication request. Please supply a valid token.",
   INVALID_USERNAME: "Invalid login request. Please supply a valid username.",
   INVALID_PASSWORD: "Invalid login request. Please supply a valid password.",
-  POST_CREATED: "Post created."
+  POST_CREATED: "Post created.",
+  POST_UPDATED: "Post updated."
 };
