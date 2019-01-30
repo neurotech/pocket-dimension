@@ -25,6 +25,8 @@ function create(scope, tokens, data, callback) {
 
   let saved = righto(db.put, item);
 
+  let result = saved.get(() => ({ status: language.POST_CREATED });
+
   saved(callback);
 }
 
