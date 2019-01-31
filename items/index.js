@@ -45,9 +45,9 @@ function update(scope, tokens, data, callback) {
 
   var updated = righto(db.update, data, righto.after(authenticated));
 
-  let updated = saved.get(() => ({ status: language.POST_UPDATED }));
+  let result = updated.get(() => ({ status: language.POST_UPDATED }));
 
-  updated(callback);
+  result(callback);
 }
 
 function remove(scope, tokens, callback) {
