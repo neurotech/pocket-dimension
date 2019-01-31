@@ -12,12 +12,32 @@
     display: none;
   }
 
+  .toolbar-container {
+    flex-direction: column;
+    height: 9rem;
+  }
+
+  .search-bar-container {
+    width: 100%;
+  }
+  
+  .controls-container {
+    width: 100%;
+    justify-content: space-between;
+  }
+
   .search-box-input {
-    width: auto;
+    width: 100%;
     margin: 0;
   }
 
+  .dark-mode {
+    max-width: 120px;
+  }
   .create-post {
+    min-width: 30px;
+  }
+  .logout-button {
     min-width: 30px;
   }
 

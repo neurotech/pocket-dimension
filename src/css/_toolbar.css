@@ -116,12 +116,19 @@
 }
 
 .dark-mode {
-  min-width: 150px;
   text-align: center;
   display: flex;
-  padding: 0 1rem;
   align-content: space-between;
   align-items: center;
+}
+.dark-mode-wrapper {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 0.5rem;
+  background-color: var(--primary-button-background);
+  border: 2px solid var(--primary-button-border);
+  border-radius: 0.33rem;
 }
 .dark-mode-toggle {
   width: 25px;
@@ -132,4 +139,8 @@
   margin-left: 0.5rem;
   font-weight: bold;
   color: var(--dark-mode-label-foreground);
+}
+
+.dark-mode-label.on {
+  filter: grayscale(100%);
 }

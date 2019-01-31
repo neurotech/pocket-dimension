@@ -72,6 +72,7 @@
   --post-inline-background: hsl(46, 100%, 89%);
   --post-inline-text: hsl(0, 0%, 19%);
   --post-link: hsl(327, 100%, 50%);
+  --post-link-hover: white;
   --input-border: lightgray;
   --input-border-active: rgb(80, 119, 243);
   --input-background: white;
@@ -91,7 +92,7 @@
   --code-block-border: hsl(0, 0%, 95%);
   --code-block-background: hsl(0, 0%, 98%);
   --code-block-foreground: hsl(0, 0%, 31%);
-  --dark-mode-label-foreground: hsl(0, 0%, 52%);
+  --dark-mode-label-foreground: white;
   --blockquote-border: #e8e8e8;
   --blockquote-foreground: hsla(0, 0%, 45%, 1);
 }
@@ -101,7 +102,7 @@
   --sidebar-background: #38384d;
   --selection-background: hsl(327, 100%, 50%);
   --selection-foreground: hsl(0, 0%, 100%);
-  --sidebar-link: #22222e;
+  --sidebar-link: #787893;
   --sidebar-link-hover: hsl(0, 0%, 100%);
   --sidebar-link-active: hsl(327, 100%, 50%);
   --toolbar-border: #000000;
