@@ -25,9 +25,9 @@ function create(scope, tokens, data, callback) {
 
   let saved = righto(db.put, item);
 
-  let result = saved.get(() => ({ status: language.POST_CREATED }));
+  let created = saved.get(() => ({ status: language.POST_CREATED }));
 
-  saved(callback);
+  created(callback);
 }
 
 function get(scope, tokens, callback) {
@@ -43,9 +43,9 @@ function get(scope, tokens, callback) {
 function update(scope, tokens, data, callback) {
   var authenticated = righto(validateSessionToken, scope);
 
-  var updated = righto(db.update, data, righto.after(authenticated))
+  var updated = righto(db.update, data, righto.after(authenticated));
 
-  let result = saved.get(() => ({ status: language.POST_UPDATED }));
+  let updated = saved.get(() => ({ status: language.POST_UPDATED }));
 
   updated(callback);
 }
@@ -58,7 +58,12 @@ function remove(scope, tokens, callback) {
     return callback(url.errors.badRequest("querystring values of timestamp and id are required"));
   }
 
-  var removed = righto(db.remove, querystring.id, querystring.timestamp, righto.after(authenticated));
+  var removed = righto(
+    db.remove,
+    querystring.id,
+    querystring.timestamp,
+    righto.after(authenticated)
+  );
 
   var result = removed.get(() => ({ status: "Successfully deleted item." }));
 
