@@ -9,9 +9,19 @@
   box-sizing: inherit;
 }
 
+@font-face {
+  font-family: "Nunito";
+  src: url("../fonts/Nunito-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Nunito Bold";
+  src: url("../fonts/Nunito-Bold.ttf") format("truetype");
+}
+
 html {
   box-sizing: border-box;
-  --font-family-sans-serif: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --font-family-sans-serif-normal: "Nunito", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
+  --font-family-sans-serif-bold: "Nunito Bold", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   --font-family-monospace: "Fira Mono Medium", Menlo, Monaco, Consolas, "Liberation Mono",
     "Courier New", monospace;
   --sidebar-width: 144px;
@@ -22,7 +32,7 @@ body {
   width: 100%;
   min-height: 100vh;
   flex-direction: column;
-  font-family: var(--font-family-sans-serif);
+  font-family: var(--font-family-sans-serif-normal);
 }
 
 ::selection {
@@ -59,7 +69,7 @@ body {
   border: 2px solid var(--toast-border);
   background-color: var(--toast-background);
   color: var(--toast-foreground);
-  font-weight: bold;
+  font-family: var(--font-family-sans-serif-bold);
   text-align: center;
 }
 .toast.slide-in {
@@ -94,6 +104,10 @@ body {
   background-color: var(--primary-button-background);
   color: var(--primary-button-foreground);
   transition: background-color 0.1s;
+}
+
+.button:focus {
+  outline: 0;
 }
 
 input,

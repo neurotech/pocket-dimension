@@ -34,7 +34,7 @@
   outline: 0;
   border-radius: 0.33rem;
   border: 2px solid var(--searchbar-border);
-  font-weight: bold;
+  font-family: var(--font-family-sans-serif-bold);
   transition: border-color 0.2s;
 }
 .search-box-input:focus {
@@ -63,7 +63,7 @@
   padding: 0;
   font-size: 1rem;
   line-height: 2rem;
-  font-weight: bold;
+  font-family: var(--font-family-sans-serif-bold);
   transition: background-color 0.1s;
 }
 
@@ -104,7 +104,7 @@
   padding: 0;
   font-size: 1rem;
   line-height: 2rem;
-  font-weight: bold;
+  font-family: var(--font-family-sans-serif-bold);
   border: 2px solid var(--primary-button-border);
   background-color: var(--primary-button-background);
   color: var(--primary-button-foreground);
@@ -137,7 +137,7 @@
 
 .dark-mode-label {
   margin-left: 0.5rem;
-  font-weight: bold;
+  font-family: var(--font-family-sans-serif-bold);
   color: var(--dark-mode-label-foreground);
 }
 

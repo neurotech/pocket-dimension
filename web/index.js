@@ -8,7 +8,7 @@ const items = require("../items");
 const getPageInfo = require("../get-page-info");
 const auth = require("../auth");
 const log = require("../log");
-const responseHandler = require('../util').responseHandler;
+const responseHandler = require("../util").responseHandler;
 
 let port = 4567;
 let mimeTypes = {
@@ -19,7 +19,8 @@ let mimeTypes = {
   ".gif": "image/gif",
   ".png": "image/png",
   ".jpg": "image/jpeg",
-  ".ico": "image/x-icon"
+  ".ico": "image/x-icon",
+  ".ttf": "application/octet-stream"
 };
 
 seaLion.add({

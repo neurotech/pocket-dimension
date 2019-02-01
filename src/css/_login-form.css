@@ -30,7 +30,7 @@
   margin: 0 0 1rem 0;
   padding: 1rem;
   font-size: 2rem;
-  font-weight: bold;
+  font-family: var(--font-family-sans-serif-bold);
   border: 2px solid var(--login-form-input-border);
   background-color: var(--login-form-input-background);
 }
@@ -54,7 +54,7 @@
   color: var(--login-form-button-foreground);
   font-size: 1.2rem;
   line-height: 2rem;
-  font-weight: bold;
+  font-family: var(--font-family-sans-serif-bold);
   transition: background-color 0.1s;
 }
 

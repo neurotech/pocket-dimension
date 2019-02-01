@@ -19,7 +19,7 @@
 }
 .item-title {
   vertical-align: middle;
-  font-weight: bold;
+  font-family: var(--font-family-sans-serif-bold);
   font-size: 1.5rem;
   padding-bottom: 0.25rem;
   margin-bottom: 1rem;
@@ -90,13 +90,14 @@
 }
 
 .item-title-text {
+  font-family: var(--font-family-sans-serif-bold);
   font-size: 1.6rem;
   line-height: 2rem;
   color: var(--post-title);
 }
 
 .item-timestamp {
-  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  font-family: var(--font-family-sans-serif-normal);
   color: var(--post-timestamp);
   font-size: 0.75rem;
   line-height: 1.5rem;

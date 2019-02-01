@@ -66,8 +66,8 @@
   border: 2px solid var(--typeswitcher-border);
   color: var(--typeswitcher-foreground);
   user-select: none;
+  font-family: var(--font-family-sans-serif-bold);
   font-size: 1.2rem;
-  font-weight: bold;
   line-height: 1.5rem;
   min-width: 2.375rem;
 }
@@ -101,7 +101,7 @@ button.generate-title {
 }
 
 button.generate-title .title {
-  font-weight: bold;
+  font-family: var(--font-family-sans-serif-bold);
   margin-right: 10px;
 }
 
@@ -115,7 +115,7 @@ button.generate-title .icon {
 input.create-post-title {
   background: var(--input-background);
   font-size: 2rem;
-  font-weight: bold;
+  font-family: var(--font-family-sans-serif-bold);
 }
 
 textarea.create-post-body {
@@ -152,7 +152,7 @@ textarea.create-post-body {
   padding: 0 1rem;
   font-size: 1rem;
   line-height: 2rem;
-  font-weight: bold;
+  font-family: var(--font-family-sans-serif-bold);
   transition: background-color 0.1s;
 }
 
@@ -163,6 +163,9 @@ textarea.create-post-body {
 }
 .create-post-createbutton:hover {
   background-color: var(--medium-blue);
+}
+.create-post-createbutton:focus {
+  box-shadow: 0 0 0 2px var(--create-post-background), 0 0 0 4px var(--input-background);
 }
 
 .create-post-cancelbutton {
