@@ -53,7 +53,6 @@ window.addEventListener("load", function() {
       fastn.Model.remove(state, "items");
       app.clearCredentials();
       app.clearToken();
-      window.location.reload(true);
     },
     clearCredentials: function() {
       fastn.Model.set(state, "login.username", "");
