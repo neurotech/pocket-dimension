@@ -80,7 +80,7 @@ module.exports = {
         if (error) {
           return callback(error);
         }
-        let info = JSON.parse(data).data;
+        let info = JSON.parse(data).title;
         callback(null, info);
       }
     );

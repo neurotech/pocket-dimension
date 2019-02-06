@@ -142,7 +142,7 @@ window.addEventListener("load", function() {
             if (error) {
               return app.setError(error);
             }
-            app.setPostTitle(data.title);
+            app.setPostTitle(data);
           }
         );
       }

@@ -8,14 +8,14 @@ const righto = require("righto");
 
 const validateSessionToken = auth.validateSessionToken;
 
-module.exports = function(scope, tokens, callback) {
+module.exports = function(scope, tokens, payload, callback) {
   var authenticated = righto(validateSessionToken, scope);
 
-  var titleBody = righto(tiny.get, { url: payload.body }, righto.after(authenticated));
+  var titleBody = righto(tiny.get, { url: payload }, righto.after(authenticated));
 
   var title = titleBody.get(data => {
     let parsed = util.matchTitle(data.body);
-    return !parsed ? payload.body : unescape(parsed);
+    return !parsed ? payload : unescape(parsed);
   });
 
   var result = title.get(title => ({ title }));
