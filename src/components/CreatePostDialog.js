@@ -13,9 +13,16 @@ module.exports = function createPostDialog(fastn, app) {
       value: fastn.binding("title"),
       oninput: "value:value",
       disabled: fastn.binding("isLoading").attach(app.state)
-    }).on("insert", function() {
-      laidout(this.element, () => this.element.focus());
-    });
+    })
+      .on("insert", function() {
+        laidout(this.element, () => this.element.focus());
+      })
+      .on("keypress", (event, scope) => {
+        if (event.ctrlKey && event.keyCode === 10) {
+          event.preventDefault();
+          app.savePost(scope.get("."));
+        }
+      });
 
     var bodyInput = fastn("textarea", {
       class: "create-post-body",
