@@ -32,7 +32,6 @@
     "request-data": "^1.2.0",
     "righto": "^5.1.0",
     "sea-lion": "^2.0.2",
-    "simple-cors": "^1.1.1",
     "tiny-json-http": "^7.0.2",
     "unescape": "^1.0.1"
   },

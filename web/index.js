@@ -1,5 +1,4 @@
 const http = require("http");
-const cors = require("simple-cors");
 const SeaLion = require("sea-lion");
 const Dion = require("dion");
 const requestData = require("request-data");
@@ -41,7 +40,7 @@ seaLion.add({
     GET: responseHandler(items.get)
   },
   "/api/items/create": {
-    POST: cors(requestData(responseHandler(items.create)))
+    POST: requestData(responseHandler(items.create))
   },
   "/api/item/update/`params`": {
     PUT: requestData(responseHandler(items.update))
