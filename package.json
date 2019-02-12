@@ -9,6 +9,7 @@
     "predeploy": "rm -rf build/ && set NODE_ENV=production&&npm run buildsrc",
     "deploy": "now --public --local-config now.json && now alias --local-config now.json",
     "clean": "now --local-config now.json rm pocket-dimension --safe --yes",
+    "deployclean": "npm run deploy && npm run clean",
     "test": "node test",
     "watch": "parcel watch src/index.html --out-dir build"
   },
