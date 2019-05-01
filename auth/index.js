@@ -6,15 +6,16 @@ const language = require("../language");
 
 const token = require("../auth/token");
 
-function validateSessionToken(scope, callback){
+function validateSessionToken(scope, callback) {
   var sessionToken = token.getTokenFromHeaders(scope.request.headers);
 
   if (!sessionToken) {
     return callback(util.error.unauthorized(language.INVALID_AUTH));
   }
 
-  var authenticated = righto(authenticate, sessionToken)
-    .get(valid => valid ? null : righto.fail(util.errors.unauthorized(language.INVALID_AUTH)));
+  var authenticated = righto(authenticate, sessionToken).get(valid =>
+    valid ? null : righto.fail(util.errors.unauthorized(language.INVALID_AUTH))
+  );
 
   authenticated(callback);
 }

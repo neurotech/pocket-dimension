@@ -27,7 +27,8 @@ let dynamo = alternator(
 );
 
 let get = {
-  all: function getAllItems(callback) {
+  all: function getAllItems(token, callback) {
+    // TODO: call getUserByToken(token)
     let all = dynamo.table("pocket-dimension").scan({});
     let result = all.get(data =>
       data.rows.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
@@ -82,17 +83,19 @@ function getUser(username, callback) {
   user(callback);
 }
 
+// TODO: Add "getUserBySessionToken(sessionToken, callback)"
+//       decrypt sessionToken and call getUserByToken(token, callback)
 function getUserByToken(token, callback) {
   let results = dynamo.table("pocket-dimension-auth").scan({
     expression: "sessionToken = :token or apiToken = :token",
     attributeValues: {
-        ":token": token
+      ":token": token
     }
   });
 
   let result = results.get(results => {
-    if(!results.rows.length){
-      return righto.fail({ code: 401, message: 'token not found' });
+    if (!results.rows.length) {
+      return righto.fail({ code: 401, message: "token not found" });
     }
 
     return results.rows[0];
