@@ -42,6 +42,10 @@ module.exports = {
 
     result(callback);
   },
+  decrypt: function decryptToken(sessionToken, callback) {
+    var decrypted = righto.sync(cryptr.decrypt, sessionToken);
+    decrypted(callback);
+  },
   getTokenFromHeaders: function getToken(headers) {
     var authorization = headers["authorization"];
 
