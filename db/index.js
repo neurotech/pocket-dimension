@@ -27,9 +27,20 @@ let dynamo = alternator(
 );
 
 let get = {
-  all: function getAllItems(token, callback) {
-    // TODO: call getUserByToken(token)
-    let all = dynamo.table("pocket-dimension").scan({});
+  all: function getAllItems(scope, callback) {
+    let tokenTools = require("../auth/token");
+    let tokenFromHeaders = tokenTools.getTokenFromHeaders(scope.request.headers);
+    let sessionToken = righto(tokenTools.decrypt, tokenFromHeaders);
+    let requesterToken = sessionToken.get(token => token);
+    let requesterUser = righto(getUserByToken, requesterToken);
+    let userId = requesterUser.get("userId");
+
+    let all = dynamo.table("pocket-dimension").scan({
+      expression: "userId = :userId",
+      attributeValues: {
+        ":userId": userId
+      }
+    });
     let result = all.get(data =>
       data.rows.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
     );
@@ -83,8 +94,6 @@ function getUser(username, callback) {
   user(callback);
 }
 
-// TODO: Add "getUserBySessionToken(sessionToken, callback)"
-//       decrypt sessionToken and call getUserByToken(token, callback)
 function getUserByToken(token, callback) {
   let results = dynamo.table("pocket-dimension-auth").scan({
     expression: "sessionToken = :token or apiToken = :token",

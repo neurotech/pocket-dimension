@@ -33,7 +33,7 @@ function create(scope, tokens, data, callback) {
 function get(scope, tokens, callback) {
   var authenticated = righto(validateSessionToken, scope);
 
-  var items = righto(db.get.all, authenticated);
+  var items = righto(db.get.all, scope, righto.after(authenticated));
 
   let result = items.get(items => ({ data: items }));
 
