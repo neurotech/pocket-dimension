@@ -23,7 +23,7 @@ function create(scope, tokens, data, callback) {
 
   let item = righto.sync(util.buildItem, righto.resolve(data), righto.after(authenticated));
 
-  let saved = righto(db.put, item);
+  let saved = righto(db.put, item, scope);
 
   let created = saved.get(() => ({ status: language.POST_CREATED }));
 

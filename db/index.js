@@ -1,6 +1,6 @@
 const righto = require("righto");
 const alternator = require("alternator");
-const util = require("../util");
+const user = require("../user");
 if (process.env.NODE_ENV === "development") require("dotenv").config();
 
 let dynamo = alternator(
@@ -28,12 +28,8 @@ let dynamo = alternator(
 
 let get = {
   all: function getAllItems(scope, callback) {
-    let tokenTools = require("../auth/token");
-    let tokenFromHeaders = tokenTools.getTokenFromHeaders(scope.request.headers);
-    let sessionToken = righto(tokenTools.decrypt, tokenFromHeaders);
-    let requesterToken = sessionToken.get(token => token);
-    let requesterUser = righto(getUserByToken, requesterToken);
-    let userId = requesterUser.get("userId");
+    let userFromRequest = righto(user.getUserFromRequest, scope.request);
+    let userId = userFromRequest.get("userId");
 
     let all = dynamo.table("pocket-dimension").scan({
       expression: "userId = :userId",
@@ -49,7 +45,12 @@ let get = {
   }
 };
 
-function put(item, callback) {
+function put(item, scope, callback) {
+  let userFromRequest = righto(user.getUserFromRequest, scope.request);
+  let userId = userFromRequest.get("userId");
+
+  item.item.userId = userId;
+
   let saved = dynamo.table("pocket-dimension").create(item);
 
   saved(callback);
@@ -60,7 +61,8 @@ function update(item, callback) {
     key: { id: item.id, timestamp: item.timestamp },
     item: {
       title: item.title,
-      body: item.body
+      body: item.body,
+      type: item.type
     }
   });
 
