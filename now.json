@@ -24,6 +24,7 @@
     "get-page-info",
     "items",
     "language",
+    "user",
     "util",
     "uuid",
     "web",
