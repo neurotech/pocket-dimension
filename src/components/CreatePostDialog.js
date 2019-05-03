@@ -26,6 +26,7 @@ module.exports = function createPostDialog(fastn, app) {
 
     var bodyInput = fastn("textarea", {
       class: "create-post-body",
+      rows: 16,
       placeholder: "Post Body",
       required: true,
       value: fastn.binding("body"),

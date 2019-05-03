@@ -14,6 +14,10 @@ module.exports = function createTypeButton(fastn, app, title) {
     fastn("span", { class: ["type-switcher-button", title.toLowerCase()] }, title)
   ).on("click", () => {
     app.setPostType(title.toLowerCase());
-    document.querySelector(".create-post-title").focus();
+    if (title.toLowerCase() === "link") {
+      document.querySelector(".create-post-body").focus();
+    } else {
+      document.querySelector(".create-post-title").focus();
+    }
   });
 };

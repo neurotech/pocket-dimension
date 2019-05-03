@@ -121,7 +121,6 @@ input.create-post-title {
 textarea.create-post-body {
   background: var(--input-background);
   font-size: 1.5rem;
-  height: 60vh;
 }
 
 input.create-post-title::placeholder,

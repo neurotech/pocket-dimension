@@ -106,7 +106,7 @@
   --sidebar-link-hover: hsl(0, 0%, 100%);
   --sidebar-link-active: hsl(327, 100%, 50%);
   --toolbar-border: #000000;
-  --toolbar-background: hsla(245, 10%, 21%, 1);
+  --toolbar-background: #38384d;
   --toolbar-logo-background: #38384d;
   --toolbar-logo-foreground: #d0d0fa;
   --toolbar-logo-stars-border: #1b1b27;
