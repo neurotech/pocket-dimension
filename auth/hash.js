@@ -11,6 +11,9 @@ module.exports = {
   },
   check: function comparePasswordWithHash(password, hashed, callback) {
     bcrypt.compare(password, hashed, function(error, valid) {
+      if (!valid) {
+        return callback("Invalid password!");
+      }
       return callback(error, valid);
     });
   }
