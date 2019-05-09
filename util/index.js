@@ -4,47 +4,50 @@ const now = require("../get-now");
 const defaultHeaders = { "Content-Type": "application/json" };
 
 function responseHandler(method) {
-  return function(){
+  return function() {
     var [request, response, ...args] = Array.from(arguments);
     var scope = {
       request,
       response
     };
 
-    method.apply(null, [scope].concat(args).concat(function(error, result){
-      var code, status;
+    method.apply(
+      null,
+      [scope].concat(args).concat(function(error, result) {
+        var code, status;
 
-      if(error){
-        var message = 'An error occured';
-        var code = 500;
-        if(error.code){
-          code = error.code;
-          message = error.message;
+        if (error) {
+          var message = "An error occurred.";
+          var code = 500;
+          if (error.code) {
+            code = error.code;
+            message = error.message;
+          }
+          status = error.status || "ERROR";
+          response.writeHead(code, defaultHeaders);
+          response.end(
+            JSON.stringify({
+              status,
+              data: message
+            })
+          );
+          return;
         }
-        status = error.status || 'ERROR';
+
+        code = result.code || 200;
+        status = result.status || "SUCCESS";
+
         response.writeHead(code, defaultHeaders);
-        response.end(
+        response.write(
           JSON.stringify({
-            status,
-            data: message
+            ...result,
+            status
           })
         );
-        return;
-      }
-
-      code = result.code || 200;
-      status = result.status || 'SUCCESS';
-
-      response.writeHead(code, defaultHeaders);
-      response.write(
-        JSON.stringify({
-          ...result,
-          status
-        })
-      );
-      response.end();
-    }));
-  }
+        response.end();
+      })
+    );
+  };
 }
 
 const util = {
