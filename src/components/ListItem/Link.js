@@ -7,7 +7,15 @@ module.exports = function createListItemLink(fastn, app) {
   var removeButton = fastn("button", { class: "item-remove" }, "×").on("click", (event, scope) => {
     app.deletePost(scope.get("item.id"), scope.get("item.timestamp"));
   });
-  var title = fastn("div", { class: "item-title-text" }, fastn.binding("item.title"));
+  var title = fastn(
+    "div",
+    { class: "item-title-text" },
+    fastn(
+      "a",
+      { class: "item-body", href: fastn.binding("item.body"), target: "_blank" },
+      fastn.binding("item.title")
+    )
+  );
   var timestamp = fastn(
     "div",
     { class: "item-timestamp" },
@@ -22,11 +30,6 @@ module.exports = function createListItemLink(fastn, app) {
   return fastn(
     "div",
     { class: ["link", "post"] },
-    fastn("div", { class: "item-title" }, typeButton, removeButton, title, timestamp),
-    fastn(
-      "a",
-      { class: "item-body", href: fastn.binding("item.body"), target: "_blank" },
-      fastn.binding("item.body")
-    )
+    fastn("div", { class: "item-title" }, typeButton, removeButton, title, timestamp)
   );
 };
