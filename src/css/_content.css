@@ -17,11 +17,15 @@
   border: 2px solid var(--post-body-border);
   background-color: var(--post-body-background);
 }
+.link .item-title {
+  padding-bottom: 0;
+  margin-bottom: 0;
+  border-bottom: none;
+}
 .item-title {
   vertical-align: middle;
   font-family: var(--font-family-sans-serif-bold);
-  font-size: 1.5rem;
-  padding-bottom: 0.25rem;
+  padding-bottom: 0.5rem;
   margin-bottom: 1rem;
   border-bottom: 2px solid var(--post-title-separator);
 }
@@ -31,10 +35,10 @@
   user-select: none;
   cursor: pointer;
   border-radius: 0.33rem;
-  font-size: 1.25rem;
-  padding: 0.2rem 0.3rem;
+  padding: 0.1rem 0.2rem;
   margin-right: 0.75rem;
   font-weight: 100;
+  font-size: 1.5rem;
   transition: background-color 0.2s, color 0.2s;
 }
 
@@ -52,6 +56,7 @@
   background-color: var(--green);
   border: 2px solid var(--dark-green);
   color: var(--dark-green);
+  font-size: 1.5rem;
 }
 .item-edit.link:hover {
   background-color: var(--medium-green);
@@ -73,8 +78,7 @@
   user-select: none;
   cursor: pointer;
   border-radius: 0.33rem;
-  font-size: 1.5rem;
-  padding: 0.1rem 0.5rem;
+  padding: 0 0.3rem;
   margin-left: 0.75rem;
   font-weight: 100;
   border: 2px solid var(--post-remove-border);
@@ -91,27 +95,27 @@
 
 .item-title-text {
   font-family: var(--font-family-sans-serif-bold);
-  font-size: 1.6rem;
-  line-height: 2rem;
   color: var(--post-title);
 }
 
 .item-timestamp {
   font-family: var(--font-family-sans-serif-normal);
   color: var(--post-timestamp);
+  margin: 0.33rem 0 0 2.4rem;
   font-size: 0.75rem;
-  line-height: 1.5rem;
   font-weight: normal;
 }
 
 .item-body {
-  font-size: 1.25rem;
   color: var(--post-body-foreground);
+}
+
+.item-body a {
+  font-family: var(--font-family-monospace);
 }
 
 a {
   color: var(--post-link);
-  font-family: var(--font-family-monospace);
   overflow-wrap: break-word;
   word-wrap: break-word;
 

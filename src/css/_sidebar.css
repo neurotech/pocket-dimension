@@ -16,7 +16,7 @@
   cursor: pointer;
   padding: 1rem;
   font-family: var(--font-family-sans-serif-bold);
-  font-size: 1.5rem;
+  font-size: 1.3rem;
   text-align: center;
   color: var(--sidebar-link);
   transition: color 0.1s;

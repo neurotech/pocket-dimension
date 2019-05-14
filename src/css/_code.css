@@ -9,10 +9,9 @@ pre {
   display: inline-block;
   white-space: pre-wrap;
   border-radius: 0.33rem;
-  border: var(--code-block-border);
+  border: 1px solid var(--code-block-border);
   background-color: var(--code-block-background);
   color: var(--code-block-foreground);
-  font-size: 1.1rem !important;
   line-height: 1.75rem;
 }
 

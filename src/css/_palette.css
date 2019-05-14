@@ -89,8 +89,8 @@
   --create-post-cancel-button-background: hsl(0, 0%, 83%);
   --create-post-cancel-button-foreground: hsl(0, 0%, 52%);
   --create-post-cancel-button-background-hover: hsl(0, 0%, 74%);
-  --code-block-border: hsl(0, 0%, 95%);
-  --code-block-background: hsl(0, 0%, 98%);
+  --code-block-border: hsl(0, 0%, 90%);
+  --code-block-background: hsl(0, 0%, 96%);
   --code-block-foreground: hsl(0, 0%, 31%);
   --dark-mode-label-foreground: white;
   --blockquote-border: #e8e8e8;
@@ -155,6 +155,9 @@
   --create-post-cancel-button-background: #1b1b27;
   --create-post-cancel-button-foreground: #575779;
   --create-post-cancel-button-background-hover: #28283b;
+  --code-block-border: hsl(231, 16%, 9%);
+  --code-block-background: hsl(225, 8%, 20%);
+  --code-block-foreground: hsl(238, 22%, 73%);
   --blockquote-border: #38384d;
   --blockquote-foreground: hsla(238, 18%, 60%, 1);
 }
