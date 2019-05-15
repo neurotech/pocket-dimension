@@ -230,4 +230,14 @@ window.addEventListener("load", function() {
 
   const mount = document.getElementById("app");
   mount.appendChild(view.element);
+
+  if (typeof history.pushState === "function") {
+    history.pushState("!", null, null);
+    window.onpopstate = function() {
+      history.pushState("?", null, null);
+      if (fastn.Model.get(state, "post")) {
+        app.hideEditPost();
+      }
+    };
+  }
 });
