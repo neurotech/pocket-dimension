@@ -17,7 +17,7 @@ module.exports = function createListItemNote(fastn, app) {
       var tz = now.timezone().name;
       return spacetime(time)
         .goto(tz)
-        .format("{day} {date-ordinal} {month} {year} at {time}");
+        .format("Posted on {day} {date-ordinal} {month} {year} at {time}");
     })
   );
   return fastn(
