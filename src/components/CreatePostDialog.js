@@ -72,11 +72,7 @@ module.exports = function createPostDialog(fastn, app) {
         bodyInput,
         buttons
       )
-    ).on("click", function(event) {
-      if (event.target === this.element) {
-        app.hideEditPost();
-      }
-    });
+    );
   }
 
   return fastn("templater", {
