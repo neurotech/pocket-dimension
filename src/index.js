@@ -171,7 +171,6 @@ window.addEventListener("load", function() {
     },
     hideEditPost: function() {
       fastn.Model.remove(state, "post");
-      document.querySelector(".search-box-input").focus();
     },
     deletePost: function(id, timestamp) {
       loading(api.delete.item)(fastn.Model.get(state, "login.token"), id, timestamp, function(
