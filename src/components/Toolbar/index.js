@@ -1,4 +1,5 @@
 const Logo = require("../Logo");
+const FilterButtons = require("./FilterButtons");
 const SearchBar = require("../SearchBar");
 const DarkMode = require("./DarkMode");
 const LogoutButton = require("./LogoutButton");
@@ -10,7 +11,7 @@ module.exports = function createToolBar(fastn, app) {
   var createPost = fastn(
     "div",
     { class: "create-post" },
-    Button(fastn, app, "Create Post", null).on("click", () => {
+    Button(fastn, app, "Create", null).on("click", () => {
       app.showCreatePost();
     })
   );
@@ -22,6 +23,12 @@ module.exports = function createToolBar(fastn, app) {
     LogoutButton(fastn, app)
   );
 
-  var toolbar = fastn("div", { class: "toolbar-container" }, searchBar, controls);
+  var toolbar = fastn(
+    "div",
+    { class: "toolbar-container" },
+    FilterButtons(fastn, app),
+    searchBar,
+    controls
+  );
   return fastn("div", { class: "toolbar" }, Logo(fastn, app), toolbar);
 };

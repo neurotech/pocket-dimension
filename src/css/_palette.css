@@ -107,7 +107,7 @@
   --sidebar-link-active: hsl(327, 100%, 50%);
   --toolbar-border: #000000;
   --toolbar-background: #38384d;
-  --toolbar-logo-background: #38384d;
+  --toolbar-logo-background: hsl(249, 36%, 42%);
   --toolbar-logo-foreground: #d0d0fa;
   --toolbar-logo-stars-border: #1b1b27;
   --searchbar-border: #1b1b27;

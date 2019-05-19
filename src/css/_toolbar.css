@@ -11,17 +11,16 @@
   display: flex;
   flex: 1;
   justify-content: space-between;
-  height: 5rem;
+  min-height: 5rem;
   padding: 1rem;
   border-bottom: 2px solid var(--toolbar-border);
 }
 
 .search-bar-container {
-  width: 60%;
+  width: 33%;
 }
 
 .controls-container {
-  /* width: 30%; */
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -51,7 +50,6 @@
 }
 
 .create-post {
-  min-width: 150px;
   text-align: right;
   vertical-align: middle;
   margin: 0 1rem;
@@ -60,7 +58,6 @@
   width: 100%;
   height: 45px;
   display: inline-block;
-  padding: 0;
   line-height: 2rem;
   font-family: var(--font-family-sans-serif-bold);
   transition: background-color 0.1s;
@@ -75,10 +72,6 @@
   outline: 0;
 }
 
-.create-post .button .title {
-  margin-right: 10px;
-}
-
 .create-post .button .icon {
   background-color: var(--primary-button-icon-background);
   padding: 0.33rem;
@@ -87,7 +80,6 @@
 }
 
 .logout-button {
-  min-width: 150px;
   text-align: right;
   vertical-align: middle;
 }
@@ -100,17 +92,17 @@
   width: 100%;
   height: 45px;
   display: inline-block;
-  padding: 0;
   line-height: 2rem;
   font-family: var(--font-family-sans-serif-bold);
-  border: 2px solid var(--primary-button-border);
-  background-color: var(--primary-button-background);
-  color: var(--primary-button-foreground);
+  border: 2px solid var(--toolbar-border);
+  background-color: var(--page-background);
+  color: var(--toolbar-border);
   transition: background-color 0.1s;
 }
 
 .logout-button .button:hover {
-  background-color: var(--primary-button-background-hover);
+  background-color: var(--toolbar-border);
+  color: var(--toolbar-background);
 }
 
 .dark-mode {
@@ -141,4 +133,82 @@
 
 .dark-mode-label.on {
   filter: grayscale(100%);
+}
+
+.filter-buttons-container {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
+.filter-button {
+  float: left;
+  user-select: none;
+  cursor: pointer;
+  border-radius: 0.33rem;
+  min-width: 3rem;
+  height: 45px;
+  padding: 0;
+  font-weight: 100;
+  font-size: 1.5rem;
+  transition: background-color 0.2s, color 0.2s;
+}
+.filter-button:focus {
+  outline: 0;
+}
+
+.filter-button.all {
+  margin: 0 0.5rem 0 0;
+  background-color: var(--page-background);
+  border: 2px solid var(--post-body-border);
+}
+.filter-button.all:hover {
+  background-color: var(--post-body-border);
+  color: white;
+}
+.filter-button.all.active {
+  box-shadow: 0px 3px 0px 0px var(--post-body-border);
+}
+
+.filter-button.note {
+  margin: 0 0.5rem;
+  background-color: var(--blue);
+  border: 2px solid var(--dark-blue);
+  color: var(--dark-blue);
+}
+.filter-button.note:hover {
+  background-color: var(--medium-blue);
+  color: white;
+}
+.filter-button.note.active {
+  box-shadow: 0px 3px 0px 0px var(--dark-blue);
+}
+
+.filter-button.link {
+  margin: 0 0.5rem;
+  background-color: var(--green);
+  border: 2px solid var(--dark-green);
+  color: var(--dark-green);
+  font-size: 1.5rem;
+}
+.filter-button.link:hover {
+  background-color: var(--medium-green);
+  color: white;
+}
+.filter-button.link.active {
+  box-shadow: 0px 3px 0px 0px var(--dark-green);
+}
+
+.filter-button.diary {
+  margin: 0 0 0 0.5rem;
+  background-color: var(--yellow);
+  border: 2px solid var(--dark-yellow);
+  color: var(--dark-yellow);
+}
+.filter-button.diary:hover {
+  background-color: var(--medium-yellow);
+  color: white;
+}
+.filter-button.diary.active {
+  box-shadow: 0px 3px 0px 0px var(--dark-yellow);
 }

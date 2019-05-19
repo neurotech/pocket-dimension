@@ -14,11 +14,11 @@
 
   .toolbar-container {
     flex-direction: column;
-    height: 9rem;
   }
 
   .search-bar-container {
     width: 100%;
+    margin: 1rem 0;
   }
   
   .controls-container {
@@ -39,10 +39,6 @@
   }
   .logout-button {
     min-width: 30px;
-  }
-
-  .create-post button .title {
-    display: none;
   }
 
   .create-post-dialog {

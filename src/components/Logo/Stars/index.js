@@ -46,7 +46,7 @@ function getRect(id, speed) {
   return svg(
     "rect",
     {
-      x: "-144",
+      x: "-80",
       y: verticalPosition,
       width: (1 / speed) * 50,
       height: 1,

@@ -24,7 +24,7 @@ html {
   --font-family-sans-serif-bold: "Nunito Bold", -apple-system, BlinkMacSystemFont, "Helvetica Neue", Arial, sans-serif;
   --font-family-monospace: "Fira Mono Medium", Menlo, Monaco, Consolas, "Liberation Mono",
     "Courier New", monospace;
-  --sidebar-width: 144px;
+  --logo-width: 80px;
 }
 
 body {
@@ -96,7 +96,7 @@ body {
 .button {
   cursor: pointer;
   user-select: none;
-  min-width: 75px;
+  padding: 0rem 1rem;
   height: 2.25rem;
   text-align: center;
   border-radius: 0.33rem;
@@ -108,6 +108,9 @@ body {
 
 .button:focus {
   outline: 0;
+}
+.button .title {
+  font-size: 1rem;
 }
 
 input,
