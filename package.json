@@ -41,7 +41,7 @@
     "crel": "^4.0.1",
     "crelns": "^1.0.1",
     "cssnano": "^4.1.8",
-    "fastn": "^2.12.1",
+    "fastn": "^2.12.2",
     "fastn-markdown-component": "^1.2.0",
     "highlight.js": "^9.13.1",
     "konami": "^1.6.2",
