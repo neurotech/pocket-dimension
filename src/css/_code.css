@@ -28,6 +28,7 @@ li code {
   word-wrap: break-word;
   padding: 0.2rem 0.3rem;
   border-radius: 0.2rem;
+  line-height: 2rem;
   background-color: var(--post-inline-background);
   color: var(--post-inline-foreground);
 }

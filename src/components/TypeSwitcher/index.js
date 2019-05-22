@@ -12,10 +12,7 @@ module.exports = function createTypeSwitcher(fastn, app) {
   var generateTitleButton = fastn(
     "div",
     { class: "generate-title-container" },
-    Button(fastn, app, "Generate Title", null, ["generate-title"]).on(
-      "click",
-      app.generatePostTitle
-    )
+    Button(fastn, app, "Generate", null, ["generate-title"]).on("click", app.generatePostTitle)
   );
   return fastn("div", { class: "type-switcher" }, typeButtons, generateTitleButton);
 };

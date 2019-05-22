@@ -1,10 +1,13 @@
 const spacetime = require("spacetime");
 
 module.exports = function createListItemLink(fastn, app) {
-  var typeButton = fastn("button", { class: "item-edit link" }, "☲").on("click", (event, scope) => {
-    app.editPost(scope.get("item"));
-  });
-  var focusButton = fastn("button", { class: "item-focus" }, "«").on("click", (event, scope) => {
+  var typeButton = fastn("button", { class: "item-edit link" }, "🔗").on(
+    "click",
+    (event, scope) => {
+      app.editPost(scope.get("item"));
+    }
+  );
+  var focusButton = fastn("button", { class: "item-focus" }, "∷").on("click", (event, scope) => {
     app.focusPost(scope.get("item.title"));
   });
   var removeButton = fastn("button", { class: "item-remove" }, "×").on("click", (event, scope) => {

@@ -127,7 +127,9 @@ window.addEventListener("load", function() {
         var now = spacetime.now();
         var today = now.format("{date-ordinal} {month} {year}");
         var newTitle = `Work diary for ${today}`;
+        var newBody = `**To Do:**\n\n - a\n\n**In Progress:**\n\n- b\n\n**Done:**\n\n - c`;
         app.setPostTitle(newTitle);
+        app.setPostBody(newBody);
       }
 
       if (
@@ -151,6 +153,9 @@ window.addEventListener("load", function() {
     },
     clearPostTitle: function() {
       fastn.Model.remove(state, "post.title");
+    },
+    setPostBody: function(body) {
+      fastn.Model.set(state, "post.body", body);
     },
     editPost: function(post) {
       fastn.Model.set(state, "post", post);

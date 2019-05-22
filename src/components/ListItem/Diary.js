@@ -2,13 +2,13 @@ const spacetime = require("spacetime");
 const syntax = require("../../syntax");
 
 module.exports = function createListItemDiary(fastn, app) {
-  var typeButton = fastn("button", { class: "item-edit diary" }, "☰").on(
+  var typeButton = fastn("button", { class: "item-edit diary" }, "📕").on(
     "click",
     (event, scope) => {
       app.editPost(scope.get("item"));
     }
   );
-  var focusButton = fastn("button", { class: "item-focus" }, "«").on("click", (event, scope) => {
+  var focusButton = fastn("button", { class: "item-focus" }, "∷").on("click", (event, scope) => {
     app.focusPost(scope.get("item.title"));
   });
   var removeButton = fastn("button", { class: "item-remove" }, "×").on("click", (event, scope) => {

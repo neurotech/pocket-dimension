@@ -2,9 +2,12 @@ const spacetime = require("spacetime");
 const syntax = require("../../syntax");
 
 module.exports = function createListItemNote(fastn, app) {
-  var typeButton = fastn("button", { class: "item-edit note" }, "☷").on("click", (event, scope) => {
-    app.editPost(scope.get("item"));
-  });
+  var typeButton = fastn("button", { class: "item-edit note" }, "📜").on(
+    "click",
+    (event, scope) => {
+      app.editPost(scope.get("item"));
+    }
+  );
   var focusButton = fastn("button", { class: "item-focus" }, "∷").on("click", (event, scope) => {
     app.focusPost(scope.get("item.title"));
   });
