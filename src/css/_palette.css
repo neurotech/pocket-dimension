@@ -64,6 +64,12 @@
   --post-remove-border-hover: hsl(342, 84%, 41%);
   --post-remove-background-hover: hsl(342, 96%, 53%);
   --post-remove-foreground-hover: hsl(0, 0%, 100%);
+  --post-focus-border: hsl(0, 0%, 66%);
+  --post-focus-background: hsl(0, 0%, 83%);
+  --post-focus-foreground: hsl(0, 0%, 66%);
+  --post-focus-border-hover: rgb(35, 64, 151);
+  --post-focus-background-hover: rgb(60, 96, 209);
+  --post-focus-foreground-hover: hsl(0, 0%, 100%);
   --post-title-separator: hsl(0, 0%, 92%);
   --post-body-border: hsl(0, 0%, 83%);
   --post-body-background: hsl(0, 0%, 100%);
@@ -133,6 +139,12 @@
   --post-remove-border-hover: hsl(342, 84%, 41%);
   --post-remove-background-hover: hsl(342, 96%, 53%);
   --post-remove-foreground-hover: hsl(0, 0%, 100%);
+  --post-focus-border: #1b1b27;
+  --post-focus-background: #8282ae;
+  --post-focus-foreground: #1b1b27;
+  --post-focus-border-hover: rgb(35, 64, 151);
+  --post-focus-background-hover: rgb(60, 96, 209);
+  --post-focus-foreground-hover: hsl(0, 0%, 100%);
   --post-title-separator: #131315;
   --post-inline-background: #38384d;
   --post-inline-text: hsl(0, 0%, 19%);

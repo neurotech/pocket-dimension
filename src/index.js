@@ -183,6 +183,12 @@ window.addEventListener("load", function() {
         app.getAll();
       });
     },
+    focusPost: function(title) {
+      fastn.Model.set(state, "filter", title);
+    },
+    clearFocusPost: function() {
+      fastn.Model.set(state, "filter", null);
+    },
     savePost: function(post) {
       var action = post.id ? "update" : "create";
 

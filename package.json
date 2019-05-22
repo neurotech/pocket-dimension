@@ -30,7 +30,6 @@
     "dion": "^2.0.0",
     "dotenv": "^8.0.0",
     "log-symbols": "^3.0.0",
-    "octicons": "^8.5.0",
     "request-data": "^1.2.0",
     "righto": "^5.1.0",
     "sea-lion": "^2.0.2",

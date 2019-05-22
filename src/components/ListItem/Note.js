@@ -5,6 +5,9 @@ module.exports = function createListItemNote(fastn, app) {
   var typeButton = fastn("button", { class: "item-edit note" }, "☷").on("click", (event, scope) => {
     app.editPost(scope.get("item"));
   });
+  var focusButton = fastn("button", { class: "item-focus" }, "∷").on("click", (event, scope) => {
+    app.focusPost(scope.get("item.title"));
+  });
   var removeButton = fastn("button", { class: "item-remove" }, "×").on("click", (event, scope) => {
     app.deletePost(scope.get("item.id"), scope.get("item.timestamp"));
   });
@@ -23,7 +26,7 @@ module.exports = function createListItemNote(fastn, app) {
   return fastn(
     "div",
     { class: ["note", "post"] },
-    fastn("div", { class: "item-title" }, typeButton, removeButton, title, timestamp),
+    fastn("div", { class: "item-title" }, typeButton, removeButton, focusButton, title, timestamp),
     fastn("markdown", {
       options: { highlight: syntax.highlight },
       content: fastn.binding("item.body"),

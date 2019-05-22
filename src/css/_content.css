@@ -73,14 +73,36 @@
   color: white;
 }
 
+.item-focus {
+  float: right;
+  user-select: none;
+  cursor: pointer;
+  border-radius: 0.33rem;
+  padding: 0rem 0.5rem;
+  margin-left: 0.75rem;
+  font-weight: 100;
+  font-size: 1.5rem;
+  border: 2px solid var(--post-focus-border);
+  background-color: var(--post-focus-background);
+  color: var(--post-focus-foreground);
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+
+.item-focus:hover {
+  border-color: var(--post-focus-border-hover);
+  background-color: var(--post-focus-background-hover);
+  color: var(--post-focus-foreground-hover);
+}
+
 .item-remove {
   float: right;
   user-select: none;
   cursor: pointer;
   border-radius: 0.33rem;
-  padding: 0 0.3rem;
+  padding: 0 0.5rem;
   margin-left: 0.75rem;
   font-weight: 100;
+  font-size: 1.5rem;
   border: 2px solid var(--post-remove-border);
   background-color: var(--post-remove-background);
   color: var(--post-remove-foreground);
