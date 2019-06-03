@@ -60,7 +60,7 @@
   background-color: var(--toolbar-border);
   color: var(--toolbar-background);
 }
-.search-box-clear:focus { 
+.search-box-clear:focus {
   outline: 0;
 }
 
@@ -172,7 +172,15 @@
   padding: 0;
   font-weight: 100;
   font-size: 1.5rem;
-  transition: background-color 0.2s, color 0.2s;
+  transition: opacity 0.2s, filter 0.2s, background-color 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.filter-button.inactive {
+  opacity: 0.33;
+  filter: grayscale(1);
+}
+.filter-button.inactive:hover {
+  opacity: 1;
+  filter: grayscale(0);
 }
 .filter-button:focus {
   outline: 0;
@@ -180,15 +188,11 @@
 
 .filter-button.all {
   margin: 0 0.5rem 0 0;
-  background-color: var(--page-background);
-  border: 2px solid var(--post-body-border);
-}
-.filter-button.all:hover {
   background-color: var(--post-body-border);
-  color: white;
+  border: 2px solid var(--post-body-bullet);
 }
 .filter-button.all.active {
-  box-shadow: 0px 3px 0px 0px var(--post-body-border);
+  box-shadow: 0px 3px 0px 0px var(--post-body-bullet);
 }
 
 .filter-button.note {
@@ -196,10 +200,6 @@
   background-color: var(--blue);
   border: 2px solid var(--dark-blue);
   color: var(--dark-blue);
-}
-.filter-button.note:hover {
-  background-color: var(--medium-blue);
-  color: white;
 }
 .filter-button.note.active {
   box-shadow: 0px 3px 0px 0px var(--dark-blue);
@@ -212,10 +212,6 @@
   color: var(--dark-green);
   font-size: 1.5rem;
 }
-.filter-button.link:hover {
-  background-color: var(--medium-green);
-  color: white;
-}
 .filter-button.link.active {
   box-shadow: 0px 3px 0px 0px var(--dark-green);
 }
@@ -225,10 +221,6 @@
   background-color: var(--yellow);
   border: 2px solid var(--dark-yellow);
   color: var(--dark-yellow);
-}
-.filter-button.diary:hover {
-  background-color: var(--medium-yellow);
-  color: white;
 }
 .filter-button.diary.active {
   box-shadow: 0px 3px 0px 0px var(--dark-yellow);
