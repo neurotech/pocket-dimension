@@ -13,11 +13,12 @@ function create(scope, tokens, data, callback) {
   var authenticated = righto(validateSessionToken, scope);
 
   if (data.generateTitle) {
+    var originalUrl = data.body;
     var titleBody = righto(tiny.get, { url: data.body }, righto.after(authenticated));
 
-    data.title = titleBody.get(data => {
-      let parsed = util.matchTitle(data.body);
-      return !parsed ? data.body : unescape(parsed);
+    data.title = titleBody.get(webPage => {
+      let parsed = util.matchTitle(webPage.body);
+      return !parsed ? originalUrl : unescape(parsed);
     });
   }
 
