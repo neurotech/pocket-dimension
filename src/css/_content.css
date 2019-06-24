@@ -163,3 +163,9 @@ a:hover {
   background-color: var(--post-link);
   color: var(--post-link-hover);
 }
+
+hr {
+  height: 2px;
+  border: none;
+  background: var(--post-title-separator);
+}
