@@ -24,14 +24,14 @@
   },
   "homepage": "https://github.com/neurotech/pocket-dimension#readme",
   "dependencies": {
-    "alternator": "^1.0.0",
+    "alternator": "^2.0.0",
     "bcryptjs": "^2.4.3",
     "cryptr": "^4.0.2",
     "dion": "^2.0.0",
     "dotenv": "^8.0.0",
     "log-symbols": "^3.0.0",
     "request-data": "^1.2.0",
-    "righto": "^5.1.0",
+    "righto": "^6.0.0",
     "sea-lion": "^2.0.2",
     "tiny-json-http": "^7.0.2",
     "unescape": "^1.0.1"
@@ -40,14 +40,13 @@
     "cpjax": "^1.1.3",
     "crel": "^4.0.1",
     "crelns": "^1.0.1",
-    "cssnano": "^4.1.8",
     "fastn": "^2.12.2",
     "fastn-markdown-component": "^1.2.0",
-    "highlight.js": "^9.13.1",
+    "highlight.js": "^9.15.8",
     "konami": "^1.6.2",
     "laidout": "^1.1.0",
     "normalize.css": "^8.0.1",
     "parcel": "^1.11.0",
-    "spacetime": "^5.8.2"
+    "spacetime": "^5.9.1"
   }
 }
