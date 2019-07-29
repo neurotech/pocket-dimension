@@ -61,8 +61,8 @@ const util = {
       item: {
         id: id,
         timestamp: timestamp,
-        title: payload.title || "",
-        body: payload.body || "",
+        title: payload.title || "Untitled",
+        body: payload.body || "Untitled",
         type: payload.type || "note",
         generateTitle: payload.generateTitle || false
       }
