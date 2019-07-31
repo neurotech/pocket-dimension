@@ -165,7 +165,7 @@ a:hover {
 }
 
 hr {
-  height: 2px;
+  height: 2px !important;
   border: none;
   background: var(--post-title-separator);
 }
