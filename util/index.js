@@ -1,5 +1,7 @@
 const uuid = require("../uuid");
 const now = require("../get-now");
+const adjectives = require("./adjectives");
+const nouns = require("./nouns");
 
 const defaultHeaders = { "Content-Type": "application/json" };
 
@@ -50,6 +52,20 @@ function responseHandler(method) {
   };
 }
 
+function generateFallback(type) {
+  if (!type) {
+    type = "note";
+  }
+
+  return (
+    type +
+    "_" +
+    adjectives[Math.floor(Math.random() * adjectives.length)] +
+    "-" +
+    nouns[Math.floor(Math.random() * nouns.length)]
+  );
+}
+
 const util = {
   responseHandler,
   buildItem: function createItemObject(payload) {
@@ -61,8 +77,8 @@ const util = {
       item: {
         id: id,
         timestamp: timestamp,
-        title: payload.title || "Untitled",
-        body: payload.body || "Untitled",
+        title: payload.title || generateFallback(payload.type),
+        body: payload.body || generateFallback(payload.type),
         type: payload.type || "note",
         generateTitle: payload.generateTitle || false
       }
