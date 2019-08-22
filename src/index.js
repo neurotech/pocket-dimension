@@ -250,4 +250,25 @@ window.addEventListener("load", function() {
       }
     };
   }
+
+  document.addEventListener("paste", event => {
+    let clipboardContents = (event.clipboardData || window.clipboardData).getData("text");
+    if (!state.post) {
+      if (typeof clipboardContents === "string" && clipboardContents.length > 0) {
+        try {
+          var url = new URL(clipboardContents);
+          var post = {
+            type: "link",
+            body: url.href,
+            generateTitle: true
+          };
+          app.savePost(post);
+        } catch (ex) {
+          this.console.error(
+            "Could not automatically create a link post. An invalid URL was pasted."
+          );
+        }
+      }
+    }
+  });
 });
