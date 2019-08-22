@@ -111,7 +111,7 @@ const util = {
     }
   },
   matchTitle: function matchTitle(data) {
-    var match = data.match(/\<title.*\>([^]*)\<\/title\>/);
+    var match = data.match(/<title>(.*?)<\/title>/);
 
     if (!match) {
       return;
