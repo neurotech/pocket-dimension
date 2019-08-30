@@ -1,7 +1,7 @@
 const markdown = require("fastn-markdown-component");
 const fastn = require("fastn")(require("fastn/domComponents")({ markdown }), true);
 const crel = require("crel");
-const spacetime = require("spacetime");
+const { DateTime } = require("luxon");
 const api = require("./api");
 const components = require("./components");
 
@@ -124,8 +124,8 @@ window.addEventListener("load", function() {
     },
     generatePostTitle: function() {
       if (fastn.Model.get(state, "post.type") === "diary") {
-        var now = spacetime.now();
-        var today = now.format("{day} {date-ordinal} {month} {year}");
+        var now = DateTime.local();
+        var today = now.toFormat("EEEE dd MMMM yyyy");
         var newTitle = `Work diary for ${today}`;
         var newBody = `**To Do:**\n\n - a\n\n---\n\n**Done:**\n\n - b`;
         app.setPostTitle(newTitle);

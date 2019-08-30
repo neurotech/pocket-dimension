@@ -1,4 +1,4 @@
-const spacetime = require("spacetime");
+const { DateTime } = require("luxon");
 
 module.exports = function createListItemLink(fastn, app) {
   var typeButton = fastn("button", { class: "item-edit link" }, "🔗").on(
@@ -26,11 +26,10 @@ module.exports = function createListItemLink(fastn, app) {
     "div",
     { class: "item-timestamp" },
     fastn.binding("item.timestamp", function(time) {
-      var now = spacetime();
-      var tz = now.timezone().name;
-      return spacetime(time)
-        .goto(tz)
-        .format("Posted on {day} {date-ordinal} {month} {year} at {time}");
+      var now = DateTime.fromISO(time);
+      var tz = now.zoneName;
+      var offset = now.setZone(tz);
+      return offset.toFormat("'Posted on' EEEE dd MMMM yyyy 'at' t");
     })
   );
   return fastn(
