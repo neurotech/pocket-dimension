@@ -43,3 +43,16 @@
   font-variant: normal;
   font-size: 2.5rem;
 }
+
+.logo-text.loading {
+  animation: rotating 2s linear infinite;
+}
+
+@keyframes rotating {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

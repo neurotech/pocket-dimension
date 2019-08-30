@@ -32,9 +32,28 @@ let get = {
     let userId = userFromRequest.get("userId");
 
     let all = dynamo.table("pocket-dimension").scan({
-      expression: "userId = :userId",
+      expression:
+        "userId = :userId and isArchived = :isArchived or attribute_not_exists(isArchived)",
       attributeValues: {
-        ":userId": userId
+        ":userId": userId,
+        ":isArchived": false
+      }
+    });
+    let result = all.get(data =>
+      data.rows.sort((a, b) => new Date(b.timestamp) - new Date(a.timestamp))
+    );
+
+    result(callback);
+  },
+  archived: function getAllArchivedItems(scope, callback) {
+    let userFromRequest = righto(user.getUserFromRequest, scope.request);
+    let userId = userFromRequest.get("userId");
+
+    let all = dynamo.table("pocket-dimension").scan({
+      expression: "userId = :userId and isArchived = :isArchived",
+      attributeValues: {
+        ":userId": userId,
+        ":isArchived": true
       }
     });
     let result = all.get(data =>
@@ -62,7 +81,8 @@ function update(item, callback) {
     item: {
       title: item.title,
       body: item.body,
-      type: item.type
+      type: item.type,
+      isArchived: item.isArchived
     }
   });
 

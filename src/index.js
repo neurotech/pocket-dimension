@@ -16,6 +16,7 @@ window.addEventListener("load", function() {
       username: "",
       password: ""
     },
+    archiveMode: false,
     isLoading: false,
     error: false,
     filter: "",
@@ -46,7 +47,7 @@ window.addEventListener("load", function() {
         }
         app.clearCredentials();
         app.setToken(token);
-        app.getAll();
+        app.getAllItems();
       });
     },
     logout: function() {
@@ -66,6 +67,16 @@ window.addEventListener("load", function() {
       fastn.Model.set(state, "login.token", token);
       if (token) {
         sessionStorage.setItem(tokenKey, token);
+      }
+    },
+    setArchiveMode: function(toggle) {
+      if (!toggle) {
+        fastn.Model.set(state, "archiveMode", false);
+        this.getAllItems();
+      }
+      if (toggle) {
+        fastn.Model.set(state, "archiveMode", true);
+        this.getAllItems(true);
       }
     },
     setTheme: function(toggle) {
@@ -160,8 +171,15 @@ window.addEventListener("load", function() {
     editPost: function(post) {
       fastn.Model.set(state, "post", post);
     },
-    getAll: function() {
-      loading(api.get.all)(fastn.Model.get(state, "login.token"), function(error, data) {
+    clearAllItems: function() {
+      fastn.Model.set(state, "items", []);
+    },
+    getAllItems: function(archived) {
+      if (typeof archived !== "boolean") {
+        archived = fastn.Model.get(state, "archiveMode");
+      }
+      var endpoint = archived ? api.get.archived : api.get.all;
+      loading(endpoint)(fastn.Model.get(state, "login.token"), function(error, data) {
         if (error) {
           return app.setError(error);
         }
@@ -185,7 +203,7 @@ window.addEventListener("load", function() {
         if (error) {
           return app.setError(error);
         }
-        app.getAll();
+        app.getAllItems();
       });
     },
     focusPost: function(title) {
@@ -193,6 +211,14 @@ window.addEventListener("load", function() {
     },
     clearFocusPost: function() {
       fastn.Model.set(state, "filter", null);
+    },
+    archivePost: function(post) {
+      if (post.isArchived) {
+        post.isArchived = false;
+      } else {
+        post.isArchived = true;
+      }
+      this.savePost(post);
     },
     savePost: function(post) {
       var action = post.id ? "update" : "create";
@@ -203,7 +229,7 @@ window.addEventListener("load", function() {
         }
 
         app.hideEditPost();
-        app.getAll();
+        app.getAllItems(fastn.Model.get(state, "archiveMode"));
       });
     },
     getTokenFromStorageAndSet: function() {
@@ -229,7 +255,7 @@ window.addEventListener("load", function() {
 
   app.getTokenFromStorageAndSet();
   if (fastn.Model.get(state, "login.token")) {
-    app.getAll();
+    app.getAllItems();
   }
 
   app.getTheme();

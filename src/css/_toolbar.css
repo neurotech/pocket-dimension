@@ -156,6 +156,38 @@
   filter: grayscale(100%);
 }
 
+.archive-mode {
+  text-align: center;
+  display: flex;
+  align-content: space-between;
+  align-items: center;
+  margin: 0 0 0 1rem;
+}
+.archive-mode-wrapper {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 0.5rem;
+  background-color: var(--primary-button-background);
+  border: 2px solid var(--primary-button-border);
+  border-radius: 0.33rem;
+}
+.archive-mode-toggle {
+  width: 25px;
+  height: 25px;
+}
+
+.archive-mode-label {
+  filter: grayscale(100%);
+  margin-left: 0.5rem;
+  font-family: var(--font-family-sans-serif-bold);
+  color: var(--archive-mode-label-foreground);
+}
+
+.archive-mode-label.on {
+  filter: grayscale(0%);
+}
+
 .filter-buttons-container {
   display: flex;
   flex-direction: row;

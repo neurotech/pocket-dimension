@@ -97,6 +97,26 @@
   color: var(--post-focus-foreground-hover);
 }
 
+.item-archive {
+  float: right;
+  user-select: none;
+  cursor: pointer;
+  border-radius: 0.33rem;
+  padding: 0rem 0.5rem;
+  margin-left: 0.75rem;
+  font-weight: 100;
+  font-size: 1.5rem;
+  border: 2px solid var(--post-archive-border);
+  background-color: var(--post-archive-background);
+  color: var(--post-archive-foreground);
+  transition: background-color 0.2s, border-color 0.2s, color 0.2s;
+}
+.item-archive:hover {
+  border-color: var(--post-archive-border-hover);
+  background-color: var(--post-archive-background-hover);
+  color: var(--post-archive-foreground-hover);
+}
+
 .item-remove {
   float: right;
   user-select: none;

@@ -36,6 +36,9 @@ seaLion.add({
   "/api/items/all": {
     GET: responseHandler(items.get)
   },
+  "/api/items/archived": {
+    GET: responseHandler(items.archived)
+  },
   "/api/items/latest": {
     GET: responseHandler(items.get)
   },

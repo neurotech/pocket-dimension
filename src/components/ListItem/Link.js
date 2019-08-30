@@ -10,6 +10,12 @@ module.exports = function createListItemLink(fastn, app) {
   var focusButton = fastn("button", { class: "item-focus" }, "∷").on("click", (event, scope) => {
     app.focusPost(scope.get("item.title"));
   });
+  var archiveButton = fastn("button", { class: "item-archive" }, "⧖").on(
+    "click",
+    (event, scope) => {
+      app.archivePost(scope.get("item"));
+    }
+  );
   var removeButton = fastn("button", { class: "item-remove" }, "×").on("click", (event, scope) => {
     app.deletePost(scope.get("item.id"), scope.get("item.timestamp"));
   });
@@ -35,6 +41,15 @@ module.exports = function createListItemLink(fastn, app) {
   return fastn(
     "div",
     { class: ["link", "post"] },
-    fastn("div", { class: "item-title" }, typeButton, removeButton, focusButton, title, timestamp)
+    fastn(
+      "div",
+      { class: "item-title" },
+      typeButton,
+      removeButton,
+      archiveButton,
+      focusButton,
+      title,
+      timestamp
+    )
   );
 };

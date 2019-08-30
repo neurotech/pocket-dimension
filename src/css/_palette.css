@@ -70,6 +70,12 @@
   --post-focus-border-hover: rgb(35, 64, 151);
   --post-focus-background-hover: rgb(60, 96, 209);
   --post-focus-foreground-hover: hsl(0, 0%, 100%);
+  --post-archive-border: hsl(0, 0%, 66%);
+  --post-archive-background: hsl(0, 0%, 83%);
+  --post-archive-foreground: hsl(0, 0%, 66%);
+  --post-archive-border-hover:rgb(173, 119, 25);
+  --post-archive-background-hover: rgb(234, 167, 50);
+  --post-archive-foreground-hover: hsl(0, 0%, 100%);
   --post-title-separator: hsl(0, 0%, 92%);
   --post-body-border: hsl(0, 0%, 83%);
   --post-body-background: hsl(0, 0%, 100%);
@@ -145,6 +151,12 @@
   --post-focus-border-hover: rgb(35, 64, 151);
   --post-focus-background-hover: rgb(60, 96, 209);
   --post-focus-foreground-hover: hsl(0, 0%, 100%);
+  --post-archive-border: #1b1b27;
+  --post-archive-background: #8282ae;
+  --post-archive-foreground: #1b1b27;
+  --post-archive-border-hover:rgb(173, 119, 25);
+  --post-archive-background-hover: rgb(234, 167, 50);
+  --post-archive-foreground-hover: hsl(0, 0%, 100%);
   --post-title-separator: #131315;
   --post-inline-background: #38384d;
   --post-inline-text: hsl(0, 0%, 19%);

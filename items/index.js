@@ -71,6 +71,16 @@ function remove(scope, tokens, callback) {
   result(callback);
 }
 
+function archived(scope, tokens, callback) {
+  var authenticated = righto(validateSessionToken, scope);
+
+  var items = righto(db.get.archived, scope, righto.after(authenticated));
+
+  let result = items.get(items => ({ data: items }));
+
+  result(callback);
+}
+
 function getQueryString(url) {
   var params = url.split("?")[1];
   var qs = querystring.parse(params);
@@ -82,5 +92,6 @@ module.exports = {
   create: create,
   get: get,
   update: update,
-  delete: remove
+  delete: remove,
+  archived: archived
 };

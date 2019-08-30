@@ -10,6 +10,15 @@ module.exports = {
         let items = JSON.parse(data).data;
         callback(null, items);
       });
+    },
+    archived: function getAllArchivedItems(token, callback) {
+      cpjax({ url: "/api/items/archived", auth: `Bearer ${token}` }, function(error, data) {
+        if (error) {
+          return callback(error);
+        }
+        let items = JSON.parse(data).data;
+        callback(null, items);
+      });
     }
   },
   update: function updateItem(token, item, callback) {
