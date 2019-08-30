@@ -125,9 +125,9 @@ window.addEventListener("load", function() {
     generatePostTitle: function() {
       if (fastn.Model.get(state, "post.type") === "diary") {
         var now = spacetime.now();
-        var today = now.format("{date-ordinal} {month} {year}");
+        var today = now.format("{day} {date-ordinal} {month} {year}");
         var newTitle = `Work diary for ${today}`;
-        var newBody = `**To Do:**\n\n - a\n\n**In Progress:**\n\n- b\n\n**Done:**\n\n - c`;
+        var newBody = `**To Do:**\n\n - a\n\n---\n\n**Done:**\n\n - b`;
         app.setPostTitle(newTitle);
         app.setPostBody(newBody);
       }
