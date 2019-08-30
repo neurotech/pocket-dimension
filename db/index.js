@@ -33,7 +33,7 @@ let get = {
 
     let all = dynamo.table("pocket-dimension").scan({
       expression:
-        "userId = :userId and isArchived = :isArchived or attribute_not_exists(isArchived)",
+        "userId = :userId and (isArchived = :isArchived or attribute_not_exists(isArchived))",
       attributeValues: {
         ":userId": userId,
         ":isArchived": false
