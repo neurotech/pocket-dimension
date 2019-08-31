@@ -82,7 +82,7 @@ function update(item, callback) {
       title: item.title,
       body: item.body,
       type: item.type,
-      isArchived: item.isArchived
+      isArchived: item.isArchived || false
     }
   });
 
