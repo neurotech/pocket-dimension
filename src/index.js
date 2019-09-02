@@ -51,9 +51,9 @@ window.addEventListener("load", function() {
       });
     },
     logout: function() {
-      fastn.Model.remove(state, "items");
       app.clearCredentials();
       app.clearToken();
+      fastn.Model.remove(state, "items");
     },
     clearCredentials: function() {
       fastn.Model.set(state, "login.username", "");
