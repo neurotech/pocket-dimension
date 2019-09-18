@@ -223,6 +223,10 @@ window.addEventListener("load", function() {
     savePost: function(post) {
       var action = post.id ? "update" : "create";
 
+      if (typeof post.isArchived === "undefined") {
+        post.isArchived = false;
+      }
+
       loading(api[action])(fastn.Model.get(state, "login.token"), post, function(error) {
         if (error) {
           return app.setError(error);
@@ -286,7 +290,8 @@ window.addEventListener("load", function() {
           var post = {
             type: "link",
             body: url.href,
-            generateTitle: true
+            generateTitle: true,
+            isArchived: false
           };
           app.savePost(post);
         } catch (ex) {
