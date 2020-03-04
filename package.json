@@ -26,27 +26,27 @@
   "dependencies": {
     "alternator": "^2.0.0",
     "bcryptjs": "^2.4.3",
-    "cryptr": "^4.0.2",
+    "cryptr": "^6.0.1",
     "dion": "^2.0.0",
-    "dotenv": "^8.1.0",
+    "dotenv": "^8.2.0",
     "log-symbols": "^3.0.0",
-    "request-data": "^1.3.0",
-    "righto": "^6.0.0",
+    "request-data": "^1.4.1",
+    "righto": "^6.0.1",
     "sea-lion": "^2.0.2",
     "tiny-json-http": "^7.1.2",
     "unescape": "^1.0.1"
   },
   "devDependencies": {
     "cpjax": "^1.1.3",
-    "crel": "^4.0.1",
+    "crel": "^4.2.0",
     "crelns": "^1.0.1",
-    "fastn": "^2.12.2",
+    "fastn": "^2.14.0",
     "fastn-markdown-component": "^1.2.0",
-    "highlight.js": "^9.15.8",
+    "highlight.js": "^9.18.1",
     "konami": "^1.6.2",
     "laidout": "^1.1.0",
-    "luxon": "^1.17.2",
+    "luxon": "^1.22.0",
     "normalize.css": "^8.0.1",
-    "parcel": "^1.12.3"
+    "parcel": "^1.12.4"
   }
 }
