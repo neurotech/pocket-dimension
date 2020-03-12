@@ -4,25 +4,12 @@
   "description": "A tiny place to store tiny things.",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "buildsrc": "parcel build src/index.html --out-dir build --public-url ./",
-    "predeploy": "rm -rf build/ .cache/ && set NODE_ENV=production&&npm run buildsrc",
-    "deploy": "now --public --local-config now.json && now alias --local-config now.json",
-    "clean": "now --local-config now.json rm pocket-dimension --safe --yes",
-    "deployclean": "npm run deploy && npm run clean",
-    "test": "node test",
-    "watch": "parcel watch src/index.html --out-dir build"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/neurotech/pocket-dimension.git"
+    "publish:layer:dynamodbhelper": "aws lambda publish-layer-version --layer-name DynamoDBHelper --description \"Common helpers for DynamoDB\" --license-info 'MIT' --zip-file fileb://${PWD}/build/dynamodbhelper.zip --compatible-runtimes nodejs12.x",
+    "build:layer:dynamodbhelper": "rm -rf ./build/dynamodbhelper.zip && cd layers && zip -r ../build/dynamodbhelper.zip ./nodejs/dynamodbHelper/ && cd .."
   },
   "author": "Tim Douglas",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/neurotech/pocket-dimension/issues"
-  },
-  "homepage": "https://github.com/neurotech/pocket-dimension#readme",
+  "homepage": "https://github.com/neurotech/pocket-dimension",
   "dependencies": {
     "alternator": "^2.0.0",
     "bcryptjs": "^2.4.3",
