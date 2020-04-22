@@ -1,4 +1,4 @@
-name: Build and Deploy PocketDimensionAuth Lambda
+name: Deploy Auth Lambda
 
 on:
   push:

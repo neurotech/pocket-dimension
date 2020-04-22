@@ -1,4 +1,4 @@
-name: Build and Deploy PocketDimension Lambda
+name: Deploy Main Lambda
 
 on:
   push:
