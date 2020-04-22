@@ -1,4 +1,4 @@
-name: Deploy Main Lambda
+name: Deploy Pocket Dimension Lambda
 
 on:
   push:
@@ -9,15 +9,15 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: Checkout
+    - name: Checkout source code
       uses: actions/checkout@v2
 
-    - name: Create PocketDimension deployment package
+    - name: Create PocketDimension Lambda deployment package
       uses: edgarrc/action-7z@v1.0.4
       with:
         args: 7z a deployment.zip ./lambda/PocketDimension/*
 
-    - name: Deploy PocketDimension deployment package to AWS Lambda
+    - name: Deploy PocketDimension Lambda deployment package to AWS
       uses: appleboy/lambda-action@master
       with:
         aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
