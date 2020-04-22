@@ -4,8 +4,9 @@
   "description": "A tiny place to store tiny things.",
   "main": "app.js",
   "scripts": {
-    "publish:layer:dynamodbhelper": "aws lambda publish-layer-version --layer-name DynamoDBHelper --description \"Common helpers for DynamoDB\" --license-info 'MIT' --zip-file fileb://${PWD}/build/dynamodbhelper.zip --compatible-runtimes nodejs12.x",
-    "build:layer:dynamodbhelper": "rm -rf ./build/dynamodbhelper.zip && cd layers && zip -r ../build/dynamodbhelper.zip ./nodejs/dynamodbHelper/ && cd .."
+    "publish:layer": "aws lambda publish-layer-version --layer-name PocketDimensionLayer --description \"Common helpers for Pocket Dimension\" --license-info 'MIT' --zip-file fileb://${PWD}/build/layer.zip --compatible-runtimes nodejs12.x",
+    "build:layer": "rm -rf ./build/layer.zip && cd layer && zip -r ../build/layer.zip ./nodejs && cd ..",
+    "deploy:layer": "npm run build:layer && npm run publish:layer"
   },
   "author": "Tim Douglas",
   "license": "MIT",

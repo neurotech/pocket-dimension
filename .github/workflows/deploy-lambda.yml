@@ -15,7 +15,7 @@ jobs:
     - name: Create PocketDimension deployment package
       uses: montudor/action-zip@v0.1.0
       with:
-        args: zip -r deployment.zip . -i ./lambda/*.js
+        args: zip -r deployment.zip . -i ./lambda/*.*
 
     - name: Deploy PocketDimension deployment package to AWS Lambda
       uses: appleboy/lambda-action@master
