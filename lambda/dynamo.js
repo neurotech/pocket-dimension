@@ -82,4 +82,53 @@ function remove(id, timestamp, callback) {
   dynamo.delete({ TableName: "pocket-dimension", Key: { id: id, timestamp: timestamp } }, callback);
 }
 
-module.exports = { create, get, update, remove };
+function storeToken(payload, callback) {
+  let item = {
+    sessionToken: payload.token,
+  };
+
+  let newItem = {
+    TableName: "pocket-dimension-auth",
+    Key: {
+      username: payload.username,
+    },
+    UpdateExpression: createUpdateExpression(item),
+    ExpressionAttributeValues: createAttributeValues(item),
+    ExpressionAttributeNames: createAttributeNames(item),
+    ReturnValues: "ALL_NEW",
+  };
+
+  dynamo.update(newItem, callback);
+}
+
+function getUser(username, callback) {
+  let query = {
+    TableName: "pocket-dimension-auth",
+    Key: {
+      username: username,
+    },
+  };
+
+  dynamo.getItem(query, callback);
+}
+
+function getUserByToken(token, callback) {
+  let query = {
+    TableName: "pocket-dimension-auth",
+    FilterExpression: "sessionToken = :token or apiToken = :token",
+    ExpressionAttributeValues: {
+      ":token": token,
+    },
+  };
+
+  dynamo.scan(query, (error, results) => {
+    if (error) return callback(error);
+    if (!results.Items.length) return callback("token not found");
+
+    return results.Items[0];
+  });
+
+  result(callback);
+}
+
+module.exports = { create, get, update, remove, storeToken, getUser, getUserByToken };

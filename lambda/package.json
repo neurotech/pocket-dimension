@@ -1,0 +1,16 @@
+{
+  "name": "pocket-dimension-lambda",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Tim Douglas",
+  "license": "MIT",
+  "dependencies": {
+    "bcryptjs": "^2.4.3",
+    "cryptr": "^6.0.2",
+    "righto": "^6.0.1"
+  }
+}

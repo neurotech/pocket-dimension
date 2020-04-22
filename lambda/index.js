@@ -1,12 +1,6 @@
+const auth = require("./auth/index.js");
 const db = require("./dynamo.js");
-
-function uuid() {
-  return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
-    var r = (Math.random() * 16) | 0,
-      v = c == "x" ? r : (r & 0x3) | 0x8;
-    return v.toString(16);
-  });
-}
+const uuid = require("./util/uuid.js");
 
 function constructItem(payload) {
   let id = payload.id || uuid();
@@ -38,8 +32,8 @@ function createItem(body, callback) {
   });
 }
 
-function getItems(archived, callback) {
-  db.get("1", archived, (error, results) => {
+function getItems(userId, archived, callback) {
+  db.get(userId, archived, (error, results) => {
     if (error) return callback(error);
     var response = {
       isBase64Encoded: false,
@@ -79,54 +73,61 @@ function deleteItem(id, timestamp, callback) {
   });
 }
 
-exports.handler = (event, context, callback) => {
-  // Create an Item
-  if (event.path === "/api/items/create") {
-    if (event.httpMethod === "POST") {
-      return createItem(event.body, callback);
-    }
-  }
+exports.handler = (event, _, callback) => {
+  // Authenticate
+  auth.validateSessionToken(event, (error) => {
+    if (error) return callback(error);
+    // Token is valid, continue to routing
 
-  // Retrieve Items
-  if (event.path === "/api/items/all") {
-    if (event.httpMethod === "GET") {
-      return getItems(false, callback);
-    }
-  }
-
-  if (event.path === "/api/items/archived") {
-    if (event.httpMethod === "GET") {
-      return getItems(true, callback);
-    }
-  }
-
-  // Update Item
-  if (event.path === "/api/item/update") {
-    if (event.httpMethod === "PUT") {
-      if (event.queryStringParameters.id && event.queryStringParameters.timestamp) {
-        return updateItem(
-          event.queryStringParameters.id,
-          event.queryStringParameters.timestamp,
-          JSON.parse(event.body),
-          callback
-        );
+    // Create an Item
+    if (event.path === "/items/create") {
+      if (event.httpMethod === "POST") {
+        return createItem(event.body, callback);
       }
     }
-  }
 
-  // Delete Item
-  if (event.path === "/api/item/delete") {
-    if (event.httpMethod === "DELETE") {
-      if (event.queryStringParameters.id && event.queryStringParameters.timestamp) {
-        return deleteItem(
-          event.queryStringParameters.id,
-          event.queryStringParameters.timestamp,
-          callback
-        );
-      } else {
-        return callback("Missing ID or timestamp!");
+    // Retrieve Items
+    if (event.path === "/items/all") {
+      if (event.httpMethod === "GET") {
+        return getItems(authenticated.userId, false, callback);
       }
     }
-  }
-  return callback("notfound");
+
+    if (event.path === "/items/archived") {
+      if (event.httpMethod === "GET") {
+        return getItems(authenticated.userId, true, callback);
+      }
+    }
+
+    // Update Item
+    if (event.path === "/item/update") {
+      if (event.httpMethod === "PUT") {
+        if (event.queryStringParameters.id && event.queryStringParameters.timestamp) {
+          return updateItem(
+            event.queryStringParameters.id,
+            event.queryStringParameters.timestamp,
+            JSON.parse(event.body),
+            callback
+          );
+        }
+      }
+    }
+
+    // Delete Item
+    if (event.path === "/item/delete") {
+      if (event.httpMethod === "DELETE") {
+        if (event.queryStringParameters.id && event.queryStringParameters.timestamp) {
+          return deleteItem(
+            event.queryStringParameters.id,
+            event.queryStringParameters.timestamp,
+            callback
+          );
+        } else {
+          return callback("Missing ID or timestamp!");
+        }
+      }
+    }
+
+    return callback("notfound");
+  });
 };
