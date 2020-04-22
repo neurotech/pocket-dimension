@@ -15,7 +15,7 @@ jobs:
     - name: Create PocketDimension Lambda deployment package
       uses: edgarrc/action-7z@v1.0.4
       with:
-        args: 7z a deployment.zip ./lambda/PocketDimension/*
+        args: 7z a deployment.zip ./lambda/*
 
     - name: Deploy PocketDimension Lambda deployment package to AWS
       uses: appleboy/lambda-action@master
