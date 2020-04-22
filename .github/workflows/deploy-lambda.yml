@@ -12,10 +12,16 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Create PocketDimension deployment package
-      uses: montudor/action-zip@v0.1.0
+    # - name: Create PocketDimension deployment package
+    #   uses: montudor/action-zip@v0.1.0
+    #   with:
+    #     args: cd lambda && zip -r ../deployment.zip *
+
+    - name: Create PocketDimension deployment zip file
+      uses: thedoctor0/zip-release@master
       with:
-        args: cd lambda && zip -r deployment.zip ../ -i **
+        filename: 'deployment.zip'
+        directory: './lambda'
 
     - name: Deploy PocketDimension deployment package to AWS Lambda
       uses: appleboy/lambda-action@master
