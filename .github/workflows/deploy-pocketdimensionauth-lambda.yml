@@ -1,4 +1,4 @@
-name: Build and Deploy Lambda
+name: Build and Deploy PocketDimensionAuth Lambda
 
 on:
   push:
@@ -12,16 +12,16 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v2
 
-    - name: Create PocketDimension deployment package
+    - name: Create PocketDimensionAuth deployment package
       uses: edgarrc/action-7z@v1.0.4
       with:
-        args: 7z a deployment.zip ./lambda/*
+        args: 7z a deployment.zip ./lambda/PocketDimensionAuth/*
 
-    - name: Deploy PocketDimension deployment package to AWS Lambda
+    - name: Deploy PocketDimensionAuth deployment package to AWS Lambda
       uses: appleboy/lambda-action@master
       with:
         aws_access_key_id: ${{ secrets.AWS_ACCESS_KEY_ID }}
         aws_secret_access_key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws_region: ${{ secrets.AWS_REGION }}
-        function_name: PocketDimension
+        function_name: PocketDimensionAuth
         zip_file: deployment.zip

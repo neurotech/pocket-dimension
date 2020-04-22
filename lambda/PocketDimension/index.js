@@ -1,4 +1,4 @@
-const db = require("/opt/nodejs/dynamo");
+const db = require("./dynamo.js");
 
 function uuid() {
   return "xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx".replace(/[xy]/g, function (c) {
