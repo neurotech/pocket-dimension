@@ -3,7 +3,7 @@ const authenticate = require("./authenticate.js");
 const login = require("./login.js");
 const token = require("./token.js");
 
-function validateSessionToken(scope, callback) {
+function validateSessionToken(event, callback) {
   var sessionToken = token.getTokenFromHeaders(event.headers);
 
   if (!sessionToken) {
