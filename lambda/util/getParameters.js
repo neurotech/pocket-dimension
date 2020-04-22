@@ -1,5 +1,4 @@
 const AWS = require("aws-sdk");
-const righto = require("righto");
 
 function mapParametersToObject(parameters) {
   return parameters.reduce((result, param) => {
@@ -14,8 +13,8 @@ module.exports = function getParameters(callback) {
     Names: ["POCKET_DIMENSION_SECRET_KEY"],
     WithDecryption: true,
   };
-  let parameters = righto(ssm.getParameters, paramsRequest).get((data) =>
-    mapParametersToObject(data.Parameters)
-  );
-  parameters(callback);
+
+  ssm.getParameters(paramsRequest, function (error, data) {
+    callback(error, mapParametersToObject(data.Parameters));
+  });
 };

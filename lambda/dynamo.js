@@ -125,10 +125,8 @@ function getUserByToken(token, callback) {
     if (error) return callback(error);
     if (!results.Items.length) return callback("token not found");
 
-    return results.Items[0];
+    callback(null, results.Items[0]);
   });
-
-  result(callback);
 }
 
 module.exports = { create, get, update, remove, storeToken, getUser, getUserByToken };

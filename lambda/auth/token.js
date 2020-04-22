@@ -6,7 +6,6 @@ const getParameters = require("../util/getParameters.js");
 
 const parameters = righto(getParameters);
 const key = parameters.get((parameters) => {
-  console.log(parameters);
   return parameters.POCKET_DIMENSION_SECRET_KEY;
 });
 const getCryptr = key.get((key) => new Cryptr(key));
