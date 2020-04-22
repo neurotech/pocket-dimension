@@ -4,25 +4,13 @@
   "description": "A tiny place to store tiny things.",
   "main": "app.js",
   "scripts": {
-    "start": "node app.js",
-    "buildsrc": "parcel build src/index.html --out-dir build --public-url ./",
-    "predeploy": "rm -rf build/ .cache/ && set NODE_ENV=production&&npm run buildsrc",
-    "deploy": "now --public --local-config now.json && now alias --local-config now.json",
-    "clean": "now --local-config now.json rm pocket-dimension --safe --yes",
-    "deployclean": "npm run deploy && npm run clean",
-    "test": "node test",
-    "watch": "parcel watch src/index.html --out-dir build"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/neurotech/pocket-dimension.git"
+    "publish:layer": "aws lambda publish-layer-version --layer-name PocketDimensionLayer --description \"Common helpers for Pocket Dimension\" --license-info 'MIT' --zip-file fileb://${PWD}/build/layer.zip --compatible-runtimes nodejs12.x",
+    "build:layer": "rm -rf ./build/layer.zip && cd layer && zip -r ../build/layer.zip ./nodejs && cd ..",
+    "deploy:layer": "npm run build:layer && npm run publish:layer"
   },
   "author": "Tim Douglas",
   "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/neurotech/pocket-dimension/issues"
-  },
-  "homepage": "https://github.com/neurotech/pocket-dimension#readme",
+  "homepage": "https://github.com/neurotech/pocket-dimension",
   "dependencies": {
     "alternator": "^2.0.0",
     "bcryptjs": "^2.4.3",
