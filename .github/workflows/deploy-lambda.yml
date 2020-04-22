@@ -1,11 +1,11 @@
-name: Deploy Lambda
+name: Build and Deploy Lambda
 
 on:
   push:
     branches: master
 
 jobs:
-  build:
+  deploy:
     runs-on: ubuntu-latest
 
     steps:
