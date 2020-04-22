@@ -12,13 +12,11 @@ jobs:
     - name: Checkout source code
       uses: actions/checkout@v2
 
-    - name: Use Node.js 12.x
+    - name: Use Node.js 12.x to install npm packages
       uses: actions/setup-node@v1
       with:
         node-version: '12.x'
-    - run: cd lambda
-    - run: npm install
-    - run: cd ..
+    - run: cd lambda && npm install && cd ..
       env:
         CI: true
 
