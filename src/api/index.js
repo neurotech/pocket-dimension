@@ -3,7 +3,7 @@ const cpjax = require("cpjax");
 module.exports = {
   get: {
     all: function getAllItems(token, callback) {
-      cpjax({ url: "/api/items/all", auth: `Bearer ${token}` }, function(error, data) {
+      cpjax({ url: "/api/items/all", auth: `Bearer ${token}` }, function (error, data) {
         if (error) {
           return callback(error);
         }
@@ -12,14 +12,14 @@ module.exports = {
       });
     },
     archived: function getAllArchivedItems(token, callback) {
-      cpjax({ url: "/api/items/archived", auth: `Bearer ${token}` }, function(error, data) {
+      cpjax({ url: "/api/items/archived", auth: `Bearer ${token}` }, function (error, data) {
         if (error) {
           return callback(error);
         }
         let items = JSON.parse(data).data;
         callback(null, items);
       });
-    }
+    },
   },
   update: function updateItem(token, item, callback) {
     cpjax(
@@ -28,9 +28,9 @@ module.exports = {
         method: "PUT",
         json: true,
         auth: `Bearer ${token}`,
-        data: JSON.stringify(item)
+        data: JSON.stringify(item),
       },
-      function(error, data) {
+      function (error, data) {
         if (error) {
           return callback(error);
         }
@@ -46,9 +46,9 @@ module.exports = {
         method: "POST",
         auth: `Bearer ${token}`,
         json: true,
-        data: JSON.stringify(item)
+        data: JSON.stringify(item),
       },
-      function(error, data) {
+      function (error, data) {
         if (error) {
           return callback(error);
         }
@@ -64,9 +64,9 @@ module.exports = {
           url: `/api/items/delete/?id=${id}&timestamp=${timestamp}`,
           method: "DELETE",
           auth: `Bearer ${token}`,
-          json: true
+          json: true,
         },
-        function(error, data) {
+        function (error, data) {
           if (error) {
             return callback(error);
           }
@@ -74,7 +74,7 @@ module.exports = {
           callback(null, status);
         }
       );
-    }
+    },
   },
   pageInfo: function getPageInfo(token, url, callback) {
     cpjax(
@@ -83,9 +83,9 @@ module.exports = {
         method: "POST",
         auth: `Bearer ${token}`,
         json: true,
-        data: JSON.stringify(url)
+        data: JSON.stringify(url),
       },
-      function(error, data) {
+      function (error, data) {
         if (error) {
           return callback(error);
         }
@@ -98,7 +98,7 @@ module.exports = {
     var credentials = { username: login.username, password: login.password };
     cpjax(
       { url: "/api/login", method: "POST", json: true, data: JSON.stringify(credentials) },
-      function(error, data) {
+      function (error, data) {
         if (error) {
           return callback(error);
         }
@@ -106,5 +106,5 @@ module.exports = {
         callback(null, token);
       }
     );
-  }
+  },
 };
