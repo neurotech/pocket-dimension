@@ -33,7 +33,7 @@ function createItem(body, callback) {
 }
 
 function getItems(userId, archived, callback) {
-  db.get(userId, archived, (error, results) => {
+  db.get(userId.toString(), archived, (error, results) => {
     if (error) return callback(error);
     var response = {
       isBase64Encoded: false,
@@ -75,7 +75,7 @@ function deleteItem(id, timestamp, callback) {
 
 exports.handler = (event, _, callback) => {
   // Authenticate
-  auth.validateSessionToken(event, (error) => {
+  auth.validateSessionToken(event, (error, user) => {
     if (error) return callback(error);
     // Token is valid, continue to routing
 
@@ -89,13 +89,13 @@ exports.handler = (event, _, callback) => {
     // Retrieve Items
     if (event.path === "/items/all") {
       if (event.httpMethod === "GET") {
-        return getItems(authenticated.userId, false, callback);
+        return getItems(user.userId, false, callback);
       }
     }
 
     if (event.path === "/items/archived") {
       if (event.httpMethod === "GET") {
-        return getItems(authenticated.userId, true, callback);
+        return getItems(user.userId, true, callback);
       }
     }
 

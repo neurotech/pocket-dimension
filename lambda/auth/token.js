@@ -38,7 +38,11 @@ module.exports = {
     var token = righto(decrypt, getCryptr, sessionToken);
     // Lookup pocket-dimension-auth table for any records matching DECRYPTED TOKEN
     var user = righto(dynamo.getUserByToken, token);
-    var result = user.get("username");
+
+    var result = user.get((user) => {
+      return { userId: user.userId, username: user.username };
+    });
+
     result(callback);
   },
   decrypt: function decryptToken(sessionToken, callback) {
