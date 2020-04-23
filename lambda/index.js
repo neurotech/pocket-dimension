@@ -74,6 +74,19 @@ function deleteItem(id, timestamp, callback) {
 }
 
 exports.handler = (event, context, callback) => {
+  // Login
+  if (event.path === "/login") {
+    if (event.httpMethod === "POST") {
+      var response = {
+        isBase64Encoded: false,
+        statusCode: 500,
+        headers: {},
+        body: JSON.stringify(event),
+      };
+      return callback(response);
+    }
+  }
+
   // Authenticate
   auth.validateSessionToken(event, (error, user) => {
     if (error) {
