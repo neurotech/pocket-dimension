@@ -12,7 +12,7 @@
   "dependencies": {
     "alternator": "^2.0.0",
     "bcryptjs": "^2.4.3",
-    "cryptr": "^6.0.1",
+    "cryptr": "6.0.2",
     "dion": "^2.0.0",
     "dotenv": "^8.2.0",
     "log-symbols": "^3.0.0",
