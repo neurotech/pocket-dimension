@@ -78,16 +78,15 @@ exports.handler = (event, context, callback) => {
   if (event.path === "/login") {
     if (event.httpMethod === "POST") {
       var body = JSON.parse(event.body);
-      // return auth.login(body, callback);
-      return auth.login(body, (error, results) => {
-        console.log("LOGIN ERROR? :" + error);
-        console.log("LOGIN RESULTS? :" + results);
 
+      return auth.login(body, (error, results) => {
         if (error) return callback(error);
         var response = {
           isBase64Encoded: false,
           statusCode: 200,
-          headers: {},
+          headers: {
+            "Access-Control-Allow-Origin": "*",
+          },
           body: JSON.stringify(results),
         };
         callback(null, response);
