@@ -19,7 +19,7 @@ function handlePassword(payload, callback) {
   result(callback);
 }
 
-module.exports = function login(_, _, data, callback) {
+module.exports = function login(data, callback) {
   if (!data.username) {
     return callback("invalid username");
   }

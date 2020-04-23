@@ -78,13 +78,14 @@ exports.handler = (event, context, callback) => {
   if (event.path === "/login") {
     if (event.httpMethod === "POST") {
       var body = JSON.parse(event.body);
-      var response = {
-        isBase64Encoded: false,
-        statusCode: 200,
-        headers: {},
-        body: JSON.stringify({ username: body.username, password: body.password }),
-      };
-      return callback(null, response);
+      return auth.login(body, callback);
+      // var response = {
+      //   isBase64Encoded: false,
+      //   statusCode: 200,
+      //   headers: {},
+      //   body: JSON.stringify({ username: body.username, password: body.password }),
+      // };
+      // return callback(null, response);
     }
   }
 
