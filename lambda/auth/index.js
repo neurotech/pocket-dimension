@@ -1,4 +1,3 @@
-const righto = require("righto");
 const authenticate = require("./authenticate.js");
 const login = require("./login.js");
 const token = require("./token.js");
