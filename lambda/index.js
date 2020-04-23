@@ -83,7 +83,7 @@ exports.handler = (event, context, callback) => {
         headers: {},
         body: JSON.stringify(event),
       };
-      return callback(response);
+      return callback(null, response);
     }
   }
 
