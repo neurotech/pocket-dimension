@@ -79,7 +79,7 @@ exports.handler = (event, context, callback) => {
     if (event.httpMethod === "POST") {
       var body = JSON.parse(event.body);
       // return auth.login(body, callback);
-      return auth.login(body, (error) => {
+      return auth.login(body, (error, results) => {
         console.log("LOGIN ERROR? :" + error);
         console.log("LOGIN RESULTS? :" + results);
 
