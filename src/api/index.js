@@ -9,7 +9,7 @@ module.exports = {
           if (error) {
             return callback(error);
           }
-          let items = JSON.parse(data).data;
+          let items = JSON.parse(data);
           callback(null, items);
         }
       );
@@ -21,7 +21,7 @@ module.exports = {
           if (error) {
             return callback(error);
           }
-          let items = JSON.parse(data).data;
+          let items = JSON.parse(data);
           callback(null, items);
         }
       );
