@@ -79,7 +79,7 @@ exports.handler = (event, context, callback) => {
     if (event.httpMethod === "POST") {
       var response = {
         isBase64Encoded: false,
-        statusCode: 500,
+        statusCode: 200,
         headers: {},
         body: JSON.stringify(event),
       };
