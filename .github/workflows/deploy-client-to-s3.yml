@@ -12,7 +12,7 @@ jobs:
     - name: Checkout source code
       uses: actions/checkout@v2
 
-    - name: Use Node.js 12.x
+    - name: Use Node.js 12.x to install npm packages and build assets
       uses: actions/setup-node@v1
       with:
         node-version: '12.x'
@@ -24,7 +24,7 @@ jobs:
     - name: Deploy to assets S3
       uses: jakejarvis/s3-sync-action@master
       with:
-        args: --acl public-read --follow-symlinks --delete --add-header "Cache-Control:public, max-age=31536000"
+        args: --acl public-read --follow-symlinks --delete
       env:
         AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
         AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
