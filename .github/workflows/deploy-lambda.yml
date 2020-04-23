@@ -1,4 +1,4 @@
-name: Deploy Pocket Dimension Lambda
+name: 💽 Deploy Pocket Dimension Lambda
 
 on:
   push:
