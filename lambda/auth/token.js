@@ -31,7 +31,7 @@ module.exports = {
     // Store supplied username and NEW TOKEN in pocket-dimension-auth
     var tokenStored = righto(dynamo.storeToken, { username: username, token: token });
     // Use cryptr.encrypt to encrypt the NEW TOKEN
-    var tokenHash = righto.sync(encrypt, getCryptr(), token, righto.after(tokenStored));
+    var tokenHash = righto(encrypt, getCryptr(), token, righto.after(tokenStored));
     // Callback error, results
     tokenHash(callback);
   },
