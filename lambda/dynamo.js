@@ -109,7 +109,12 @@ function getUser(username, callback) {
     },
   };
 
-  dynamo.get(query, callback);
+  dynamo.get(query, (error, results) => {
+    if (error) return callback(error);
+    if (!results.Item) return callback("user not found");
+
+    callback(null, results.Item);
+  });
 }
 
 function getUserByToken(token, callback) {

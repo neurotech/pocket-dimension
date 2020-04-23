@@ -20,7 +20,6 @@ function handlePassword(payload, callback) {
 }
 
 module.exports = function login(data, callback) {
-  console.log("LOGIN DATA: " + data);
   if (!data.username) {
     return callback("invalid username");
   }
