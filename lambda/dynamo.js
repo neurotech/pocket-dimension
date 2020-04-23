@@ -109,7 +109,7 @@ function getUser(username, callback) {
     },
   };
 
-  dynamo.getItem(query, callback);
+  dynamo.get(query, callback);
 }
 
 function getUserByToken(token, callback) {
