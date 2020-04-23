@@ -25,7 +25,9 @@ function createItem(body, callback) {
     var response = {
       isBase64Encoded: false,
       statusCode: 200,
-      headers: {},
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
       body: JSON.stringify(item),
     };
     callback(null, response);
@@ -38,7 +40,9 @@ function getItems(userId, archived, callback) {
     var response = {
       isBase64Encoded: false,
       statusCode: 200,
-      headers: {},
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
       body: JSON.stringify(results),
     };
     callback(null, response);
@@ -52,7 +56,9 @@ function updateItem(id, timestamp, item, callback) {
     var response = {
       isBase64Encoded: false,
       statusCode: 200,
-      headers: {},
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
       body: JSON.stringify(results),
     };
     callback(null, response);
@@ -66,7 +72,9 @@ function deleteItem(id, timestamp, callback) {
     var response = {
       isBase64Encoded: false,
       statusCode: 200,
-      headers: {},
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
       body: JSON.stringify(results),
     };
     callback(null, response);
@@ -100,7 +108,9 @@ exports.handler = (event, context, callback) => {
       var errorResponse = {
         isBase64Encoded: false,
         statusCode: 500,
-        headers: {},
+        headers: {
+          "Access-Control-Allow-Origin": "*",
+        },
         body: JSON.stringify(error),
       };
       return callback(errorResponse);
