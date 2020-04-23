@@ -78,6 +78,10 @@ exports.handler = (event, context, callback) => {
   if (event.path === "/login") {
     if (event.httpMethod === "POST") {
       var body = JSON.parse(event.body);
+
+      console.log(event.body);
+      console.log(body);
+
       var response = {
         isBase64Encoded: false,
         statusCode: 200,
