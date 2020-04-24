@@ -132,7 +132,7 @@ exports.handler = (event, context, callback) => {
 
     // Get Page Info
     if (event.path === "/get-page-info") {
-      if (event.httpMethod === "GET") {
+      if (event.httpMethod === "POST") {
         return getPageInfo(JSON.parse(event.body), callback);
       }
     }
