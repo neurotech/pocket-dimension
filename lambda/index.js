@@ -111,7 +111,7 @@ exports.handler = (event, context, callback) => {
             callback
           );
         } else {
-          return callback("Missing ID or timestamp!");
+          return callback(responses.error("Missing ID or timestamp!"));
         }
       }
     }
