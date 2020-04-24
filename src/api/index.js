@@ -30,7 +30,7 @@ module.exports = {
   update: function updateItem(token, item, callback) {
     cpjax(
       {
-        url: `https://api.pocket-dimension.space/item/update/?id=${item.id}&timestamp=${item.timestamp}`,
+        url: `https://api.pocket-dimension.space/item/update?id=${item.id}&timestamp=${item.timestamp}`,
         method: "PUT",
         json: true,
         auth: `Bearer ${token}`,
