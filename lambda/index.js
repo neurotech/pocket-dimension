@@ -23,9 +23,6 @@ function constructItem(payload) {
 function createItem(userId, body, callback) {
   var item = constructItem(JSON.parse(body));
 
-  console.warn("USERID: " + userId);
-  console.warn("ITEM: " + item);
-
   if (item.generateTitle || item.title === "") {
     getPageInfo(item.body, (error, pageInfo) => {
       if (error) return callback(responses.error(error));
@@ -136,7 +133,10 @@ exports.handler = (event, context, callback) => {
     // Get Page Info
     if (event.path === "/get-page-info") {
       if (event.httpMethod === "POST") {
-        return getPageInfo(JSON.parse(event.body), callback);
+        return getPageInfo(JSON.parse(event.body), (error, pageInfo) => {
+          if (error) return callback(responses.error(error));
+          callback(null, responses.success(pageInfo));
+        });
       }
     }
   });

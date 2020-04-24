@@ -19,8 +19,6 @@ module.exports = function getPageInfoFromUrl(url, callback) {
 
     let title = processHtml(response.body);
 
-    console.warn(title);
-
-    callback(null, responses.success({ title }));
+    callback(null, { title });
   });
 };
