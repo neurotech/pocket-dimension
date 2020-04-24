@@ -22,7 +22,7 @@ function constructItem(payload) {
 
 function createItem(userId, body, callback) {
   var item = constructItem(JSON.parse(body));
-
+  console.warn(item);
   if (item.generateTitle || item.title === "") {
     getPageInfo(item.body, (error, pageInfo) => {
       if (error) return callback(responses.error(error));
