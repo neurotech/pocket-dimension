@@ -22,7 +22,8 @@ function constructItem(payload) {
 
 function createItem(userId, body, callback) {
   var item = constructItem(JSON.parse(body));
-  console.warn(item);
+  item.userId = userId;
+
   if (item.generateTitle || item.title === "") {
     getPageInfo(item.body, (error, pageInfo) => {
       if (error) return callback(responses.error(error));
@@ -83,7 +84,6 @@ exports.handler = (event, context, callback) => {
     // Create an Item
     if (event.path === "/item/create") {
       if (event.httpMethod === "POST") {
-        console.warn(user);
         return createItem(user.userId, event.body, callback);
       }
     }
