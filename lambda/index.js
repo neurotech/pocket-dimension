@@ -63,11 +63,11 @@ exports.handler = (event, context, callback) => {
 
   // Authenticate
   auth.validateSessionToken(event, (error, user) => {
-    if (error) return callback(responses.unauthorised(message));
+    if (error) return callback(responses.unauthorised(error));
     // Token is valid, continue to routing
 
     // Create an Item
-    if (event.path === "/items/create") {
+    if (event.path === "/item/create") {
       if (event.httpMethod === "POST") {
         return createItem(user.userId, event.body, callback);
       }

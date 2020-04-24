@@ -13,7 +13,7 @@ function handlePassword(payload, callback) {
   );
 
   var result = sessionToken.get((token) => ({
-    data: token,
+    token: token,
   }));
 
   result(callback);

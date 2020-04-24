@@ -48,7 +48,7 @@ module.exports = {
   create: function postItem(token, item, callback) {
     cpjax(
       {
-        url: "https://api.pocket-dimension.space/items/create",
+        url: "https://api.pocket-dimension.space/item/create",
         method: "POST",
         auth: `Bearer ${token}`,
         json: true,
@@ -58,7 +58,7 @@ module.exports = {
         if (error) {
           return callback(error);
         }
-        let items = JSON.parse(data).data;
+        let items = JSON.parse(data);
         callback(null, items);
       }
     );
@@ -67,7 +67,7 @@ module.exports = {
     item: function deleteItem(token, id, timestamp, callback) {
       cpjax(
         {
-          url: `https://api.pocket-dimension.space/items/delete/?id=${id}&timestamp=${timestamp}`,
+          url: `https://api.pocket-dimension.space/item/delete/?id=${id}&timestamp=${timestamp}`,
           method: "DELETE",
           auth: `Bearer ${token}`,
           json: true,
@@ -113,7 +113,7 @@ module.exports = {
         if (error) {
           return callback(error);
         }
-        let token = JSON.parse(data).data;
+        let token = JSON.parse(data).token;
         callback(null, token);
       }
     );
