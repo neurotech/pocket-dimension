@@ -83,6 +83,7 @@ exports.handler = (event, context, callback) => {
     // Create an Item
     if (event.path === "/item/create") {
       if (event.httpMethod === "POST") {
+        console.warn(user);
         return createItem(user.userId, event.body, callback);
       }
     }
