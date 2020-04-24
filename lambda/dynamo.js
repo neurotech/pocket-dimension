@@ -34,10 +34,8 @@ function createUpdateExpression(data) {
 // Thanks to @korynunn for these three functions ↑
 
 function create(userId, item, callback) {
-  item.userId = userId;
+  item.userId = userId.toString();
   dynamo.put({ TableName: "pocket-dimension", Item: item }, (error, records) => {
-    console.warn("ERROR: " + error);
-    console.warn("RESULTS: " + results);
     if (error) return callback(error);
     return callback(null, records);
   });

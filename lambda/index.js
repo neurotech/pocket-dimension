@@ -1,5 +1,6 @@
 const auth = require("./auth/index.js");
 const db = require("./dynamo.js");
+const responses = require("./util/responses.js");
 const uuid = require("./util/uuid.js");
 
 function constructItem(payload) {
@@ -21,63 +22,29 @@ function constructItem(payload) {
 function createItem(userId, body, callback) {
   var item = constructItem(JSON.parse(body));
   db.create(userId, item, (error, results) => {
-    if (error) return callback(error);
-    var response = {
-      isBase64Encoded: false,
-      statusCode: 200,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify(results),
-    };
-    callback(null, response);
+    if (error) return callback(responses.error(error));
+    callback(null, responses.success(results));
   });
 }
 
 function getItems(userId, archived, callback) {
   db.get(userId.toString(), archived, (error, results) => {
-    if (error) return callback(error);
-    var response = {
-      isBase64Encoded: false,
-      statusCode: 200,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify(results),
-    };
-    callback(null, response);
+    if (error) return callback(responses.error(error));
+    callback(null, responses.success(results));
   });
 }
 
 function updateItem(id, timestamp, item, callback) {
   db.update(id, timestamp, item, (error, results) => {
-    if (error) return callback(error);
-
-    var response = {
-      isBase64Encoded: false,
-      statusCode: 200,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify(results),
-    };
-    callback(null, response);
+    if (error) return callback(responses.error(error));
+    callback(null, responses.success(results));
   });
 }
 
 function deleteItem(id, timestamp, callback) {
   db.remove(id, timestamp, (error, results) => {
-    if (error) return callback(error);
-
-    var response = {
-      isBase64Encoded: false,
-      statusCode: 200,
-      headers: {
-        "Access-Control-Allow-Origin": "*",
-      },
-      body: JSON.stringify(results),
-    };
-    callback(null, response);
+    if (error) return callback(responses.error(error));
+    callback(null, responses.success(results));
   });
 }
 
@@ -88,33 +55,15 @@ exports.handler = (event, context, callback) => {
       var body = JSON.parse(event.body);
 
       return auth.login(body, (error, results) => {
-        if (error) return callback(error);
-        var response = {
-          isBase64Encoded: false,
-          statusCode: 200,
-          headers: {
-            "Access-Control-Allow-Origin": "*",
-          },
-          body: JSON.stringify(results),
-        };
-        callback(null, response);
+        if (error) return callback(responses.error(error));
+        callback(null, responses.success(results));
       });
     }
   }
 
   // Authenticate
   auth.validateSessionToken(event, (error, user) => {
-    if (error) {
-      var errorResponse = {
-        isBase64Encoded: false,
-        statusCode: 500,
-        headers: {
-          "Access-Control-Allow-Origin": "*",
-        },
-        body: JSON.stringify(error),
-      };
-      return callback(errorResponse);
-    }
+    if (error) return callback(responses.unauthorised(message));
     // Token is valid, continue to routing
 
     // Create an Item
