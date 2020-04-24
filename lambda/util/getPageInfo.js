@@ -1,6 +1,6 @@
 const tiny = require("tiny-json-http");
 const unescape = require("unescape");
-const responses = require("./util/responses.js");
+const responses = require("./responses.js");
 
 function matchTitle(html) {
   var match = html.match(/<title>(.*?)<\/title>/);
