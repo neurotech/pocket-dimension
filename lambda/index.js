@@ -12,7 +12,7 @@ function constructItem(payload) {
     id: id,
     userId: payload.userId,
     timestamp: timestamp,
-    title: payload.title,
+    title: payload.title || "",
     body: payload.body,
     type: payload.type || "note",
     generateTitle: payload.generateTitle || false,
@@ -23,7 +23,7 @@ function constructItem(payload) {
 function createItem(userId, body, callback) {
   var item = constructItem(JSON.parse(body));
 
-  if (item.generateTitle) {
+  if (item.generateTitle || item.title === "") {
     getPageInfo(item.body, (error, pageInfo) => {
       if (error) return callback(responses.error(error));
       item.title = pageInfo.title;
