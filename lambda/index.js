@@ -20,15 +20,15 @@ function constructItem(payload) {
 
 function createItem(userId, body, callback) {
   var item = constructItem(JSON.parse(body));
-  db.create(userId, item, (err) => {
-    if (err) return callback(err);
+  db.create(userId, item, (error, results) => {
+    if (error) return callback(error);
     var response = {
       isBase64Encoded: false,
       statusCode: 200,
       headers: {
         "Access-Control-Allow-Origin": "*",
       },
-      body: JSON.stringify(item),
+      body: JSON.stringify(results),
     };
     callback(null, response);
   });
