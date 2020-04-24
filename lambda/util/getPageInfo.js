@@ -14,6 +14,7 @@ function processHtml(html) {
 }
 
 module.exports = function getPageInfoFromUrl(url, callback) {
+  console.warn("GET PAGE INFO CALLED");
   tiny.get({ url }, (error, response) => {
     if (error) return callback(responses.error(error));
 
