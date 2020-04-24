@@ -18,9 +18,9 @@ function constructItem(payload) {
   };
 }
 
-function createItem(body, callback) {
+function createItem(userId, body, callback) {
   var item = constructItem(JSON.parse(body));
-  db.create(item, (err) => {
+  db.create(userId, item, (err) => {
     if (err) return callback(err);
     var response = {
       isBase64Encoded: false,
@@ -120,7 +120,7 @@ exports.handler = (event, context, callback) => {
     // Create an Item
     if (event.path === "/items/create") {
       if (event.httpMethod === "POST") {
-        return createItem(event.body, callback);
+        return createItem(user.userId, event.body, callback);
       }
     }
 
