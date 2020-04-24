@@ -67,7 +67,7 @@ module.exports = {
     item: function deleteItem(token, id, timestamp, callback) {
       cpjax(
         {
-          url: `https://api.pocket-dimension.space/item/delete/?id=${id}&timestamp=${timestamp}`,
+          url: `https://api.pocket-dimension.space/item/delete?id=${id}&timestamp=${timestamp}`,
           method: "DELETE",
           auth: `Bearer ${token}`,
           json: true,
