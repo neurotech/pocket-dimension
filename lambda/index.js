@@ -1,6 +1,7 @@
 const auth = require("./auth/index.js");
 const db = require("./dynamo.js");
 const responses = require("./util/responses.js");
+const getPageInfo = require("./util/getPageInfo.js");
 const uuid = require("./util/uuid.js");
 
 function constructItem(payload) {
@@ -21,10 +22,23 @@ function constructItem(payload) {
 
 function createItem(userId, body, callback) {
   var item = constructItem(JSON.parse(body));
-  db.create(userId, item, (error, results) => {
-    if (error) return callback(responses.error(error));
-    callback(null, responses.success(results));
-  });
+
+  if (item.generateTitle) {
+    getPageInfo(item.body, (error, pageInfo) => {
+      if (error) return callback(responses.error(error));
+      item.title = pageInfo.title;
+
+      db.create(userId, item, (error, results) => {
+        if (error) return callback(responses.error(error));
+        callback(null, responses.success(results));
+      });
+    });
+  } else {
+    db.create(userId, item, (error, results) => {
+      if (error) return callback(responses.error(error));
+      callback(null, responses.success(results));
+    });
+  }
 }
 
 function getItems(userId, archived, callback) {
@@ -113,6 +127,13 @@ exports.handler = (event, context, callback) => {
         } else {
           return callback(responses.error("Missing ID or timestamp!"));
         }
+      }
+    }
+
+    // Get Page Info
+    if (event.path === "/get-page-info") {
+      if (event.httpMethod === "GET") {
+        return getPageInfo(JSON.parse(event.body), callback);
       }
     }
   });

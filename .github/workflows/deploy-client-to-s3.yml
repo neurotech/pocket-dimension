@@ -32,7 +32,7 @@ jobs:
         AWS_REGION: ${{ secrets.AWS_REGION }}
         SOURCE_DIR: 'build'
 
-    - name: invalidate cloudfront distribution and wait for completion
+    - name: Invalidate CloudFront distribution and wait for completion
       uses: muratiger/invalidate-cloudfront-and-wait-for-completion-action@master
       env:
         DISTRIBUTION_ID: ${{ secrets.DISTRIBUTION_ID }}

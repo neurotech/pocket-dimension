@@ -8,6 +8,8 @@
   "dependencies": {
     "bcryptjs": "^2.4.3",
     "cryptr": "6.0.2",
-    "righto": "^6.0.1"
+    "righto": "^6.0.1",
+    "tiny-json-http": "^7.1.2",
+    "unescape": "^1.0.1"
   }
 }
