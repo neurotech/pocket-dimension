@@ -14,11 +14,12 @@ function processHtml(html) {
 }
 
 module.exports = function getPageInfoFromUrl(url, callback) {
-  console.warn("GET PAGE INFO CALLED");
   tiny.get({ url }, (error, response) => {
     if (error) return callback(responses.error(error));
 
     let title = processHtml(response.body);
+
+    console.warn(title);
 
     callback(null, responses.success({ title }));
   });

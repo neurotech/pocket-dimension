@@ -24,7 +24,7 @@ function createItem(userId, body, callback) {
   var item = constructItem(JSON.parse(body));
 
   console.warn("USERID: " + userId);
-  console.warn("ITEM: " + userId);
+  console.warn("ITEM: " + item);
 
   if (item.generateTitle || item.title === "") {
     getPageInfo(item.body, (error, pageInfo) => {
