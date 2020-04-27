@@ -15,10 +15,7 @@ function processHtml(html) {
 
 module.exports = function getPageInfoFromUrl(url, callback) {
   tiny.get({ url }, (error, response) => {
-    if (error) {
-      console.error(error);
-      return callback(responses.error(error));
-    }
+    if (error) response.body = "";
 
     let title = processHtml(response.body);
 
