@@ -8,16 +8,16 @@ function matchTitle(html) {
   return match[1];
 }
 
-function processHtml(html) {
+function processHtml(html, originalUrl) {
   let matchedTitle = matchTitle(html);
-  return !matchedTitle ? url : unescape(matchedTitle);
+  return !matchedTitle ? originalUrl : unescape(matchedTitle);
 }
 
 module.exports = function getPageInfoFromUrl(url, callback) {
   tiny.get({ url }, (error, response) => {
     if (error) return callback(null, { title: url });
 
-    let title = processHtml(response.body);
+    let title = processHtml(response.body, url);
 
     callback(null, { title });
   });
