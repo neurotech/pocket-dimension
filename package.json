@@ -9,7 +9,7 @@
   "author": "Tim Douglas",
   "license": "MIT",
   "homepage": "https://github.com/neurotech/pocket-dimension",
-  "devDependencies": {
+  "dependencies": {
     "cpjax": "^1.1.3",
     "crel": "^4.2.0",
     "crelns": "^1.0.1",
