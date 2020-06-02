@@ -1,5 +1,6 @@
 import React from "react";
 import LoginForm from "./LoginForm";
+import ItemDialog from "./ItemDialog.js";
 import ControlBar from "./ControlBar/ControlBar.js";
 import Items from "./Items";
 import initialState from "../util/initialState.js";
@@ -20,7 +21,7 @@ export default class App extends React.Component {
   }
 
   handlePaste = () => {
-    this.setState({ pasted: true });
+    !this.state.dialogOpen && this.setState({ pasted: true });
   };
 
   handleFetchItems = (archived) => {
@@ -45,11 +46,18 @@ export default class App extends React.Component {
   };
 
   handleArchiveMode = (event) => {
+    this.setState({ archiveMode: event.target.checked });
     this.handleFetchItems(event.target.checked);
   };
 
   handleCreateItem = () => {
-    // TODO
+    this.setState({ item: {} });
+    this.setState({ dialogOpen: true });
+  };
+
+  handleCloseDialog = () => {
+    this.setState({ item: {} });
+    this.setState({ dialogOpen: false });
   };
 
   handleLogout = () => {
@@ -59,7 +67,7 @@ export default class App extends React.Component {
   };
 
   render() {
-    const { theme, token } = this.state;
+    const { dialogOpen, item, theme, token } = this.state;
 
     if (!sessionStorage.getItem("token") && !token) {
       return (
@@ -72,7 +80,15 @@ export default class App extends React.Component {
     } else {
       return (
         <div onPaste={this.handlePaste}>
+          {dialogOpen && (
+            <ItemDialog
+              handleFetchItems={this.handleFetchItems}
+              handleCloseDialog={this.handleCloseDialog}
+              item={item}
+            />
+          )}
           <ControlBar
+            archiveMode={this.state.archiveMode}
             filterText={this.state.filterText}
             filterType={this.state.filterType}
             handleFetchItems={this.handleFetchItems}

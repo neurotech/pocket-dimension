@@ -1,6 +1,7 @@
 import React from "react";
 
 const ControlBar = ({
+  archiveMode,
   filterText,
   filterType,
   handleFetchItems,
@@ -15,7 +16,7 @@ const ControlBar = ({
   return (
     <div id="control-bar">
       <div id="refresh-items">
-        <button onClick={handleFetchItems}>↻</button>
+        <button onClick={() => handleFetchItems(archiveMode)}>↻</button>
       </div>
       <div id="type-filter">
         <button onClick={() => handleTypeFilter("all")}>

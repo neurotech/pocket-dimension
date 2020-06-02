@@ -7,6 +7,7 @@ const initialState = {
   filterType: "all",
   filteredItems: [],
   isLoading: false,
+  item: {},
   items: [],
   pasted: false,
   theme: "light",

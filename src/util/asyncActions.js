@@ -60,4 +60,19 @@ const deleteItem = async (id, timestamp) => {
   }
 };
 
-export { fetchItems, login, deleteItem };
+const createItem = async (item) => {
+  try {
+    const token = sessionStorage.getItem("token");
+    const options = {
+      method: "POST",
+      headers: getAuthorizationHeader(token),
+      body: JSON.stringify(item),
+    };
+    let response = await fetch(url.createItem, options);
+    return response.json();
+  } catch (error) {
+    return error;
+  }
+};
+
+export { createItem, fetchItems, login, deleteItem };
