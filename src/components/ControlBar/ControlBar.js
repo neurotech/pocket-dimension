@@ -2,16 +2,16 @@ import React from "react";
 
 const ControlBar = ({
   archiveMode,
+  darkMode,
   filterText,
   filterType,
   handleFetchItems,
   handleItemFilter,
   handleTypeFilter,
-  handleTheme,
+  handleDarkMode,
   handleArchiveMode,
   handleCreateItem,
   handleLogout,
-  theme,
 }) => {
   return (
     <div id="control-bar">
@@ -41,13 +41,9 @@ const ControlBar = ({
         ></input>
       </div>
       <div id="tools">
-        <div id="theme-toggle">
-          <input
-            type="checkbox"
-            checked={theme === "dark"}
-            onChange={handleTheme}
-          />
-          <label>{theme === "dark" ? "🌛" : "🌞"}</label>
+        <div id="dark-mode-toggle">
+          <input type="checkbox" checked={darkMode} onChange={handleDarkMode} />
+          <label>{darkMode ? "🌛" : "🌞"}</label>
         </div>
         <div id="archive-mode-toggle">
           <input type="checkbox" onChange={handleArchiveMode} />

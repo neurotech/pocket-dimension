@@ -3,9 +3,9 @@ import ReactMarkdown from "react-markdown";
 import CodeBlock from "./CodeBlock";
 import BookIcon from "heroicons/outline/book-open.svg";
 
-const DiaryItem = ({ item, theme }) => {
+const DiaryItem = ({ item, darkMode }) => {
   const renderCodeBlock = (props) => {
-    return <CodeBlock {...props} theme={theme} />;
+    return <CodeBlock {...props} darkMode={darkMode} />;
   };
 
   return (

@@ -1,16 +1,16 @@
 const initialState = {
   action: "create",
   archiveMode: false,
+  darkMode: false,
   dialogOpen: false,
   error: null,
   filterText: "",
   filterType: "all",
   filteredItems: [],
   isLoading: false,
-  item: {},
+  item: null,
   items: [],
   pasted: false,
-  theme: "light",
   token: null,
   type: "all",
 };

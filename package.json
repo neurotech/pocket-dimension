@@ -26,7 +26,6 @@
     "file-loader": "^6.0.0",
     "heroicons": "^0.2.0",
     "html-webpack-plugin": "^4.3.0",
-    "playroom": "^0.21.1",
     "react": "^16.13.1",
     "react-dom": "^16.13.1",
     "react-markdown": "^4.3.1",

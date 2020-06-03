@@ -2,7 +2,7 @@ import React from "react";
 import NoteItem from "./NoteItem.js";
 import LinkItem from "./LinkItem.js";
 import DiaryItem from "./DiaryItem.js";
-import { deleteItem } from "../util/asyncActions.js";
+import { updateItem, deleteItem } from "../util/asyncActions.js";
 
 export default class Items extends React.Component {
   constructor(props) {
@@ -13,10 +13,20 @@ export default class Items extends React.Component {
     this.props.handleFetchItems();
   }
 
+  handleArchiveItem = async (item) => {
+    try {
+      item.isArchived = !item.isArchived;
+      await updateItem(item);
+      this.props.handleFetchItems(this.props.archiveMode);
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
   handleDeleteItem = async (id, timestamp) => {
     try {
       await deleteItem(id, timestamp);
-      this.props.handleFetchItems();
+      this.props.handleFetchItems(this.props.archiveMode);
     } catch (error) {
       console.error(error);
     }
@@ -24,9 +34,10 @@ export default class Items extends React.Component {
 
   render() {
     const items = this.props.items;
-    const theme = this.props.theme;
+    const darkMode = this.props.darkMode;
     const filterText = this.props.filterText;
     const filterType = this.props.filterType;
+    const handleEditItem = this.props.handleEditItem;
 
     const renderItemByType = (items) => {
       const itemsFilteredByType = items.filter(
@@ -46,8 +57,10 @@ export default class Items extends React.Component {
               <NoteItem
                 item={item}
                 key={item.id}
-                theme={theme}
+                darkMode={darkMode}
+                handleArchiveItem={this.handleArchiveItem}
                 handleDeleteItem={this.handleDeleteItem}
+                handleEditItem={handleEditItem}
               />
             );
 
@@ -56,7 +69,9 @@ export default class Items extends React.Component {
               <LinkItem
                 item={item}
                 key={item.id}
+                handleArchiveItem={this.handleArchiveItem}
                 handleDeleteItem={this.handleDeleteItem}
+                handleEditItem={handleEditItem}
               />
             );
 
@@ -65,8 +80,10 @@ export default class Items extends React.Component {
               <DiaryItem
                 item={item}
                 key={item.id}
-                theme={theme}
+                darkMode={darkMode}
+                handleArchiveItem={this.handleArchiveItem}
                 handleDeleteItem={this.handleDeleteItem}
+                handleEditItem={handleEditItem}
               />
             );
         }

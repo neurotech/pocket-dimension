@@ -1,24 +1,33 @@
 import React, { useState } from "react";
-import { createItem } from "../util/asyncActions.js";
+import { createItem, updateItem } from "../util/asyncActions.js";
 
 const ItemDialog = ({ handleFetchItems, handleCloseDialog, item }) => {
   const [isLoading, setIsLoading] = useState(false);
-  const [itemType, setItemType] = useState("note");
-  const [itemTitle, setItemTitle] = useState("");
-  const [itemBody, setItemBody] = useState("");
+  const [itemType, setItemType] = useState(item ? item.type : "note");
+  const [itemTitle, setItemTitle] = useState(item ? item.title : "");
+  const [itemBody, setItemBody] = useState(item ? item.body : "");
 
   const handleSubmit = async () => {
     event.preventDefault();
 
     setIsLoading(true);
-    let item = {
+
+    let payload = {
       title: itemTitle,
       body: itemBody,
       generateTitle: false,
       isArchived: false,
       type: itemType,
     };
-    await createItem(item);
+
+    if (item) {
+      payload.id = item.id;
+      payload.timestamp = item.timestamp;
+      await updateItem(payload);
+    } else {
+      await createItem(payload);
+    }
+
     setIsLoading(false);
 
     handleCloseDialog();

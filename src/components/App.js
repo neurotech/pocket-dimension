@@ -11,12 +11,12 @@ export default class App extends React.Component {
     super(props);
     this.state = initialState;
 
-    let preferredTheme = localStorage.getItem("pocket-dimension:theme");
+    let darkMode = localStorage.getItem("pocket-dimension:dark-mode");
 
-    if (preferredTheme) {
-      this.state.theme = preferredTheme;
+    if (darkMode) {
+      this.state.darkMode = JSON.parse(darkMode);
     } else {
-      localStorage.setItem("pocket-dimension:theme", initialState.theme);
+      localStorage.setItem("pocket-dimension:dark-mode", initialState.darkMode);
     }
   }
 
@@ -37,12 +37,11 @@ export default class App extends React.Component {
     this.setState({ filterType: type });
   };
 
-  handleTheme = () => {
-    const currentTheme = this.state.theme;
-    const newTheme = currentTheme === "light" ? "dark" : "light";
+  handleDarkMode = (event) => {
+    const toggle = event.target.checked;
 
-    this.setState({ theme: newTheme });
-    localStorage.setItem("pocket-dimension:theme", newTheme);
+    this.setState({ darkMode: toggle });
+    localStorage.setItem("pocket-dimension:dark-mode", toggle);
   };
 
   handleArchiveMode = (event) => {
@@ -50,13 +49,18 @@ export default class App extends React.Component {
     this.handleFetchItems(event.target.checked);
   };
 
+  handleEditItem = (item) => {
+    this.setState({ item: item });
+    this.setState({ dialogOpen: true });
+  };
+
   handleCreateItem = () => {
-    this.setState({ item: {} });
+    this.setState({ item: null });
     this.setState({ dialogOpen: true });
   };
 
   handleCloseDialog = () => {
-    this.setState({ item: {} });
+    this.setState({ item: null });
     this.setState({ dialogOpen: false });
   };
 
@@ -67,7 +71,7 @@ export default class App extends React.Component {
   };
 
   render() {
-    const { dialogOpen, item, theme, token } = this.state;
+    const { archiveMode, dialogOpen, item, darkMode, token } = this.state;
 
     if (!sessionStorage.getItem("token") && !token) {
       return (
@@ -79,33 +83,40 @@ export default class App extends React.Component {
       );
     } else {
       return (
-        <div onPaste={this.handlePaste}>
+        <div
+          style={{
+            backgroundColor: darkMode ? "black" : "white",
+          }}
+          onPaste={this.handlePaste}
+        >
           {dialogOpen && (
             <ItemDialog
-              handleFetchItems={this.handleFetchItems}
               handleCloseDialog={this.handleCloseDialog}
+              handleFetchItems={this.handleFetchItems}
               item={item}
             />
           )}
           <ControlBar
             archiveMode={this.state.archiveMode}
+            darkMode={darkMode}
             filterText={this.state.filterText}
             filterType={this.state.filterType}
             handleFetchItems={this.handleFetchItems}
             handleItemFilter={this.handleItemFilter}
             handleTypeFilter={this.handleTypeFilter}
-            handleTheme={this.handleTheme}
+            handleDarkMode={this.handleDarkMode}
             handleArchiveMode={this.handleArchiveMode}
             handleCreateItem={this.handleCreateItem}
             handleLogout={this.handleLogout}
-            theme={theme}
           />
           <Items
-            handleFetchItems={this.handleFetchItems}
+            archiveMode={archiveMode}
+            darkMode={darkMode}
             filterText={this.state.filterText}
             filterType={this.state.filterType}
+            handleEditItem={this.handleEditItem}
+            handleFetchItems={this.handleFetchItems}
             items={this.state.items}
-            theme={theme}
           />
         </div>
       );

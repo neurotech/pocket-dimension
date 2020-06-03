@@ -75,4 +75,22 @@ const createItem = async (item) => {
   }
 };
 
-export { createItem, fetchItems, login, deleteItem };
+const updateItem = async (item) => {
+  try {
+    const token = sessionStorage.getItem("token");
+    const options = {
+      method: "PUT",
+      headers: getAuthorizationHeader(token),
+      body: JSON.stringify(item),
+    };
+    let response = await fetch(
+      url.updateItem(item.id, item.timestamp),
+      options
+    );
+    return response.json();
+  } catch (error) {
+    return error;
+  }
+};
+
+export { createItem, fetchItems, login, deleteItem, updateItem };
