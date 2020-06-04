@@ -1,10 +1,8 @@
 import React from "react";
 import ReactMarkdown from "react-markdown";
 import CodeBlock from "./CodeBlock";
-import EditItemButton from "./ItemControls/EditItemButton.js";
-import ArchiveItemButton from "./ItemControls/ArchiveItemButton.js";
-import DeleteItemButton from "./ItemControls/DeleteItemButton.js";
 import PaperClipIcon from "heroicons/outline/paper-clip.svg";
+import ItemControls from "./ItemControls/ItemControls.js";
 
 const NoteItem = ({
   item,
@@ -12,6 +10,7 @@ const NoteItem = ({
   handleArchiveItem,
   handleDeleteItem,
   handleEditItem,
+  handleFocusItem,
 }) => {
   const renderCodeBlock = (props) => {
     return <CodeBlock {...props} darkMode={darkMode} />;
@@ -21,9 +20,13 @@ const NoteItem = ({
     <div>
       <PaperClipIcon width={20} height={20} />
       <div>Title: {item.title}</div>
-      <EditItemButton item={item} handleEditItem={handleEditItem} />
-      <ArchiveItemButton item={item} handleArchiveItem={handleArchiveItem} />
-      <DeleteItemButton item={item} handleDeleteItem={handleDeleteItem} />
+      <ItemControls
+        item={item}
+        handleEditItem={handleEditItem}
+        handleFocusItem={handleFocusItem}
+        handleArchiveItem={handleArchiveItem}
+        handleDeleteItem={handleDeleteItem}
+      />
       <ReactMarkdown source={item.body} renderers={{ code: renderCodeBlock }} />
     </div>
   );

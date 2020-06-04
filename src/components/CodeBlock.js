@@ -1,5 +1,5 @@
 import React from "react";
-import { PrismAsyncLight as SyntaxHighlighter } from "react-syntax-highlighter";
+import { PrismLight as SyntaxHighlighter } from "react-syntax-highlighter";
 import {
   duotoneEarth as dark,
   duotoneLight as light,

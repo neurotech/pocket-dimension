@@ -1,8 +1,12 @@
 import React, { useState } from "react";
 import { login } from "../util/asyncActions.js";
+import {
+  LOGIN,
+  SET_IS_LOADING_OFF,
+  SET_IS_LOADING_ON,
+} from "../util/actionTypes";
 
-const Items = ({ setToken }) => {
-  const [isLoading, setIsLoading] = useState(false);
+const Items = ({ dispatch, isLoading }) => {
   const [username, setUsername] = useState(null);
   const [password, setPassword] = useState(null);
   const [error, setError] = useState(null);
@@ -11,15 +15,15 @@ const Items = ({ setToken }) => {
     event.preventDefault();
     if (!sessionStorage.getItem("token")) {
       setError(null);
-      setIsLoading(true);
+      dispatch({ type: SET_IS_LOADING_ON });
 
       let response = await login(username, password);
 
-      setIsLoading(false);
+      dispatch({ type: SET_IS_LOADING_OFF });
 
       if (response.token) {
         sessionStorage.setItem("token", response.token);
-        setToken(response.token);
+        dispatch({ type: LOGIN, payload: response.token });
       } else {
         setError("Invalid credentials.");
       }

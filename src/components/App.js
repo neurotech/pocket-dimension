@@ -1,126 +1,89 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect, useReducer } from "react";
 import LoginForm from "./LoginForm";
 import ItemDialog from "./ItemDialog.js";
 import ControlBar from "./ControlBar/ControlBar.js";
 import Items from "./Items";
 import initialState from "../util/initialState.js";
 import { fetchItems } from "../util/asyncActions.js";
+import reducer from "../util/reducer.js";
+import {
+  FETCH_ITEMS_COMPLETE,
+  SET_DARK_MODE,
+  SET_IS_LOADING_OFF,
+  SET_IS_LOADING_ON,
+  SET_ITEM_DIALOG_CLOSED,
+} from "../util/actionTypes.js";
+import handleLinkPaste from "../util/clipboard";
 
 const App = () => {
-  const [archiveMode, setArchiveMode] = useState(initialState.archiveMode);
-  const [darkMode, setDarkMode] = useState(initialState.darkMode);
-  const [dialogOpen, setDialogOpen] = useState(initialState.dialogOpen);
-  const [error, setError] = useState(initialState.error);
-  const [filterText, setFilterText] = useState(initialState.filterText);
-  const [filterType, setFilterType] = useState(initialState.filterType);
-  const [item, setItem] = useState(initialState.item);
-  const [items, setItems] = useState(initialState.items);
-  const [pasted, setPasted] = useState(initialState.pasted);
-  const [token, setToken] = useState(initialState.token);
-
-  const handlePaste = () => {
-    !dialogOpen && setPasted(true);
-  };
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   const handleFetchItems = async (archived) => {
     try {
+      dispatch({ type: SET_IS_LOADING_ON });
       let fetchedItems = await fetchItems(archived);
-      setItems(fetchedItems);
+      dispatch({ type: FETCH_ITEMS_COMPLETE, payload: fetchedItems });
     } catch (error) {
       console.error(error);
     }
+    dispatch({ type: SET_IS_LOADING_OFF });
   };
 
-  const handleItemFilter = (event) => {
-    const input = event ? event.target.value : "";
-    setFilterText(input);
+  const handleKeyboard = (event) => {
+    if (state.dialogOpen) {
+      if (event.key === "Escape" || event.key === "Esc") {
+        dispatch({ type: SET_ITEM_DIALOG_CLOSED });
+      }
+    }
   };
 
-  const handleTypeFilter = (type) => {
-    setFilterType(type);
-  };
-
-  const handleDarkMode = (event) => {
-    const toggle = event.target.checked;
-
-    setDarkMode(toggle);
-    localStorage.setItem("pocket-dimension:dark-mode", toggle);
-  };
-
-  const handleArchiveMode = (event) => {
-    setArchiveMode(event.target.checked);
-    handleFetchItems(event.target.checked);
-  };
-
-  const handleEditItem = (item) => {
-    setItem(item);
-    setDialogOpen(true);
-  };
-
-  const handleCreateItem = () => {
-    setItem(null);
-    setDialogOpen(true);
-  };
-
-  const handleCloseDialog = () => {
-    setItem(null);
-    setDialogOpen(false);
-  };
-
-  const handleLogout = () => {
-    sessionStorage.removeItem("token");
-    setItems([]);
-    setToken(null);
+  const handlePaste = (event) => {
+    !state.dialogOpen &&
+      handleLinkPaste(event, handleFetchItems, state.archiveMode, dispatch);
   };
 
   useEffect(() => {
-    let darkMode = localStorage.getItem("pocket-dimension:dark-mode");
-
-    if (darkMode) {
-      darkMode = JSON.parse(darkMode);
+    let currentDarkModeSetting = localStorage.getItem(
+      "pocket-dimension:dark-mode"
+    );
+    if (currentDarkModeSetting) {
+      dispatch({
+        type: SET_DARK_MODE,
+        payload: JSON.parse(currentDarkModeSetting),
+      });
     } else {
       localStorage.setItem("pocket-dimension:dark-mode", initialState.darkMode);
     }
   }, []);
 
-  if (!sessionStorage.getItem("token") && !token) {
-    return <LoginForm setToken={setToken} />;
+  if (!sessionStorage.getItem("token") && !state.token) {
+    return <LoginForm dispatch={dispatch} isLoading={state.isLoading} />;
   } else {
     return (
-      <div
-        style={{
-          backgroundColor: darkMode ? "black" : "white",
-        }}
-        onPaste={handlePaste}
-      >
-        {dialogOpen && (
+      <div onPaste={handlePaste} onKeyDown={handleKeyboard}>
+        {state.dialogOpen && (
           <ItemDialog
-            handleCloseDialog={handleCloseDialog}
+            dispatch={dispatch}
             handleFetchItems={handleFetchItems}
-            item={item}
+            item={state.item}
           />
         )}
         <ControlBar
-          archiveMode={archiveMode}
-          darkMode={darkMode}
-          filterText={filterText}
-          filterType={filterType}
+          archiveMode={state.archiveMode}
+          darkMode={state.darkMode}
+          dispatch={dispatch}
+          filterText={state.filterText}
+          filterType={state.filterType}
           handleFetchItems={handleFetchItems}
-          handleItemFilter={handleItemFilter}
-          handleTypeFilter={handleTypeFilter}
-          handleDarkMode={handleDarkMode}
-          handleArchiveMode={handleArchiveMode}
-          handleCreateItem={handleCreateItem}
-          handleLogout={handleLogout}
         />
         <Items
-          archiveMode={archiveMode}
-          darkMode={darkMode}
-          filterText={filterText}
-          filterType={filterType}
-          handleEditItem={handleEditItem}
+          archiveMode={state.archiveMode}
+          darkMode={state.darkMode}
+          dispatch={dispatch}
+          filterText={state.filterText}
+          filterType={state.filterType}
           handleFetchItems={handleFetchItems}
-          items={items}
+          items={state.items}
         />
       </div>
     );

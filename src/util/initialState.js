@@ -1,11 +1,12 @@
+import itemTypes from "../util/itemTypes.js";
+
 const initialState = {
-  action: "create",
   archiveMode: false,
   darkMode: false,
   dialogOpen: false,
   error: null,
   filterText: "",
-  filterType: "all",
+  filterType: itemTypes.all,
   filteredItems: [],
   isLoading: false,
   item: null,
