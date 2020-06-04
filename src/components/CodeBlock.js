@@ -1,4 +1,4 @@
-import React, { PureComponent } from "react";
+import React from "react";
 import { PrismAsyncLight as SyntaxHighlighter } from "react-syntax-highlighter";
 import {
   duotoneEarth as dark,
@@ -17,22 +17,15 @@ SyntaxHighlighter.registerLanguage("jsx", jsx);
 SyntaxHighlighter.registerLanguage("lua", lua);
 SyntaxHighlighter.registerLanguage("shell", shell);
 
-class CodeBlock extends PureComponent {
-  static defaultProps = {
-    language: null,
-  };
-
-  render() {
-    const { language, value, darkMode } = this.props;
-    return (
-      <SyntaxHighlighter
-        language={language || "text"}
-        style={darkMode ? dark : light}
-      >
-        {value}
-      </SyntaxHighlighter>
-    );
-  }
-}
+const CodeBlock = ({ language, value, darkMode }) => {
+  return (
+    <SyntaxHighlighter
+      language={language || "text"}
+      style={darkMode ? dark : light}
+    >
+      {value}
+    </SyntaxHighlighter>
+  );
+};
 
 export default CodeBlock;

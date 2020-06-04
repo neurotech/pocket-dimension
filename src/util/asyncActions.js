@@ -4,33 +4,20 @@ const getAuthorizationHeader = (token) => ({
   Authorization: `Bearer ${token}`,
 });
 
-const fetchItems = (state, token, archived) => {
-  state.setState({
-    isLoading: false,
-  });
-
+const fetchItems = async (archived) => {
+  const token = sessionStorage.getItem("token");
   const urlToFetch = archived ? url.archivedItems : url.allItems;
 
-  const options = {
-    headers: getAuthorizationHeader(token),
-  };
-
-  fetch(urlToFetch, options)
-    .then((res) => res.json())
-    .then(
-      (result) => {
-        state.setState({
-          isLoading: true,
-          items: result,
-        });
-      },
-      (error) => {
-        state.setState({
-          isLoading: true,
-          error,
-        });
-      }
-    );
+  try {
+    const options = {
+      method: "GET",
+      headers: getAuthorizationHeader(token),
+    };
+    let response = await fetch(urlToFetch, options);
+    return response.json();
+  } catch (error) {
+    return error;
+  }
 };
 
 const login = async (username, password) => {

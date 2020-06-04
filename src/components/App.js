@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import LoginForm from "./LoginForm";
 import ItemDialog from "./ItemDialog.js";
 import ControlBar from "./ControlBar/ControlBar.js";
@@ -6,120 +6,125 @@ import Items from "./Items";
 import initialState from "../util/initialState.js";
 import { fetchItems } from "../util/asyncActions.js";
 
-export default class App extends React.Component {
-  constructor(props) {
-    super(props);
-    this.state = initialState;
+const App = () => {
+  const [archiveMode, setArchiveMode] = useState(initialState.archiveMode);
+  const [darkMode, setDarkMode] = useState(initialState.darkMode);
+  const [dialogOpen, setDialogOpen] = useState(initialState.dialogOpen);
+  const [error, setError] = useState(initialState.error);
+  const [filterText, setFilterText] = useState(initialState.filterText);
+  const [filterType, setFilterType] = useState(initialState.filterType);
+  const [item, setItem] = useState(initialState.item);
+  const [items, setItems] = useState(initialState.items);
+  const [pasted, setPasted] = useState(initialState.pasted);
+  const [token, setToken] = useState(initialState.token);
 
-    let darkMode = localStorage.getItem("pocket-dimension:dark-mode");
+  const handlePaste = () => {
+    !dialogOpen && setPasted(true);
+  };
 
-    if (darkMode) {
-      this.state.darkMode = JSON.parse(darkMode);
-    } else {
-      localStorage.setItem("pocket-dimension:dark-mode", initialState.darkMode);
+  const handleFetchItems = async (archived) => {
+    try {
+      let fetchedItems = await fetchItems(archived);
+      setItems(fetchedItems);
+    } catch (error) {
+      console.error(error);
     }
-  }
-
-  handlePaste = () => {
-    !this.state.dialogOpen && this.setState({ pasted: true });
   };
 
-  handleFetchItems = (archived) => {
-    fetchItems(this, sessionStorage.getItem("token"), archived);
-  };
-
-  handleItemFilter = (event) => {
+  const handleItemFilter = (event) => {
     const input = event ? event.target.value : "";
-    this.setState({ filterText: input });
+    setFilterText(input);
   };
 
-  handleTypeFilter = (type) => {
-    this.setState({ filterType: type });
+  const handleTypeFilter = (type) => {
+    setFilterType(type);
   };
 
-  handleDarkMode = (event) => {
+  const handleDarkMode = (event) => {
     const toggle = event.target.checked;
 
-    this.setState({ darkMode: toggle });
+    setDarkMode(toggle);
     localStorage.setItem("pocket-dimension:dark-mode", toggle);
   };
 
-  handleArchiveMode = (event) => {
-    this.setState({ archiveMode: event.target.checked });
-    this.handleFetchItems(event.target.checked);
+  const handleArchiveMode = (event) => {
+    setArchiveMode(event.target.checked);
+    handleFetchItems(event.target.checked);
   };
 
-  handleEditItem = (item) => {
-    this.setState({ item: item });
-    this.setState({ dialogOpen: true });
+  const handleEditItem = (item) => {
+    setItem(item);
+    setDialogOpen(true);
   };
 
-  handleCreateItem = () => {
-    this.setState({ item: null });
-    this.setState({ dialogOpen: true });
+  const handleCreateItem = () => {
+    setItem(null);
+    setDialogOpen(true);
   };
 
-  handleCloseDialog = () => {
-    this.setState({ item: null });
-    this.setState({ dialogOpen: false });
+  const handleCloseDialog = () => {
+    setItem(null);
+    setDialogOpen(false);
   };
 
-  handleLogout = () => {
+  const handleLogout = () => {
     sessionStorage.removeItem("token");
-    this.setState({ items: [] });
-    this.setState({ token: null });
+    setItems([]);
+    setToken(null);
   };
 
-  render() {
-    const { archiveMode, dialogOpen, item, darkMode, token } = this.state;
+  useEffect(() => {
+    let darkMode = localStorage.getItem("pocket-dimension:dark-mode");
 
-    if (!sessionStorage.getItem("token") && !token) {
-      return (
-        <LoginForm
-          setToken={(token) => {
-            this.setState({ token });
-          }}
-        />
-      );
+    if (darkMode) {
+      darkMode = JSON.parse(darkMode);
     } else {
-      return (
-        <div
-          style={{
-            backgroundColor: darkMode ? "black" : "white",
-          }}
-          onPaste={this.handlePaste}
-        >
-          {dialogOpen && (
-            <ItemDialog
-              handleCloseDialog={this.handleCloseDialog}
-              handleFetchItems={this.handleFetchItems}
-              item={item}
-            />
-          )}
-          <ControlBar
-            archiveMode={this.state.archiveMode}
-            darkMode={darkMode}
-            filterText={this.state.filterText}
-            filterType={this.state.filterType}
-            handleFetchItems={this.handleFetchItems}
-            handleItemFilter={this.handleItemFilter}
-            handleTypeFilter={this.handleTypeFilter}
-            handleDarkMode={this.handleDarkMode}
-            handleArchiveMode={this.handleArchiveMode}
-            handleCreateItem={this.handleCreateItem}
-            handleLogout={this.handleLogout}
-          />
-          <Items
-            archiveMode={archiveMode}
-            darkMode={darkMode}
-            filterText={this.state.filterText}
-            filterType={this.state.filterType}
-            handleEditItem={this.handleEditItem}
-            handleFetchItems={this.handleFetchItems}
-            items={this.state.items}
-          />
-        </div>
-      );
+      localStorage.setItem("pocket-dimension:dark-mode", initialState.darkMode);
     }
+  }, []);
+
+  if (!sessionStorage.getItem("token") && !token) {
+    return <LoginForm setToken={setToken} />;
+  } else {
+    return (
+      <div
+        style={{
+          backgroundColor: darkMode ? "black" : "white",
+        }}
+        onPaste={handlePaste}
+      >
+        {dialogOpen && (
+          <ItemDialog
+            handleCloseDialog={handleCloseDialog}
+            handleFetchItems={handleFetchItems}
+            item={item}
+          />
+        )}
+        <ControlBar
+          archiveMode={archiveMode}
+          darkMode={darkMode}
+          filterText={filterText}
+          filterType={filterType}
+          handleFetchItems={handleFetchItems}
+          handleItemFilter={handleItemFilter}
+          handleTypeFilter={handleTypeFilter}
+          handleDarkMode={handleDarkMode}
+          handleArchiveMode={handleArchiveMode}
+          handleCreateItem={handleCreateItem}
+          handleLogout={handleLogout}
+        />
+        <Items
+          archiveMode={archiveMode}
+          darkMode={darkMode}
+          filterText={filterText}
+          filterType={filterType}
+          handleEditItem={handleEditItem}
+          handleFetchItems={handleFetchItems}
+          items={items}
+        />
+      </div>
+    );
   }
-}
+};
+
+export default App;
