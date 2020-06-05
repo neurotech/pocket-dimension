@@ -5,10 +5,9 @@ const getAuthorizationHeader = (token) => ({
 });
 
 const fetchItems = async (archived) => {
-  const token = sessionStorage.getItem("token");
-  const urlToFetch = archived ? url.archivedItems : url.allItems;
-
   try {
+    const token = sessionStorage.getItem("token");
+    const urlToFetch = archived ? url.archivedItems : url.allItems;
     const options = {
       method: "GET",
       headers: getAuthorizationHeader(token),

@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { useStore } from "../util/Store.js";
 import { login } from "../util/asyncActions.js";
 import {
   LOGIN,
@@ -6,7 +7,8 @@ import {
   SET_IS_LOADING_ON,
 } from "../util/actionTypes";
 
-const Items = ({ dispatch, isLoading }) => {
+const LoginForm = () => {
+  const { state, dispatch } = useStore();
   const [username, setUsername] = useState(null);
   const [password, setPassword] = useState(null);
   const [error, setError] = useState(null);
@@ -15,10 +17,9 @@ const Items = ({ dispatch, isLoading }) => {
     event.preventDefault();
     if (!sessionStorage.getItem("token")) {
       setError(null);
+
       dispatch({ type: SET_IS_LOADING_ON });
-
       let response = await login(username, password);
-
       dispatch({ type: SET_IS_LOADING_OFF });
 
       if (response.token) {
@@ -36,20 +37,20 @@ const Items = ({ dispatch, isLoading }) => {
         autoFocus
         required
         placeholder="Username"
-        disabled={isLoading}
+        disabled={state.isLoading}
         type={"text"}
         onChange={(event) => setUsername(event.target.value)}
       ></input>
       <input
         required
         placeholder="Password"
-        disabled={isLoading}
+        disabled={state.isLoading}
         type={"password"}
         onChange={(event) => setPassword(event.target.value)}
       ></input>
-      <button disabled={isLoading}>Login</button>
+      <button disabled={state.isLoading}>Login</button>
     </form>
   );
 };
 
-export default Items;
+export default LoginForm;

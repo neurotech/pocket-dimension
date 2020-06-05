@@ -7,6 +7,7 @@ import {
   LOGOUT,
   PASTE_EVENT,
   SET_DARK_MODE,
+  SET_ERROR,
   SET_IS_LOADING_OFF,
   SET_IS_LOADING_ON,
   SET_ITEM_DIALOG_CLOSED,
@@ -17,7 +18,7 @@ import {
 const reducer = (state, action) => {
   switch (action.type) {
     case FETCH_ITEMS_COMPLETE:
-      return { ...state, items: action.payload };
+      return { ...state, isLoading: false, items: action.payload };
 
     case FILTER_TEXT_CHANGED:
       return { ...state, filterText: action.payload };
@@ -38,6 +39,15 @@ const reducer = (state, action) => {
     case SET_DARK_MODE:
       localStorage.setItem("pocket-dimension:dark-mode", action.payload);
       return { ...state, darkMode: action.payload };
+
+    case SET_ERROR:
+      console.error(action.payload);
+      return {
+        ...state,
+        dialogOpen: false,
+        error: action.payload,
+        isloading: false,
+      };
 
     case SET_IS_LOADING_OFF:
       return { ...state, isLoading: false };

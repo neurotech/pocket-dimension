@@ -1,13 +1,12 @@
-import { createItem } from "./asyncActions.js";
-import { SET_IS_LOADING_OFF, SET_IS_LOADING_ON } from "./actionTypes.js";
+import { fetchItems, createItem } from "./asyncActions.js";
+import {
+  FETCH_ITEMS_COMPLETE,
+  SET_IS_LOADING_ON,
+  SET_ERROR,
+} from "./actionTypes.js";
 import itemTypes from "../util/itemTypes.js";
 
-const handleLinkPaste = async (
-  event,
-  handleFetchItems,
-  archiveMode,
-  dispatch
-) => {
+const handleLinkPaste = async (event, dispatch) => {
   const clipboard = event.clipboardData || window.clipboardData;
   const clipboardContents = clipboard.getData("text");
 
@@ -22,15 +21,16 @@ const handleLinkPaste = async (
       };
       dispatch({ type: SET_IS_LOADING_ON });
       await createItem(item);
-      dispatch({ type: SET_IS_LOADING_OFF });
 
-      await handleFetchItems(archiveMode);
+      let items = await fetchItems();
+      dispatch({ type: FETCH_ITEMS_COMPLETE, payload: items });
     } catch (ex) {
-      console.error(
-        "Could not automatically create a link post. An invalid URL was pasted."
-      );
+      dispatch({
+        type: SET_ERROR,
+        payload:
+          "Could not automatically create a link post. An invalid URL was pasted.",
+      });
     }
-    dispatch({ type: SET_IS_LOADING_OFF });
   }
 };
 

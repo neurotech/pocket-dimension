@@ -1,7 +1,7 @@
 import React from "react";
 
-const ArchiveItem = ({ item, handleArchiveItem }) => {
-  return <button onClick={() => handleArchiveItem(item)}>Archive Item</button>;
+const ArchiveItem = ({ handleArchiveItem }) => {
+  return <button onClick={handleArchiveItem}>Archive Item</button>;
 };
 
 export default ArchiveItem;

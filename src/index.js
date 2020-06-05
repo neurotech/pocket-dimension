@@ -1,9 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import { StoreProvider } from "./util/Store.js";
 import App from "./components/App";
 import "./css/index.css";
 
-ReactDOM.render(<App />, document.getElementById("root"));
+ReactDOM.render(
+  <StoreProvider>
+    <App />
+  </StoreProvider>,
+  document.getElementById("root")
+);
 
 window.addEventListener("load", function () {
   if (typeof history.pushState === "function") {

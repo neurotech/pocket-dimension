@@ -1,11 +1,7 @@
 import React from "react";
 
-const DeleteItem = ({ item, handleDeleteItem }) => {
-  return (
-    <button onClick={() => handleDeleteItem(item.id, item.timestamp)}>
-      Delete Item
-    </button>
-  );
+const DeleteItem = ({ handleDeleteItem }) => {
+  return <button onClick={handleDeleteItem}>Delete Item</button>;
 };
 
 export default DeleteItem;

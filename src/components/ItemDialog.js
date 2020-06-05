@@ -1,16 +1,23 @@
 import React, { useState } from "react";
-import { createItem, updateItem } from "../util/asyncActions.js";
+import { useStore } from "../util/Store.js";
+import { createItem, updateItem, fetchItems } from "../util/asyncActions.js";
 import {
+  FETCH_ITEMS_COMPLETE,
   SET_ITEM_DIALOG_CLOSED,
-  SET_IS_LOADING_OFF,
   SET_IS_LOADING_ON,
 } from "../util/actionTypes.js";
 import itemTypes from "../util/itemTypes.js";
 
-const ItemDialog = ({ dispatch, handleFetchItems, item }) => {
-  const [itemType, setItemType] = useState(item ? item.type : itemTypes.note);
-  const [itemTitle, setItemTitle] = useState(item ? item.title : "");
-  const [itemBody, setItemBody] = useState(item ? item.body : "");
+const ItemDialog = () => {
+  const { state, dispatch } = useStore();
+
+  const [itemType, setItemType] = useState(
+    state.item ? state.item.type : itemTypes.note
+  );
+  const [itemTitle, setItemTitle] = useState(
+    state.item ? state.item.title : ""
+  );
+  const [itemBody, setItemBody] = useState(state.item ? state.item.body : "");
 
   const handleSubmit = async () => {
     event.preventDefault();
@@ -25,18 +32,16 @@ const ItemDialog = ({ dispatch, handleFetchItems, item }) => {
       type: itemType,
     };
 
-    if (item) {
-      payload.id = item.id;
-      payload.timestamp = item.timestamp;
+    if (state.item) {
+      payload.id = state.item.id;
+      payload.timestamp = state.item.timestamp;
       await updateItem(payload);
     } else {
       await createItem(payload);
     }
 
-    await handleFetchItems(false);
-
-    dispatch({ type: SET_IS_LOADING_OFF });
-    dispatch({ type: SET_ITEM_DIALOG_CLOSED });
+    let items = await fetchItems(state.archiveMode);
+    dispatch({ type: FETCH_ITEMS_COMPLETE, payload: items });
   };
 
   const handleCtrlEnter = (event) => {

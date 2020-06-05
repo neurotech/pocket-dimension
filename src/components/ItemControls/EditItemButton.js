@@ -1,7 +1,7 @@
 import React from "react";
 
-const EditItem = ({ item, handleEditItem }) => {
-  return <button onClick={() => handleEditItem(item)}>Edit Item</button>;
+const EditItem = ({ handleEditItem }) => {
+  return <button onClick={handleEditItem}>Edit Item</button>;
 };
 
 export default EditItem;
