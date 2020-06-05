@@ -1,10 +1,9 @@
-import React, { useEffect, useReducer } from "react";
+import React, { useEffect } from "react";
 import { useStore } from "../util/Store.js";
 import LoginForm from "./LoginForm";
 import ItemDialog from "./ItemDialog.js";
 import ControlBar from "./ControlBar/ControlBar.js";
 import Items from "./Items";
-import { fetchItems } from "../util/asyncActions.js";
 import { SET_DARK_MODE } from "../util/actionTypes.js";
 import handleLinkPaste from "../util/clipboard.js";
 import handleKeydown from "../util/keyboard.js";
