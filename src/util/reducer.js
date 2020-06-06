@@ -13,9 +13,10 @@ import {
   SET_ITEM_DIALOG_CLOSED,
   SET_ITEM_DIALOG_OPEN,
   TOGGLE_ARCHIVE_MODE,
+  SET_THEME,
 } from "./actionTypes.js";
 
-const reducer = (state, action) => {
+const Reducer = (state, action) => {
   switch (action.type) {
     case FETCH_ITEMS_COMPLETE:
       return { ...state, isLoading: false, items: action.payload };
@@ -64,9 +65,12 @@ const reducer = (state, action) => {
     case SET_ITEM_DIALOG_OPEN:
       return { ...state, dialogOpen: true, item: action.payload };
 
+    case SET_THEME:
+      return { ...state, theme: action.payload };
+
     default:
       throw new Error();
   }
 };
 
-export default reducer;
+export default Reducer;

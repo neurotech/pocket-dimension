@@ -42,6 +42,7 @@ const ItemDialog = () => {
 
     let items = await fetchItems(state.archiveMode);
     dispatch({ type: FETCH_ITEMS_COMPLETE, payload: items });
+    dispatch({ type: SET_ITEM_DIALOG_CLOSED });
   };
 
   const handleCtrlEnter = (event) => {

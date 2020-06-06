@@ -12,6 +12,7 @@ const initialState = {
   item: null,
   items: [],
   pasted: false,
+  theme: "light",
   token: null,
   type: "all",
 };
