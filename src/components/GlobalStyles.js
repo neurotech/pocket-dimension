@@ -12,10 +12,23 @@ export const GlobalStyles = createGlobalStyle`
     outline: 0;
   }
 
+  ::selection {
+    background: ${({ theme }) => theme.selectionBackground};
+    color: ${({ theme }) => theme.selectionForeground};
+  }
+  ::-moz-selection {
+    background: ${({ theme }) => theme.selectionBackground};
+    color: ${({ theme }) => theme.selectionForeground};
+  }
+
   body {
     width: 100%;
     min-height: 100vh;
     font-family: ${({ theme }) => theme.fontFamily};
     background-color: ${({ theme }) => theme.bodyBackgroundColour};
+  }
+
+  a, a:visited {
+    color: ${({ theme }) => theme.linkForeground};
   }
 `;

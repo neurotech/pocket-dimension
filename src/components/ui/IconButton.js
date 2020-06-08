@@ -1,21 +1,33 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes, css } from "styled-components";
 
 const StyledButton = styled.button`
+  background: none;
   font-family: "Segoe UI";
   outline: none;
   cursor: pointer;
+`;
+
+const rotate = keyframes`
+  from {
+    transform: rotate(360deg);
+  }
+
+  to {
+    transform: rotate(0deg);
+  }
 `;
 
 const Icon = styled.div`
   line-height: 0;
   padding: ${({ theme }) => theme.iconButtonPadding};
   border-radius: ${({ theme }) => theme.buttonBorderRadius};
-  border-width: 2px;
+  border-width: ${({ theme }) => theme.borderWidth}px;
   border-style: solid;
   border-color: ${({ theme }) => theme.iconButtonBorder};
   background-color: ${({ theme }) => theme.iconButtonBackground};
   color: ${({ theme }) => theme.iconButtonText};
+  transition: border-color 0.15s, background-color 0.15s, color 0.15s;
   &:hover {
     background-color: ${({ theme }) => theme.iconButtonBackgroundHover};
   }
@@ -26,6 +38,7 @@ const NoteIcon = styled(Icon)`
   background-color: ${({ theme }) => theme.noteIconButtonBackground};
   &:hover {
     background-color: ${({ theme }) => theme.noteIconButtonBackgroundHover};
+    color: ${({ theme }) => theme.noteIconButtonBorder};
   }
 `;
 
@@ -34,6 +47,7 @@ const LinkIcon = styled(Icon)`
   background-color: ${({ theme }) => theme.linkIconButtonBackground};
   &:hover {
     background-color: ${({ theme }) => theme.linkIconButtonBackgroundHover};
+    color: ${({ theme }) => theme.linkIconButtonBorder};
   }
 `;
 
@@ -42,6 +56,7 @@ const DiaryIcon = styled(Icon)`
   background-color: ${({ theme }) => theme.diaryIconButtonBackground};
   &:hover {
     background-color: ${({ theme }) => theme.diaryIconButtonBackgroundHover};
+    color: ${({ theme }) => theme.diaryIconButtonBorder};
   }
 `;
 
@@ -72,7 +87,34 @@ const DeleteIcon = styled(Icon)`
   }
 `;
 
-const renderIconButton = (handleClick, variant, children) => {
+const rotationMixin = css`
+  animation: ${rotate} 2s linear infinite;
+`;
+
+const RefreshIcon = styled(Icon)`
+  background-color: ${({ theme }) => theme.refreshIconButtonBackground};
+  border-color: ${({ theme }) => theme.refreshIconButtonBorder};
+  color: ${({ theme }) => theme.refreshIconButtonText};
+  &:hover {
+    border-color: ${({ theme }) => theme.refreshIconButtonBorderHover};
+    background-color: ${({ theme }) => theme.refreshIconButtonBackgroundHover};
+    color: ${({ theme }) => theme.refreshIconButtonTextHover};
+  }
+  & svg {
+    ${(props) => (props.isLoading ? rotationMixin : "animation: none")};
+  }
+`;
+
+const AllIcon = styled(Icon)`
+  border-color: ${({ theme }) => theme.allIconButtonBorder};
+  background-color: ${({ theme }) => theme.allIconButtonBackground};
+  &:hover {
+    background-color: ${({ theme }) => theme.allIconButtonBackgroundHover};
+    color: ${({ theme }) => theme.allIconButtonBorder};
+  }
+`;
+
+const renderIconButton = (handleClick, variant, isLoading, children) => {
   let iconToRender = <Icon>{children}</Icon>;
 
   switch (variant) {
@@ -100,6 +142,16 @@ const renderIconButton = (handleClick, variant, children) => {
       iconToRender = <DeleteIcon>{children}</DeleteIcon>;
       break;
 
+    case "refresh":
+      iconToRender = (
+        <RefreshIcon isLoading={isLoading}>{children}</RefreshIcon>
+      );
+      break;
+
+    case "all":
+      iconToRender = <AllIcon>{children}</AllIcon>;
+      break;
+
     default:
       break;
   }
@@ -107,8 +159,13 @@ const renderIconButton = (handleClick, variant, children) => {
   return <StyledButton onClick={handleClick}>{iconToRender}</StyledButton>;
 };
 
-const IconButton = ({ handleClick, variant = "default", children }) => {
-  return renderIconButton(handleClick, variant, children);
+const IconButton = ({
+  handleClick,
+  variant = "default",
+  isLoading = false,
+  children,
+}) => {
+  return renderIconButton(handleClick, variant, isLoading, children);
 };
 
 export default IconButton;

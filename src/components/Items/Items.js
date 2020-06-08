@@ -73,7 +73,11 @@ const Items = () => {
     });
   };
 
-  return <Stack space="small">{renderItemByType(state.items)}</Stack>;
+  return (
+    <Stack space="small" padLastChild>
+      {renderItemByType(state.items)}
+    </Stack>
+  );
 };
 
 export default Items;

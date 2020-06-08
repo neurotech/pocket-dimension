@@ -1,17 +1,25 @@
 const fontFamily =
   "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji";
 const fontSize = 12;
+const borderWidth = 2;
 
 const buttonPadding = "0.5rem";
 const buttonBorderRadius = "0.33rem";
 const cardPadding = "1rem";
 const cardBorderRadius = "0.33rem";
+const controlBarPadding = "16px";
+const searchBarPadding = "0.6rem";
+const searchBarBorderRadius = "0.33rem";
 const iconButtonPadding = "0.5rem";
 
 const subTitleTextSize = "0.5rem";
 
 const lightPalette = {
+  palepink: "#ffdbef",
+  lightpink: "#ff66ba",
   pink: "rgb(255, 0, 139)",
+  darkpink: "#b30062",
+  darkerpink: "#54002e",
   lightblue: "#6b8bf5",
   blue: "rgb(80, 119, 243)",
   darkblue: "#234097",
@@ -24,6 +32,9 @@ const lightPalette = {
   lightgreen: "#46c3aa",
   green: "rgb(0, 184, 148)",
   darkgreen: "#006b55",
+  lightorange: "#ff808c",
+  orange: "#ff5161",
+  darkorange: "#d12335",
   purple: "rgb(162, 155, 254)",
   white: "rgb(255,255,255)",
   black: "rgb(5,5,5)",
@@ -35,7 +46,9 @@ const lightPalette = {
 
 const light = {
   fontSize,
+  linkForeground: lightPalette.pink,
   bodyBackgroundColour: lightPalette.palegray,
+  borderWidth,
   buttonBackgroundColour: lightPalette.white,
   buttonBorderRadius,
   buttonTextColour: lightPalette.black,
@@ -44,7 +57,9 @@ const light = {
   cardBorder: lightPalette.lightgray,
   cardBorderRadius,
   cardPadding,
-  controlBarBackgroundColour: lightPalette.pink,
+  controlBarBorderBottomColour: lightPalette.lightgray,
+  controlBarBackgroundColour: lightPalette.white,
+  controlBarPadding,
   fontFamily,
   noteIconButtonBorder: lightPalette.darkblue,
   noteIconButtonBackground: lightPalette.blue,
@@ -72,12 +87,39 @@ const light = {
   deleteIconButtonBackgroundHover: lightPalette.red,
   deleteIconButtonTextHover: lightPalette.white,
 
+  allIconButtonBorder: lightPalette.darkorange,
+  allIconButtonBackground: lightPalette.orange,
+  allIconButtonBackgroundHover: lightPalette.lightorange,
+  allIconButtonText: lightPalette.white,
+  allIconButtonTextHover: lightPalette.darkorange,
+
+  refreshIconButtonBackground: lightPalette.pink,
+  refreshIconButtonBackgroundHover: lightPalette.lightpink,
+  refreshIconButtonBorder: lightPalette.darkpink,
+  refreshIconButtonBorderHover: lightPalette.darkpink,
+  refreshIconButtonText: lightPalette.white,
+  refreshIconButtonTextHover: lightPalette.darkpink,
+
   iconButtonText: lightPalette.white,
   iconButtonPadding,
 
   subTitleTextSize,
   subtitleTextColour: lightPalette.darkgray,
   textColour: lightPalette.black,
+
+  arrowIndicatorColor: lightPalette.darkgray,
+
+  selectionBackground: lightPalette.pink,
+  selectionForeground: lightPalette.white,
+
+  searchBarPadding,
+  searchBarBorderRadius,
+  searchBarBorderColour: lightPalette.gray,
+  searchBarBackgroundColour: lightPalette.palegray,
+  searchBarTextPlaceholder: lightPalette.gray,
+  searchBarTextFocus: lightPalette.darkpink,
+  searchBarBorderFocus: lightPalette.pink,
+  searchBarBackgroundFocus: lightPalette.palepink,
 };
 
 const dark = {

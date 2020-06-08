@@ -20,8 +20,9 @@ import Controls from "./Controls.js";
 import styled from "styled-components";
 
 const StyledControlBar = styled.div`
+  border-bottom: 2px solid ${({ theme }) => theme.controlBarBorderBottomColour};
   background-color: ${({ theme }) => theme.controlBarBackgroundColour};
-  height: 100%;
+  padding: ${({ theme }) => theme.controlBarPadding};
 `;
 
 const ControlBar = () => {
@@ -44,6 +45,7 @@ const ControlBar = () => {
 
   const handleArchiveMode = async (event) => {
     dispatch({ type: TOGGLE_ARCHIVE_MODE });
+    dispatch({ type: SET_IS_LOADING_ON });
     let items = await fetchItems(event.target.checked);
     dispatch({ type: FETCH_ITEMS_COMPLETE, payload: items });
   };
@@ -68,10 +70,17 @@ const ControlBar = () => {
         <Column width="content">
           <Columns space="small">
             <Column>
-              <RefreshItems handleFetchItems={handleFetchItems} label={"↻"} />
+              <RefreshItems
+                handleFetchItems={handleFetchItems}
+                isLoading={state.isLoading}
+                label={"↻"}
+              />
             </Column>
             <Column>
-              <TypeSwitcher handleTypeFilter={handleTypeFilter} />
+              <TypeSwitcher
+                handleTypeFilter={handleTypeFilter}
+                filterType={state.filterType}
+              />
             </Column>
           </Columns>
         </Column>

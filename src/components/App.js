@@ -11,6 +11,7 @@ import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./GlobalStyles.js";
 import themes from "./ui/themes.js";
 import Stack from "./ui/layout/Stack.js";
+import initialState from "../util/initialState.js";
 
 const App = () => {
   const { state, dispatch } = useStore();
