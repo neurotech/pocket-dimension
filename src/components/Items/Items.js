@@ -2,13 +2,15 @@ import React, { useEffect } from "react";
 import NoteItem from "./NoteItem.js";
 import LinkItem from "./LinkItem.js";
 import DiaryItem from "./DiaryItem.js";
-import { fetchItems } from "../util/asyncActions.js";
+import { fetchItems } from "../../util/asyncActions.js";
 import {
   FETCH_ITEMS_COMPLETE,
   SET_IS_LOADING_ON,
-} from "../util/actionTypes.js";
-import itemTypes from "../util/itemTypes.js";
-import { useStore } from "../util/Store.js";
+  SET_ITEM_DIALOG_OPEN,
+} from "../../util/actionTypes.js";
+import itemTypes from "../../util/itemTypes.js";
+import { useStore } from "../../util/Store.js";
+import Stack from "../ui/layout/Stack.js";
 
 const Items = () => {
   const { state, dispatch } = useStore();
@@ -34,20 +36,44 @@ const Items = () => {
     );
 
     return itemsFilteredByText.map((item) => {
+      const handleEditItem = () => {
+        dispatch({ type: SET_ITEM_DIALOG_OPEN, payload: item });
+      };
+
       switch (item.type) {
         case itemTypes.note:
-          return <NoteItem item={item} key={item.id} />;
+          return (
+            <NoteItem
+              item={item}
+              key={item.id}
+              handleEditItem={handleEditItem}
+            />
+          );
 
         case itemTypes.link:
-          return <LinkItem item={item} key={item.id} />;
+          return (
+            <LinkItem
+              item={item}
+              key={item.id}
+              handleEditItem={handleEditItem}
+              darkMode={state.darkMode}
+            />
+          );
 
         case itemTypes.diary:
-          return <DiaryItem item={item} key={item.id} />;
+          return (
+            <DiaryItem
+              item={item}
+              key={item.id}
+              handleEditItem={handleEditItem}
+              darkMode={state.darkMode}
+            />
+          );
       }
     });
   };
 
-  return <div>{renderItemByType(state.items)}</div>;
+  return <Stack space="small">{renderItemByType(state.items)}</Stack>;
 };
 
 export default Items;

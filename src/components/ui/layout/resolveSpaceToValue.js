@@ -1,7 +1,13 @@
-const convertSpaceToValue = (space) => {
+const resolveSpaceToValue = (space) => {
   switch (space) {
     case "none":
       return "0";
+
+    case "xxsmall":
+      return "4px";
+
+    case "xsmall":
+      return "8px";
 
     case "small":
       return "16px";
@@ -17,4 +23,4 @@ const convertSpaceToValue = (space) => {
   }
 };
 
-export default convertSpaceToValue;
+export default resolveSpaceToValue;

@@ -3,13 +3,14 @@ import { useStore } from "../util/Store.js";
 import LoginForm from "./LoginForm";
 import ItemDialog from "./ItemDialog.js";
 import ControlBar from "./ControlBar/ControlBar.js";
-import Items from "./Items";
+import Items from "./Items/Items.js";
 import { SET_DARK_MODE, SET_THEME } from "../util/actionTypes.js";
 import handleLinkPaste from "../util/clipboard.js";
 import handleKeydown from "../util/keyboard.js";
 import { ThemeProvider } from "styled-components";
 import { GlobalStyles } from "./GlobalStyles.js";
 import themes from "./ui/themes.js";
+import Stack from "./ui/layout/Stack.js";
 
 const App = () => {
   const { state, dispatch } = useStore();
@@ -37,20 +38,20 @@ const App = () => {
       </ThemeProvider>
     );
   } else {
+    //     onPaste={() => handleLinkPaste(event, dispatch)}
+    // onKeyDown={(event) =>
+    //   handleKeydown(event, state.dialogOpen, dispatch)
+    // }
+    // style={{ opacity: state.isLoading ? 0.5 : 1 }}
+
     return (
       <ThemeProvider theme={themes[state.theme]}>
         <GlobalStyles />
-        <div
-          onPaste={() => handleLinkPaste(event, dispatch)}
-          onKeyDown={(event) =>
-            handleKeydown(event, state.dialogOpen, dispatch)
-          }
-          style={{ opacity: state.isLoading ? 0.5 : 1 }}
-        >
+        <Stack space="small">
           {state.dialogOpen && <ItemDialog />}
           <ControlBar />
           <Items />
-        </div>
+        </Stack>
       </ThemeProvider>
     );
   }

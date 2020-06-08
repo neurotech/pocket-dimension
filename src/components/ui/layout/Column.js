@@ -1,19 +1,24 @@
 import React, { useContext } from "react";
 import { ColumnsContext } from "./Columns.js";
 import styled from "styled-components";
-import convertSpaceToValue from "./convertSpaceToValue.js";
+import resolveSpaceToValue from "./resolveSpaceToValue.js";
 
-const Column = ({ children }) => {
+const StyledColumn = styled.div`
+  min-width: 0;
+  flex-shrink: ${(props) => (props.columnWidth === "content" ? 0 : 1)};
+  flex-grow: ${(props) => (props.columnWidth === "fill" ? 1 : 0)};
+  flex-basis: auto;
+  padding-left: ${(props) => resolveSpaceToValue(props.space)};
+`;
+
+const Column = ({ width, children }) => {
   const { space } = useContext(ColumnsContext);
 
-  const StyledColumn = styled.div`
-    margin: 0;
-    padding: 0;
-    border: 0;
-    padding-left: ${convertSpaceToValue(space)};
-  `;
-
-  return <StyledColumn>{children}</StyledColumn>;
+  return (
+    <StyledColumn columnWidth={width} space={space}>
+      {children}
+    </StyledColumn>
+  );
 };
 
 export default Column;

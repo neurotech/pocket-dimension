@@ -1,22 +1,30 @@
 import React, { createContext } from "react";
 import styled from "styled-components";
-import convertSpaceToValue from "./convertSpaceToValue.js";
+import resolveSpaceToValue from "./resolveSpaceToValue.js";
 
 export const ColumnsContext = createContext({ space: "small" });
 
-const Columns = ({ space, justifyContent, children }) => {
-  const StyledColumns = styled.div`
-    margin: 0;
-    padding: 0;
-    border: 0;
-    display: flex;
-    flex-direction: row;
-    justify-content: ${justifyContent ? justifyContent : "flex-start"};
-    margin-left: -${convertSpaceToValue(space)};
-  `;
+const StyledColumns = styled.div`
+  display: flex;
+  flex-direction: row;
+  align-items: ${(props) => props.alignItems};
+  justify-content: ${(props) =>
+    props.justifyContent ? props.justifyContent : "flex-start"};
+  margin-left: -${(props) => resolveSpaceToValue(props.space)};
+`;
 
+const Columns = ({
+  alignItems = "center",
+  space,
+  justifyContent,
+  children,
+}) => {
   return (
-    <StyledColumns>
+    <StyledColumns
+      alignItems={alignItems}
+      space={space}
+      justifyContent={justifyContent}
+    >
       <ColumnsContext.Provider value={{ space }}>
         {children}
       </ColumnsContext.Provider>

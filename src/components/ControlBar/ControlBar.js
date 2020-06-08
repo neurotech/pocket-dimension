@@ -9,12 +9,20 @@ import {
   LOGOUT,
   SET_IS_LOADING_ON,
 } from "../../util/actionTypes.js";
-import itemTypes from "../../util/itemTypes.js";
 import { fetchItems } from "../../util/asyncActions.js";
 import { useStore } from "../../util/Store.js";
-import TextButton from "../ui/TextButton.js";
 import Columns from "../ui/layout/Columns.js";
 import Column from "../ui/layout/Column.js";
+import RefreshItems from "./RefreshItems.js";
+import TypeSwitcher from "./TypeSwitcher.js";
+import SearchBar from "./SearchBar.js";
+import Controls from "./Controls.js";
+import styled from "styled-components";
+
+const StyledControlBar = styled.div`
+  background-color: ${({ theme }) => theme.controlBarBackgroundColour};
+  height: 100%;
+`;
 
 const ControlBar = () => {
   const { state, dispatch } = useStore();
@@ -55,69 +63,36 @@ const ControlBar = () => {
   };
 
   return (
-    <div id="control-bar">
-      <Columns justifyContent="space-between">
-        <Column>
+    <StyledControlBar>
+      <Columns space="small" justifyContent="space-between">
+        <Column width="content">
           <Columns space="small">
             <Column>
-              <TextButton handleClick={handleFetchItems} label={"↻"} />
+              <RefreshItems handleFetchItems={handleFetchItems} label={"↻"} />
             </Column>
             <Column>
-              <TextButton
-                handleClick={() => handleTypeFilter(itemTypes.all)}
-                label={"All"}
-              />
-            </Column>
-            <Column>
-              <TextButton
-                handleClick={() => handleTypeFilter(itemTypes.link)}
-                label={"Links"}
-              />
-            </Column>
-            <Column>
-              <TextButton
-                handleClick={() => handleTypeFilter(itemTypes.note)}
-                label={"Notes"}
-              />
-            </Column>
-            <Column>
-              <TextButton
-                handleClick={() => handleTypeFilter(itemTypes.diary)}
-                label={"Diary Entries"}
-              />
+              <TypeSwitcher handleTypeFilter={handleTypeFilter} />
             </Column>
           </Columns>
         </Column>
-        <Column>
-          <input
-            type="text"
-            placeholder="Search"
-            onChange={handleItemFilter}
-            value={state.filterText || ""}
-          ></input>
+        <Column width="fill">
+          <SearchBar
+            filterText={state.filterText}
+            handleItemFilter={handleItemFilter}
+          />
         </Column>
-        <Column>
-          <div id="dark-mode-toggle">
-            <input
-              type="checkbox"
-              checked={state.darkMode}
-              onChange={handleDarkMode}
-            />
-            <label>{state.darkMode ? "🌛" : "🌞"}</label>
-          </div>
-          <div id="archive-mode-toggle">
-            <input type="checkbox" onChange={handleArchiveMode} />
-            <label>⌚</label>
-          </div>
-          <div id="create-item">
-            <button onClick={handleCreateItem}>Create</button>
-          </div>
-          <div id="logout">
-            <button onClick={handleLogout}>Logout</button>
-          </div>
+        <Column width="content">
+          <Controls
+            archiveMode={state.archiveMode}
+            darkMode={state.darkMode}
+            handleDarkMode={handleDarkMode}
+            handleArchiveMode={handleArchiveMode}
+            handleCreateItem={handleCreateItem}
+            handleLogout={handleLogout}
+          />
         </Column>
       </Columns>
-    </div>
+    </StyledControlBar>
   );
 };
 

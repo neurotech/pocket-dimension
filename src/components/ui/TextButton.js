@@ -1,14 +1,23 @@
 import React from "react";
 import styled from "styled-components";
 
-const TextButton = ({ handleClick, label }) => {
-  const StyledButton = styled.button`
-    background: ${({ theme }) => theme.buttonBackgroundColour};
-    color: ${({ theme }) => theme.buttonTextColour};
-    padding: ${({ theme }) => theme.buttonPadding};
-  `;
+const StyledButton = styled.button`
+  font-family: "Segoe UI";
+  outline: none;
+  background: ${({ theme }) => theme.buttonBackgroundColour};
+  color: ${({ theme }) => theme.buttonTextColour};
+`;
 
-  return <StyledButton onClick={handleClick}>{label}</StyledButton>;
+const Label = styled.div`
+  padding: ${({ theme }) => theme.buttonPadding};
+`;
+
+const TextButton = ({ handleClick, label }) => {
+  return (
+    <StyledButton onClick={handleClick}>
+      <Label>{label}</Label>
+    </StyledButton>
+  );
 };
 
 export default TextButton;
