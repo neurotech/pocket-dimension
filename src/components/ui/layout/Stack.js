@@ -1,7 +1,7 @@
 import React, { Children } from "react";
 import flattenChildren from "react-keyed-flatten-children";
 import styled from "styled-components";
-import resolveSpaceToValue from "./resolveSpaceToValue";
+import resolveSpaceToValue from "../../../util/resolveSpaceToValue";
 import Box from "./Box";
 
 const StyledStack = styled.div`

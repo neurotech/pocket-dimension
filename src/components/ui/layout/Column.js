@@ -1,7 +1,7 @@
 import React, { useContext } from "react";
 import { ColumnsContext } from "./Columns.js";
 import styled from "styled-components";
-import resolveSpaceToValue from "./resolveSpaceToValue.js";
+import resolveSpaceToValue from "../../../util/resolveSpaceToValue.js";
 
 const StyledColumn = styled.div`
   min-width: 0;

@@ -1,6 +1,6 @@
 import React, { createContext } from "react";
 import styled from "styled-components";
-import resolveSpaceToValue from "./resolveSpaceToValue.js";
+import resolveSpaceToValue from "../../../util/resolveSpaceToValue.js";
 
 export const ColumnsContext = createContext({ space: "small" });
 

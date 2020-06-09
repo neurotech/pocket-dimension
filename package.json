@@ -4,7 +4,7 @@
   "description": "A tiny place to store tiny things.",
   "private": true,
   "scripts": {
-    "build": "webpack --mode production",
+    "build": "webpack --mode production --devtool none",
     "playroom:start": "playroom start",
     "playroom:build": "playroom build",
     "watch": "webpack-dev-server --open"
@@ -23,7 +23,6 @@
     "babel-loader": "^8.1.0",
     "babel-plugin-styled-components": "^1.10.7",
     "clean-webpack-plugin": "^3.0.0",
-    "css-loader": "^3.5.3",
     "file-loader": "^6.0.0",
     "heroicons": "^0.2.0",
     "html-webpack-plugin": "^4.3.0",
@@ -33,7 +32,6 @@
     "react-keyed-flatten-children": "^1.2.0",
     "react-markdown": "^4.3.1",
     "react-syntax-highlighter": "^12.2.1",
-    "style-loader": "^1.2.1",
     "styled-components": "^5.1.1",
     "webpack": "^4.43.0",
     "webpack-cli": "^3.3.11",
