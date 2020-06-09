@@ -26,10 +26,13 @@ const Controls = ({
         <label>⌚</label>
       </Column>
       <Column>
-        <TextButton onClick={handleCreateItem} label={"Create"}></TextButton>
+        <TextButton
+          handleClick={handleCreateItem}
+          label={"Create"}
+        ></TextButton>
       </Column>
       <Column>
-        <TextButton onClick={handleLogout} label={"Logout"}></TextButton>
+        <TextButton handleClick={handleLogout} label={"Logout"}></TextButton>
       </Column>
     </Columns>
   );
