@@ -9,3 +9,5 @@ A tiny place to store tiny things.
 - Component for App.js that receives onPaste, onKeyDown, wraps all
 - Divider component for pale thin line under post title/timestamp etc.
 - Finish: `C:\projects\pocket-dimension\src\components\Items\Markdown.js`
+- Dark Mode button
+- Archive Mode button
