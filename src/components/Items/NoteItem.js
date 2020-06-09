@@ -1,5 +1,5 @@
 import React from "react";
-import ReactMarkdown from "react-markdown";
+import Markdown from "./Markdown.js";
 import CodeBlock from "../CodeBlock.js";
 import PaperClipIcon from "heroicons/solid/paper-clip.svg";
 import ItemControls from "../ItemControls/ItemControls.js";
@@ -30,7 +30,7 @@ const NoteItem = ({ darkMode, handleEditItem, item }) => {
             </IconButton>
           </Column>
           <Column width="fill">
-            <Stack>
+            <Stack space="xxsmall">
               <Text size="large" weight="600">
                 {item.title}
               </Text>
@@ -41,10 +41,7 @@ const NoteItem = ({ darkMode, handleEditItem, item }) => {
             <ItemControls item={item} />
           </Column>
         </Columns>
-        <ReactMarkdown
-          source={item.body}
-          renderers={{ code: renderCodeBlock }}
-        />
+        <Markdown source={item.body} renderers={{ code: renderCodeBlock }} />
       </Stack>
     </ItemCard>
   );

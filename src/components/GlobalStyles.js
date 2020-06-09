@@ -29,6 +29,13 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   a, a:visited {
+    padding: ${({ theme }) => theme.linkPadding};
     color: ${({ theme }) => theme.linkForeground};
+  }
+
+  a:hover {
+    border-radius: ${({ theme }) => theme.linkBackgroundBorderRadius};
+    background-color: ${({ theme }) => theme.linkBackgroundHover};
+    color: ${({ theme }) => theme.linkForegroundHover};
   }
 `;

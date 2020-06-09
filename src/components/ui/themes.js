@@ -1,16 +1,22 @@
 const fontFamily =
   "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji";
 const fontSize = 12;
+const lineHeight = 25;
 const borderWidth = 2;
 
-const buttonPadding = "0.5rem";
 const buttonBorderRadius = "0.33rem";
-const cardPadding = "1rem";
+const codeBorderRadius = "0.33rem";
 const cardBorderRadius = "0.33rem";
+const searchBarBorderRadius = "0.33rem";
+const linkBackgroundBorderRadius = "0.33rem";
+
+const buttonPadding = "0.5rem";
+const cardPadding = "1rem";
 const controlBarPadding = "16px";
 const searchBarPadding = "0.6rem";
-const searchBarBorderRadius = "0.33rem";
 const iconButtonPadding = "0.5rem";
+const codePadding = "2px 4px";
+const linkPadding = "2px 1px";
 
 const subTitleTextSize = "0.5rem";
 
@@ -26,6 +32,7 @@ const lightPalette = {
   lightred: "#fb5083",
   red: "rgb(250, 20, 89)",
   darkred: "#c01145",
+  paleyellow: "#fff2c7",
   lightyellow: "#ffc561",
   yellow: "rgb(255, 184, 60)",
   darkyellow: "#ad7719",
@@ -46,7 +53,11 @@ const lightPalette = {
 
 const light = {
   fontSize,
+  lineHeight,
+  linkBackgroundHover: lightPalette.pink,
   linkForeground: lightPalette.pink,
+  linkForegroundHover: lightPalette.white,
+  linkBackgroundBorderRadius,
   bodyBackgroundColour: lightPalette.palegray,
   borderWidth,
   buttonBackgroundColour: lightPalette.white,
@@ -57,6 +68,8 @@ const light = {
   cardBorder: lightPalette.lightgray,
   cardBorderRadius,
   cardPadding,
+  codeBackground: lightPalette.paleyellow,
+  codeBorderRadius,
   controlBarBorderBottomColour: lightPalette.lightgray,
   controlBarBackgroundColour: lightPalette.white,
   controlBarPadding,
@@ -70,6 +83,9 @@ const light = {
   diaryIconButtonBorder: lightPalette.darkyellow,
   diaryIconButtonBackground: lightPalette.yellow,
   diaryIconButtonBackgroundHover: lightPalette.lightyellow,
+
+  codePadding,
+  linkPadding,
 
   iconButtonBorder: lightPalette.gray,
   iconButtonBackground: lightPalette.lightgray,

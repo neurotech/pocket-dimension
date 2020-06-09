@@ -11,6 +11,11 @@ module.exports = {
     filename: "main.js",
     path: buildPath,
   },
+  optimization: {
+    splitChunks: {
+      chunks: "all",
+    },
+  },
   plugins: [
     new CleanWebpackPlugin(),
     new HtmlWebpackPlugin({
