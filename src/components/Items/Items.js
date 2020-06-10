@@ -36,17 +36,15 @@ const Items = () => {
     );
 
     return itemsFilteredByText.map((item) => {
-      const handleEditItem = () => {
-        dispatch({ type: SET_ITEM_DIALOG_OPEN, payload: item });
-      };
-
       switch (item.type) {
         case itemTypes.note:
           return (
             <NoteItem
               item={item}
               key={item.id}
-              handleEditItem={handleEditItem}
+              handleEditItem={() => {
+                dispatch({ type: SET_ITEM_DIALOG_OPEN, payload: item });
+              }}
               darkMode={state.darkMode}
             />
           );
@@ -56,7 +54,9 @@ const Items = () => {
             <LinkItem
               item={item}
               key={item.id}
-              handleEditItem={handleEditItem}
+              handleEditItem={() => {
+                dispatch({ type: SET_ITEM_DIALOG_OPEN, payload: item });
+              }}
               darkMode={state.darkMode}
             />
           );
@@ -66,7 +66,9 @@ const Items = () => {
             <DiaryItem
               item={item}
               key={item.id}
-              handleEditItem={handleEditItem}
+              handleEditItem={() => {
+                dispatch({ type: SET_ITEM_DIALOG_OPEN, payload: item });
+              }}
               darkMode={state.darkMode}
             />
           );
@@ -81,4 +83,4 @@ const Items = () => {
   );
 };
 
-export default Items;
+export default React.memo(Items);

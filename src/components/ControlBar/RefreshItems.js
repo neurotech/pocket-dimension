@@ -1,17 +1,8 @@
 import React from "react";
-import IconButton from "../ui/IconButton.js";
-import RefreshIcon from "heroicons/solid/refresh.svg";
+import RefreshIconButton from "../ui/IconButtons/RefreshIconButton.js";
 
-const RefreshItems = ({ handleFetchItems, isLoading }) => {
-  return (
-    <IconButton
-      handleClick={handleFetchItems}
-      variant="refresh"
-      isLoading={isLoading}
-    >
-      <RefreshIcon width={20} height={20} />
-    </IconButton>
-  );
+const RefreshItems = ({ onClick, isLoading }) => {
+  return <RefreshIconButton onClick={onClick} isLoading={isLoading} />;
 };
 
 export default RefreshItems;

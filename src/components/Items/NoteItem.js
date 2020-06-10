@@ -8,9 +8,9 @@ import Column from "../ui/layout/Column.js";
 import Stack from "../ui/layout/Stack.js";
 import Text from "../ui/Text.js";
 import resolveTimestamp from "../../util/resolveTimestamp.js";
-import IconButton from "../ui/IconButton.js";
 import ItemCard from "./ItemCard.js";
 import Divider from "../ui/Divider.js";
+import NoteIconButton from "../ui/IconButtons/NoteIconButton.js";
 
 const NoteItem = ({ darkMode, handleEditItem, item }) => {
   const renderCodeBlock = (props) => {
@@ -26,9 +26,7 @@ const NoteItem = ({ darkMode, handleEditItem, item }) => {
           justifyContent="space-between"
         >
           <Column width="content">
-            <IconButton handleClick={handleEditItem} variant={item.type}>
-              <PaperClipIcon width={20} height={20} />
-            </IconButton>
+            <NoteIconButton onClick={handleEditItem} />
           </Column>
           <Column width="fill">
             <Stack space="xxsmall" padLastChild={false}>

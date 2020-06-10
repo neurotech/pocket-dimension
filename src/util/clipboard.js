@@ -6,11 +6,15 @@ import {
 } from "./actionTypes.js";
 import itemTypes from "../util/itemTypes.js";
 
-const handleLinkPaste = async (event, dispatch) => {
+const handleLinkPaste = async (event, dialogOpen, dispatch) => {
   const clipboard = event.clipboardData || window.clipboardData;
   const clipboardContents = clipboard.getData("text");
 
-  if (typeof clipboardContents === "string" && clipboardContents.length > 0) {
+  if (
+    !dialogOpen &&
+    typeof clipboardContents === "string" &&
+    clipboardContents.length > 0
+  ) {
     try {
       let url = new URL(clipboardContents);
       let item = {

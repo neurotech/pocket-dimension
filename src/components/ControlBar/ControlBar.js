@@ -18,6 +18,7 @@ import TypeSwitcher from "./TypeSwitcher.js";
 import SearchBar from "./SearchBar.js";
 import Controls from "./Controls.js";
 import styled from "styled-components";
+import RefreshIconButton from "../ui/IconButtons/RefreshIconButton.js";
 
 const StyledControlBar = styled.div`
   border-bottom: 2px solid ${({ theme }) => theme.controlBarBorderBottomColour};
@@ -70,15 +71,16 @@ const ControlBar = () => {
         <Column width="content">
           <Columns space="small">
             <Column>
-              <RefreshItems
-                handleFetchItems={handleFetchItems}
+              <RefreshIconButton
+                onClick={handleFetchItems}
                 isLoading={state.isLoading}
-                label={"↻"}
               />
             </Column>
             <Column>
               <TypeSwitcher
-                handleTypeFilter={handleTypeFilter}
+                handleTypeFilter={(type) =>
+                  dispatch({ type: FILTER_TYPE_CHANGED, payload: type })
+                }
                 filterType={state.filterType}
               />
             </Column>

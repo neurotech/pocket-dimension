@@ -1,13 +1,12 @@
 import React from "react";
 import { useStore } from "../../util/Store.js";
-import FocusItemButton from "./FocusItemButton.js";
-import ArchiveItemButton from "./ArchiveItemButton.js";
-import DeleteItemButton from "./DeleteItemButton.js";
+import FocusIconButton from "../ui/IconButtons/FocusIconButton.js";
+import ArchiveIconButton from "../ui/IconButtons/ArchiveIconButton.js";
+import DeleteIconButton from "../ui/IconButtons/DeleteIconButton.js";
 import { deleteItem, fetchItems, updateItem } from "../../util/asyncActions.js";
 import {
   FETCH_ITEMS_COMPLETE,
   SET_IS_LOADING_ON,
-  SET_ITEM_DIALOG_OPEN,
   FILTER_TEXT_CHANGED,
 } from "../../util/actionTypes.js";
 import Columns from "../ui/layout/Columns.js";
@@ -38,13 +37,13 @@ const ItemControls = ({ item }) => {
   return (
     <Columns space="xsmall">
       <Column>
-        <FocusItemButton handleFocusItem={handleFocusItem} />
+        <FocusIconButton onClick={handleFocusItem} />
       </Column>
       <Column>
-        <ArchiveItemButton handleArchiveItem={handleArchiveItem} />
+        <ArchiveIconButton onClick={handleArchiveItem} />
       </Column>
       <Column>
-        <DeleteItemButton handleDeleteItem={handleDeleteItem} />
+        <DeleteIconButton onClick={handleDeleteItem} />
       </Column>
     </Columns>
   );

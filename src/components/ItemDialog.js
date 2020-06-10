@@ -103,12 +103,12 @@ const ItemDialog = () => {
           onChange={(event) => setItemTitle(event.target.value)}
           value={itemTitle}
         ></input>
-        <input
+        <textarea
           type="body"
           placeholder="Body"
           onChange={(event) => setItemBody(event.target.value)}
           value={itemBody}
-        ></input>
+        ></textarea>
         <button>Post</button>
         <button type="button" onClick={handleCancel}>
           Cancel

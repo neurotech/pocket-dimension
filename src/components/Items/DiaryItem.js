@@ -1,16 +1,15 @@
 import React from "react";
 import Markdown from "./Markdown.js";
 import CodeBlock from "../CodeBlock";
-import BookIcon from "heroicons/solid/book-open.svg";
 import ItemControls from "../ItemControls/ItemControls.js";
 import Columns from "../ui/layout/Columns.js";
 import Column from "../ui/layout/Column.js";
 import Stack from "../ui/layout/Stack.js";
 import Text from "../ui/Text";
-import IconButton from "../ui/IconButton";
 import resolveTimestamp from "../../util/resolveTimestamp";
 import ItemCard from "./ItemCard";
 import Divider from "../ui/Divider.js";
+import DiaryIconButton from "../ui/IconButtons/DiaryIconButton.js";
 
 const DiaryItem = ({ darkMode, handleEditItem, item }) => {
   const renderCodeBlock = (props) => {
@@ -26,9 +25,7 @@ const DiaryItem = ({ darkMode, handleEditItem, item }) => {
           justifyContent="space-between"
         >
           <Column width="content">
-            <IconButton handleClick={handleEditItem} variant={item.type}>
-              <BookIcon width={20} height={20} />
-            </IconButton>
+            <DiaryIconButton onClick={handleEditItem} />
           </Column>
           <Column width="fill">
             <Stack space="xxsmall">

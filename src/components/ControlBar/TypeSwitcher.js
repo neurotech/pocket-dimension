@@ -2,51 +2,34 @@ import React from "react";
 import Columns from "../ui/layout/Columns.js";
 import Column from "../ui/layout/Column.js";
 import itemTypes from "../../util/itemTypes.js";
-import IconButton from "../ui/IconButton.js";
 import ArrowIndicator from "./ArrowIndicator.js";
-import HomeIcon from "heroicons/solid/home.svg";
-import LinkIcon from "heroicons/solid/link.svg";
-import PaperClipIcon from "heroicons/solid/paper-clip.svg";
-import BookIcon from "heroicons/solid/book-open.svg";
+import AllIconButton from "../ui/IconButtons/AllIconButton.js";
+import LinkIconButton from "../ui/IconButtons/LinkIconButton.js";
+import NoteIconButton from "../ui/IconButtons/NoteIconButton.js";
+import DiaryIconButton from "../ui/IconButtons/DiaryIconButton.js";
 
 const TypeSwitcher = ({ handleTypeFilter, filterType }) => {
   return (
     <Columns space="small">
       <Column>
-        <IconButton
-          handleClick={() => handleTypeFilter(itemTypes.all)}
-          variant={itemTypes.all}
-        >
-          <HomeIcon width={20} height={20} />
+        <AllIconButton onClick={() => handleTypeFilter(itemTypes.all)}>
           {filterType === itemTypes.all && <ArrowIndicator />}
-        </IconButton>
+        </AllIconButton>
       </Column>
       <Column>
-        <IconButton
-          handleClick={() => handleTypeFilter(itemTypes.link)}
-          variant={itemTypes.link}
-        >
-          <LinkIcon width={20} height={20} />
+        <LinkIconButton onClick={() => handleTypeFilter(itemTypes.link)}>
           {filterType === itemTypes.link && <ArrowIndicator />}
-        </IconButton>
+        </LinkIconButton>
       </Column>
       <Column>
-        <IconButton
-          handleClick={() => handleTypeFilter(itemTypes.note)}
-          variant={itemTypes.note}
-        >
-          <PaperClipIcon width={20} height={20} />
+        <NoteIconButton onClick={() => handleTypeFilter(itemTypes.note)}>
           {filterType === itemTypes.note && <ArrowIndicator />}
-        </IconButton>
+        </NoteIconButton>
       </Column>
       <Column>
-        <IconButton
-          handleClick={() => handleTypeFilter(itemTypes.diary)}
-          variant={itemTypes.diary}
-        >
-          <BookIcon width={20} height={20} />
+        <DiaryIconButton onClick={() => handleTypeFilter(itemTypes.diary)}>
           {filterType === itemTypes.diary && <ArrowIndicator />}
-        </IconButton>
+        </DiaryIconButton>
       </Column>
     </Columns>
   );

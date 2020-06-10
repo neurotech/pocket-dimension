@@ -2,9 +2,8 @@ import React from "react";
 import Columns from "../ui/layout/Columns";
 import Column from "../ui/layout/Column";
 import ToggleButton from "../ui/ToggleButton";
-import AddIcon from "heroicons/solid/document-add.svg";
-import LogoutIcon from "heroicons/solid/logout.svg";
-import IconButton from "../ui/IconButton";
+import CreateIconButton from "../ui/IconButtons/CreateIconButton.js";
+import LogoutIconButton from "../ui/IconButtons/LogoutIconButton.js";
 
 const Controls = ({
   archiveMode,
@@ -31,14 +30,10 @@ const Controls = ({
         />
       </Column>
       <Column>
-        <IconButton handleClick={handleCreateItem} variant={"create"}>
-          <AddIcon width={20} height={20} />
-        </IconButton>
+        <CreateIconButton onClick={handleCreateItem} />
       </Column>
       <Column>
-        <IconButton handleClick={handleLogout} variant={"logout"}>
-          <LogoutIcon width={20} height={20} />
-        </IconButton>
+        <LogoutIconButton onClick={handleLogout} />
       </Column>
     </Columns>
   );

@@ -6,8 +6,8 @@ import Column from "../ui/layout/Column.js";
 import Stack from "../ui/layout/Stack.js";
 import Text from "../ui/Text.js";
 import resolveTimestamp from "../../util/resolveTimestamp.js";
-import IconButton from "../ui/IconButton.js";
 import ItemCard from "./ItemCard.js";
+import LinkIconButton from "../ui/IconButtons/LinkIconButton.js";
 
 const LinkItem = ({ handleEditItem, item }) => {
   return (
@@ -18,9 +18,7 @@ const LinkItem = ({ handleEditItem, item }) => {
         justifyContent="space-between"
       >
         <Column width="content">
-          <IconButton handleClick={handleEditItem} variant={item.type}>
-            <LinkIcon width={20} height={20} />
-          </IconButton>
+          <LinkIconButton onClick={handleEditItem} />
         </Column>
         <Column width="fill">
           <Stack space="xxsmall">
