@@ -12,9 +12,13 @@ import { GlobalStyles } from "./GlobalStyles.js";
 import themes from "./ui/themes.js";
 import Stack from "./ui/layout/Stack.js";
 import initialState from "../util/initialState.js";
+import EventHandler from "./EventHandler.js";
 
 const App = () => {
   const { state, dispatch } = useStore();
+
+  const onPaste = () => handleLinkPaste(event, dispatch);
+  const onKeyDown = (event) => handleKeydown(event, state.dialogOpen, dispatch);
 
   useEffect(() => {
     let currentSetting = localStorage.getItem("pocket-dimension:dark-mode");
@@ -35,24 +39,22 @@ const App = () => {
     return (
       <ThemeProvider theme={themes[state.theme]}>
         <GlobalStyles />
-        <LoginForm />
+        <EventHandler onKeyDown={onKeyDown} onPaste={onPaste}>
+          <LoginForm />
+        </EventHandler>
       </ThemeProvider>
     );
   } else {
-    //     onPaste={() => handleLinkPaste(event, dispatch)}
-    // onKeyDown={(event) =>
-    //   handleKeydown(event, state.dialogOpen, dispatch)
-    // }
-    // style={{ opacity: state.isLoading ? 0.5 : 1 }}
-
     return (
       <ThemeProvider theme={themes[state.theme]}>
         <GlobalStyles />
-        <Stack space="small">
-          {state.dialogOpen && <ItemDialog />}
-          <ControlBar />
-          <Items />
-        </Stack>
+        <EventHandler onKeyDown={onKeyDown} onPaste={onPaste}>
+          <Stack space="small">
+            {state.dialogOpen && <ItemDialog />}
+            <ControlBar />
+            <Items />
+          </Stack>
+        </EventHandler>
       </ThemeProvider>
     );
   }

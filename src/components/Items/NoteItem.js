@@ -10,6 +10,7 @@ import Text from "../ui/Text.js";
 import resolveTimestamp from "../../util/resolveTimestamp.js";
 import IconButton from "../ui/IconButton.js";
 import ItemCard from "./ItemCard.js";
+import Divider from "../ui/Divider.js";
 
 const NoteItem = ({ darkMode, handleEditItem, item }) => {
   const renderCodeBlock = (props) => {
@@ -30,7 +31,7 @@ const NoteItem = ({ darkMode, handleEditItem, item }) => {
             </IconButton>
           </Column>
           <Column width="fill">
-            <Stack space="xxsmall">
+            <Stack space="xxsmall" padLastChild={false}>
               <Text size="large" weight="600">
                 {item.title}
               </Text>
@@ -41,6 +42,7 @@ const NoteItem = ({ darkMode, handleEditItem, item }) => {
             <ItemControls item={item} />
           </Column>
         </Columns>
+        <Divider />
         <Markdown source={item.body} renderers={{ code: renderCodeBlock }} />
       </Stack>
     </ItemCard>

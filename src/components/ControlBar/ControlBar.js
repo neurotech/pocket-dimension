@@ -39,14 +39,14 @@ const ControlBar = () => {
     dispatch({ type: FILTER_TYPE_CHANGED, payload: type });
   };
 
-  const handleDarkMode = (event) => {
-    dispatch({ type: SET_DARK_MODE, payload: event.target.checked });
+  const handleDarkMode = () => {
+    dispatch({ type: SET_DARK_MODE, payload: !state.darkMode });
   };
 
-  const handleArchiveMode = async (event) => {
+  const handleArchiveMode = async () => {
     dispatch({ type: TOGGLE_ARCHIVE_MODE });
     dispatch({ type: SET_IS_LOADING_ON });
-    let items = await fetchItems(event.target.checked);
+    let items = await fetchItems(!state.archiveMode);
     dispatch({ type: FETCH_ITEMS_COMPLETE, payload: items });
   };
 

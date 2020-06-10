@@ -20,5 +20,10 @@ const StyledReactMarkdown = styled(ReactMarkdown)`
     background-color: ${({ theme }) => theme.codeBackground};
     border-radius: ${({ theme }) => theme.codeBorderRadius};
   }
+
+  pre {
+    margin: 0 !important;
+    border-radius: ${({ theme }) => theme.codeBorderRadius};
+  }
 `;
 export default StyledReactMarkdown;

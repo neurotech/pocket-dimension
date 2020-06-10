@@ -10,6 +10,7 @@ import Text from "../ui/Text";
 import IconButton from "../ui/IconButton";
 import resolveTimestamp from "../../util/resolveTimestamp";
 import ItemCard from "./ItemCard";
+import Divider from "../ui/Divider.js";
 
 const DiaryItem = ({ darkMode, handleEditItem, item }) => {
   const renderCodeBlock = (props) => {
@@ -41,6 +42,7 @@ const DiaryItem = ({ darkMode, handleEditItem, item }) => {
             <ItemControls item={item} />
           </Column>
         </Columns>
+        <Divider />
         <Markdown source={item.body} renderers={{ code: renderCodeBlock }} />
       </Stack>
     </ItemCard>

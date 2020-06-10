@@ -114,10 +114,35 @@ const AllIcon = styled(Icon)`
   }
 `;
 
+const CreateIcon = styled(Icon)`
+  border-color: ${({ theme }) => theme.createIconButtonBorder};
+  background-color: ${({ theme }) => theme.createIconButtonBackground};
+  &:hover {
+    background-color: ${({ theme }) => theme.createIconButtonBackgroundHover};
+    color: ${({ theme }) => theme.createIconButtonBorder};
+  }
+`;
+
+const LogoutIcon = styled(Icon)`
+  border-color: ${({ theme }) => theme.logoutIconButtonBorder};
+  background-color: ${({ theme }) => theme.logoutIconButtonBackground};
+  &:hover {
+    background-color: ${({ theme }) => theme.logoutIconButtonBackgroundHover};
+    color: ${({ theme }) => theme.logoutIconButtonBorder};
+  }
+  & svg {
+    transform: scaleX(-1);
+  }
+`;
+
 const renderIconButton = (handleClick, variant, isLoading, children) => {
   let iconToRender = <Icon>{children}</Icon>;
 
   switch (variant) {
+    case "all":
+      iconToRender = <AllIcon>{children}</AllIcon>;
+      break;
+
     case "note":
       iconToRender = <NoteIcon>{children}</NoteIcon>;
       break;
@@ -148,8 +173,12 @@ const renderIconButton = (handleClick, variant, isLoading, children) => {
       );
       break;
 
-    case "all":
-      iconToRender = <AllIcon>{children}</AllIcon>;
+    case "create":
+      iconToRender = <CreateIcon>{children}</CreateIcon>;
+      break;
+
+    case "logout":
+      iconToRender = <LogoutIcon>{children}</LogoutIcon>;
       break;
 
     default:

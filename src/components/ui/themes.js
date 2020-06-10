@@ -42,7 +42,9 @@ const lightPalette = {
   lightorange: "#ff808c",
   orange: "#ff5161",
   darkorange: "#d12335",
-  purple: "rgb(162, 155, 254)",
+  lightpurple: "#9fa2f9",
+  purple: "#8386f5",
+  darkpurple: "#4d51d1",
   white: "rgb(255,255,255)",
   black: "rgb(5,5,5)",
   palegray: "#e8e8e8",
@@ -60,9 +62,12 @@ const light = {
   linkBackgroundBorderRadius,
   bodyBackgroundColour: lightPalette.palegray,
   borderWidth,
-  buttonBackgroundColour: lightPalette.white,
+  buttonBorder: lightPalette.darkpink,
+  buttonBackground: lightPalette.pink,
+  buttonBackgroundHover: lightPalette.lightpink,
+  buttonText: lightPalette.white,
+  buttonTextHover: lightPalette.darkpink,
   buttonBorderRadius,
-  buttonTextColour: lightPalette.black,
   buttonPadding,
   cardBackgroundColour: lightPalette.white,
   cardBorder: lightPalette.lightgray,
@@ -73,6 +78,7 @@ const light = {
   controlBarBorderBottomColour: lightPalette.lightgray,
   controlBarBackgroundColour: lightPalette.white,
   controlBarPadding,
+  dividerBackground: lightPalette.palegray,
   fontFamily,
   noteIconButtonBorder: lightPalette.darkblue,
   noteIconButtonBackground: lightPalette.blue,
@@ -116,6 +122,14 @@ const light = {
   refreshIconButtonText: lightPalette.white,
   refreshIconButtonTextHover: lightPalette.darkpink,
 
+  createIconButtonBorder: lightPalette.darkpurple,
+  createIconButtonBackground: lightPalette.purple,
+  createIconButtonBackgroundHover: lightPalette.lightpurple,
+
+  logoutIconButtonBorder: lightPalette.darkred,
+  logoutIconButtonBackground: lightPalette.red,
+  logoutIconButtonBackgroundHover: lightPalette.lightred,
+
   iconButtonText: lightPalette.white,
   iconButtonPadding,
 
@@ -138,8 +152,6 @@ const light = {
   searchBarBackgroundFocus: lightPalette.palepink,
 };
 
-const dark = {
-  // TODO
-};
+const dark = { bodyBackgroundColour: "black" };
 
-export default { light };
+export default { light, dark };

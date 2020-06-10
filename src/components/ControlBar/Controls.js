@@ -1,7 +1,10 @@
 import React from "react";
 import Columns from "../ui/layout/Columns";
 import Column from "../ui/layout/Column";
-import TextButton from "../ui/TextButton";
+import ToggleButton from "../ui/ToggleButton";
+import AddIcon from "heroicons/solid/document-add.svg";
+import LogoutIcon from "heroicons/solid/logout.svg";
+import IconButton from "../ui/IconButton";
 
 const Controls = ({
   archiveMode,
@@ -14,25 +17,28 @@ const Controls = ({
   return (
     <Columns space="small">
       <Column>
-        <input type="checkbox" checked={darkMode} onChange={handleDarkMode} />
-        <label>{darkMode ? "🌛" : "🌞"}</label>
-      </Column>
-      <Column>
-        <input
-          type="checkbox"
-          checked={archiveMode}
-          onChange={handleArchiveMode}
+        <ToggleButton
+          toggled={darkMode}
+          onClick={handleDarkMode}
+          variant={"darkMode"}
         />
-        <label>⌚</label>
       </Column>
       <Column>
-        <TextButton
-          handleClick={handleCreateItem}
-          label={"Create"}
-        ></TextButton>
+        <ToggleButton
+          toggled={archiveMode}
+          onClick={handleArchiveMode}
+          variant={"archive"}
+        />
       </Column>
       <Column>
-        <TextButton handleClick={handleLogout} label={"Logout"}></TextButton>
+        <IconButton handleClick={handleCreateItem} variant={"create"}>
+          <AddIcon width={20} height={20} />
+        </IconButton>
+      </Column>
+      <Column>
+        <IconButton handleClick={handleLogout} variant={"logout"}>
+          <LogoutIcon width={20} height={20} />
+        </IconButton>
       </Column>
     </Columns>
   );
