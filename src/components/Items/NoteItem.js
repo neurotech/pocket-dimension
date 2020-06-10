@@ -1,7 +1,6 @@
 import React from "react";
 import Markdown from "./Markdown.js";
 import CodeBlock from "../CodeBlock.js";
-import PaperClipIcon from "heroicons/solid/paper-clip.svg";
 import ItemControls from "../ItemControls/ItemControls.js";
 import Columns from "../ui/layout/Columns.js";
 import Column from "../ui/layout/Column.js";
@@ -10,11 +9,14 @@ import Text from "../ui/Text.js";
 import resolveTimestamp from "../../util/resolveTimestamp.js";
 import ItemCard from "./ItemCard.js";
 import Divider from "../ui/Divider.js";
-import NoteIconButton from "../ui/IconButtons/NoteIconButton.js";
+import EditNoteIconButton from "../ui/IconButtons/EditNoteIconButton.js";
+import { useStore } from "../../util/Store.js";
 
-const NoteItem = ({ darkMode, handleEditItem, item }) => {
+const NoteItem = ({ item }) => {
+  const { state } = useStore();
+
   const renderCodeBlock = (props) => {
-    return <CodeBlock {...props} darkMode={darkMode} />;
+    return <CodeBlock {...props} darkMode={state.darkMode} />;
   };
 
   return (
@@ -26,7 +28,7 @@ const NoteItem = ({ darkMode, handleEditItem, item }) => {
           justifyContent="space-between"
         >
           <Column width="content">
-            <NoteIconButton onClick={handleEditItem} />
+            <EditNoteIconButton item={item} />
           </Column>
           <Column width="fill">
             <Stack space="xxsmall" padLastChild={false}>
@@ -41,7 +43,10 @@ const NoteItem = ({ darkMode, handleEditItem, item }) => {
           </Column>
         </Columns>
         <Divider />
-        <Markdown source={item.body} renderers={{ code: renderCodeBlock }} />
+        <Markdown
+          source={item.body}
+          renderers={{ code: React.memo(renderCodeBlock) }}
+        />
       </Stack>
     </ItemCard>
   );

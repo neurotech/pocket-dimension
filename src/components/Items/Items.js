@@ -4,9 +4,9 @@ import LinkItem from "./LinkItem.js";
 import DiaryItem from "./DiaryItem.js";
 import { fetchItems } from "../../util/asyncActions.js";
 import {
-  FETCH_ITEMS_COMPLETE,
+  FETCH_ACTIVE_ITEMS_COMPLETE,
   SET_IS_LOADING_ON,
-  SET_ITEM_DIALOG_OPEN,
+  FETCH_ARCHIVED_ITEMS_COMPLETE,
 } from "../../util/actionTypes.js";
 import itemTypes from "../../util/itemTypes.js";
 import { useStore } from "../../util/Store.js";
@@ -19,7 +19,10 @@ const Items = () => {
     async function fetchItemsOnMount() {
       dispatch({ type: SET_IS_LOADING_ON });
       let items = await fetchItems(state.archiveMode);
-      dispatch({ type: FETCH_ITEMS_COMPLETE, payload: items });
+      let complete = state.archiveMode
+        ? FETCH_ARCHIVED_ITEMS_COMPLETE
+        : FETCH_ACTIVE_ITEMS_COMPLETE;
+      dispatch({ type: complete, payload: items });
     }
     fetchItemsOnMount();
   }, []);
@@ -38,47 +41,20 @@ const Items = () => {
     return itemsFilteredByText.map((item) => {
       switch (item.type) {
         case itemTypes.note:
-          return (
-            <NoteItem
-              item={item}
-              key={item.id}
-              handleEditItem={() => {
-                dispatch({ type: SET_ITEM_DIALOG_OPEN, payload: item });
-              }}
-              darkMode={state.darkMode}
-            />
-          );
+          return <NoteItem item={item} key={item.id} />;
 
         case itemTypes.link:
-          return (
-            <LinkItem
-              item={item}
-              key={item.id}
-              handleEditItem={() => {
-                dispatch({ type: SET_ITEM_DIALOG_OPEN, payload: item });
-              }}
-              darkMode={state.darkMode}
-            />
-          );
+          return <LinkItem item={item} key={item.id} />;
 
         case itemTypes.diary:
-          return (
-            <DiaryItem
-              item={item}
-              key={item.id}
-              handleEditItem={() => {
-                dispatch({ type: SET_ITEM_DIALOG_OPEN, payload: item });
-              }}
-              darkMode={state.darkMode}
-            />
-          );
+          return <DiaryItem item={item} key={item.id} />;
       }
     });
   };
 
   return (
     <Stack space="small" padLastChild>
-      {renderItemByType(state.items)}
+      {renderItemByType(state.archiveMode ? state.archivedItems : state.items)}
     </Stack>
   );
 };

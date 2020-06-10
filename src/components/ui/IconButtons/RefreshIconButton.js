@@ -1,8 +1,15 @@
 import React from "react";
 import styled, { keyframes, css } from "styled-components";
+import { useStore } from "../../../util/Store.js";
 import Button from "./Button.js";
 import Icon from "./Icon.js";
 import DoubleArrowsIcon from "heroicons/solid/refresh.svg";
+import {
+  SET_IS_LOADING_ON,
+  FETCH_ACTIVE_ITEMS_COMPLETE,
+  FETCH_ARCHIVED_ITEMS_COMPLETE,
+} from "../../../util/actionTypes.js";
+import { fetchItems } from "../../../util/asyncActions.js";
 
 const rotate = keyframes`
   from {
@@ -32,11 +39,22 @@ const RefreshIcon = styled(Icon)`
   }
 `;
 
-const RefreshIconButton = ({ onClick, isLoading }) => {
+const RefreshIconButton = () => {
+  const { state, dispatch } = useStore();
+
   return (
     <div>
-      <Button onClick={onClick}>
-        <RefreshIcon isLoading={isLoading}>
+      <Button
+        onClick={async () => {
+          dispatch({ type: SET_IS_LOADING_ON });
+          let items = await fetchItems(state.archiveMode);
+          let complete = state.archiveMode
+            ? FETCH_ARCHIVED_ITEMS_COMPLETE
+            : FETCH_ACTIVE_ITEMS_COMPLETE;
+          dispatch({ type: complete, payload: items });
+        }}
+      >
+        <RefreshIcon isLoading={state.isLoading}>
           <DoubleArrowsIcon width={20} height={20} />
         </RefreshIcon>
       </Button>

@@ -1,5 +1,7 @@
 import React from "react";
 import styled from "styled-components";
+import { FILTER_TEXT_CHANGED } from "../../util/actionTypes";
+import { useStore } from "../../util/Store";
 
 const StyledInput = styled.input`
   outline: 0;
@@ -26,14 +28,21 @@ const StyledInput = styled.input`
   }
 `;
 
-const SearchBar = ({ filterText, handleItemFilter }) => {
+const SearchBar = () => {
+  const { state, dispatch } = useStore();
+
   return (
     <StyledInput
       type="text"
       autoFocus
       placeholder="Search"
-      onChange={handleItemFilter}
-      value={filterText || ""}
+      onChange={(event) => {
+        dispatch({
+          type: FILTER_TEXT_CHANGED,
+          payload: event ? event.target.value : "",
+        });
+      }}
+      value={state.filterText || ""}
     ></StyledInput>
   );
 };

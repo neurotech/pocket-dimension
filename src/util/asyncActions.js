@@ -4,10 +4,10 @@ const getAuthorizationHeader = (token) => ({
   Authorization: `Bearer ${token}`,
 });
 
-const fetchItems = async (archived) => {
+const fetchArchivedItems = async () => {
   try {
     const token = sessionStorage.getItem("token");
-    const urlToFetch = archived ? url.archivedItems : url.allItems;
+    const urlToFetch = url.archivedItems;
     const options = {
       method: "GET",
       headers: getAuthorizationHeader(token),
@@ -17,6 +17,33 @@ const fetchItems = async (archived) => {
   } catch (error) {
     return error;
   }
+};
+
+const fetchActiveItems = async () => {
+  try {
+    const token = sessionStorage.getItem("token");
+    const urlToFetch = url.allItems;
+    const options = {
+      method: "GET",
+      headers: getAuthorizationHeader(token),
+    };
+    let response = await fetch(urlToFetch, options);
+    return response.json();
+  } catch (error) {
+    return error;
+  }
+};
+
+const fetchItems = async (archiveMode) => {
+  let items = [];
+
+  if (archiveMode) {
+    items = await fetchArchivedItems();
+  } else {
+    items = await fetchActiveItems();
+  }
+
+  return items;
 };
 
 const login = async (username, password) => {
@@ -79,4 +106,12 @@ const updateItem = async (item) => {
   }
 };
 
-export { createItem, fetchItems, login, deleteItem, updateItem };
+export {
+  createItem,
+  fetchActiveItems,
+  fetchArchivedItems,
+  fetchItems,
+  login,
+  deleteItem,
+  updateItem,
+};

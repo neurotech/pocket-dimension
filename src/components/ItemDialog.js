@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import { useStore } from "../util/Store.js";
 import { createItem, updateItem, fetchItems } from "../util/asyncActions.js";
 import {
-  FETCH_ITEMS_COMPLETE,
+  FETCH_ACTIVE_ITEMS_COMPLETE,
   SET_ITEM_DIALOG_CLOSED,
   SET_IS_LOADING_ON,
+  FETCH_ARCHIVED_ITEMS_COMPLETE,
 } from "../util/actionTypes.js";
 import itemTypes from "../util/itemTypes.js";
 
@@ -41,7 +42,10 @@ const ItemDialog = () => {
     }
 
     let items = await fetchItems(state.archiveMode);
-    dispatch({ type: FETCH_ITEMS_COMPLETE, payload: items });
+    let complete = state.archiveMode
+      ? FETCH_ARCHIVED_ITEMS_COMPLETE
+      : FETCH_ACTIVE_ITEMS_COMPLETE;
+    dispatch({ type: complete, payload: items });
     dispatch({ type: SET_ITEM_DIALOG_CLOSED });
   };
 

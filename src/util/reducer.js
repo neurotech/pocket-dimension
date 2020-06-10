@@ -1,6 +1,7 @@
 import initialState from "./initialState.js";
 import {
-  FETCH_ITEMS_COMPLETE,
+  FETCH_ACTIVE_ITEMS_COMPLETE,
+  FETCH_ARCHIVED_ITEMS_COMPLETE,
   FILTER_TEXT_CHANGED,
   FILTER_TYPE_CHANGED,
   LOGIN,
@@ -18,8 +19,11 @@ import {
 
 const Reducer = (state, action) => {
   switch (action.type) {
-    case FETCH_ITEMS_COMPLETE:
+    case FETCH_ACTIVE_ITEMS_COMPLETE:
       return { ...state, isLoading: false, items: action.payload };
+
+    case FETCH_ARCHIVED_ITEMS_COMPLETE:
+      return { ...state, isLoading: false, archivedItems: action.payload };
 
     case FILTER_TEXT_CHANGED:
       return { ...state, filterText: action.payload };

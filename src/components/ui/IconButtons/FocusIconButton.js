@@ -3,6 +3,8 @@ import styled from "styled-components";
 import Button from "./Button.js";
 import Icon from "./Icon.js";
 import EyeIcon from "heroicons/solid/eye.svg";
+import { FILTER_TEXT_CHANGED } from "../../../util/actionTypes.js";
+import { useStore } from "../../../util/Store.js";
 
 const FocusIcon = styled(Icon)`
   color: ${({ theme }) => theme.iconButtonBorder};
@@ -13,10 +15,16 @@ const FocusIcon = styled(Icon)`
   }
 `;
 
-const FocusIconButton = ({ onClick }) => {
+const FocusIconButton = ({ title }) => {
+  const { dispatch } = useStore();
+
   return (
     <div>
-      <Button onClick={onClick}>
+      <Button
+        onClick={() => {
+          dispatch({ type: FILTER_TEXT_CHANGED, payload: title });
+        }}
+      >
         <FocusIcon>
           <EyeIcon width={20} height={20} />
         </FocusIcon>

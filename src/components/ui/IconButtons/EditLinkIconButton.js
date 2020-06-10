@@ -3,9 +3,8 @@ import styled from "styled-components";
 import Button from "./Button.js";
 import Icon from "./Icon.js";
 import ChainIcon from "heroicons/solid/link.svg";
-import { FILTER_TYPE_CHANGED } from "../../../util/actionTypes.js";
+import { SET_ITEM_DIALOG_OPEN } from "../../../util/actionTypes.js";
 import { useStore } from "../../../util/Store.js";
-import itemTypes from "../../../util/itemTypes.js";
 
 const LinkIcon = styled(Icon)`
   border-color: ${({ theme }) => theme.linkIconButtonBorder};
@@ -16,14 +15,14 @@ const LinkIcon = styled(Icon)`
   }
 `;
 
-const LinkIconButton = ({ children }) => {
+const LinkIconButton = ({ item, children }) => {
   const { dispatch } = useStore();
 
   return (
     <div>
       <Button
         onClick={() => {
-          dispatch({ type: FILTER_TYPE_CHANGED, payload: itemTypes.link });
+          dispatch({ type: SET_ITEM_DIALOG_OPEN, payload: item });
         }}
       >
         <LinkIcon>

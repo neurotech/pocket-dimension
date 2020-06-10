@@ -9,11 +9,14 @@ import Text from "../ui/Text";
 import resolveTimestamp from "../../util/resolveTimestamp";
 import ItemCard from "./ItemCard";
 import Divider from "../ui/Divider.js";
-import DiaryIconButton from "../ui/IconButtons/DiaryIconButton.js";
+import EditDiaryIconButton from "../ui/IconButtons/EditDiaryIconButton.js";
+import { useStore } from "../../util/Store.js";
 
-const DiaryItem = ({ darkMode, handleEditItem, item }) => {
+const DiaryItem = ({ item }) => {
+  const { state } = useStore();
+
   const renderCodeBlock = (props) => {
-    return <CodeBlock {...props} darkMode={darkMode} />;
+    return <CodeBlock {...props} darkMode={state.darkMode} />;
   };
 
   return (
@@ -25,7 +28,7 @@ const DiaryItem = ({ darkMode, handleEditItem, item }) => {
           justifyContent="space-between"
         >
           <Column width="content">
-            <DiaryIconButton onClick={handleEditItem} />
+            <EditDiaryIconButton item={item} />
           </Column>
           <Column width="fill">
             <Stack space="xxsmall">
@@ -40,7 +43,10 @@ const DiaryItem = ({ darkMode, handleEditItem, item }) => {
           </Column>
         </Columns>
         <Divider />
-        <Markdown source={item.body} renderers={{ code: renderCodeBlock }} />
+        <Markdown
+          source={item.body}
+          renderers={{ code: React.memo(renderCodeBlock) }}
+        />
       </Stack>
     </ItemCard>
   );

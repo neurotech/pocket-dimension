@@ -7,28 +7,31 @@ import AllIconButton from "../ui/IconButtons/AllIconButton.js";
 import LinkIconButton from "../ui/IconButtons/LinkIconButton.js";
 import NoteIconButton from "../ui/IconButtons/NoteIconButton.js";
 import DiaryIconButton from "../ui/IconButtons/DiaryIconButton.js";
+import { useStore } from "../../util/Store.js";
 
-const TypeSwitcher = ({ handleTypeFilter, filterType }) => {
+const TypeSwitcher = () => {
+  const { state } = useStore();
+
   return (
     <Columns space="small">
       <Column>
-        <AllIconButton onClick={() => handleTypeFilter(itemTypes.all)}>
-          {filterType === itemTypes.all && <ArrowIndicator />}
+        <AllIconButton>
+          {state.filterType === itemTypes.all && <ArrowIndicator />}
         </AllIconButton>
       </Column>
       <Column>
-        <LinkIconButton onClick={() => handleTypeFilter(itemTypes.link)}>
-          {filterType === itemTypes.link && <ArrowIndicator />}
+        <LinkIconButton>
+          {state.filterType === itemTypes.link && <ArrowIndicator />}
         </LinkIconButton>
       </Column>
       <Column>
-        <NoteIconButton onClick={() => handleTypeFilter(itemTypes.note)}>
-          {filterType === itemTypes.note && <ArrowIndicator />}
+        <NoteIconButton>
+          {state.filterType === itemTypes.note && <ArrowIndicator />}
         </NoteIconButton>
       </Column>
       <Column>
-        <DiaryIconButton onClick={() => handleTypeFilter(itemTypes.diary)}>
-          {filterType === itemTypes.diary && <ArrowIndicator />}
+        <DiaryIconButton>
+          {state.filterType === itemTypes.diary && <ArrowIndicator />}
         </DiaryIconButton>
       </Column>
     </Columns>

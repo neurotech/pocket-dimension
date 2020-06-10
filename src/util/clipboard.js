@@ -1,6 +1,6 @@
-import { fetchItems, createItem } from "./asyncActions.js";
+import { fetchItems, createItem, fetchActiveItems } from "./asyncActions.js";
 import {
-  FETCH_ITEMS_COMPLETE,
+  FETCH_ACTIVE_ITEMS_COMPLETE,
   SET_IS_LOADING_ON,
   SET_ERROR,
 } from "./actionTypes.js";
@@ -26,8 +26,8 @@ const handleLinkPaste = async (event, dialogOpen, dispatch) => {
       dispatch({ type: SET_IS_LOADING_ON });
       await createItem(item);
 
-      let items = await fetchItems();
-      dispatch({ type: FETCH_ITEMS_COMPLETE, payload: items });
+      let items = await fetchActiveItems();
+      dispatch({ type: FETCH_ACTIVE_ITEMS_COMPLETE, payload: items });
     } catch (ex) {
       dispatch({
         type: SET_ERROR,

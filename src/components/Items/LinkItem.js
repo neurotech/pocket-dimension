@@ -1,5 +1,4 @@
 import React from "react";
-import LinkIcon from "heroicons/solid/link.svg";
 import ItemControls from "../ItemControls/ItemControls.js";
 import Columns from "../ui/layout/Columns.js";
 import Column from "../ui/layout/Column.js";
@@ -7,9 +6,9 @@ import Stack from "../ui/layout/Stack.js";
 import Text from "../ui/Text.js";
 import resolveTimestamp from "../../util/resolveTimestamp.js";
 import ItemCard from "./ItemCard.js";
-import LinkIconButton from "../ui/IconButtons/LinkIconButton.js";
+import EditLinkIconButton from "../ui/IconButtons/EditLinkIconButton.js";
 
-const LinkItem = ({ handleEditItem, item }) => {
+const LinkItem = ({ item }) => {
   return (
     <ItemCard>
       <Columns
@@ -18,7 +17,7 @@ const LinkItem = ({ handleEditItem, item }) => {
         justifyContent="space-between"
       >
         <Column width="content">
-          <LinkIconButton onClick={handleEditItem} />
+          <EditLinkIconButton item={item} />
         </Column>
         <Column width="fill">
           <Stack space="xxsmall">

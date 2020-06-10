@@ -1,6 +1,7 @@
 import itemTypes from "../util/itemTypes.js";
 
 const initialState = {
+  archivedItems: [],
   archiveMode: false,
   darkMode: false,
   dialogOpen: false,
