@@ -43,13 +43,10 @@ const DiaryItem = ({ item }) => {
           </Column>
         </Columns>
         <Divider />
-        <Markdown
-          source={item.body}
-          renderers={{ code: React.memo(renderCodeBlock) }}
-        />
+        <Markdown source={item.body} renderers={{ code: renderCodeBlock }} />
       </Stack>
     </ItemCard>
   );
 };
 
-export default DiaryItem;
+export default React.memo(DiaryItem);

@@ -43,13 +43,10 @@ const NoteItem = ({ item }) => {
           </Column>
         </Columns>
         <Divider />
-        <Markdown
-          source={item.body}
-          renderers={{ code: React.memo(renderCodeBlock) }}
-        />
+        <Markdown source={item.body} renderers={{ code: renderCodeBlock }} />
       </Stack>
     </ItemCard>
   );
 };
 
-export default NoteItem;
+export default React.memo(NoteItem);
