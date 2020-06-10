@@ -41,7 +41,7 @@ const lightPalette = {
   darkgreen: "#006b55",
   lightorange: "#ff808c",
   orange: "#ff5161",
-  darkorange: "#d12335",
+  darkorange: "#a21b29",
   lightpurple: "#9fa2f9",
   purple: "#8386f5",
   darkpurple: "#4d51d1",

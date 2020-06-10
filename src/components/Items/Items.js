@@ -47,6 +47,7 @@ const Items = () => {
               item={item}
               key={item.id}
               handleEditItem={handleEditItem}
+              darkMode={state.darkMode}
             />
           );
 

@@ -19,7 +19,6 @@ const StyledInput = styled.input`
     border-color: ${({ theme }) => theme.searchBarBorderFocus};
     background-color: ${({ theme }) => theme.searchBarBackgroundFocus};
     color: ${({ theme }) => theme.searchBarTextFocus};
-    color: ${({ theme }) => theme.searchBarTextFocus};
 
     ::placeholder {
       color: ${({ theme }) => theme.searchBarTextFocus};
