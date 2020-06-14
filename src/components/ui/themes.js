@@ -4,11 +4,14 @@ const fontSize = 12;
 const lineHeight = 25;
 const borderWidth = 2;
 
+const borderRadius = "0.33rem";
 const buttonBorderRadius = "0.33rem";
 const codeBorderRadius = "0.33rem";
 const cardBorderRadius = "0.33rem";
 const searchBarBorderRadius = "0.33rem";
 const linkBackgroundBorderRadius = "0.33rem";
+
+const inputPadding = "0.5rem";
 
 const buttonPadding = "0.5rem";
 const cardPadding = "1rem";
@@ -56,11 +59,13 @@ const lightPalette = {
 const light = {
   fontSize,
   lineHeight,
+  loginFormContainerBackground: lightPalette.black,
   linkBackgroundHover: lightPalette.pink,
   linkForeground: lightPalette.pink,
   linkForegroundHover: lightPalette.white,
   linkBackgroundBorderRadius,
   bodyBackgroundColour: lightPalette.palegray,
+  borderRadius,
   borderWidth,
   buttonBorder: lightPalette.darkpink,
   buttonBackground: lightPalette.pink,
@@ -89,6 +94,9 @@ const light = {
   diaryIconButtonBorder: lightPalette.darkyellow,
   diaryIconButtonBackground: lightPalette.yellow,
   diaryIconButtonBackgroundHover: lightPalette.lightyellow,
+
+  inputPadding,
+  inputPlaceholderText: lightPalette.lightgray,
 
   codePadding,
   linkPadding,

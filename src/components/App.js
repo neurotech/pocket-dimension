@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useStore } from "../util/Store.js";
-import LoginForm from "./LoginForm";
+import LoginForm from "./LoginForm/LoginForm";
 import ItemDialog from "./ItemDialog.js";
 import ControlBar from "./ControlBar/ControlBar.js";
 import Items from "./Items/Items.js";
