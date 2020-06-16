@@ -8,6 +8,7 @@ import {
   FETCH_ARCHIVED_ITEMS_COMPLETE,
 } from "../util/actionTypes.js";
 import itemTypes from "../util/itemTypes.js";
+import { Input } from "./ui/Input.js";
 
 const ItemDialog = () => {
   const { state, dispatch } = useStore();
@@ -101,12 +102,12 @@ const ItemDialog = () => {
         </label>
       </div>
       <form onSubmit={handleSubmit}>
-        <input
+        <Input
           type="text"
           placeholder="Title"
           onChange={(event) => setItemTitle(event.target.value)}
           value={itemTitle}
-        ></input>
+        />
         <textarea
           type="body"
           placeholder="Body"

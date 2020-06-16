@@ -12,8 +12,10 @@ const searchBarBorderRadius = "0.33rem";
 const linkBackgroundBorderRadius = "0.33rem";
 
 const inputPadding = "0.5rem";
+const loginFormPadding = "1em";
+const loginFormInputPadding = "0.65em";
 
-const buttonPadding = "0.5rem";
+const buttonPadding = 1;
 const cardPadding = "1rem";
 const controlBarPadding = "16px";
 const searchBarPadding = "0.6rem";
@@ -29,9 +31,12 @@ const lightPalette = {
   pink: "rgb(255, 0, 139)",
   darkpink: "#b30062",
   darkerpink: "#54002e",
+  paleblue: "#b8c8f9",
   lightblue: "#6b8bf5",
   blue: "rgb(80, 119, 243)",
   darkblue: "#234097",
+  dimblue: "#4c5d90",
+  heavyblue: "#0a1c4c",
   lightred: "#fb5083",
   red: "rgb(250, 20, 89)",
   darkred: "#c01145",
@@ -67,13 +72,21 @@ const light = {
   bodyBackgroundColour: lightPalette.palegray,
   borderRadius,
   borderWidth,
-  buttonBorder: lightPalette.darkpink,
-  buttonBackground: lightPalette.pink,
-  buttonBackgroundHover: lightPalette.lightpink,
+
+  buttonBorder: lightPalette.heavyblue,
+  buttonBackground: lightPalette.blue,
+  buttonBackgroundHover: lightPalette.lightblue,
   buttonText: lightPalette.white,
-  buttonTextHover: lightPalette.darkpink,
+  buttonTextHover: lightPalette.heavyblue,
   buttonBorderRadius,
   buttonPadding,
+
+  toggleButtonBorder: lightPalette.darkpink,
+  toggleButtonBackground: lightPalette.pink,
+  toggleButtonText: lightPalette.white,
+  toggleButtonBackgroundHover: lightPalette.lightpink,
+  toggleButtonTextHover: lightPalette.darkpink,
+
   cardBackgroundColour: lightPalette.white,
   cardBorder: lightPalette.lightgray,
   cardBorderRadius,
@@ -97,6 +110,17 @@ const light = {
 
   inputPadding,
   inputPlaceholderText: lightPalette.lightgray,
+  inputBorderColour: lightPalette.darkgray,
+  inputBackground: lightPalette.white,
+
+  loginFormPadding,
+  loginFormBackground: lightPalette.darkblue,
+  loginFormBorder: lightPalette.lightblue,
+
+  loginFormInputPadding,
+  loginFormInputBorder: lightPalette.heavyblue,
+  loginFormInputBackground: lightPalette.paleblue,
+  loginFormInputPlaceholderText: lightPalette.dimblue,
 
   codePadding,
   linkPadding,

@@ -15,13 +15,13 @@ const StyledButton = styled.button`
   padding: ${({ theme }) => theme.iconButtonPadding};
   border-radius: ${({ theme }) => theme.buttonBorderRadius};
   border-width: ${({ theme }) => theme.borderWidth}px;
-  border-color: ${({ theme }) => theme.buttonBorder};
-  background: ${({ theme }) => theme.buttonBackground};
-  color: ${({ theme }) => theme.buttonText};
+  border-color: ${({ theme }) => theme.toggleButtonBorder};
+  background: ${({ theme }) => theme.toggleButtonBackground};
+  color: ${({ theme }) => theme.toggleButtonText};
 
   & :hover {
-    background: ${({ theme }) => theme.buttonBackgroundHover};
-    color: ${({ theme }) => theme.buttonTextHover};
+    background: ${({ theme }) => theme.toggleButtonBackgroundHover};
+    color: ${({ theme }) => theme.toggleButtonTextHover};
   }
 `;
 
