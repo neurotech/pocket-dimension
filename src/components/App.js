@@ -17,7 +17,8 @@ import EventHandler from "./EventHandler.js";
 const App = () => {
   const { state, dispatch } = useStore();
 
-  const onPaste = () => handleLinkPaste(event, state.dialogOpen, dispatch);
+  const onPaste = () =>
+    handleLinkPaste(event, state.dialogOpen, state.pageSize, dispatch);
   const onKeyDown = (event) => handleKeydown(event, state.dialogOpen, dispatch);
 
   useEffect(() => {

@@ -23,7 +23,7 @@ const StyledContainer = styled.div`
 `;
 
 const BlueBox = styled.div`
-  filter: ${(props) => (props.isLoading ? "grayscale(1)" : "grayscale(0)")};
+  filter: grayscale(${(props) => (props.isLoading ? 1 : 0)});
   width: 20%;
   padding: ${({ theme }) => theme.loginFormPadding};
   background-color: ${({ theme }) => theme.loginFormBackground};
@@ -51,6 +51,10 @@ const StyledInput = styled(Input)`
 
   & ::placeholder {
     color: ${({ theme }) => theme.loginFormInputPlaceholderText};
+  }
+
+  & :disabled {
+    cursor: not-allowed;
   }
 `;
 
@@ -105,6 +109,7 @@ const LoginForm = () => {
               onChange={(event) => setPassword(event.target.value)}
             />
             <StyledTextButton
+              disabled={state.isLoading}
               handleClick={(event) =>
                 handleSubmitLogin(event, username, password)
               }

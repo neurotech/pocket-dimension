@@ -3,10 +3,11 @@ import styled from "styled-components";
 import Button from "./Button.js";
 import Icon from "./Icon.js";
 import PaperClipIcon from "heroicons/solid/paper-clip.svg";
+import BanIcon from "heroicons/solid/ban.svg";
 import { useStore } from "../../../util/Store.js";
 import { SET_ITEM_DIALOG_OPEN } from "../../../util/actionTypes.js";
 
-const NoteIcon = styled(Icon)`
+const EditNoteIcon = styled(Icon)`
   border-color: ${({ theme }) => theme.noteIconButtonBorder};
   background-color: ${({ theme }) => theme.noteIconButtonBackground};
   &:hover {
@@ -15,7 +16,34 @@ const NoteIcon = styled(Icon)`
   }
 `;
 
-const NoteIconButton = ({ item, children }) => {
+const StaleEditNoteIcon = styled(Icon)`
+  cursor: not-allowed;
+  border-color: ${({ theme }) => theme.noteIconButtonBorder};
+  background-color: ${({ theme }) => theme.noteIconButtonBackground};
+  &:hover {
+    background-color: ${({ theme }) => theme.noteIconButtonBackground};
+  }
+`;
+
+const getIcon = (isStale, children) => {
+  if (isStale) {
+    return (
+      <StaleEditNoteIcon>
+        <BanIcon width={20} height={20} />
+        {children}
+      </StaleEditNoteIcon>
+    );
+  }
+
+  return (
+    <EditNoteIcon>
+      <PaperClipIcon width={20} height={20} />
+      {children}
+    </EditNoteIcon>
+  );
+};
+
+const NoteIconButton = ({ item, isStale, children }) => {
   const { dispatch } = useStore();
 
   return (
@@ -25,10 +53,7 @@ const NoteIconButton = ({ item, children }) => {
           dispatch({ type: SET_ITEM_DIALOG_OPEN, payload: item });
         }}
       >
-        <NoteIcon>
-          <PaperClipIcon width={20} height={20} />
-          {children}
-        </NoteIcon>
+        {getIcon(isStale, children)}
       </Button>
     </div>
   );

@@ -3,6 +3,7 @@ import itemTypes from "../util/itemTypes.js";
 const initialState = {
   archivedItems: [],
   archiveMode: false,
+  currentItems: [],
   darkMode: false,
   dialogOpen: false,
   error: null,
@@ -12,7 +13,10 @@ const initialState = {
   isLoading: false,
   item: null,
   items: [],
+  pageSize: 5,
   pasted: false,
+  scrollToBottom: null,
+  staleItems: [],
   theme: "light",
   token: null,
   type: "all",

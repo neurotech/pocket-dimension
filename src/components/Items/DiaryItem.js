@@ -12,7 +12,7 @@ import Divider from "../ui/Divider.js";
 import EditDiaryIconButton from "../ui/IconButtons/EditDiaryIconButton.js";
 import { useStore } from "../../util/Store.js";
 
-const DiaryItem = ({ item }) => {
+const DiaryItem = ({ item, isStale }) => {
   const { state } = useStore();
 
   const renderCodeBlock = (props) => {
@@ -20,7 +20,7 @@ const DiaryItem = ({ item }) => {
   };
 
   return (
-    <ItemCard>
+    <ItemCard isStale={isStale}>
       <Stack space="small">
         <Columns
           alignItems="flex-start"
@@ -28,7 +28,7 @@ const DiaryItem = ({ item }) => {
           justifyContent="space-between"
         >
           <Column width="content">
-            <EditDiaryIconButton item={item} />
+            <EditDiaryIconButton item={item} isStale={isStale} />
           </Column>
           <Column width="fill">
             <Stack space="xxsmall">
@@ -39,11 +39,17 @@ const DiaryItem = ({ item }) => {
             </Stack>
           </Column>
           <Column width="content">
-            <ItemControls item={item} />
+            {!isStale && <ItemControls item={item} />}
           </Column>
         </Columns>
         <Divider />
-        <Markdown source={item.body} renderers={{ code: renderCodeBlock }} />
+        {!isStale ? (
+          <Markdown source={item.body} renderers={{ code: renderCodeBlock }} />
+        ) : item.body.length > 100 ? (
+          item.body.substring(0, 100) + "..."
+        ) : (
+          item.body
+        )}
       </Stack>
     </ItemCard>
   );

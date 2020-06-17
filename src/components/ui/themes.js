@@ -25,6 +25,11 @@ const linkPadding = "2px 1px";
 
 const subTitleTextSize = "0.5rem";
 
+const moreButtonPadding = "1rem";
+const moreButtonMargin = "1rem";
+const moreButtonBorderWidth = 2;
+const moreButtonHoverTranslateY = "-0.5rem";
+
 const lightPalette = {
   palepink: "#ffdbef",
   lightpink: "#ff66ba",
@@ -182,6 +187,17 @@ const light = {
   searchBarTextFocus: lightPalette.darkpink,
   searchBarBorderFocus: lightPalette.pink,
   searchBarBackgroundFocus: lightPalette.palepink,
+
+  moreButtonPadding,
+  moreButtonMargin,
+  moreButtonBorderWidth,
+  moreButtonHoverTranslateY,
+  moreButtonBorder: lightPalette.gray,
+  moreButtonBorderHover: lightPalette.darkyellow,
+  moreButtonBackground: lightPalette.lightgray,
+  moreButtonBackgroundHover: lightPalette.yellow,
+  moreButtonText: lightPalette.gray,
+  moreButtonTextHover: lightPalette.white,
 };
 
 const dark = { bodyBackgroundColour: "black" };

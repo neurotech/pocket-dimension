@@ -13,6 +13,7 @@ import {
   LOGOUT,
   SET_DARK_MODE,
   FETCH_ARCHIVED_ITEMS_COMPLETE,
+  SET_CURRENT_ITEMS,
 } from "../../util/actionTypes";
 import { fetchItems } from "../../util/asyncActions";
 
@@ -35,12 +36,21 @@ const Controls = () => {
           toggled={state.archiveMode}
           onClick={async () => {
             dispatch({ type: SET_IS_LOADING_ON });
-            let items = await fetchItems(!state.archiveMode);
+            let fetchedItems = await fetchItems(!state.archiveMode);
             let complete = !state.archiveMode
               ? FETCH_ARCHIVED_ITEMS_COMPLETE
               : FETCH_ACTIVE_ITEMS_COMPLETE;
-            dispatch({ type: complete, payload: items });
+            dispatch({ type: complete, payload: fetchedItems });
             dispatch({ type: TOGGLE_ARCHIVE_MODE });
+
+            if (fetchedItems.length > state.pageSize) {
+              dispatch({
+                type: SET_CURRENT_ITEMS,
+                payload: fetchedItems.slice(0, state.pageSize),
+              });
+            } else {
+              dispatch({ type: SET_CURRENT_ITEMS, payload: fetchedItems });
+            }
           }}
           variant={"archive"}
         />

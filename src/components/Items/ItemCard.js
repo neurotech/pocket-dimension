@@ -7,10 +7,13 @@ const StyledItemCard = styled.div`
   background-color: ${({ theme }) => theme.cardBackgroundColour};
   padding: ${({ theme }) => theme.cardPadding};
   margin: 0 ${({ theme }) => theme.cardPadding};
+  filter: grayscale(${(props) => (props.isStale ? 1 : 0)});
+  opacity: ${(props) => (props.isStale ? 0.5 : 1)};
+  cursor: ${(props) => (props.isStale ? "not-allowed" : "auto")};
 `;
 
-const ItemCard = ({ children }) => {
-  return <StyledItemCard>{children}</StyledItemCard>;
+const ItemCard = ({ isStale = false, children }) => {
+  return <StyledItemCard isStale={isStale}>{children}</StyledItemCard>;
 };
 
 export default ItemCard;

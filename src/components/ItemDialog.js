@@ -6,6 +6,7 @@ import {
   SET_ITEM_DIALOG_CLOSED,
   SET_IS_LOADING_ON,
   FETCH_ARCHIVED_ITEMS_COMPLETE,
+  SET_CURRENT_ITEMS,
 } from "../util/actionTypes.js";
 import itemTypes from "../util/itemTypes.js";
 import { Input } from "./ui/Input.js";
@@ -42,11 +43,21 @@ const ItemDialog = () => {
       await createItem(payload);
     }
 
-    let items = await fetchItems(state.archiveMode);
+    let fetchedItems = await fetchItems(state.archiveMode);
     let complete = state.archiveMode
       ? FETCH_ARCHIVED_ITEMS_COMPLETE
       : FETCH_ACTIVE_ITEMS_COMPLETE;
-    dispatch({ type: complete, payload: items });
+    dispatch({ type: complete, payload: fetchedItems });
+
+    if (fetchedItems.length > state.pageSize) {
+      dispatch({
+        type: SET_CURRENT_ITEMS,
+        payload: fetchedItems.slice(0, state.pageSize),
+      });
+    } else {
+      dispatch({ type: SET_CURRENT_ITEMS, payload: fetchedItems });
+    }
+
     dispatch({ type: SET_ITEM_DIALOG_CLOSED });
   };
 

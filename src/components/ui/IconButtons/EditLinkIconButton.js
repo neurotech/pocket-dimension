@@ -3,10 +3,11 @@ import styled from "styled-components";
 import Button from "./Button.js";
 import Icon from "./Icon.js";
 import ChainIcon from "heroicons/solid/link.svg";
+import BanIcon from "heroicons/solid/ban.svg";
 import { SET_ITEM_DIALOG_OPEN } from "../../../util/actionTypes.js";
 import { useStore } from "../../../util/Store.js";
 
-const LinkIcon = styled(Icon)`
+const EditLinkIcon = styled(Icon)`
   border-color: ${({ theme }) => theme.linkIconButtonBorder};
   background-color: ${({ theme }) => theme.linkIconButtonBackground};
   &:hover {
@@ -15,7 +16,34 @@ const LinkIcon = styled(Icon)`
   }
 `;
 
-const LinkIconButton = ({ item, children }) => {
+const StaleEditLinkIcon = styled(Icon)`
+  cursor: not-allowed;
+  border-color: ${({ theme }) => theme.linkIconButtonBorder};
+  background-color: ${({ theme }) => theme.linkIconButtonBackground};
+  &:hover {
+    background-color: ${({ theme }) => theme.linkIconButtonBackground};
+  }
+`;
+
+const getIcon = (isStale, children) => {
+  if (isStale) {
+    return (
+      <StaleEditLinkIcon>
+        <BanIcon width={20} height={20} />
+        {children}
+      </StaleEditLinkIcon>
+    );
+  }
+
+  return (
+    <EditLinkIcon>
+      <ChainIcon width={20} height={20} />
+      {children}
+    </EditLinkIcon>
+  );
+};
+
+const LinkIconButton = ({ item, isStale, children }) => {
   const { dispatch } = useStore();
 
   return (
@@ -25,10 +53,7 @@ const LinkIconButton = ({ item, children }) => {
           dispatch({ type: SET_ITEM_DIALOG_OPEN, payload: item });
         }}
       >
-        <LinkIcon>
-          <ChainIcon width={20} height={20} />
-          {children}
-        </LinkIcon>
+        {getIcon(isStale, children)}
       </Button>
     </div>
   );

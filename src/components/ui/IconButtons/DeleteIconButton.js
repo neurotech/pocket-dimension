@@ -5,11 +5,11 @@ import Icon from "./Icon.js";
 import CrossIcon from "heroicons/solid/x.svg";
 import { useStore } from "../../../util/Store.js";
 import {
+  SET_STALE_ITEM,
+  SET_IS_LOADING_OFF,
   SET_IS_LOADING_ON,
-  FETCH_ACTIVE_ITEMS_COMPLETE,
-  FETCH_ARCHIVED_ITEMS_COMPLETE,
 } from "../../../util/actionTypes.js";
-import { deleteItem, fetchItems } from "../../../util/asyncActions.js";
+import { deleteItem } from "../../../util/asyncActions.js";
 
 const DeleteIcon = styled(Icon)`
   color: ${({ theme }) => theme.iconButtonBorder};
@@ -21,19 +21,16 @@ const DeleteIcon = styled(Icon)`
 `;
 
 const DeleteIconButton = ({ item }) => {
-  const { state, dispatch } = useStore();
+  const { dispatch } = useStore();
 
   return (
     <div>
       <Button
         onClick={async () => {
+          dispatch({ type: SET_STALE_ITEM, payload: item.id });
           dispatch({ type: SET_IS_LOADING_ON });
           await deleteItem(item.id, item.timestamp);
-          let items = await fetchItems(state.archiveMode);
-          let complete = state.archiveMode
-            ? FETCH_ARCHIVED_ITEMS_COMPLETE
-            : FETCH_ACTIVE_ITEMS_COMPLETE;
-          dispatch({ type: complete, payload: items });
+          dispatch({ type: SET_IS_LOADING_OFF });
         }}
       >
         <DeleteIcon>

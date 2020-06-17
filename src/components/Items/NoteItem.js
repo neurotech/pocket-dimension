@@ -12,7 +12,7 @@ import Divider from "../ui/Divider.js";
 import EditNoteIconButton from "../ui/IconButtons/EditNoteIconButton.js";
 import { useStore } from "../../util/Store.js";
 
-const NoteItem = ({ item }) => {
+const NoteItem = ({ item, isStale }) => {
   const { state } = useStore();
 
   const renderCodeBlock = (props) => {
@@ -20,7 +20,7 @@ const NoteItem = ({ item }) => {
   };
 
   return (
-    <ItemCard>
+    <ItemCard isStale={isStale}>
       <Stack space="small">
         <Columns
           alignItems="flex-start"
@@ -28,7 +28,7 @@ const NoteItem = ({ item }) => {
           justifyContent="space-between"
         >
           <Column width="content">
-            <EditNoteIconButton item={item} />
+            <EditNoteIconButton item={item} isStale={isStale} />
           </Column>
           <Column width="fill">
             <Stack space="xxsmall" padLastChild={false}>
@@ -39,11 +39,17 @@ const NoteItem = ({ item }) => {
             </Stack>
           </Column>
           <Column width="content">
-            <ItemControls item={item} />
+            {!isStale && <ItemControls item={item} />}
           </Column>
         </Columns>
         <Divider />
-        <Markdown source={item.body} renderers={{ code: renderCodeBlock }} />
+        {!isStale ? (
+          <Markdown source={item.body} renderers={{ code: renderCodeBlock }} />
+        ) : item.body.length > 100 ? (
+          item.body.substring(0, 100) + "..."
+        ) : (
+          item.body
+        )}
       </Stack>
     </ItemCard>
   );

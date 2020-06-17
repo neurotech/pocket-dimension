@@ -8,27 +8,27 @@ import resolveTimestamp from "../../util/resolveTimestamp.js";
 import ItemCard from "./ItemCard.js";
 import EditLinkIconButton from "../ui/IconButtons/EditLinkIconButton.js";
 
-const LinkItem = ({ item }) => {
+const LinkItem = ({ item, isStale }) => {
   return (
-    <ItemCard>
+    <ItemCard isStale={isStale}>
       <Columns
         alignItems="flex-start"
         space="small"
         justifyContent="space-between"
       >
         <Column width="content">
-          <EditLinkIconButton item={item} />
+          <EditLinkIconButton item={item} isStale={isStale} />
         </Column>
         <Column width="fill">
           <Stack space="xxsmall">
             <Text size="large" weight="600">
-              <a href={item.body}>{item.title}</a>
+              {isStale ? item.title : <a href={item.body}>{item.title}</a>}
             </Text>
             <Text subtitle>{resolveTimestamp(item.timestamp)}</Text>
           </Stack>
         </Column>
         <Column width="content">
-          <ItemControls item={item} />
+          {!isStale && <ItemControls item={item} />}
         </Column>
       </Columns>
     </ItemCard>

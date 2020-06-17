@@ -1,33 +1,78 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useLayoutEffect, useRef } from "react";
 import NoteItem from "./NoteItem.js";
 import LinkItem from "./LinkItem.js";
 import DiaryItem from "./DiaryItem.js";
 import { fetchItems } from "../../util/asyncActions.js";
 import {
   FETCH_ACTIVE_ITEMS_COMPLETE,
-  SET_IS_LOADING_ON,
   FETCH_ARCHIVED_ITEMS_COMPLETE,
+  SET_CURRENT_ITEMS,
+  SET_IS_LOADING_ON,
+  SET_SCROLL_TO_BOTTOM,
 } from "../../util/actionTypes.js";
 import itemTypes from "../../util/itemTypes.js";
 import { useStore } from "../../util/Store.js";
 import Stack from "../ui/layout/Stack.js";
+import MoreButton from "./MoreButton.js";
+import styled from "styled-components";
+
+const LoadingContainer = styled.div`
+  opacity: ${(props) => (props.isLoading ? 0.33 : 1)};
+`;
+
+const Pagination = ({ totalItems, pageSize, children }) => {
+  const { state, dispatch } = useStore();
+  const moreToGet =
+    state.filterText === "" && state.currentItems.length < totalItems;
+
+  const getMore = () => {
+    const sliceEnd = state.currentItems.length + pageSize;
+    const itemsToSlice = state.archiveMode ? state.archivedItems : state.items;
+    dispatch({
+      type: SET_CURRENT_ITEMS,
+      payload: itemsToSlice.slice(0, sliceEnd),
+    });
+    dispatch({ type: SET_SCROLL_TO_BOTTOM });
+  };
+
+  return (
+    <Stack space="small" padLastChild>
+      {children}
+      {moreToGet && <MoreButton onClick={getMore} />}
+    </Stack>
+  );
+};
 
 const Items = () => {
   const { state, dispatch } = useStore();
+  const bottom = useRef(null);
 
   useEffect(() => {
     async function fetchItemsOnMount() {
       dispatch({ type: SET_IS_LOADING_ON });
-      let items = await fetchItems(state.archiveMode);
+      let fetchedItems = await fetchItems(state.archiveMode);
       let complete = state.archiveMode
         ? FETCH_ARCHIVED_ITEMS_COMPLETE
         : FETCH_ACTIVE_ITEMS_COMPLETE;
-      dispatch({ type: complete, payload: items });
+      dispatch({ type: complete, payload: fetchedItems });
+
+      if (fetchedItems.length > state.pageSize) {
+        dispatch({
+          type: SET_CURRENT_ITEMS,
+          payload: fetchedItems.slice(0, state.pageSize),
+        });
+      } else {
+        dispatch({ type: SET_CURRENT_ITEMS, payload: fetchedItems });
+      }
     }
     fetchItemsOnMount();
   }, []);
 
-  const renderItemByType = (items) => {
+  useLayoutEffect(() => {
+    bottom.current.scrollIntoView({ behavior: "smooth" });
+  }, [state.scrollToBottom]);
+
+  const renderItemsByType = (items) => {
     const itemsFilteredByType = items.filter(
       (item) => item.type === state.filterType || state.filterType === "all"
     );
@@ -39,23 +84,35 @@ const Items = () => {
     );
 
     return itemsFilteredByText.map((item) => {
+      const isStale = state.staleItems.indexOf(item.id) !== -1;
+
       switch (item.type) {
         case itemTypes.note:
-          return <NoteItem item={item} key={item.id} />;
+          return <NoteItem item={item} key={item.id} isStale={isStale} />;
 
         case itemTypes.link:
-          return <LinkItem item={item} key={item.id} />;
+          return <LinkItem item={item} key={item.id} isStale={isStale} />;
 
         case itemTypes.diary:
-          return <DiaryItem item={item} key={item.id} />;
+          return <DiaryItem item={item} key={item.id} isStale={isStale} />;
       }
     });
   };
 
+  const items = state.archiveMode ? state.archivedItems : state.items;
+
+  const itemsToRender =
+    state.filterType != "all" || state.filterText !== ""
+      ? items
+      : state.currentItems;
+
   return (
-    <Stack space="small" padLastChild>
-      {renderItemByType(state.archiveMode ? state.archivedItems : state.items)}
-    </Stack>
+    <LoadingContainer isLoading={state.isLoading}>
+      <Pagination totalItems={items.length} pageSize={state.pageSize}>
+        {renderItemsByType(itemsToRender)}
+      </Pagination>
+      <div id={"scroll-to-here"} ref={bottom} />
+    </LoadingContainer>
   );
 };
 

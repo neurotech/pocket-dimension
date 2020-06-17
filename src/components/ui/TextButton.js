@@ -24,13 +24,19 @@ const StyledButton = styled.button`
     background: ${({ theme }) => theme.buttonBackgroundHover};
     color: ${({ theme }) => theme.buttonTextHover};
   }
+
+  & :disabled {
+    cursor: not-allowed;
+    background: ${({ theme }) => theme.buttonBackground};
+    color: ${({ theme }) => theme.buttonText};
+  }
 `;
 
 const Label = styled.div``;
 
-const TextButton = ({ handleClick, label }) => {
+const TextButton = ({ disabled = false, handleClick, label }) => {
   return (
-    <StyledButton onClick={handleClick}>
+    <StyledButton disabled={disabled} onClick={handleClick}>
       <Label>{label}</Label>
     </StyledButton>
   );

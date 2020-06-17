@@ -1,12 +1,13 @@
-import { fetchItems, createItem, fetchActiveItems } from "./asyncActions.js";
+import { createItem, fetchActiveItems } from "./asyncActions.js";
 import {
   FETCH_ACTIVE_ITEMS_COMPLETE,
   SET_IS_LOADING_ON,
   SET_ERROR,
+  SET_CURRENT_ITEMS,
 } from "./actionTypes.js";
 import itemTypes from "../util/itemTypes.js";
 
-const handleLinkPaste = async (event, dialogOpen, dispatch) => {
+const handleLinkPaste = async (event, dialogOpen, pageSize, dispatch) => {
   const clipboard = event.clipboardData || window.clipboardData;
   const clipboardContents = clipboard.getData("text");
 
@@ -26,9 +27,19 @@ const handleLinkPaste = async (event, dialogOpen, dispatch) => {
       dispatch({ type: SET_IS_LOADING_ON });
       await createItem(item);
 
-      let items = await fetchActiveItems();
-      dispatch({ type: FETCH_ACTIVE_ITEMS_COMPLETE, payload: items });
+      let fetchedItems = await fetchActiveItems();
+      dispatch({ type: FETCH_ACTIVE_ITEMS_COMPLETE, payload: fetchedItems });
+
+      if (fetchedItems.length > pageSize) {
+        dispatch({
+          type: SET_CURRENT_ITEMS,
+          payload: fetchedItems.slice(0, pageSize),
+        });
+      } else {
+        dispatch({ type: SET_CURRENT_ITEMS, payload: fetchedItems });
+      }
     } catch (ex) {
+      console.error(ex);
       dispatch({
         type: SET_ERROR,
         payload:
