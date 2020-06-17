@@ -9,7 +9,7 @@ import {
   FETCH_ARCHIVED_ITEMS_COMPLETE,
 } from "../../../util/actionTypes.js";
 import { useStore } from "../../../util/Store.js";
-import { fetchItems } from "../../../util/asyncActions.js";
+import { fetchItems, updateItem } from "../../../util/asyncActions.js";
 
 const ArchiveIcon = styled(Icon)`
   color: ${({ theme }) => theme.iconButtonBorder};

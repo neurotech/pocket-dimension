@@ -1,5 +1,6 @@
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const TerserPlugin = require("terser-webpack-plugin");
 const path = require("path");
 
 const buildPath = path.resolve(__dirname, "build");
@@ -15,6 +16,15 @@ module.exports = {
     splitChunks: {
       chunks: "all",
     },
+    minimize: true,
+    minimizer: [
+      new TerserPlugin({
+        terserOptions: {
+          keep_classnames: true,
+          keep_fnames: true,
+        },
+      }),
+    ],
   },
   plugins: [
     new CleanWebpackPlugin(),
@@ -31,6 +41,12 @@ module.exports = {
     contentBase: buildPath,
     host: "lvh.me",
     port: 4567,
+  },
+  resolve: {
+    alias: {
+      "react-dom$": "react-dom/profiling",
+      "scheduler/tracing": "scheduler/tracing-profiling",
+    },
   },
   module: {
     rules: [
