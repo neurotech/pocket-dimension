@@ -7,4 +7,5 @@ A tiny place to store tiny things.
 - Finish: `C:\projects\pocket-dimension\src\components\Items\Markdown.js`
 - Dark Mode button styling
 - Dark theme
-- Item dialog (auto fill title for diary, generate title based on URL etc.)
+- Item dialog - fix up styling
+- Theme... maybe just export the palette and reference them in components as needed?
