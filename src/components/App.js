@@ -17,7 +17,7 @@ import EventHandler from "./EventHandler.js";
 const App = () => {
   const { state, dispatch } = useStore();
 
-  const onPaste = () =>
+  const onPaste = (event) =>
     handleLinkPaste(event, state.dialogOpen, state.pageSize, dispatch);
   const onKeyDown = (event) => handleKeydown(event, state.dialogOpen, dispatch);
 
@@ -50,8 +50,8 @@ const App = () => {
       <ThemeProvider theme={themes[state.theme]}>
         <GlobalStyles />
         <EventHandler onKeyDown={onKeyDown} onPaste={onPaste}>
+          {state.dialogOpen && <ItemDialog />}
           <Stack space="small">
-            {state.dialogOpen && <ItemDialog />}
             <ControlBar />
             <Items />
           </Stack>

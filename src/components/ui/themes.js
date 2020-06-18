@@ -83,6 +83,9 @@ const light = {
   buttonBackgroundHover: lightPalette.lightblue,
   buttonText: lightPalette.white,
   buttonTextHover: lightPalette.heavyblue,
+  buttonBorderDisabled: lightPalette.lightgray,
+  buttonBackgroundDisabled: lightPalette.palegray,
+  buttonTextDisabled: lightPalette.lightgray,
   buttonBorderRadius,
   buttonPadding,
 
@@ -117,6 +120,7 @@ const light = {
   inputPlaceholderText: lightPalette.lightgray,
   inputBorderColour: lightPalette.darkgray,
   inputBackground: lightPalette.white,
+  inputBorderColourFocus: lightPalette.blue,
 
   loginFormPadding,
   loginFormBackground: lightPalette.darkblue,
@@ -198,6 +202,28 @@ const light = {
   moreButtonBackgroundHover: lightPalette.yellow,
   moreButtonText: lightPalette.gray,
   moreButtonTextHover: lightPalette.white,
+
+  typeButtonBorder: lightPalette.lightgray,
+  typeButtonBackground: lightPalette.palegray,
+  typeButtonText: lightPalette.gray,
+
+  noteTypeButtonBorder: lightPalette.darkblue,
+  noteTypeButtonBackground: lightPalette.blue,
+  noteTypeButtonText: lightPalette.white,
+
+  linkTypeButtonBorder: lightPalette.darkgreen,
+  linkTypeButtonBackground: lightPalette.green,
+  linkTypeButtonText: lightPalette.white,
+
+  diaryTypeButtonBorder: lightPalette.darkyellow,
+  diaryTypeButtonBackground: lightPalette.yellow,
+  diaryTypeButtonText: lightPalette.white,
+
+  cancelButtonBorder: lightPalette.darkgray,
+  cancelButtonBackground: lightPalette.lightgray,
+  cancelButtonText: lightPalette.darkgray,
+  cancelButtonBackgroundHover: lightPalette.gray,
+  cancelButtonTextHover: lightPalette.white,
 };
 
 const dark = { bodyBackgroundColour: "black" };

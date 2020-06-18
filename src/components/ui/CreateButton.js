@@ -1,8 +1,7 @@
 import React from "react";
 import styled from "styled-components";
-import resolveSizeToFontSize from "../../util/resolveSizeToFontSize.js";
 
-const StyledButton = styled.button`
+const StyledCreateButton = styled.button`
   width: 100%;
   outline: none;
   cursor: pointer;
@@ -11,38 +10,34 @@ const StyledButton = styled.button`
   font-size: ${({ size }) => size};
   font-weight: 600;
   line-height: 0;
+  padding: ${({ theme }) => theme.buttonPadding}rem;
   border-style: solid;
   border-radius: ${({ theme }) => theme.buttonBorderRadius};
   border-width: ${({ theme }) => theme.borderWidth}px;
+
   border-color: ${({ theme }) => theme.buttonBorder};
   background: ${({ theme }) => theme.buttonBackground};
   color: ${({ theme }) => theme.buttonText};
-  padding: ${({ theme }) => theme.buttonPadding}rem;
 
-  & :hover {
+  &:hover {
     background: ${({ theme }) => theme.buttonBackgroundHover};
     color: ${({ theme }) => theme.buttonTextHover};
   }
 
-  & :disabled {
+  &:disabled {
     cursor: not-allowed;
-    background: ${({ theme }) => theme.buttonBackground};
-    color: ${({ theme }) => theme.buttonText};
+    border-color: ${({ theme }) => theme.buttonBorderDisabled};
+    background: ${({ theme }) => theme.buttonBackgroundDisabled};
+    color: ${({ theme }) => theme.buttonTextDisabled};
   }
 `;
 
-const Label = styled.div``;
-
-const TextButton = ({ size = "normal", disabled = false, onClick, label }) => {
+const CreateButton = ({ disabled, onClick }) => {
   return (
-    <StyledButton
-      size={resolveSizeToFontSize(size)}
-      disabled={disabled}
-      onClick={onClick}
-    >
-      <Label>{label}</Label>
-    </StyledButton>
+    <StyledCreateButton disabled={disabled} onClick={onClick}>
+      Create
+    </StyledCreateButton>
   );
 };
 
-export default TextButton;
+export default CreateButton;

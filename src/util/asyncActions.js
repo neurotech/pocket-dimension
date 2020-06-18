@@ -106,11 +106,27 @@ const updateItem = async (item) => {
   }
 };
 
+const getTitleFromUrl = async (urlToQuery) => {
+  try {
+    const token = sessionStorage.getItem("token");
+    const options = {
+      method: "POST",
+      headers: getAuthorizationHeader(token),
+      body: JSON.stringify(urlToQuery),
+    };
+    let response = await fetch(url.pageInfo, options);
+    return response.json();
+  } catch (error) {
+    return error;
+  }
+};
+
 export {
   createItem,
   fetchActiveItems,
   fetchArchivedItems,
   fetchItems,
+  getTitleFromUrl,
   login,
   deleteItem,
   updateItem,

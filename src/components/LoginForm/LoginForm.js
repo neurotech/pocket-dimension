@@ -109,6 +109,7 @@ const LoginForm = () => {
               onChange={(event) => setPassword(event.target.value)}
             />
             <StyledTextButton
+              size={"xlarge"}
               disabled={state.isLoading}
               handleClick={(event) =>
                 handleSubmitLogin(event, username, password)
