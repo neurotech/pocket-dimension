@@ -27,13 +27,13 @@ const rotationMixin = css`
 `;
 
 const RefreshIcon = styled(Icon)`
-  background-color: ${({ theme }) => theme.refreshIconButtonBackground};
-  border-color: ${({ theme }) => theme.refreshIconButtonBorder};
-  color: ${({ theme }) => theme.refreshIconButtonText};
+  background-color: ${({ theme }) => theme.commonPalette.pink};
+  border-color: ${({ theme }) => theme.commonPalette.darkpink};
+  color: ${({ theme }) => theme.commonPalette.white};
   &:hover {
-    border-color: ${({ theme }) => theme.refreshIconButtonBorderHover};
-    background-color: ${({ theme }) => theme.refreshIconButtonBackgroundHover};
-    color: ${({ theme }) => theme.refreshIconButtonTextHover};
+    border-color: ${({ theme }) => theme.commonPalette.darkpink};
+    background-color: ${({ theme }) => theme.commonPalette.lightpink};
+    color: ${({ theme }) => theme.commonPalette.darkpink};
   }
   & svg {
     ${(props) => (props.isLoading ? rotationMixin : "animation: none")};

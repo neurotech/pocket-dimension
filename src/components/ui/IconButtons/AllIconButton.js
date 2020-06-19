@@ -8,11 +8,13 @@ import { FILTER_TYPE_CHANGED } from "../../../util/actionTypes.js";
 import itemTypes from "../../../util/itemTypes.js";
 
 const AllIcon = styled(Icon)`
-  border-color: ${({ theme }) => theme.allIconButtonBorder};
-  background-color: ${({ theme }) => theme.allIconButtonBackground};
+  border-color: ${({ theme }) => theme.commonPalette.darkorange};
+  background-color: ${({ theme }) => theme.commonPalette.orange};
+  color: ${({ theme }) => theme.commonPalette.white};
+
   &:hover {
-    background-color: ${({ theme }) => theme.allIconButtonBackgroundHover};
-    color: ${({ theme }) => theme.allIconButtonBorder};
+    background-color: ${({ theme }) => theme.commonPalette.lightorange};
+    color: ${({ theme }) => theme.commonPalette.darkorange};
   }
 `;
 

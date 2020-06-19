@@ -2,9 +2,11 @@ import React from "react";
 import styled from "styled-components";
 
 const StyledItemCard = styled.div`
-  border-radius: ${({ theme }) => theme.cardBorderRadius};
-  border: 2px solid ${({ theme }) => theme.cardBorder};
-  background-color: ${({ theme }) => theme.cardBackgroundColour};
+  border-radius: ${({ theme }) => theme.borderRadius};
+  border: 2px solid ${({ theme }) => theme.palette.boxBorder};
+  background-color: ${({ theme }) => theme.palette.boxBackground};
+  color: ${({ theme }) => theme.palette.text};
+
   padding: ${({ theme }) => theme.cardPadding};
   margin: 0 ${({ theme }) => theme.cardPadding};
   filter: grayscale(${(props) => (props.isStale ? 1 : 0)});

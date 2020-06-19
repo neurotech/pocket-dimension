@@ -12,11 +12,11 @@ import { useStore } from "../../../util/Store.js";
 import { updateItem } from "../../../util/asyncActions.js";
 
 const ArchiveIcon = styled(Icon)`
-  color: ${({ theme }) => theme.iconButtonBorder};
+  color: ${({ theme }) => theme.palette.iconText};
   &:hover {
-    border-color: ${({ theme }) => theme.archiveIconButtonBorderHover};
-    background-color: ${({ theme }) => theme.archiveIconButtonBackgroundHover};
-    color: ${({ theme }) => theme.archiveIconButtonTextHover};
+    border-color: ${({ theme }) => theme.commonPalette.darkyellow};
+    background-color: ${({ theme }) => theme.commonPalette.yellow};
+    color: ${({ theme }) => theme.commonPalette.white};
   }
 `;
 

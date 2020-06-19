@@ -1,9 +1,7 @@
 import React from "react";
 import { PrismAsyncLight as SyntaxHighlighter } from "react-syntax-highlighter";
-import {
-  duotoneEarth as dark,
-  duotoneLight as light,
-} from "react-syntax-highlighter/dist/esm/styles/prism";
+import dark from "./dark-theme";
+import light from "./light-theme";
 import csharp from "react-syntax-highlighter/dist/esm/languages/prism/csharp";
 import js from "react-syntax-highlighter/dist/esm/languages/prism/javascript";
 import jsx from "react-syntax-highlighter/dist/esm/languages/prism/jsx";

@@ -8,16 +8,16 @@ const StyledTypeButton = styled.button`
   cursor: pointer;
   user-select: none;
   font-family: ${({ theme }) => theme.fontFamily};
-  font-size: ${({ theme }) => theme.fontSize}px;
+  font-size: ${({ theme }) => theme.fontSize + 1}px;
   font-weight: 600;
   border-style: solid;
   line-height: 0;
-  border-radius: ${({ theme }) => theme.buttonBorderRadius};
+  border-radius: ${({ theme }) => theme.borderRadius};
   border-width: ${({ theme }) => theme.borderWidth}px;
 
-  border-color: ${({ theme }) => theme.typeButtonBorder};
-  background: ${({ theme }) => theme.typeButtonBackground};
-  color: ${({ theme }) => theme.typeButtonText};
+  border-color: ${({ theme }) => theme.palette.typeButtonBorder};
+  background: ${({ theme }) => theme.palette.typeButtonBackground};
+  color: ${({ theme }) => theme.palette.typeButtonText};
 
   padding-top: ${({ theme }) => theme.buttonPadding}rem;
   padding-right: 0;
@@ -26,21 +26,21 @@ const StyledTypeButton = styled.button`
 `;
 
 const NoteTypeButton = styled(StyledTypeButton)`
-  border-color: ${({ theme }) => theme.noteTypeButtonBorder};
-  background: ${({ theme }) => theme.noteTypeButtonBackground};
-  color: ${({ theme }) => theme.noteTypeButtonText};
+  border-color: ${({ theme }) => theme.commonPalette.darkblue};
+  background: ${({ theme }) => theme.commonPalette.blue};
+  color: ${({ theme }) => theme.commonPalette.white};
 `;
 
 const LinkTypeButton = styled(StyledTypeButton)`
-  border-color: ${({ theme }) => theme.linkTypeButtonBorder};
-  background: ${({ theme }) => theme.linkTypeButtonBackground};
-  color: ${({ theme }) => theme.linkTypeButtonText};
+  border-color: ${({ theme }) => theme.commonPalette.darkgreen};
+  background: ${({ theme }) => theme.commonPalette.green};
+  color: ${({ theme }) => theme.commonPalette.white};
 `;
 
 const DiaryTypeButton = styled(StyledTypeButton)`
-  border-color: ${({ theme }) => theme.diaryTypeButtonBorder};
-  background: ${({ theme }) => theme.diaryTypeButtonBackground};
-  color: ${({ theme }) => theme.diaryTypeButtonText};
+  border-color: ${({ theme }) => theme.commonPalette.darkyellow};
+  background: ${({ theme }) => theme.commonPalette.yellow};
+  color: ${({ theme }) => theme.commonPalette.white};
 `;
 
 const resolveVariantToTypeButton = (variant, onClick, active) => {

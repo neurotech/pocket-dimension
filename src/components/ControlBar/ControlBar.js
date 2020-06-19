@@ -1,12 +1,4 @@
 import React from "react";
-import {
-  FETCH_ACTIVE_ITEMS_COMPLETE,
-  FILTER_TEXT_CHANGED,
-  FILTER_TYPE_CHANGED,
-  SET_IS_LOADING_ON,
-} from "../../util/actionTypes.js";
-import { fetchItems } from "../../util/asyncActions.js";
-import { useStore } from "../../util/Store.js";
 import Columns from "../ui/layout/Columns.js";
 import Column from "../ui/layout/Column.js";
 import TypeSwitcher from "./TypeSwitcher.js";
@@ -16,8 +8,8 @@ import styled from "styled-components";
 import RefreshIconButton from "../ui/IconButtons/RefreshIconButton.js";
 
 const StyledControlBar = styled.div`
-  border-bottom: 2px solid ${({ theme }) => theme.controlBarBorderBottomColour};
-  background-color: ${({ theme }) => theme.controlBarBackgroundColour};
+  border-bottom: 2px solid ${({ theme }) => theme.palette.boxBorder};
+  background-color: ${({ theme }) => theme.palette.boxBackground};
   padding: ${({ theme }) => theme.controlBarPadding};
 `;
 

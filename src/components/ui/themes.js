@@ -1,56 +1,52 @@
+const borderRadius = "0.33rem";
+const borderWidth = 2;
+const buttonPadding = 1;
+const cardPadding = "1rem";
+const codePadding = "2px 4px";
+const controlBarPadding = "16px";
 const fontFamily =
   "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji";
 const fontSize = 12;
-const lineHeight = 25;
-const borderWidth = 2;
-
-const borderRadius = "0.33rem";
-const buttonBorderRadius = "0.33rem";
-const codeBorderRadius = "0.33rem";
-const cardBorderRadius = "0.33rem";
-const searchBarBorderRadius = "0.33rem";
-const linkBackgroundBorderRadius = "0.33rem";
-
-const inputPadding = "0.5rem";
-const loginFormPadding = "1em";
-const loginFormInputPadding = "0.65em";
-
-const buttonPadding = 1;
-const cardPadding = "1rem";
-const controlBarPadding = "16px";
-const searchBarPadding = "0.6rem";
 const iconButtonPadding = "0.5rem";
-const codePadding = "2px 4px";
+const inputPadding = "0.5rem";
+const lineHeight = 25;
 const linkPadding = "2px 1px";
-
-const subTitleTextSize = "0.5rem";
-
-const moreButtonPadding = "1rem";
-const moreButtonMargin = "1rem";
+const loginFormInputPadding = "0.65em";
+const loginFormPadding = "1em";
 const moreButtonBorderWidth = 2;
 const moreButtonHoverTranslateY = "-0.5rem";
+const moreButtonMargin = "1rem";
+const moreButtonPadding = "1rem";
+const searchBarPadding = "0.6rem";
+const subTitleTextSize = "0.5rem";
 
-const lightPalette = {
+const listMargin = "2rem";
+
+const commonPalette = {
+  lightskyblue: "#91cdff",
+  skyblue: "#65b8ff",
+  darkskyblue: "#2271b5",
   palepink: "#ffdbef",
   lightpink: "#ff66ba",
-  pink: "rgb(255, 0, 139)",
+  pink: "#ff008b",
   darkpink: "#b30062",
   darkerpink: "#54002e",
   paleblue: "#b8c8f9",
   lightblue: "#6b8bf5",
-  blue: "rgb(80, 119, 243)",
+  blue: "#5077f3",
   darkblue: "#234097",
   dimblue: "#4c5d90",
   heavyblue: "#0a1c4c",
   lightred: "#fb5083",
-  red: "rgb(250, 20, 89)",
-  darkred: "#c01145",
+  red: "#fa1459",
+  darkred: "#b10d3e",
   paleyellow: "#fff2c7",
   lightyellow: "#ffc561",
-  yellow: "rgb(255, 184, 60)",
+  yellow: "#ffb83c",
   darkyellow: "#ad7719",
+  brightyellow: "#ffd500",
   lightgreen: "#46c3aa",
-  green: "rgb(0, 184, 148)",
+  green: "#00b894",
   darkgreen: "#006b55",
   lightorange: "#ff808c",
   orange: "#ff5161",
@@ -58,174 +54,158 @@ const lightPalette = {
   lightpurple: "#9fa2f9",
   purple: "#8386f5",
   darkpurple: "#4d51d1",
-  white: "rgb(255,255,255)",
-  black: "rgb(5,5,5)",
+
+  white: "#ffffff",
+  black: "#131315",
+
   palegray: "#e8e8e8",
   lightgray: "#d4d4d4",
   gray: "#a8a8a8",
   darkgray: "#737373",
+
+  darkcharcoal: "#191b1f",
+  charcoal: "#212328",
+  lightcharcoal: "#32333e",
+  palecharcoal: "#4d4e5f",
+
+  ash: "#676877",
+  lightash: "#9ea0b3",
+  paleash: "#d3d5ec",
+
+  smoke: "rgba(19, 19, 21, 0.7)",
+};
+
+const darkPalette = {
+  bodyBackground: commonPalette.charcoal,
+  boxBackground: commonPalette.lightcharcoal,
+  boxBorder: commonPalette.black,
+  divider: commonPalette.charcoal,
+  link: commonPalette.brightyellow,
+  linkBackgroundHover: commonPalette.brightyellow,
+  linkHover: commonPalette.black,
+  subTitle: commonPalette.lightash,
+  text: commonPalette.paleash,
+  iconBorder: commonPalette.charcoal,
+  iconBackground: commonPalette.palecharcoal,
+  iconText: commonPalette.charcoal,
+  codeBackground: commonPalette.palecharcoal,
+  codeText: commonPalette.paleash,
+  searchBarBorder: commonPalette.black,
+  searchBarBackground: commonPalette.charcoal,
+  searchBarPlaceholder: commonPalette.ash,
+  indicator: commonPalette.paleash,
+  moreButtonBorder: commonPalette.black,
+  moreButtonBackground: commonPalette.palecharcoal,
+  moreButtonText: commonPalette.lightcharcoal,
+  itemDialogBorder: commonPalette.black,
+  itemDialogBackground: commonPalette.lightcharcoal,
+  typeButtonBorder: commonPalette.charcoal,
+  typeButtonBackground: commonPalette.ash,
+  typeButtonText: commonPalette.charcoal,
+  inputBorder: commonPalette.charcoal,
+  inputBackground: commonPalette.palecharcoal,
+  inputText: commonPalette.paleash,
+  inputPlaceholder: commonPalette.lightash,
+  inputBorderFocus: commonPalette.blue,
+  disabledInputBorder: commonPalette.charcoal,
+  disabledInputBackground: commonPalette.palecharcoal,
+  disabledInputText: commonPalette.charcoal,
+  codeBlockBorder: commonPalette.darkcharcoal,
+};
+
+const lightPalette = {
+  boxBorder: commonPalette.gray,
+  boxBackground: commonPalette.white,
+  bodyBackground: commonPalette.palegray,
+  link: commonPalette.pink,
+  linkBackgroundHover: commonPalette.pink,
+  linkHover: commonPalette.white,
+  text: commonPalette.black,
+  subTitle: commonPalette.darkgray,
+  divider: commonPalette.palegray,
+  iconBorder: commonPalette.gray,
+  iconBackground: commonPalette.lightgray,
+  iconText: commonPalette.gray,
+  codeBackground: commonPalette.paleyellow,
+  codeText: commonPalette.black,
+  searchBarBorder: commonPalette.gray,
+  searchBarBackground: commonPalette.palegray,
+  searchBarPlaceholder: commonPalette.gray,
+  indicator: commonPalette.darkgray,
+  moreButtonBorder: commonPalette.gray,
+  moreButtonBackground: commonPalette.lightgray,
+  moreButtonText: commonPalette.gray,
+  itemDialogBorder: commonPalette.darkgray,
+  itemDialogBackground: commonPalette.white,
+  typeButtonBorder: commonPalette.lightgray,
+  typeButtonBackground: commonPalette.palegray,
+  typeButtonText: commonPalette.gray,
+  inputBorder: commonPalette.darkgray,
+  inputBackground: commonPalette.white,
+  inputText: commonPalette.black,
+  inputPlaceholder: commonPalette.gray,
+  inputBorderFocus: commonPalette.blue,
+  disabledInputBorder: commonPalette.darkgray,
+  disabledInputBackground: commonPalette.lightgray,
+  disabledInputText: commonPalette.darkgray,
+  codeBlockBorder: commonPalette.lightgray,
 };
 
 const light = {
-  fontSize,
-  lineHeight,
-  loginFormContainerBackground: lightPalette.black,
-  linkBackgroundHover: lightPalette.pink,
-  linkForeground: lightPalette.pink,
-  linkForegroundHover: lightPalette.white,
-  linkBackgroundBorderRadius,
-  bodyBackgroundColour: lightPalette.palegray,
+  palette: lightPalette,
+  bodyBackground: lightPalette.bodyBackground,
   borderRadius,
   borderWidth,
-
-  buttonBorder: lightPalette.heavyblue,
-  buttonBackground: lightPalette.blue,
-  buttonBackgroundHover: lightPalette.lightblue,
-  buttonText: lightPalette.white,
-  buttonTextHover: lightPalette.heavyblue,
-  buttonBorderDisabled: lightPalette.lightgray,
-  buttonBackgroundDisabled: lightPalette.palegray,
-  buttonTextDisabled: lightPalette.lightgray,
-  buttonBorderRadius,
   buttonPadding,
-
-  toggleButtonBorder: lightPalette.darkpink,
-  toggleButtonBackground: lightPalette.pink,
-  toggleButtonText: lightPalette.white,
-  toggleButtonBackgroundHover: lightPalette.lightpink,
-  toggleButtonTextHover: lightPalette.darkpink,
-
-  cardBackgroundColour: lightPalette.white,
-  cardBorder: lightPalette.lightgray,
-  cardBorderRadius,
   cardPadding,
-  codeBackground: lightPalette.paleyellow,
-  codeBorderRadius,
-  controlBarBorderBottomColour: lightPalette.lightgray,
-  controlBarBackgroundColour: lightPalette.white,
-  controlBarPadding,
-  dividerBackground: lightPalette.palegray,
-  fontFamily,
-  noteIconButtonBorder: lightPalette.darkblue,
-  noteIconButtonBackground: lightPalette.blue,
-  noteIconButtonBackgroundHover: lightPalette.lightblue,
-  linkIconButtonBorder: lightPalette.darkgreen,
-  linkIconButtonBackground: lightPalette.green,
-  linkIconButtonBackgroundHover: lightPalette.lightgreen,
-  diaryIconButtonBorder: lightPalette.darkyellow,
-  diaryIconButtonBackground: lightPalette.yellow,
-  diaryIconButtonBackgroundHover: lightPalette.lightyellow,
-
-  inputPadding,
-  inputPlaceholderText: lightPalette.lightgray,
-  inputBorderColour: lightPalette.darkgray,
-  inputBackground: lightPalette.white,
-  inputBorderColourFocus: lightPalette.blue,
-
-  loginFormPadding,
-  loginFormBackground: lightPalette.darkblue,
-  loginFormBorder: lightPalette.lightblue,
-
-  loginFormInputPadding,
-  loginFormInputBorder: lightPalette.heavyblue,
-  loginFormInputBackground: lightPalette.paleblue,
-  loginFormInputPlaceholderText: lightPalette.dimblue,
-
   codePadding,
-  linkPadding,
-
-  iconButtonBorder: lightPalette.gray,
-  iconButtonBackground: lightPalette.lightgray,
-  iconButtonBackgroundHover: lightPalette.palegray,
-
-  focusIconButtonBorderHover: lightPalette.darkblue,
-  focusIconButtonBackgroundHover: lightPalette.blue,
-  focusIconButtonTextHover: lightPalette.white,
-
-  archiveIconButtonBorderHover: lightPalette.darkyellow,
-  archiveIconButtonBackgroundHover: lightPalette.yellow,
-  archiveIconButtonTextHover: lightPalette.white,
-
-  deleteIconButtonBorderHover: lightPalette.darkred,
-  deleteIconButtonBackgroundHover: lightPalette.red,
-  deleteIconButtonTextHover: lightPalette.white,
-
-  allIconButtonBorder: lightPalette.darkorange,
-  allIconButtonBackground: lightPalette.orange,
-  allIconButtonBackgroundHover: lightPalette.lightorange,
-  allIconButtonText: lightPalette.white,
-  allIconButtonTextHover: lightPalette.darkorange,
-
-  refreshIconButtonBackground: lightPalette.pink,
-  refreshIconButtonBackgroundHover: lightPalette.lightpink,
-  refreshIconButtonBorder: lightPalette.darkpink,
-  refreshIconButtonBorderHover: lightPalette.darkpink,
-  refreshIconButtonText: lightPalette.white,
-  refreshIconButtonTextHover: lightPalette.darkpink,
-
-  createIconButtonBorder: lightPalette.darkpurple,
-  createIconButtonBackground: lightPalette.purple,
-  createIconButtonBackgroundHover: lightPalette.lightpurple,
-
-  logoutIconButtonBorder: lightPalette.darkred,
-  logoutIconButtonBackground: lightPalette.red,
-  logoutIconButtonBackgroundHover: lightPalette.lightred,
-
-  iconButtonText: lightPalette.white,
+  commonPalette,
+  controlBarPadding,
+  fontFamily,
+  fontSize,
   iconButtonPadding,
-
-  subTitleTextSize,
-  subtitleTextColour: lightPalette.darkgray,
-  textColour: lightPalette.black,
-
-  arrowIndicatorColor: lightPalette.darkgray,
-
-  selectionBackground: lightPalette.pink,
-  selectionForeground: lightPalette.white,
-
-  searchBarPadding,
-  searchBarBorderRadius,
-  searchBarBorderColour: lightPalette.gray,
-  searchBarBackgroundColour: lightPalette.palegray,
-  searchBarTextPlaceholder: lightPalette.gray,
-  searchBarTextFocus: lightPalette.darkpink,
-  searchBarBorderFocus: lightPalette.pink,
-  searchBarBackgroundFocus: lightPalette.palepink,
-
-  moreButtonPadding,
-  moreButtonMargin,
+  inputPadding,
+  lineHeight,
+  linkPadding,
+  loginFormInputPadding,
+  loginFormPadding,
   moreButtonBorderWidth,
   moreButtonHoverTranslateY,
-  moreButtonBorder: lightPalette.gray,
-  moreButtonBorderHover: lightPalette.darkyellow,
-  moreButtonBackground: lightPalette.lightgray,
-  moreButtonBackgroundHover: lightPalette.yellow,
-  moreButtonText: lightPalette.gray,
-  moreButtonTextHover: lightPalette.white,
-
-  typeButtonBorder: lightPalette.lightgray,
-  typeButtonBackground: lightPalette.palegray,
-  typeButtonText: lightPalette.gray,
-
-  noteTypeButtonBorder: lightPalette.darkblue,
-  noteTypeButtonBackground: lightPalette.blue,
-  noteTypeButtonText: lightPalette.white,
-
-  linkTypeButtonBorder: lightPalette.darkgreen,
-  linkTypeButtonBackground: lightPalette.green,
-  linkTypeButtonText: lightPalette.white,
-
-  diaryTypeButtonBorder: lightPalette.darkyellow,
-  diaryTypeButtonBackground: lightPalette.yellow,
-  diaryTypeButtonText: lightPalette.white,
-
-  cancelButtonBorder: lightPalette.darkgray,
-  cancelButtonBackground: lightPalette.lightgray,
-  cancelButtonText: lightPalette.darkgray,
-  cancelButtonBackgroundHover: lightPalette.gray,
-  cancelButtonTextHover: lightPalette.white,
+  moreButtonMargin,
+  moreButtonPadding,
+  searchBarPadding,
+  subTitleTextSize,
+  linkBackgroundHover: commonPalette.pink,
+  linkForeground: commonPalette.pink,
+  linkForegroundHover: commonPalette.white,
+  listMargin,
 };
 
-const dark = { bodyBackgroundColour: "black" };
+const dark = {
+  palette: darkPalette,
+  bodyBackground: darkPalette.bodyBackground,
+  borderRadius,
+  borderWidth,
+  buttonPadding,
+  cardPadding,
+  codePadding,
+  commonPalette,
+  controlBarPadding,
+  fontFamily,
+  fontSize,
+  iconButtonPadding,
+  inputPadding,
+  lineHeight,
+  linkPadding,
+  loginFormInputPadding,
+  loginFormPadding,
+  moreButtonBorderWidth,
+  moreButtonHoverTranslateY,
+  moreButtonMargin,
+  moreButtonPadding,
+  searchBarPadding,
+  subTitleTextSize,
+  listMargin,
+};
 
 export default { light, dark };

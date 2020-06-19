@@ -7,11 +7,11 @@ import { FILTER_TEXT_CHANGED } from "../../../util/actionTypes.js";
 import { useStore } from "../../../util/Store.js";
 
 const FocusIcon = styled(Icon)`
-  color: ${({ theme }) => theme.iconButtonBorder};
+  color: ${({ theme }) => theme.palette.iconText};
   &:hover {
-    border-color: ${({ theme }) => theme.focusIconButtonBorderHover};
-    background-color: ${({ theme }) => theme.focusIconButtonBackgroundHover};
-    color: ${({ theme }) => theme.focusIconButtonTextHover};
+    border-color: ${({ theme }) => theme.commonPalette.darkblue};
+    background-color: ${({ theme }) => theme.commonPalette.blue};
+    color: ${({ theme }) => theme.commonPalette.white};
   }
 `;
 

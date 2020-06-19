@@ -8,20 +8,21 @@ import { useStore } from "../../../util/Store.js";
 import { SET_ITEM_DIALOG_OPEN } from "../../../util/actionTypes.js";
 
 const EditDiaryIcon = styled(Icon)`
-  border-color: ${({ theme }) => theme.diaryIconButtonBorder};
-  background-color: ${({ theme }) => theme.diaryIconButtonBackground};
+  border-color: ${({ theme }) => theme.commonPalette.darkyellow};
+  background-color: ${({ theme }) => theme.commonPalette.yellow};
+  color: ${({ theme }) => theme.commonPalette.white};
   &:hover {
-    background-color: ${({ theme }) => theme.diaryIconButtonBackgroundHover};
-    color: ${({ theme }) => theme.diaryIconButtonBorder};
+    background-color: ${({ theme }) => theme.commonPalette.lightyellow};
+    color: ${({ theme }) => theme.commonPalette.darkyellow};
   }
 `;
 
 const StaleEditDiaryIcon = styled(Icon)`
   cursor: not-allowed;
-  border-color: ${({ theme }) => theme.diaryIconButtonBorder};
-  background-color: ${({ theme }) => theme.diaryIconButtonBackground};
+  border-color: ${({ theme }) => theme.commonPalette.darkyellow};
+  background-color: ${({ theme }) => theme.commonPalette.yellow};
   &:hover {
-    background-color: ${({ theme }) => theme.diaryIconButtonBackground};
+    background-color: ${({ theme }) => theme.commonPalette.yellow};
   }
 `;
 

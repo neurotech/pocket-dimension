@@ -67,7 +67,13 @@ const Reducer = (state, action) => {
 
     case LOGOUT:
       sessionStorage.removeItem("token");
-      return { ...state, items: initialState.items, token: initialState.token };
+      return {
+        ...state,
+        archivedItems: initialState.archivedItems,
+        currentItems: initialState.currentItems,
+        items: initialState.items,
+        token: initialState.token,
+      };
 
     case PASTE_EVENT:
       return { ...state, pasted: action.payload };

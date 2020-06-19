@@ -8,11 +8,13 @@ import { FILTER_TYPE_CHANGED } from "../../../util/actionTypes.js";
 import itemTypes from "../../../util/itemTypes.js";
 
 const DiaryIcon = styled(Icon)`
-  border-color: ${({ theme }) => theme.diaryIconButtonBorder};
-  background-color: ${({ theme }) => theme.diaryIconButtonBackground};
+  border-color: ${({ theme }) => theme.commonPalette.darkyellow};
+  background-color: ${({ theme }) => theme.commonPalette.yellow};
+  color: ${({ theme }) => theme.commonPalette.white};
+
   &:hover {
-    background-color: ${({ theme }) => theme.diaryIconButtonBackgroundHover};
-    color: ${({ theme }) => theme.diaryIconButtonBorder};
+    background-color: ${({ theme }) => theme.commonPalette.lightyellow};
+    color: ${({ theme }) => theme.commonPalette.darkyellow};
   }
 `;
 

@@ -8,11 +8,13 @@ import { FILTER_TYPE_CHANGED } from "../../../util/actionTypes.js";
 import itemTypes from "../../../util/itemTypes.js";
 
 const NoteIcon = styled(Icon)`
-  border-color: ${({ theme }) => theme.noteIconButtonBorder};
-  background-color: ${({ theme }) => theme.noteIconButtonBackground};
+  border-color: ${({ theme }) => theme.commonPalette.darkblue};
+  background-color: ${({ theme }) => theme.commonPalette.blue};
+  color: ${({ theme }) => theme.commonPalette.white};
+
   &:hover {
-    background-color: ${({ theme }) => theme.noteIconButtonBackgroundHover};
-    color: ${({ theme }) => theme.noteIconButtonBorder};
+    background-color: ${({ theme }) => theme.commonPalette.lightblue};
+    color: ${({ theme }) => theme.commonPalette.darkblue};
   }
 `;
 

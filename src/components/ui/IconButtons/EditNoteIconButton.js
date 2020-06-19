@@ -8,20 +8,21 @@ import { useStore } from "../../../util/Store.js";
 import { SET_ITEM_DIALOG_OPEN } from "../../../util/actionTypes.js";
 
 const EditNoteIcon = styled(Icon)`
-  border-color: ${({ theme }) => theme.noteIconButtonBorder};
-  background-color: ${({ theme }) => theme.noteIconButtonBackground};
+  border-color: ${({ theme }) => theme.commonPalette.darkblue};
+  background-color: ${({ theme }) => theme.commonPalette.blue};
+  color: ${({ theme }) => theme.commonPalette.white};
   &:hover {
-    background-color: ${({ theme }) => theme.noteIconButtonBackgroundHover};
-    color: ${({ theme }) => theme.noteIconButtonBorder};
+    background-color: ${({ theme }) => theme.commonPalette.lightblue};
+    color: ${({ theme }) => theme.commonPalette.darkblue};
   }
 `;
 
 const StaleEditNoteIcon = styled(Icon)`
   cursor: not-allowed;
-  border-color: ${({ theme }) => theme.noteIconButtonBorder};
-  background-color: ${({ theme }) => theme.noteIconButtonBackground};
+  border-color: ${({ theme }) => theme.commonPalette.darkblue};
+  background-color: ${({ theme }) => theme.commonPalette.blue};
   &:hover {
-    background-color: ${({ theme }) => theme.noteIconButtonBackground};
+    background-color: ${({ theme }) => theme.commonPalette.blue};
   }
 `;
 

@@ -7,23 +7,25 @@ const StyledInput = styled.input`
   outline: 0;
   width: 100%;
   padding: ${({ theme }) => theme.searchBarPadding};
-  border: 2px solid ${({ theme }) => theme.searchBarBorderColour};
-  border-radius: ${({ theme }) => theme.searchBarBorderRadius};
-  background-color: ${({ theme }) => theme.searchBarBackgroundColour};
+  border-radius: ${({ theme }) => theme.borderRadius};
+
+  border: 2px solid ${({ theme }) => theme.palette.searchBarBorder};
+  background-color: ${({ theme }) => theme.palette.searchBarBackground};
+
   font-family: ${({ theme }) => theme.fontFamily};
   font-weight: 600;
 
   ::placeholder {
-    color: ${({ theme }) => theme.searchBarTextPlaceholder};
+    color: ${({ theme }) => theme.palette.searchBarPlaceholder};
   }
 
   & :focus {
-    border-color: ${({ theme }) => theme.searchBarBorderFocus};
-    background-color: ${({ theme }) => theme.searchBarBackgroundFocus};
-    color: ${({ theme }) => theme.searchBarTextFocus};
+    border-color: ${({ theme }) => theme.commonPalette.pink};
+    background-color: ${({ theme }) => theme.commonPalette.palepink};
+    color: ${({ theme }) => theme.commonPalette.darkpink};
 
     ::placeholder {
-      color: ${({ theme }) => theme.searchBarTextFocus};
+      color: transparent;
     }
   }
 `;

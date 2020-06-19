@@ -8,11 +8,13 @@ import { useStore } from "../../../util/Store.js";
 import itemTypes from "../../../util/itemTypes.js";
 
 const LinkIcon = styled(Icon)`
-  border-color: ${({ theme }) => theme.linkIconButtonBorder};
-  background-color: ${({ theme }) => theme.linkIconButtonBackground};
+  border-color: ${({ theme }) => theme.commonPalette.darkgreen};
+  background-color: ${({ theme }) => theme.commonPalette.green};
+  color: ${({ theme }) => theme.commonPalette.white};
+
   &:hover {
-    background-color: ${({ theme }) => theme.linkIconButtonBackgroundHover};
-    color: ${({ theme }) => theme.linkIconButtonBorder};
+    background-color: ${({ theme }) => theme.commonPalette.lightgreen};
+    color: ${({ theme }) => theme.commonPalette.darkgreen};
   }
 `;
 

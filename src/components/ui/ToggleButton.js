@@ -13,19 +13,45 @@ const StyledButton = styled.button`
   border-style: solid;
   line-height: 0;
   padding: ${({ theme }) => theme.iconButtonPadding};
-  border-radius: ${({ theme }) => theme.buttonBorderRadius};
+  border-radius: ${({ theme }) => theme.borderRadius};
   border-width: ${({ theme }) => theme.borderWidth}px;
-  border-color: ${({ theme }) => theme.toggleButtonBorder};
-  background: ${({ theme }) => theme.toggleButtonBackground};
-  color: ${({ theme }) => theme.toggleButtonText};
+  transition: border-color 0.15s, background-color 0.15s, color 0.15s;
 
-  & :hover {
-    background: ${({ theme }) => theme.toggleButtonBackgroundHover};
-    color: ${({ theme }) => theme.toggleButtonTextHover};
-  }
+  border-color: ${({ theme }) => theme.commonPalette.darkpink};
+  background: ${({ theme }) => theme.commonPalette.pink};
+  color: ${({ theme }) => theme.commonPalette.white};
 `;
 
-const DarkModeButton = styled(StyledButton)``;
+const DarkModeButton = styled(StyledButton)`
+  border-color: ${(props) =>
+    props.toggled
+      ? props.theme.commonPalette.black
+      : props.theme.commonPalette.darkskyblue};
+
+  background: ${(props) =>
+    props.toggled
+      ? props.theme.commonPalette.charcoal
+      : props.theme.commonPalette.skyblue};
+
+  color: ${({ theme }) => theme.commonPalette.white};
+
+  & :hover {
+    border-color: ${(props) =>
+      props.toggled
+        ? props.theme.commonPalette.darkpurple
+        : props.theme.commonPalette.darkskyblue};
+
+    background: ${(props) =>
+      props.toggled
+        ? props.theme.commonPalette.lightpurple
+        : props.theme.commonPalette.lightskyblue};
+
+    color: ${(props) =>
+      props.toggled
+        ? props.theme.commonPalette.darkpurple
+        : props.theme.commonPalette.darkskyblue};
+  }
+`;
 
 const ArchiveModeButton = styled(StyledButton)`
   opacity: ${(props) => (props.toggled ? 1 : 0.33)};

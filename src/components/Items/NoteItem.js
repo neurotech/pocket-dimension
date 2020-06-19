@@ -1,6 +1,6 @@
 import React from "react";
 import Markdown from "./Markdown.js";
-import CodeBlock from "../CodeBlock.js";
+import CodeBlock from "../CodeBlock/CodeBlock.js";
 import ItemControls from "../ItemControls/ItemControls.js";
 import Columns from "../ui/layout/Columns.js";
 import Column from "../ui/layout/Column.js";

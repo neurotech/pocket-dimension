@@ -13,29 +13,30 @@ export const GlobalStyles = createGlobalStyle`
   }
 
   ::selection {
-    background: ${({ theme }) => theme.selectionBackground};
-    color: ${({ theme }) => theme.selectionForeground};
+    background: ${({ theme }) => theme.commonPalette.pink};
+    color: ${({ theme }) => theme.commonPalette.white};
   }
+  
   ::-moz-selection {
-    background: ${({ theme }) => theme.selectionBackground};
-    color: ${({ theme }) => theme.selectionForeground};
+    background: ${({ theme }) => theme.commonPalette.pink};
+    color: ${({ theme }) => theme.commonPalette.white};
   }
 
   body {
     width: 100%;
     min-height: 100vh;
     font-family: ${({ theme }) => theme.fontFamily};
-    background-color: ${({ theme }) => theme.bodyBackgroundColour};
+    background-color: ${({ theme }) => theme.bodyBackground};
   }
 
   a, a:visited {
     padding: ${({ theme }) => theme.linkPadding};
-    color: ${({ theme }) => theme.linkForeground};
+    color: ${({ theme }) => theme.palette.link};
   }
 
   a:hover {
-    border-radius: ${({ theme }) => theme.linkBackgroundBorderRadius};
-    background-color: ${({ theme }) => theme.linkBackgroundHover};
-    color: ${({ theme }) => theme.linkForegroundHover};
+    border-radius: ${({ theme }) => theme.borderRadius};
+    background-color: ${({ theme }) => theme.palette.linkBackgroundHover};
+    color: ${({ theme }) => theme.palette.linkHover};
   }
 `;

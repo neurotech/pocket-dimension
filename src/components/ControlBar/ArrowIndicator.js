@@ -30,7 +30,7 @@ const StyledArrowIcon = styled(ArrowIcon)`
   position: absolute;
   right: 0;
   bottom: -1.5rem;
-  color: ${({ theme }) => theme.arrowIndicatorColor};
+  color: ${({ theme }) => theme.palette.indicator};
 `;
 
 const ArrowIndicator = () => {

@@ -12,11 +12,11 @@ import {
 import { deleteItem } from "../../../util/asyncActions.js";
 
 const DeleteIcon = styled(Icon)`
-  color: ${({ theme }) => theme.iconButtonBorder};
+  color: ${({ theme }) => theme.palette.iconText};
   &:hover {
-    border-color: ${({ theme }) => theme.deleteIconButtonBorderHover};
-    background-color: ${({ theme }) => theme.deleteIconButtonBackgroundHover};
-    color: ${({ theme }) => theme.deleteIconButtonTextHover};
+    border-color: ${({ theme }) => theme.commonPalette.darkred};
+    background-color: ${({ theme }) => theme.commonPalette.red};
+    color: ${({ theme }) => theme.commonPalette.white};
   }
 `;
 

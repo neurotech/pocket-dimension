@@ -17,13 +17,22 @@ const StyledReactMarkdown = styled(ReactMarkdown)`
 
   code {
     padding: ${({ theme }) => theme.codePadding};
-    background-color: ${({ theme }) => theme.codeBackground};
-    border-radius: ${({ theme }) => theme.codeBorderRadius};
+    background-color: ${({ theme }) => theme.palette.codeBackground};
+    border-radius: ${({ theme }) => theme.borderRadius};
+    color: ${({ theme }) => theme.palette.codeText};
   }
 
   pre {
     margin: 0 !important;
-    border-radius: ${({ theme }) => theme.codeBorderRadius};
+    border-radius: ${({ theme }) => theme.borderRadius};
+    border-width: ${({ theme }) => theme.borderWidth}px;
+    border-style: solid;
+    border-color: ${({ theme }) => theme.palette.codeBlockBorder};
+  }
+
+  ul,
+  ol {
+    margin-left: ${({ theme }) => theme.listMargin};
   }
 `;
 export default StyledReactMarkdown;

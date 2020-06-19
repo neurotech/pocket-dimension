@@ -19,18 +19,18 @@ const StyledContainer = styled.div`
   bottom: 0;
   width: 100%;
   height: 100%;
-  background-color: ${({ theme }) => theme.loginFormContainerBackground};
+  background-color: ${({ theme }) => theme.commonPalette.black};
 `;
 
 const BlueBox = styled.div`
   filter: grayscale(${(props) => (props.isLoading ? 1 : 0)});
   width: 20%;
   padding: ${({ theme }) => theme.loginFormPadding};
-  background-color: ${({ theme }) => theme.loginFormBackground};
+  background-color: ${({ theme }) => theme.commonPalette.darkblue};
   border-radius: ${({ theme }) => theme.borderRadius};
   border-width: ${({ theme }) => theme.borderWidth}px;
   border-style: solid;
-  border-color: ${({ theme }) => theme.loginFormBorder};
+  border-color: ${({ theme }) => theme.commonPalette.lightblue};
 `;
 
 const StyledForm = styled.form`
@@ -46,11 +46,11 @@ const StyledInput = styled(Input)`
   padding: ${({ theme }) => theme.loginFormInputPadding};
   font-size: ${({ theme }) => theme.fontSize * 1.75}px;
   font-weight: 600;
-  border-color: ${({ theme }) => theme.loginFormInputBorder};
-  background-color: ${({ theme }) => theme.loginFormInputBackground};
+  border-color: ${({ theme }) => theme.commonPalette.heavyblue};
+  background-color: ${({ theme }) => theme.commonPalette.paleblue};
 
   & ::placeholder {
-    color: ${({ theme }) => theme.loginFormInputPlaceholderText};
+    color: ${({ theme }) => theme.commonPalette.dimblue};
   }
 
   & :disabled {

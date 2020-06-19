@@ -34,7 +34,7 @@ const ItemDialogContainer = styled.div`
   bottom: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.5);
+  background-color: ${({ theme }) => theme.commonPalette.smoke};
   padding: 1rem 14rem;
   z-index: 1;
 `;
@@ -43,10 +43,12 @@ const ItemDialogContent = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  background: white;
+  background: ${({ theme }) => theme.palette.itemDialogBackground};
   padding: 1rem;
   border-radius: 0.33rem;
-  border: 2px solid black;
+  border-width: 2px;
+  border-style: solid;
+  border-color: ${({ theme }) => theme.palette.itemDialogBorder};
   z-index: 999;
 `;
 
@@ -196,6 +198,7 @@ const ItemDialog = () => {
                 type="text"
                 placeholder="Title"
                 onChange={(event) => setItemTitle(event.target.value)}
+                disabled={state.isLoading}
                 value={itemTitle}
               />
             </Column>
@@ -213,6 +216,7 @@ const ItemDialog = () => {
             placeholder="Body"
             onChange={(event) => setItemBody(event.target.value)}
             value={itemBody}
+            disabled={state.isLoading}
             ref={bodyTextAreaRef}
             stretch
           />

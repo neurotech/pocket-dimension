@@ -23,7 +23,7 @@ const StyledText = styled.div`
     resolveSizeToFontSize(size, theme.fontSize)};
   font-weight: ${(props) => props.weight};
   color: ${({ subtitle, theme }) =>
-    subtitle ? theme.subtitleTextColour : theme.textColour};
+    subtitle ? theme.palette.subTitle : theme.palette.text};
 `;
 
 const Text = ({
