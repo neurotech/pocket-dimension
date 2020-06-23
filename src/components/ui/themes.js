@@ -71,6 +71,7 @@ const commonPalette = {
   ash: "#676877",
   lightash: "#9ea0b3",
   paleash: "#d3d5ec",
+  brightash: "#e5e6f5",
 
   smoke: "rgba(19, 19, 21, 0.7)",
 };

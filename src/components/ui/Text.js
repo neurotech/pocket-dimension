@@ -14,7 +14,6 @@ const resolveSizeToFontSize = (size, fontSize) => {
 
     default:
       return fontSize + "px";
-      break;
   }
 };
 

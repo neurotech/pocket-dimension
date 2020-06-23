@@ -20,25 +20,15 @@ const LoadingContainer = styled.div`
   opacity: ${(props) => (props.isLoading ? 0.33 : 1)};
 `;
 
-const Pagination = ({ totalItems, pageSize, children }) => {
-  const { state, dispatch } = useStore();
+const Pagination = ({ totalItems, children }) => {
+  const { state } = useStore();
   const moreToGet =
     state.filterText === "" && state.currentItems.length < totalItems;
-
-  const getMore = () => {
-    const sliceEnd = state.currentItems.length + pageSize;
-    const itemsToSlice = state.archiveMode ? state.archivedItems : state.items;
-    dispatch({
-      type: SET_CURRENT_ITEMS,
-      payload: itemsToSlice.slice(0, sliceEnd),
-    });
-    dispatch({ type: SET_SCROLL_TO_BOTTOM });
-  };
 
   return (
     <Stack space="small" padLastChild>
       {children}
-      {moreToGet && <MoreButton onClick={getMore} />}
+      {moreToGet && <MoreButton />}
     </Stack>
   );
 };
@@ -46,6 +36,19 @@ const Pagination = ({ totalItems, pageSize, children }) => {
 const Items = () => {
   const { state, dispatch } = useStore();
   const bottom = useRef(null);
+
+  const handleScroll = () => {
+    if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
+      const sliceEnd = state.currentItems.length + state.pageSize;
+      const itemsToSlice = state.archiveMode
+        ? state.archivedItems
+        : state.items;
+      dispatch({
+        type: SET_CURRENT_ITEMS,
+        payload: itemsToSlice.slice(0, sliceEnd),
+      });
+    }
+  };
 
   useEffect(() => {
     async function fetchItemsOnMount() {
@@ -67,6 +70,14 @@ const Items = () => {
     }
     fetchItemsOnMount();
   }, []);
+
+  useLayoutEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  });
 
   useLayoutEffect(() => {
     bottom.current.scrollIntoView({ behavior: "smooth" });
@@ -108,7 +119,7 @@ const Items = () => {
 
   return (
     <LoadingContainer isLoading={state.isLoading}>
-      <Pagination totalItems={items.length} pageSize={state.pageSize}>
+      <Pagination totalItems={items.length}>
         {renderItemsByType(itemsToRender)}
       </Pagination>
       <div id={"scroll-to-here"} ref={bottom} />

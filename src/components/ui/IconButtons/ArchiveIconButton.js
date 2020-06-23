@@ -5,11 +5,13 @@ import Icon from "./Icon.js";
 import BoxIcon from "heroicons/solid/archive.svg";
 import {
   SET_IS_LOADING_ON,
-  SET_IS_LOADING_OFF,
   SET_STALE_ITEM,
+  FETCH_ARCHIVED_ITEMS_COMPLETE,
+  FETCH_ACTIVE_ITEMS_COMPLETE,
+  SET_CURRENT_ITEMS,
 } from "../../../util/actionTypes.js";
 import { useStore } from "../../../util/Store.js";
-import { updateItem } from "../../../util/asyncActions.js";
+import { fetchItems, updateItem } from "../../../util/asyncActions.js";
 
 const ArchiveIcon = styled(Icon)`
   color: ${({ theme }) => theme.palette.iconText};
@@ -21,7 +23,7 @@ const ArchiveIcon = styled(Icon)`
 `;
 
 const ArchiveIconButton = ({ item }) => {
-  const { dispatch } = useStore();
+  const { state, dispatch } = useStore();
 
   return (
     <div>
@@ -31,7 +33,20 @@ const ArchiveIconButton = ({ item }) => {
           dispatch({ type: SET_IS_LOADING_ON });
           item.isArchived = !item.isArchived;
           await updateItem(item);
-          dispatch({ type: SET_IS_LOADING_OFF });
+          let fetchedItems = await fetchItems(state.archiveMode);
+          let complete = state.archiveMode
+            ? FETCH_ARCHIVED_ITEMS_COMPLETE
+            : FETCH_ACTIVE_ITEMS_COMPLETE;
+          dispatch({ type: complete, payload: fetchedItems });
+
+          if (fetchedItems.length > state.pageSize) {
+            dispatch({
+              type: SET_CURRENT_ITEMS,
+              payload: fetchedItems.slice(0, state.pageSize),
+            });
+          } else {
+            dispatch({ type: SET_CURRENT_ITEMS, payload: fetchedItems });
+          }
         }}
       >
         <ArchiveIcon>

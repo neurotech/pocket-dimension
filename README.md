@@ -6,6 +6,8 @@ A tiny place to store tiny things.
 
 - Finish: `C:\projects\pocket-dimension\src\components\Items\Markdown.js`
 - Light and Dark themes for syntax highlighting
+- `title` attributes for icons/iconbuttons
+- `brightash` for Item Title
 
 ---
 
