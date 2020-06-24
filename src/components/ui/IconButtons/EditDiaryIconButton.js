@@ -48,15 +48,14 @@ const DiaryIconButton = ({ item, isStale, children }) => {
   const { dispatch } = useStore();
 
   return (
-    <div>
-      <Button
-        onClick={() => {
-          dispatch({ type: SET_ITEM_DIALOG_OPEN, payload: item });
-        }}
-      >
-        {getIcon(isStale, children)}
-      </Button>
-    </div>
+    <Button
+      title={"Edit this Diary item"}
+      onClick={() => {
+        dispatch({ type: SET_ITEM_DIALOG_OPEN, payload: item });
+      }}
+    >
+      {getIcon(isStale, children)}
+    </Button>
   );
 };
 

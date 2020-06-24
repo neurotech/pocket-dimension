@@ -26,34 +26,33 @@ const ArchiveIconButton = ({ item }) => {
   const { state, dispatch } = useStore();
 
   return (
-    <div>
-      <Button
-        onClick={async () => {
-          dispatch({ type: SET_STALE_ITEM, payload: item.id });
-          dispatch({ type: SET_IS_LOADING_ON });
-          item.isArchived = !item.isArchived;
-          await updateItem(item);
-          let fetchedItems = await fetchItems(state.archiveMode);
-          let complete = state.archiveMode
-            ? FETCH_ARCHIVED_ITEMS_COMPLETE
-            : FETCH_ACTIVE_ITEMS_COMPLETE;
-          dispatch({ type: complete, payload: fetchedItems });
+    <Button
+      title={"Archive this item"}
+      onClick={async () => {
+        dispatch({ type: SET_STALE_ITEM, payload: item.id });
+        dispatch({ type: SET_IS_LOADING_ON });
+        item.isArchived = !item.isArchived;
+        await updateItem(item);
+        let fetchedItems = await fetchItems(state.archiveMode);
+        let complete = state.archiveMode
+          ? FETCH_ARCHIVED_ITEMS_COMPLETE
+          : FETCH_ACTIVE_ITEMS_COMPLETE;
+        dispatch({ type: complete, payload: fetchedItems });
 
-          if (fetchedItems.length > state.pageSize) {
-            dispatch({
-              type: SET_CURRENT_ITEMS,
-              payload: fetchedItems.slice(0, state.pageSize),
-            });
-          } else {
-            dispatch({ type: SET_CURRENT_ITEMS, payload: fetchedItems });
-          }
-        }}
-      >
-        <ArchiveIcon>
-          <BoxIcon width={20} height={20} />
-        </ArchiveIcon>
-      </Button>
-    </div>
+        if (fetchedItems.length > state.pageSize) {
+          dispatch({
+            type: SET_CURRENT_ITEMS,
+            payload: fetchedItems.slice(0, state.pageSize),
+          });
+        } else {
+          dispatch({ type: SET_CURRENT_ITEMS, payload: fetchedItems });
+        }
+      }}
+    >
+      <ArchiveIcon>
+        <BoxIcon width={20} height={20} />
+      </ArchiveIcon>
+    </Button>
   );
 };
 

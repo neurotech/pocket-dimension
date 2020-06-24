@@ -20,13 +20,11 @@ const LogoutIcon = styled(Icon)`
 
 const LogoutIconButton = ({ onClick }) => {
   return (
-    <div>
-      <Button onClick={onClick}>
-        <LogoutIcon>
-          <ExitIcon width={20} height={20} />
-        </LogoutIcon>
-      </Button>
-    </div>
+    <Button title={"Logout"} onClick={onClick}>
+      <LogoutIcon>
+        <ExitIcon width={20} height={20} />
+      </LogoutIcon>
+    </Button>
   );
 };
 

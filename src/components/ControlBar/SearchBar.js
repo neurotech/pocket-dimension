@@ -35,15 +35,16 @@ const SearchBar = () => {
 
   return (
     <StyledInput
-      type="text"
       autoFocus
-      placeholder="Search"
+      autocomplete={"off"}
       onChange={(event) => {
         dispatch({
           type: FILTER_TEXT_CHANGED,
           payload: event ? event.target.value : "",
         });
       }}
+      placeholder="Search"
+      type="search"
       value={state.filterText || ""}
     ></StyledInput>
   );

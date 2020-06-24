@@ -19,17 +19,16 @@ const FocusIconButton = ({ title }) => {
   const { dispatch } = useStore();
 
   return (
-    <div>
-      <Button
-        onClick={() => {
-          dispatch({ type: FILTER_TEXT_CHANGED, payload: title });
-        }}
-      >
-        <FocusIcon>
-          <EyeIcon width={20} height={20} />
-        </FocusIcon>
-      </Button>
-    </div>
+    <Button
+      title={"Focus this item"}
+      onClick={() => {
+        dispatch({ type: FILTER_TEXT_CHANGED, payload: title });
+      }}
+    >
+      <FocusIcon>
+        <EyeIcon width={20} height={20} />
+      </FocusIcon>
+    </Button>
   );
 };
 

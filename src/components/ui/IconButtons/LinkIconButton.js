@@ -22,18 +22,17 @@ const LinkIconButton = ({ children }) => {
   const { dispatch } = useStore();
 
   return (
-    <div>
-      <Button
-        onClick={() => {
-          dispatch({ type: FILTER_TYPE_CHANGED, payload: itemTypes.link });
-        }}
-      >
-        <LinkIcon>
-          <ChainIcon width={20} height={20} />
-          {children}
-        </LinkIcon>
-      </Button>
-    </div>
+    <Button
+      title={"Show all Link items"}
+      onClick={() => {
+        dispatch({ type: FILTER_TYPE_CHANGED, payload: itemTypes.link });
+      }}
+    >
+      <LinkIcon>
+        <ChainIcon width={20} height={20} />
+        {children}
+      </LinkIcon>
+    </Button>
   );
 };
 

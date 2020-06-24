@@ -22,18 +22,17 @@ const AllIconButton = ({ children }) => {
   const { dispatch } = useStore();
 
   return (
-    <div>
-      <Button
-        onClick={() => {
-          dispatch({ type: FILTER_TYPE_CHANGED, payload: itemTypes.all });
-        }}
-      >
-        <AllIcon>
-          <HomeIcon width={20} height={20} />
-          {children}
-        </AllIcon>
-      </Button>
-    </div>
+    <Button
+      title={"Show all items"}
+      onClick={() => {
+        dispatch({ type: FILTER_TYPE_CHANGED, payload: itemTypes.all });
+      }}
+    >
+      <AllIcon>
+        <HomeIcon width={20} height={20} />
+        {children}
+      </AllIcon>
+    </Button>
   );
 };
 

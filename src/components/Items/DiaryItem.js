@@ -32,10 +32,12 @@ const DiaryItem = ({ item, isStale }) => {
           </Column>
           <Column width="fill">
             <Stack space="xxsmall">
-              <Text size="large" weight="600">
+              <Text size="large" variant={"heading"} weight="600">
                 {item.title}
               </Text>
-              <Text subtitle>{resolveTimestamp(item.timestamp)}</Text>
+              <Text variant={"subtitle"}>
+                {resolveTimestamp(item.timestamp)}
+              </Text>
             </Stack>
           </Column>
           <Column width="content">

@@ -62,16 +62,22 @@ const renderButtonByVariant = (variant, toggled, onClick, children) => {
   switch (variant) {
     case "darkMode":
       return (
-        <DarkModeButton onClick={onClick} toggled={toggled}>
-          {children}
-        </DarkModeButton>
+        <DarkModeButton
+          title={toggled ? "Disable dark mode" : "Enable dark mode"}
+          onClick={onClick}
+          toggled={toggled}
+          children={children}
+        />
       );
 
     case "archive":
       return (
-        <ArchiveModeButton onClick={onClick} toggled={toggled}>
-          {children}
-        </ArchiveModeButton>
+        <ArchiveModeButton
+          title={toggled ? "Disable archive mode" : "Enable archive mode"}
+          onClick={onClick}
+          toggled={toggled}
+          children={children}
+        />
       );
   }
 };

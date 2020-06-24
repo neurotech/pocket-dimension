@@ -44,31 +44,30 @@ const RefreshIconButton = () => {
   const { state, dispatch } = useStore();
 
   return (
-    <div>
-      <Button
-        onClick={async () => {
-          dispatch({ type: SET_IS_LOADING_ON });
-          let fetchedItems = await fetchItems(state.archiveMode);
-          let complete = state.archiveMode
-            ? FETCH_ARCHIVED_ITEMS_COMPLETE
-            : FETCH_ACTIVE_ITEMS_COMPLETE;
-          dispatch({ type: complete, payload: fetchedItems });
+    <Button
+      title={"Refresh items"}
+      onClick={async () => {
+        dispatch({ type: SET_IS_LOADING_ON });
+        let fetchedItems = await fetchItems(state.archiveMode);
+        let complete = state.archiveMode
+          ? FETCH_ARCHIVED_ITEMS_COMPLETE
+          : FETCH_ACTIVE_ITEMS_COMPLETE;
+        dispatch({ type: complete, payload: fetchedItems });
 
-          if (fetchedItems.length > state.pageSize) {
-            dispatch({
-              type: SET_CURRENT_ITEMS,
-              payload: fetchedItems.slice(0, state.pageSize),
-            });
-          } else {
-            dispatch({ type: SET_CURRENT_ITEMS, payload: fetchedItems });
-          }
-        }}
-      >
-        <RefreshIcon isLoading={state.isLoading}>
-          <DoubleArrowsIcon width={20} height={20} />
-        </RefreshIcon>
-      </Button>
-    </div>
+        if (fetchedItems.length > state.pageSize) {
+          dispatch({
+            type: SET_CURRENT_ITEMS,
+            payload: fetchedItems.slice(0, state.pageSize),
+          });
+        } else {
+          dispatch({ type: SET_CURRENT_ITEMS, payload: fetchedItems });
+        }
+      }}
+    >
+      <RefreshIcon isLoading={state.isLoading}>
+        <DoubleArrowsIcon width={20} height={20} />
+      </RefreshIcon>
+    </Button>
   );
 };
 

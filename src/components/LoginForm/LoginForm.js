@@ -19,7 +19,7 @@ const StyledContainer = styled.div`
   bottom: 0;
   width: 100%;
   height: 100%;
-  background-color: ${({ theme }) => theme.commonPalette.black};
+  background-color: ${({ theme }) => theme.commonPalette.trueblack};
 `;
 
 const BlueBox = styled.div`
@@ -48,6 +48,7 @@ const StyledInput = styled(Input)`
   font-weight: 600;
   border-color: ${({ theme }) => theme.commonPalette.heavyblue};
   background-color: ${({ theme }) => theme.commonPalette.paleblue};
+  color: ${({ theme }) => theme.commonPalette.heavyblue};
 
   & ::placeholder {
     color: ${({ theme }) => theme.commonPalette.dimblue};
@@ -56,10 +57,6 @@ const StyledInput = styled(Input)`
   & :disabled {
     cursor: not-allowed;
   }
-`;
-
-const StyledTextButton = styled(TextButton)`
-  background: red;
 `;
 
 const LoginForm = () => {
@@ -96,19 +93,21 @@ const LoginForm = () => {
             <StyledInput
               autoFocus
               required
-              placeholder="Username"
+              autocomplete={"username"}
               disabled={state.isLoading}
-              type={"text"}
               onChange={(event) => setUsername(event.target.value)}
+              placeholder={"Username"}
+              type={"text"}
             />
             <StyledInput
               required
-              placeholder="Password"
+              autocomplete={"current-password"}
               disabled={state.isLoading}
-              type={"password"}
               onChange={(event) => setPassword(event.target.value)}
+              placeholder={"Password"}
+              type={"password"}
             />
-            <StyledTextButton
+            <TextButton
               size={"xlarge"}
               disabled={state.isLoading}
               handleClick={(event) =>

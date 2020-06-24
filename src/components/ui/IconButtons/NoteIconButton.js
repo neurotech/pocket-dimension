@@ -22,18 +22,17 @@ const NoteIconButton = ({ children }) => {
   const { dispatch } = useStore();
 
   return (
-    <div>
-      <Button
-        onClick={() => {
-          dispatch({ type: FILTER_TYPE_CHANGED, payload: itemTypes.note });
-        }}
-      >
-        <NoteIcon>
-          <PaperClipIcon width={20} height={20} />
-          {children}
-        </NoteIcon>
-      </Button>
-    </div>
+    <Button
+      title={"Show all Note items"}
+      onClick={() => {
+        dispatch({ type: FILTER_TYPE_CHANGED, payload: itemTypes.note });
+      }}
+    >
+      <NoteIcon>
+        <PaperClipIcon width={20} height={20} />
+        {children}
+      </NoteIcon>
+    </Button>
   );
 };
 

@@ -73,7 +73,8 @@ const commonPalette = {
   paleash: "#d3d5ec",
   brightash: "#e5e6f5",
 
-  smoke: "rgba(19, 19, 21, 0.7)",
+  smoke: "rgba(19, 19, 21, 0.7)
+  trueblack: "#000000
 };
 
 const darkPalette = {
@@ -86,6 +87,7 @@ const darkPalette = {
   linkHover: commonPalette.black,
   subTitle: commonPalette.lightash,
   text: commonPalette.paleash,
+  heading: commonPalette.brightash,
   iconBorder: commonPalette.charcoal,
   iconBackground: commonPalette.palecharcoal,
   iconText: commonPalette.charcoal,
@@ -123,6 +125,7 @@ const lightPalette = {
   linkHover: commonPalette.white,
   text: commonPalette.black,
   subTitle: commonPalette.darkgray,
+  heading: commonPalette.black,
   divider: commonPalette.palegray,
   iconBorder: commonPalette.gray,
   iconBackground: commonPalette.lightgray,

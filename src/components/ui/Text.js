@@ -16,25 +16,42 @@ const resolveSizeToFontSize = (size, fontSize) => {
       return fontSize + "px";
   }
 };
+const resolveVariantToFontColour = (theme, variant) => {
+  switch (variant) {
+    case "normal":
+      return theme.palette.text;
+
+    case "subtitle":
+      return theme.palette.subTitle;
+
+    case "heading":
+      return theme.palette.heading;
+
+    default:
+      return theme.palette.text;
+  }
+};
 
 const StyledText = styled.div`
   font-size: ${({ size, theme }) =>
     resolveSizeToFontSize(size, theme.fontSize)};
   font-weight: ${(props) => props.weight};
-  color: ${({ subtitle, theme }) =>
-    subtitle ? theme.palette.subTitle : theme.palette.text};
+  color: ${({ theme, variant }) => resolveVariantToFontColour(theme, variant)};
 `;
 
 const Text = ({
   size = "regular",
+  variant = "normal",
   weight = "normal",
-  subtitle = false,
   children,
 }) => {
   return (
-    <StyledText size={size} weight={weight} subtitle={subtitle}>
-      {children}
-    </StyledText>
+    <StyledText
+      size={size}
+      variant={variant}
+      weight={weight}
+      children={children}
+    />
   );
 };
 

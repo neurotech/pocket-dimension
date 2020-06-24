@@ -22,18 +22,17 @@ const DiaryIconButton = ({ children }) => {
   const { dispatch } = useStore();
 
   return (
-    <div>
-      <Button
-        onClick={() => {
-          dispatch({ type: FILTER_TYPE_CHANGED, payload: itemTypes.diary });
-        }}
-      >
-        <DiaryIcon>
-          <BookIcon width={20} height={20} />
-          {children}
-        </DiaryIcon>
-      </Button>
-    </div>
+    <Button
+      title={"Show all Diary items"}
+      onClick={() => {
+        dispatch({ type: FILTER_TYPE_CHANGED, payload: itemTypes.diary });
+      }}
+    >
+      <DiaryIcon>
+        <BookIcon width={20} height={20} />
+        {children}
+      </DiaryIcon>
+    </Button>
   );
 };
 

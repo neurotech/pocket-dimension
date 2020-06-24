@@ -17,13 +17,11 @@ const CreateIcon = styled(Icon)`
 
 const CreateIconButton = ({ onClick }) => {
   return (
-    <div>
-      <Button onClick={onClick}>
-        <CreateIcon>
-          <AddIcon width={20} height={20} />
-        </CreateIcon>
-      </Button>
-    </div>
+    <Button title={"Create a new item"} onClick={onClick}>
+      <CreateIcon>
+        <AddIcon width={20} height={20} />
+      </CreateIcon>
+    </Button>
   );
 };
 
