@@ -73,8 +73,8 @@ const commonPalette = {
   paleash: "#d3d5ec",
   brightash: "#e5e6f5",
 
-  smoke: "rgba(19, 19, 21, 0.7)
-  trueblack: "#000000
+  smoke: "rgba(19, 19, 21, 0.7)",
+  trueblack: "#000000",
 };
 
 const darkPalette = {
@@ -96,6 +96,9 @@ const darkPalette = {
   searchBarBorder: commonPalette.black,
   searchBarBackground: commonPalette.charcoal,
   searchBarPlaceholder: commonPalette.ash,
+  searchBarBorderFocus: commonPalette.blue,
+  searchBarBackgroundFocus: commonPalette.paleblue,
+  searchBarPlaceholderFocus: commonPalette.heavyblue,
   indicator: commonPalette.paleash,
   moreButtonBorder: commonPalette.black,
   moreButtonBackground: commonPalette.palecharcoal,
@@ -135,6 +138,9 @@ const lightPalette = {
   searchBarBorder: commonPalette.gray,
   searchBarBackground: commonPalette.palegray,
   searchBarPlaceholder: commonPalette.gray,
+  searchBarBorderFocus: commonPalette.pink,
+  searchBarBackgroundFocus: commonPalette.palepink,
+  searchBarPlaceholderFocus: commonPalette.darkpink,
   indicator: commonPalette.darkgray,
   moreButtonBorder: commonPalette.gray,
   moreButtonBackground: commonPalette.lightgray,
@@ -155,7 +161,25 @@ const lightPalette = {
   codeBlockBorder: commonPalette.lightgray,
 };
 
+const lightCodePalette = {};
+
+const darkCodePalette = {
+  background: commonPalette.charcoal,
+  foreground: commonPalette.white,
+  comment: commonPalette.lightash,
+  punctuation: commonPalette.paleash,
+  operator: commonPalette.lightash,
+  number: commonPalette.yellow,
+  function: "#ff3e97",
+  string: "#19e589",
+  boolean: "#5CCBFF",
+  url: "#5CCBFF",
+  keyword: "#5CCBFF",
+  regex: "#5CCBFF",
+};
+
 const light = {
+  code: lightCodePalette,
   palette: lightPalette,
   bodyBackground: lightPalette.bodyBackground,
   borderRadius,
@@ -186,6 +210,7 @@ const light = {
 };
 
 const dark = {
+  code: darkCodePalette,
   palette: darkPalette,
   bodyBackground: darkPalette.bodyBackground,
   borderRadius,

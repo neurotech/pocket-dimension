@@ -78,6 +78,8 @@ const ItemDialog = () => {
       type: itemType,
     };
 
+    dispatch({ type: SET_ITEM_DIALOG_CLOSED });
+
     if (state.item) {
       payload.id = state.item.id;
       payload.timestamp = state.item.timestamp;
@@ -100,8 +102,6 @@ const ItemDialog = () => {
     } else {
       dispatch({ type: SET_CURRENT_ITEMS, payload: fetchedItems });
     }
-
-    dispatch({ type: SET_ITEM_DIALOG_CLOSED });
   };
 
   const handleCtrlEnter = (event) => {

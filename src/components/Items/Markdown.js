@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 const StyledReactMarkdown = styled(ReactMarkdown)`
   font-size: ${({ theme }) => theme.fontSize + 2}px;
-  line-height: ${({ theme }) => theme.lineHeight + 2}px;
+  line-height: ${({ theme }) => theme.lineHeight}px;
 
   h1,
   h2,
@@ -16,14 +16,12 @@ const StyledReactMarkdown = styled(ReactMarkdown)`
   }
 
   code {
-    padding: ${({ theme }) => theme.codePadding};
     background-color: ${({ theme }) => theme.palette.codeBackground};
     border-radius: ${({ theme }) => theme.borderRadius};
     color: ${({ theme }) => theme.palette.codeText};
   }
 
   pre {
-    margin: 0 !important;
     border-radius: ${({ theme }) => theme.borderRadius};
     border-width: ${({ theme }) => theme.borderWidth}px;
     border-style: solid;

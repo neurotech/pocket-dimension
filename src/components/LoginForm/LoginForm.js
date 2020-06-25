@@ -54,6 +54,10 @@ const StyledInput = styled(Input)`
     color: ${({ theme }) => theme.commonPalette.dimblue};
   }
 
+  & :focus {
+    border-color: ${({ theme }) => theme.commonPalette.yellow};
+  }
+
   & :disabled {
     cursor: not-allowed;
   }
@@ -91,7 +95,6 @@ const LoginForm = () => {
         <BlueBox isLoading={state.isLoading}>
           <Stack space="small">
             <StyledInput
-              autoFocus
               required
               autocomplete={"username"}
               disabled={state.isLoading}

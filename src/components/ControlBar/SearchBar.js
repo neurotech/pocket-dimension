@@ -11,6 +11,7 @@ const StyledInput = styled.input`
 
   border: 2px solid ${({ theme }) => theme.palette.searchBarBorder};
   background-color: ${({ theme }) => theme.palette.searchBarBackground};
+  color: ${({ theme }) => theme.palette.searchBarPlaceholder};
 
   font-family: ${({ theme }) => theme.fontFamily};
   font-weight: 600;
@@ -20,9 +21,9 @@ const StyledInput = styled.input`
   }
 
   & :focus {
-    border-color: ${({ theme }) => theme.commonPalette.pink};
-    background-color: ${({ theme }) => theme.commonPalette.palepink};
-    color: ${({ theme }) => theme.commonPalette.darkpink};
+    border-color: ${({ theme }) => theme.palette.searchBarBorderFocus};
+    background-color: ${({ theme }) => theme.palette.searchBarBackgroundFocus};
+    color: ${({ theme }) => theme.palette.searchBarPlaceholderFocus};
 
     ::placeholder {
       color: transparent;
