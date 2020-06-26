@@ -19,6 +19,11 @@ const StyledReactMarkdown = styled(ReactMarkdown)`
     background-color: ${({ theme }) => theme.palette.codeBackground};
     border-radius: ${({ theme }) => theme.borderRadius};
     color: ${({ theme }) => theme.palette.codeText};
+    padding: 2px 6px;
+  }
+
+  pre > code {
+    padding: 0;
   }
 
   pre {
