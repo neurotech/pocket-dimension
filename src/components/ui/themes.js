@@ -7,6 +7,7 @@ const controlBarPadding = "16px";
 const fontFamily =
   "-apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji";
 const fontSize = 12;
+const inputFontSize = 15;
 const iconButtonPadding = "0.5rem";
 const inputPadding = "0.5rem";
 const lineHeight = 25;
@@ -19,7 +20,7 @@ const moreButtonMargin = "1rem";
 const moreButtonPadding = "1rem";
 const searchBarPadding = "0.6rem";
 const subTitleTextSize = "0.5rem";
-
+const blockQuotePadding = "1rem";
 const listMargin = "2rem";
 
 const commonPalette = {
@@ -99,6 +100,14 @@ const darkPalette = {
   searchBarBorderFocus: commonPalette.blue,
   searchBarBackgroundFocus: commonPalette.paleblue,
   searchBarPlaceholderFocus: commonPalette.heavyblue,
+  clearSearchBarHover: commonPalette.darkblue,
+  clearSearchBarBorderFocus: commonPalette.blue,
+  clearSearchBarBorder: commonPalette.black,
+  clearSearchBarBackgroundFocus: commonPalette.blue,
+  clearSearchBarBackgroundHover: commonPalette.blue,
+  clearSearchBarBackground: commonPalette.charcoal,
+  clearSearchBarPlaceholderFocus: commonPalette.white,
+  clearSearchBarPlaceholder: commonPalette.ash,
   indicator: commonPalette.paleash,
   moreButtonBorder: commonPalette.black,
   moreButtonBackground: commonPalette.palecharcoal,
@@ -110,13 +119,14 @@ const darkPalette = {
   typeButtonText: commonPalette.charcoal,
   inputBorder: commonPalette.charcoal,
   inputBackground: commonPalette.palecharcoal,
-  inputText: commonPalette.paleash,
+  inputText: commonPalette.white,
   inputPlaceholder: commonPalette.lightash,
   inputBorderFocus: commonPalette.blue,
   disabledInputBorder: commonPalette.charcoal,
   disabledInputBackground: commonPalette.palecharcoal,
   disabledInputText: commonPalette.charcoal,
   codeBlockBorder: commonPalette.darkcharcoal,
+  blockQuoteBorder: commonPalette.ash,
 };
 
 const lightPalette = {
@@ -141,6 +151,14 @@ const lightPalette = {
   searchBarBorderFocus: commonPalette.pink,
   searchBarBackgroundFocus: commonPalette.palepink,
   searchBarPlaceholderFocus: commonPalette.darkpink,
+  clearSearchBarHover: commonPalette.darkerpink,
+  clearSearchBarBorderFocus: commonPalette.pink,
+  clearSearchBarBorder: commonPalette.gray,
+  clearSearchBarBackgroundFocus: commonPalette.pink,
+  clearSearchBarBackgroundHover: commonPalette.pink,
+  clearSearchBarBackground: commonPalette.palegray,
+  clearSearchBarPlaceholderFocus: commonPalette.white,
+  clearSearchBarPlaceholder: commonPalette.gray,
   indicator: commonPalette.darkgray,
   moreButtonBorder: commonPalette.gray,
   moreButtonBackground: commonPalette.lightgray,
@@ -159,6 +177,7 @@ const lightPalette = {
   disabledInputBackground: commonPalette.lightgray,
   disabledInputText: commonPalette.darkgray,
   codeBlockBorder: commonPalette.lightgray,
+  blockQuoteBorder: commonPalette.lightgray,
 };
 
 const lightCodePalette = {};
@@ -191,6 +210,7 @@ const light = {
   controlBarPadding,
   fontFamily,
   fontSize,
+  inputFontSize,
   iconButtonPadding,
   inputPadding,
   lineHeight,
@@ -207,6 +227,7 @@ const light = {
   linkForeground: commonPalette.pink,
   linkForegroundHover: commonPalette.white,
   listMargin,
+  blockQuotePadding,
 };
 
 const dark = {
@@ -222,6 +243,7 @@ const dark = {
   controlBarPadding,
   fontFamily,
   fontSize,
+  inputFontSize,
   iconButtonPadding,
   inputPadding,
   lineHeight,
@@ -235,6 +257,7 @@ const dark = {
   searchBarPadding,
   subTitleTextSize,
   listMargin,
+  blockQuotePadding,
 };
 
 export default { light, dark };
