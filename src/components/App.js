@@ -12,7 +12,6 @@ import { GlobalStyles } from "./GlobalStyles.js";
 import themes from "./ui/themes.js";
 import Stack from "./ui/layout/Stack.js";
 import initialState from "../util/initialState.js";
-import EventHandler from "./EventHandler.js";
 
 const App = () => {
   const { state, dispatch } = useStore();
@@ -36,26 +35,32 @@ const App = () => {
     dispatch({ type: SET_THEME, payload: state.darkMode ? "dark" : "light" });
   }, [state.darkMode]);
 
+  useEffect(() => {
+    window.addEventListener("keydown", onKeyDown);
+    window.addEventListener("paste", onPaste);
+
+    return () => {
+      window.removeEventListener("keydown", onKeyDown);
+      window.removeEventListener("paste", onPaste);
+    };
+  });
+
   if (!sessionStorage.getItem("token") && !state.token) {
     return (
       <ThemeProvider theme={themes[state.theme]}>
         <GlobalStyles />
-        <EventHandler onKeyDown={onKeyDown} onPaste={onPaste}>
-          <LoginForm />
-        </EventHandler>
+        <LoginForm />
       </ThemeProvider>
     );
   } else {
     return (
       <ThemeProvider theme={themes[state.theme]}>
         <GlobalStyles />
-        <EventHandler onKeyDown={onKeyDown} onPaste={onPaste}>
-          {state.dialogOpen && <ItemDialog />}
-          <Stack space="small">
-            <ControlBar />
-            <Items />
-          </Stack>
-        </EventHandler>
+        {state.dialogOpen && <ItemDialog />}
+        <Stack space="small">
+          <ControlBar />
+          <Items />
+        </Stack>
       </ThemeProvider>
     );
   }
