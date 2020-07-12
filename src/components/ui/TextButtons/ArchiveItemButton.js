@@ -1,37 +1,39 @@
 import React from "react";
 import styled from "styled-components";
-import Button from "./Button.js";
-import Icon from "./Icon.js";
-import CrossIcon from "heroicons/solid/x.svg";
-import { useStore } from "../../../util/Store.js";
+import TextButton from "../TextButton.js";
 import {
-  SET_STALE_ITEM,
   SET_IS_LOADING_ON,
-  FETCH_ACTIVE_ITEMS_COMPLETE,
+  SET_STALE_ITEM,
   FETCH_ARCHIVED_ITEMS_COMPLETE,
+  FETCH_ACTIVE_ITEMS_COMPLETE,
   SET_CURRENT_ITEMS,
 } from "../../../util/actionTypes.js";
-import { deleteItem, fetchItems } from "../../../util/asyncActions.js";
+import { useStore } from "../../../util/Store.js";
+import { fetchItems, updateItem } from "../../../util/asyncActions.js";
 
-const DeleteIcon = styled(Icon)`
+const StyledTextButton = styled(TextButton)`
+  padding: 0.75rem 0.5rem;
+  border-color: ${({ theme }) => theme.palette.iconBorder};
+  background-color: ${({ theme }) => theme.palette.iconBackground};
   color: ${({ theme }) => theme.palette.iconText};
   &:hover {
-    border-color: ${({ theme }) => theme.commonPalette.darkred};
-    background-color: ${({ theme }) => theme.commonPalette.red};
+    border-color: ${({ theme }) => theme.commonPalette.darkyellow};
+    background-color: ${({ theme }) => theme.commonPalette.yellow};
     color: ${({ theme }) => theme.commonPalette.white};
   }
 `;
 
-const DeleteIconButton = ({ item }) => {
+const ArchiveIconButton = ({ item }) => {
   const { state, dispatch } = useStore();
 
   return (
-    <Button
-      title={"Delete this item"}
+    <StyledTextButton
+      label={"Archive"}
       onClick={async () => {
         dispatch({ type: SET_STALE_ITEM, payload: item.id });
         dispatch({ type: SET_IS_LOADING_ON });
-        await deleteItem(item.id, item.timestamp);
+        item.isArchived = !item.isArchived;
+        await updateItem(item);
         let fetchedItems = await fetchItems(state.archiveMode);
         let complete = state.archiveMode
           ? FETCH_ARCHIVED_ITEMS_COMPLETE
@@ -47,12 +49,8 @@ const DeleteIconButton = ({ item }) => {
           dispatch({ type: SET_CURRENT_ITEMS, payload: fetchedItems });
         }
       }}
-    >
-      <DeleteIcon>
-        <CrossIcon width={20} height={20} />
-      </DeleteIcon>
-    </Button>
+    />
   );
 };
 
-export default DeleteIconButton;
+export default ArchiveIconButton;

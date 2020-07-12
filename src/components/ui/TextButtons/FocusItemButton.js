@@ -1,16 +1,17 @@
 import React from "react";
 import styled from "styled-components";
-import Button from "./Button.js";
-import Icon from "./Icon.js";
-import EyeIcon from "heroicons/solid/eye.svg";
+import TextButton from "../TextButton.js";
 import { FILTER_TEXT_CHANGED } from "../../../util/actionTypes.js";
 import { useStore } from "../../../util/Store.js";
 
-const FocusIcon = styled(Icon)`
+const StyledTextButton = styled(TextButton)`
+  padding: 0.75rem 0.5rem;
+  border-color: ${({ theme }) => theme.palette.iconBorder};
+  background-color: ${({ theme }) => theme.palette.iconBackground};
   color: ${({ theme }) => theme.palette.iconText};
   &:hover {
-    border-color: ${({ theme }) => theme.commonPalette.darkblue};
-    background-color: ${({ theme }) => theme.commonPalette.blue};
+    border-color: ${({ theme }) => theme.commonPalette.darkpurple};
+    background-color: ${({ theme }) => theme.commonPalette.purple};
     color: ${({ theme }) => theme.commonPalette.white};
   }
 `;
@@ -19,16 +20,12 @@ const FocusIconButton = ({ title }) => {
   const { dispatch } = useStore();
 
   return (
-    <Button
-      title={"Focus this item"}
+    <StyledTextButton
+      label={"Focus"}
       onClick={() => {
         dispatch({ type: FILTER_TEXT_CHANGED, payload: title });
       }}
-    >
-      <FocusIcon>
-        <EyeIcon width={20} height={20} />
-      </FocusIcon>
-    </Button>
+    />
   );
 };
 
