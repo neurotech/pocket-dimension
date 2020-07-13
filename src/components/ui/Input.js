@@ -4,7 +4,7 @@ export const Input = styled.input`
   width: 100%;
   user-select: none;
   font-family: ${({ theme }) => theme.fontFamily};
-  font-size: ${({ theme }) => theme.fontSize}px;
+  font-size: ${({ theme }) => theme.inputFontSize}px;
   font-weight: 600;
   padding: ${({ theme }) => theme.inputPadding};
   border-radius: ${({ theme }) => theme.borderRadius};

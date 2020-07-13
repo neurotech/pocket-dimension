@@ -2,8 +2,8 @@ import React from "react";
 import Columns from "../ui/layout/Columns";
 import Column from "../ui/layout/Column";
 import ToggleButton from "../ui/ToggleButton";
-import CreateIconButton from "../ui/IconButtons/CreateIconButton.js";
-import LogoutIconButton from "../ui/IconButtons/LogoutIconButton.js";
+import NewItemButton from "../ui/TextButtons/NewItemButton.js";
+import LogoutButton from "../ui/TextButtons/LogoutButton.js";
 import { useStore } from "../../util/Store.js";
 import {
   TOGGLE_ARCHIVE_MODE,
@@ -56,14 +56,14 @@ const Controls = () => {
         />
       </Column>
       <Column>
-        <CreateIconButton
+        <NewItemButton
           onClick={() => {
             dispatch({ type: SET_ITEM_DIALOG_OPEN });
           }}
         />
       </Column>
       <Column>
-        <LogoutIconButton
+        <LogoutButton
           onClick={() => {
             dispatch({ type: LOGOUT });
           }}

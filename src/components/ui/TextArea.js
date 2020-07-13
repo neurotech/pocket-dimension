@@ -8,8 +8,8 @@ const StyledTextArea = styled.textarea`
   height: 100%;
   user-select: none;
   font-family: ${({ theme }) => theme.fontFamily};
-  font-size: ${({ theme }) => theme.fontSize + 2}px;
-  font-weight: 500;
+  font-size: ${({ theme }) => theme.inputFontSize}px;
+  font-weight: 400;
   padding: ${({ theme }) => theme.inputPadding};
   border-radius: ${({ theme }) => theme.borderRadius};
   border-width: ${({ theme }) => theme.borderWidth}px;

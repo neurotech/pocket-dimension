@@ -1,7 +1,7 @@
 import React from "react";
-import FocusIconButton from "../ui/IconButtons/FocusIconButton.js";
-import ArchiveIconButton from "../ui/IconButtons/ArchiveIconButton.js";
-import DeleteIconButton from "../ui/IconButtons/DeleteIconButton.js";
+import FocusItemButton from "../ui/TextButtons/FocusItemButton.js";
+import ArchiveItemButton from "../ui/TextButtons/ArchiveItemButton.js";
+import DeleteItemButton from "../ui/TextButtons/DeleteItemButton.js";
 import Columns from "../ui/layout/Columns.js";
 import Column from "../ui/layout/Column.js";
 
@@ -9,13 +9,13 @@ const ItemControls = ({ item }) => {
   return (
     <Columns space="xsmall">
       <Column>
-        <FocusIconButton title={item.title} />
+        <FocusItemButton title={item.title} />
       </Column>
       <Column>
-        <ArchiveIconButton item={item} />
+        <ArchiveItemButton item={item} />
       </Column>
       <Column>
-        <DeleteIconButton item={item} />
+        <DeleteItemButton item={item} />
       </Column>
     </Columns>
   );

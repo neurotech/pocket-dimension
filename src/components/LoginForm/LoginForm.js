@@ -63,6 +63,10 @@ const StyledInput = styled(Input)`
   }
 `;
 
+const StyledTextButton = styled(TextButton)`
+  width: 100%;
+`;
+
 const LoginForm = () => {
   const { state, dispatch } = useStore();
   const [username, setUsername] = useState(null);
@@ -110,7 +114,7 @@ const LoginForm = () => {
               placeholder={"Password"}
               type={"password"}
             />
-            <TextButton
+            <StyledTextButton
               size={"xlarge"}
               disabled={state.isLoading}
               handleClick={(event) =>
