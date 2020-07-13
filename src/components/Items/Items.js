@@ -20,7 +20,7 @@ const LoadingContainer = styled.div`
   opacity: ${(props) => (props.isLoading ? 0.33 : 1)};
 `;
 
-const Pagination = ({ totalItems, children }) => {
+const Pagination = ({ totalItems, onClick, children }) => {
   const { state } = useStore();
   const moreToGet =
     state.filterText === "" && state.currentItems.length < totalItems;
@@ -28,7 +28,7 @@ const Pagination = ({ totalItems, children }) => {
   return (
     <Stack space="small" padLastChild>
       {children}
-      {moreToGet && <MoreButton />}
+      {moreToGet && <MoreButton onClick={onClick} />}
     </Stack>
   );
 };
@@ -37,16 +37,18 @@ const Items = () => {
   const { state, dispatch } = useStore();
   const bottom = useRef(null);
 
+  const getMoreItems = () => {
+    const sliceEnd = state.currentItems.length + state.pageSize;
+    const itemsToSlice = state.archiveMode ? state.archivedItems : state.items;
+    dispatch({
+      type: SET_CURRENT_ITEMS,
+      payload: itemsToSlice.slice(0, sliceEnd),
+    });
+  };
+
   const handleScroll = () => {
     if (window.innerHeight + window.scrollY >= document.body.offsetHeight) {
-      const sliceEnd = state.currentItems.length + state.pageSize;
-      const itemsToSlice = state.archiveMode
-        ? state.archivedItems
-        : state.items;
-      dispatch({
-        type: SET_CURRENT_ITEMS,
-        payload: itemsToSlice.slice(0, sliceEnd),
-      });
+      getMoreItems();
     }
   };
 
@@ -119,7 +121,7 @@ const Items = () => {
 
   return (
     <LoadingContainer isLoading={state.isLoading}>
-      <Pagination totalItems={items.length}>
+      <Pagination totalItems={items.length} onClick={getMoreItems}>
         {renderItemsByType(itemsToRender)}
       </Pagination>
       <div id={"scroll-to-here"} ref={bottom} />
