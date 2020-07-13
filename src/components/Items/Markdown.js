@@ -37,5 +37,12 @@ const StyledReactMarkdown = styled(ReactMarkdown)`
   ol {
     margin-left: ${({ theme }) => theme.listMargin};
   }
+
+  blockquote {
+    border-left-width: ${({ theme }) => theme.borderWidth * 2}px;
+    border-left-style: solid;
+    border-left-color: ${({ theme }) => theme.palette.blockQuoteBorder};
+    padding-left: ${({ theme }) => theme.blockQuotePadding};
+  }
 `;
 export default StyledReactMarkdown;
