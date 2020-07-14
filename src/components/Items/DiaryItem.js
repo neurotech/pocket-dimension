@@ -23,22 +23,28 @@ const DiaryItem = ({ item, isStale }) => {
     <ItemCard isStale={isStale}>
       <Stack space="small">
         <Columns
+          collapseMobile
           alignItems="flex-start"
-          space="small"
+          flow="wrap"
           justifyContent="space-between"
+          space="small"
         >
-          <Column width="content">
-            <EditDiaryIconButton item={item} isStale={isStale} />
-          </Column>
-          <Column width="fill">
-            <Stack space="xxsmall">
-              <Text size="large" variant={"heading"} weight="600">
-                {item.title}
-              </Text>
-              <Text variant={"subtitle"}>
-                {resolveTimestamp(item.timestamp)}
-              </Text>
-            </Stack>
+          <Column>
+            <Columns alignItems="start" space="small">
+              <Column width="content">
+                <EditDiaryIconButton item={item} isStale={isStale} />
+              </Column>
+              <Column width="fill">
+                <Stack space="xxsmall">
+                  <Text size="large" variant={"heading"} weight="600">
+                    {item.title}
+                  </Text>
+                  <Text variant={"subtitle"}>
+                    {resolveTimestamp(item.timestamp)}
+                  </Text>
+                </Stack>
+              </Column>
+            </Columns>
           </Column>
           <Column width="content">
             {!isStale && <ItemControls item={item} />}

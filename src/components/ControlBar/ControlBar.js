@@ -16,9 +16,14 @@ const StyledControlBar = styled.div`
 const ControlBar = () => {
   return (
     <StyledControlBar>
-      <Columns space="small" justifyContent="space-between">
+      <Columns
+        collapseMobile
+        reverse
+        space="small"
+        justifyContent="space-between"
+      >
         <Column width="content">
-          <Columns space="small">
+          <Columns space="small" justifyContent="space-between">
             <Column>
               <RefreshIconButton />
             </Column>

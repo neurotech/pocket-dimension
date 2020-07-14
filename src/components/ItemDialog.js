@@ -37,6 +37,10 @@ const ItemDialogContainer = styled.div`
   background-color: ${({ theme }) => theme.commonPalette.smoke};
   padding: 1rem 14rem;
   z-index: 1;
+
+  @media only screen and (max-width: 849px) {
+    padding: 1rem;
+  }
 `;
 
 const ItemDialogContent = styled.div`

@@ -21,7 +21,7 @@ const Controls = () => {
   const { state, dispatch } = useStore();
 
   return (
-    <Columns space="small">
+    <Columns space="small" justifyContent="space-between">
       <Column>
         <ToggleButton
           toggled={state.darkMode}

@@ -23,22 +23,28 @@ const NoteItem = ({ item, isStale }) => {
     <ItemCard isStale={isStale}>
       <Stack space="small">
         <Columns
+          collapseMobile
           alignItems="flex-start"
+          flow="wrap"
           space="small"
           justifyContent="space-between"
         >
-          <Column width="content">
-            <EditNoteIconButton item={item} isStale={isStale} />
-          </Column>
-          <Column width="fill">
-            <Stack space="xxsmall" padLastChild={false}>
-              <Text size="large" variant={"heading"} weight="600">
-                {item.title}
-              </Text>
-              <Text variant={"subtitle"}>
-                {resolveTimestamp(item.timestamp)}
-              </Text>
-            </Stack>
+          <Column>
+            <Columns alignItems="start" space="small">
+              <Column width="content">
+                <EditNoteIconButton item={item} isStale={isStale} />
+              </Column>
+              <Column width="fill">
+                <Stack space="xxsmall" padLastChild={false}>
+                  <Text size="large" variant={"heading"} weight="600">
+                    {item.title}
+                  </Text>
+                  <Text variant={"subtitle"}>
+                    {resolveTimestamp(item.timestamp)}
+                  </Text>
+                </Stack>
+              </Column>
+            </Columns>
           </Column>
           <Column width="content">
             {!isStale && <ItemControls item={item} />}

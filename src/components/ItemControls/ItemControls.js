@@ -7,7 +7,11 @@ import Column from "../ui/layout/Column.js";
 
 const ItemControls = ({ item }) => {
   return (
-    <Columns space="xsmall">
+    <Columns
+      alignItems="space-between"
+      space="xsmall"
+      justifyContent="flex-start"
+    >
       <Column>
         <FocusItemButton title={item.title} />
       </Column>

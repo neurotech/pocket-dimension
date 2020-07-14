@@ -1,7 +1,13 @@
 import React, { useContext } from "react";
 import { ColumnsContext } from "./Columns.js";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import resolveSpaceToValue from "../../../util/resolveSpaceToValue.js";
+
+const collapseMobileMixin = (space) => css`
+  @media only screen and (max-width: 849px) {
+    padding-top: ${resolveSpaceToValue(space)};
+  }
+`;
 
 const StyledColumn = styled.div`
   min-width: 0;
@@ -9,13 +15,20 @@ const StyledColumn = styled.div`
   flex-grow: ${(props) => (props.columnWidth === "fill" ? 1 : 0)};
   flex-basis: auto;
   padding-left: ${(props) => resolveSpaceToValue(props.space)};
+
+  ${(props) =>
+    props.collapseMobile ? collapseMobileMixin(props.space) : null};
 `;
 
 const Column = ({ width, children }) => {
-  const { space } = useContext(ColumnsContext);
+  const { collapseMobile, space } = useContext(ColumnsContext);
 
   return (
-    <StyledColumn columnWidth={width} space={space}>
+    <StyledColumn
+      collapseMobile={collapseMobile}
+      columnWidth={width}
+      space={space}
+    >
       {children}
     </StyledColumn>
   );

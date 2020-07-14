@@ -21,6 +21,7 @@ const moreButtonPadding = "1rem";
 const searchBarPadding = "0.6rem";
 const subTitleTextSize = "0.5rem";
 const blockQuotePadding = "1rem";
+const horizontalRuleMargin = "1rem";
 const listMargin = "2rem";
 
 const commonPalette = {
@@ -83,6 +84,7 @@ const darkPalette = {
   boxBackground: commonPalette.lightcharcoal,
   boxBorder: commonPalette.black,
   divider: commonPalette.charcoal,
+  horizontalRule: commonPalette.palecharcoal,
   link: commonPalette.brightyellow,
   linkBackgroundHover: commonPalette.brightyellow,
   linkHover: commonPalette.black,
@@ -140,6 +142,7 @@ const lightPalette = {
   subTitle: commonPalette.darkgray,
   heading: commonPalette.black,
   divider: commonPalette.palegray,
+  horizontalRule: commonPalette.lightgray,
   iconBorder: commonPalette.gray,
   iconBackground: commonPalette.lightgray,
   iconText: commonPalette.gray,
@@ -228,6 +231,7 @@ const light = {
   linkForegroundHover: commonPalette.white,
   listMargin,
   blockQuotePadding,
+  horizontalRuleMargin,
 };
 
 const dark = {
@@ -258,6 +262,7 @@ const dark = {
   subTitleTextSize,
   listMargin,
   blockQuotePadding,
+  horizontalRuleMargin,
 };
 
 export default { light, dark };

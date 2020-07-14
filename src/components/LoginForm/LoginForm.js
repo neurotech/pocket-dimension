@@ -24,13 +24,19 @@ const StyledContainer = styled.div`
 
 const BlueBox = styled.div`
   filter: grayscale(${(props) => (props.isLoading ? 1 : 0)});
-  width: 20%;
   padding: ${({ theme }) => theme.loginFormPadding};
   background-color: ${({ theme }) => theme.commonPalette.darkblue};
   border-radius: ${({ theme }) => theme.borderRadius};
   border-width: ${({ theme }) => theme.borderWidth}px;
   border-style: solid;
   border-color: ${({ theme }) => theme.commonPalette.lightblue};
+
+  @media only screen and (max-width: 849px) {
+    flex-grow: 0;
+    flex-shrink: 1;
+    margin: 1rem;
+    width: 100%;
+  }
 `;
 
 const StyledForm = styled.form`
@@ -40,6 +46,11 @@ const StyledForm = styled.form`
   align-items: center;
   width: 100%;
   min-height: 100%;
+
+  @media only screen and (max-width: 849px) {
+    flex-direction: row;
+    align-items: flex-start;
+  }
 `;
 
 const StyledInput = styled(Input)`
