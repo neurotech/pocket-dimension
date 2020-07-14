@@ -76,6 +76,7 @@ const commonPalette = {
   brightash: "#e5e6f5",
 
   smoke: "rgba(19, 19, 21, 0.7)",
+  snow: "#f5f5f5",
   trueblack: "#000000",
 };
 
@@ -183,7 +184,20 @@ const lightPalette = {
   blockQuoteBorder: commonPalette.lightgray,
 };
 
-const lightCodePalette = {};
+const lightCodePalette = {
+  background: commonPalette.snow,
+  foreground: commonPalette.darkgray,
+  comment: commonPalette.ash,
+  punctuation: commonPalette.lightcharcoal,
+  operator: commonPalette.darkgray,
+  number: commonPalette.orange,
+  function: "#006b55",
+  string: "#ff008b",
+  boolean: "#5077f3",
+  url: "#5077f3",
+  keyword: "#5077f3",
+  regex: "#5077f3",
+};
 
 const darkCodePalette = {
   background: commonPalette.charcoal,

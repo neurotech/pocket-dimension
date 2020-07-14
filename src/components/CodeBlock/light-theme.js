@@ -1,9 +1,9 @@
+import themes from "../ui/themes";
+
 export default {
   'code[class*="language-"]': {
     fontFamily:
       'Consolas, Menlo, Monaco, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Courier New", Courier, monospace',
-    fontSize: "14px",
-    lineHeight: "1.375",
     direction: "ltr",
     textAlign: "left",
     whiteSpace: "pre",
@@ -16,14 +16,12 @@ export default {
     MozHyphens: "none",
     msHyphens: "none",
     hyphens: "none",
-    background: "#faf8f5",
-    color: "#728fcb",
+    background: themes.light.commonPalette.snow,
+    color: themes.light.commonPalette.charcoal,
   },
   'pre[class*="language-"]': {
     fontFamily:
       'Consolas, Menlo, Monaco, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Courier New", Courier, monospace',
-    fontSize: "14px",
-    lineHeight: "1.375",
     direction: "ltr",
     textAlign: "left",
     whiteSpace: "pre",
@@ -36,159 +34,105 @@ export default {
     MozHyphens: "none",
     msHyphens: "none",
     hyphens: "none",
-    background: "#faf8f5",
-    color: "#728fcb",
-    padding: "1em",
-    margin: ".5em 0",
+    background: themes.light.commonPalette.snow,
+    color: themes.light.commonPalette.charcoal,
+    padding: "1rem",
+    margin: "0",
     overflow: "auto",
-  },
-  'pre[class*="language-"]::-moz-selection': {
-    textShadow: "none",
-    background: "#faf8f5",
-  },
-  'pre[class*="language-"] ::-moz-selection': {
-    textShadow: "none",
-    background: "#faf8f5",
-  },
-  'code[class*="language-"]::-moz-selection': {
-    textShadow: "none",
-    background: "#faf8f5",
-  },
-  'code[class*="language-"] ::-moz-selection': {
-    textShadow: "none",
-    background: "#faf8f5",
-  },
-  'pre[class*="language-"]::selection': {
-    textShadow: "none",
-    background: "#faf8f5",
-  },
-  'pre[class*="language-"] ::selection': {
-    textShadow: "none",
-    background: "#faf8f5",
-  },
-  'code[class*="language-"]::selection': {
-    textShadow: "none",
-    background: "#faf8f5",
-  },
-  'code[class*="language-"] ::selection': {
-    textShadow: "none",
-    background: "#faf8f5",
   },
   ':not(pre) > code[class*="language-"]': {
     padding: ".1em",
     borderRadius: ".3em",
   },
   comment: {
-    color: "#b6ad9a",
+    color: themes.light.code.comment,
   },
   prolog: {
-    color: "#b6ad9a",
+    color: themes.light.code.comment,
   },
   doctype: {
-    color: "#b6ad9a",
+    color: themes.light.code.comment,
   },
   cdata: {
-    color: "#b6ad9a",
+    color: themes.light.code.comment,
   },
   punctuation: {
-    color: "#b6ad9a",
-  },
-  namespace: {
-    Opacity: ".7",
+    color: themes.light.code.punctuation,
   },
   tag: {
-    color: "#063289",
+    color: "magenta",
   },
   operator: {
-    color: "#063289",
+    color: themes.light.code.operator,
   },
   number: {
-    color: "#063289",
+    color: themes.light.code.number,
+    fontWeight: "bold",
   },
   property: {
-    color: "#b29762",
+    color: "magenta",
   },
   function: {
-    color: "#b29762",
+    color: themes.light.code.function,
+    fontWeight: "bold",
   },
   "tag-id": {
-    color: "#2d2006",
+    color: "magenta",
   },
   selector: {
-    color: "#2d2006",
+    color: "magenta",
   },
   "atrule-id": {
-    color: "#2d2006",
-  },
-  "code.language-javascript": {
-    color: "#896724",
+    color: "magenta",
   },
   "attr-name": {
-    color: "#896724",
-  },
-  "code.language-css": {
-    color: "#728fcb",
-  },
-  "code.language-scss": {
-    color: "#728fcb",
+    color: "magenta",
   },
   boolean: {
-    color: "#728fcb",
+    color: themes.light.code.boolean,
   },
   string: {
-    color: "#728fcb",
+    color: themes.light.code.string,
   },
   entity: {
-    color: "#728fcb",
+    color: "magenta",
     cursor: "help",
   },
   url: {
-    color: "#728fcb",
-  },
-  ".language-css .token.string": {
-    color: "#728fcb",
-  },
-  ".language-scss .token.string": {
-    color: "#728fcb",
-  },
-  ".style .token.string": {
-    color: "#728fcb",
-  },
-  "attr-value": {
-    color: "#728fcb",
+    color: themes.light.code.url,
   },
   keyword: {
-    color: "#728fcb",
+    color: themes.light.code.keyword,
   },
   control: {
-    color: "#728fcb",
+    color: "red",
   },
   directive: {
-    color: "#728fcb",
+    color: "red",
   },
   unit: {
-    color: "#728fcb",
+    color: "red",
   },
   statement: {
-    color: "#728fcb",
+    color: "red",
   },
   regex: {
-    color: "#728fcb",
+    color: themes.light.code.regex,
   },
   atrule: {
-    color: "#728fcb",
+    color: "#fcc440",
   },
   placeholder: {
-    color: "#93abdc",
+    color: "#fcc440",
   },
   variable: {
-    color: "#93abdc",
+    color: "green",
   },
   deleted: {
     textDecoration: "line-through",
   },
   inserted: {
-    borderBottom: "1px dotted #2d2006",
+    borderBottom: "1px dotted #fff3eb",
     textDecoration: "none",
   },
   italic: {
@@ -196,23 +140,23 @@ export default {
   },
   important: {
     fontWeight: "bold",
-    color: "#896724",
+    color: "#a48774",
   },
   bold: {
     fontWeight: "bold",
   },
   "pre > code.highlight": {
-    Outline: ".4em solid #896724",
+    Outline: ".4em solid #816d5f",
     OutlineOffset: ".4em",
   },
   ".line-numbers .line-numbers-rows": {
-    borderRightColor: "#ece8de",
+    borderRightColor: "#35302b",
   },
   ".line-numbers-rows > span:before": {
-    color: "#cdc4b1",
+    color: "#46403d",
   },
   ".line-highlight": {
     background:
-      "linear-gradient(to right, rgba(45, 32, 6, 0.2) 70%, rgba(45, 32, 6, 0))",
+      "linear-gradient(to right, rgba(191, 160, 90, 0.2) 70%, rgba(191, 160, 90, 0))",
   },
 };

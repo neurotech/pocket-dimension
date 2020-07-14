@@ -55,6 +55,9 @@ const StyledReactMarkdown = styled(ReactMarkdown)`
     color: ${({ theme }) => theme.palette.codeText};
     padding: 2px 6px;
     overflow-wrap: break-word;
+
+    font-size: ${({ theme }) => theme.fontSize + 1}px;
+    line-height: ${({ theme }) => theme.lineHeight - 6}px;
   }
 
   pre > code {
@@ -67,6 +70,9 @@ const StyledReactMarkdown = styled(ReactMarkdown)`
     border-style: solid;
     border-color: ${({ theme }) => theme.palette.codeBlockBorder};
     overflow-wrap: break-word;
+
+    font-size: ${({ theme }) => theme.fontSize + 1}px;
+    line-height: ${({ theme }) => theme.lineHeight - 6}px;
   }
 
   ul,

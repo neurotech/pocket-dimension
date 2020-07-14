@@ -67,6 +67,7 @@ export default {
   },
   number: {
     color: themes.dark.code.number,
+    fontWeight: "bold",
   },
   property: {
     color: "magenta",
