@@ -12,6 +12,9 @@ const resolveSizeToFontSize = (size, fontSize) => {
     case "large":
       return fontSize * 1.25 + "px";
 
+    case "xlarge":
+      return fontSize * 1.5 + "px";
+
     default:
       return fontSize + "px";
   }
@@ -37,9 +40,11 @@ const StyledText = styled.div`
     resolveSizeToFontSize(size, theme.fontSize)};
   font-weight: ${(props) => props.weight};
   color: ${({ theme, variant }) => resolveVariantToFontColour(theme, variant)};
+  cursor: ${(props) => props.cursor};
 `;
 
 const Text = ({
+  cursor = "default",
   size = "regular",
   variant = "normal",
   weight = "normal",
@@ -47,6 +52,7 @@ const Text = ({
 }) => {
   return (
     <StyledText
+      cursor={cursor}
       size={size}
       variant={variant}
       weight={weight}

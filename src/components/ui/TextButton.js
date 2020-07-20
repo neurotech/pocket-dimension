@@ -45,6 +45,7 @@ const TextButton = ({
   disabled = false,
   onClick,
   label,
+  title,
 }) => {
   return (
     <StyledButton
@@ -52,6 +53,7 @@ const TextButton = ({
       size={resolveSizeToFontSize(size)}
       disabled={disabled}
       onClick={onClick}
+      title={title}
     >
       <Label>{label}</Label>
     </StyledButton>
