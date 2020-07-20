@@ -24,7 +24,7 @@
     "babel-plugin-styled-components": "^1.10.7",
     "clean-webpack-plugin": "^3.0.0",
     "file-loader": "^6.0.0",
-    "heroicons": "^0.2.0",
+    "heroicons": "^0.3.6",
     "html-webpack-plugin": "^4.3.0",
     "luxon": "^1.24.1",
     "react": "^16.13.1",
