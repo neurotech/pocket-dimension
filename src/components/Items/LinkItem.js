@@ -6,40 +6,37 @@ import Stack from "../ui/layout/Stack.js";
 import Text from "../ui/Text.js";
 import resolveTimestamp from "../../util/resolveTimestamp.js";
 import ItemCard from "./ItemCard.js";
-import EditLinkIconButton from "../ui/IconButtons/EditLinkIconButton.js";
-import styled from "styled-components";
-
-const StyledLink = styled.a``;
+import ExpandLinkItemButton from "../ui/IconButtons/ExpandLinkItemButton.js";
 
 const LinkItem = ({ item, isStale }) => {
-  const trimTitle = (title) => {
-    if (title.length > 135) {
-      return title.substr(0, 132) + "...";
-    }
-
-    return title;
-  };
   return (
-    <ItemCard isStale={isStale}>
+    <ItemCard
+      isStale={isStale}
+      title={resolveTimestamp(item.timestamp)}
+      itemType={item.type}
+    >
       <Columns
         collapseMobile
-        alignItems="flex-start"
+        alignItems="center"
         flow="wrap"
         space="small"
         justifyContent="space-between"
       >
         <Column>
-          <Columns alignItems="start" space="small">
+          <Columns alignItems="center" space="small">
             <Column width="content">
-              <EditLinkIconButton item={item} isStale={isStale} />
+              <ExpandLinkItemButton />
             </Column>
             <Column width="fill">
               <Stack space="xxsmall">
-                <Text size="large" variant={"heading"} weight="600">
-                  {isStale ? item.title : <a href={item.body}>{item.title}</a>}
-                </Text>
-                <Text variant={"subtitle"}>
-                  {resolveTimestamp(item.timestamp)}
+                <Text size="xlarge" variant={"heading"} weight="600">
+                  {isStale ? (
+                    item.title
+                  ) : (
+                    <a href={item.body} target={"blank"}>
+                      {item.title}
+                    </a>
+                  )}
                 </Text>
               </Stack>
             </Column>
