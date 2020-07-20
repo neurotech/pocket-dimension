@@ -1,4 +1,5 @@
 import React from "react";
+import EditItemButton from "../ui/TextButtons/EditItemButton.js";
 import FocusItemButton from "../ui/TextButtons/FocusItemButton.js";
 import ArchiveItemButton from "../ui/TextButtons/ArchiveItemButton.js";
 import DeleteItemButton from "../ui/TextButtons/DeleteItemButton.js";
@@ -12,6 +13,9 @@ const ItemControls = ({ item }) => {
       space="xsmall"
       justifyContent="flex-start"
     >
+      <Column>
+        <EditItemButton item={item} />
+      </Column>
       <Column>
         <FocusItemButton title={item.title} />
       </Column>
