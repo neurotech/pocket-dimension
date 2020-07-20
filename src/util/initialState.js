@@ -13,7 +13,7 @@ const initialState = {
   isLoading: false,
   item: null,
   items: [],
-  pageSize: 5,
+  pageSize: 12,
   pasted: false,
   scrollToBottom: null,
   staleItems: [],
