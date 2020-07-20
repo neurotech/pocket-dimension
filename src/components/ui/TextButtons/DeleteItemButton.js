@@ -29,6 +29,7 @@ const DeleteIconButton = ({ item }) => {
   return (
     <StyledTextButton
       label={"Delete"}
+      title={"Delete this item"}
       onClick={async () => {
         dispatch({ type: SET_STALE_ITEM, payload: item.id });
         dispatch({ type: SET_IS_LOADING_ON });

@@ -22,6 +22,7 @@ const FocusIconButton = ({ title }) => {
   return (
     <StyledTextButton
       label={"Focus"}
+      title="Focus on this item"
       onClick={() => {
         dispatch({ type: FILTER_TEXT_CHANGED, payload: title });
       }}

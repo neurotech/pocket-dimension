@@ -29,6 +29,7 @@ const ArchiveIconButton = ({ item }) => {
   return (
     <StyledTextButton
       label={"Archive"}
+      title={"Archive this item"}
       onClick={async () => {
         dispatch({ type: SET_STALE_ITEM, payload: item.id });
         dispatch({ type: SET_IS_LOADING_ON });
