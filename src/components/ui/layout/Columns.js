@@ -28,6 +28,7 @@ const StyledColumns = styled.div`
   align-items: ${(props) => props.alignItems};
   margin-left: -${(props) => resolveSpaceToValue(props.space)};
   overflow-wrap: break-word;
+  cursor: ${(props) => (props.onClick ? "pointer" : "default")};
 
   ${(props) =>
     props.collapseMobile
@@ -37,12 +38,13 @@ const StyledColumns = styled.div`
 
 const Columns = ({
   alignItems = "center",
+  children,
   collapseMobile = false,
   flow = "inherit",
   justifyContent,
+  onClick,
   reverse = false,
   space,
-  children,
 }) => {
   return (
     <StyledColumns
@@ -50,6 +52,7 @@ const Columns = ({
       collapseMobile={collapseMobile}
       flow={flow}
       justifyContent={justifyContent}
+      onClick={onClick}
       reverse={reverse}
       space={space}
     >
