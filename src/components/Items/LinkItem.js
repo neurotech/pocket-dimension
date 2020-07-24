@@ -29,7 +29,7 @@ const LinkItem = ({ item, isStale }) => {
             </Column>
             <Column width="fill">
               <Stack space="xxsmall">
-                <Text size="xlarge" variant={"heading"} weight="600">
+                <Text size="large" variant={"heading"} weight="600">
                   {isStale ? (
                     item.title
                   ) : (
