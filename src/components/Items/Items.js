@@ -86,11 +86,7 @@ const Items = () => {
   }, [state.scrollToBottom]);
 
   const renderItemsByType = (items) => {
-    const itemsFilteredByType = items.filter(
-      (item) => item.type === state.filterType || state.filterType === "all"
-    );
-
-    const itemsFilteredByText = itemsFilteredByType.filter(
+    const itemsFilteredByText = items.filter(
       (item) =>
         ~item.title.toLowerCase().indexOf(state.filterText.toLowerCase()) ||
         ~item.body.toLowerCase().indexOf(state.filterText.toLowerCase())

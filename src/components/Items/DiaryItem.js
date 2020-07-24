@@ -27,6 +27,7 @@ const DiaryItem = ({ item, isStale }) => {
   return (
     <ItemCard
       isStale={isStale}
+      onClick={toggleExpanded}
       title={resolveTimestamp(item.timestamp)}
       itemType={item.type}
     >
@@ -36,7 +37,6 @@ const DiaryItem = ({ item, isStale }) => {
           alignItems="center"
           flow="wrap"
           justifyContent="space-between"
-          onClick={toggleExpanded}
           space="small"
         >
           <Column>
@@ -51,7 +51,7 @@ const DiaryItem = ({ item, isStale }) => {
                 <Stack space="xxsmall">
                   <Text
                     cursor="pointer"
-                    size="xlarge"
+                    size="large"
                     variant={"heading"}
                     weight="600"
                   >

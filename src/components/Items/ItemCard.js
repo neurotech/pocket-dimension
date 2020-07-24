@@ -38,16 +38,27 @@ const StyledItemCard = styled.div`
   margin: 0 ${({ theme }) => theme.cardPadding};
   filter: grayscale(${(props) => (props.isStale ? 1 : 0)});
   opacity: ${(props) => (props.isStale ? 0.5 : 1)};
-  cursor: ${(props) => (props.isStale ? "not-allowed" : "auto")};
+  cursor: ${(props) => (props.onClick ? "pointer" : "default")};
 
   & :hover {
     ${(props) => generateGradientMixinForType(props.itemType)};
   }
 `;
 
-const ItemCard = ({ isStale = false, title, itemType = "note", children }) => {
+const ItemCard = ({
+  isStale = false,
+  title,
+  itemType = "note",
+  onClick,
+  children,
+}) => {
   return (
-    <StyledItemCard title={title} itemType={itemType} isStale={isStale}>
+    <StyledItemCard
+      title={title}
+      itemType={itemType}
+      onClick={onClick}
+      isStale={isStale}
+    >
       {children}
     </StyledItemCard>
   );
