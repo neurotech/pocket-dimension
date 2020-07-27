@@ -1,8 +1,7 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { useStore } from "../util/Store.js";
 import { createItem, updateItem, fetchItems } from "../util/asyncActions.js";
 import {
-  generateNoteTitle,
   generateLinkTitle,
   generateDiaryTitle,
 } from "../util/generateTitle.js";
@@ -16,15 +15,30 @@ import {
 } from "../util/actionTypes.js";
 import itemTypes from "../util/itemTypes.js";
 import { Input } from "./ui/Input.js";
-import styled from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import Stack from "./ui/layout/Stack.js";
 import Columns from "./ui/layout/Columns.js";
 import Column from "./ui/layout/Column.js";
-import TypeButton from "./ui/TypeButton.js";
 import TextButton from "./ui/TextButton.js";
-import CreateButton from "./ui/CreateButton.js";
+import CreateUpdateButton from "./ui/CreateUpdateButton.js";
 import CancelButton from "./ui/CancelButton.js";
 import TextArea from "./ui/TextArea.js";
+
+const fadeInKeyframes = keyframes`
+  from {
+    transform: translateY(4px);
+    opacity: 0;
+  }
+
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+`;
+
+const fadeInMixin = css`
+  animation: ${fadeInKeyframes} 0.2s ease-out;
+`;
 
 const ItemDialogContainer = styled.div`
   position: fixed;
@@ -54,20 +68,53 @@ const ItemDialogContent = styled.div`
   border-style: solid;
   border-color: ${({ theme }) => theme.palette.itemDialogBorder};
   z-index: 999;
+  ${fadeInMixin};
 `;
+
+const isLinkItem = (body) => {
+  return body.startsWith("http://") || body.startsWith("https://");
+};
+
+const isDiaryItem = (itemTitle) => {
+  return itemTitle.startsWith("Work diary for");
+};
+
+const determineItemType = (title = "", body = "") => {
+  if (isLinkItem(body)) {
+    return itemTypes.link;
+  }
+
+  if (isDiaryItem(title)) {
+    return itemTypes.diary;
+  }
+
+  if (!isLinkItem(body) && !isDiaryItem(title)) {
+    return itemTypes.note;
+  }
+};
 
 const ItemDialog = () => {
   const { state, dispatch } = useStore();
 
   const [itemType, setItemType] = useState(
-    state.item ? state.item.type : itemTypes.note
+    (state.item && state.item.type) || "note"
   );
   const [itemTitle, setItemTitle] = useState(
-    state.item ? state.item.title : ""
+    (state.item && state.item.title) || ""
   );
-  const [itemBody, setItemBody] = useState(state.item ? state.item.body : "");
+  const [itemBody, setItemBody] = useState(
+    (state.item && state.item.body) || ""
+  );
 
   const bodyTextAreaRef = useRef(null);
+
+  useEffect(() => {
+    if (state.item) {
+      setItemType(state.item.type);
+      setItemTitle(state.item.title);
+      setItemBody(state.item.body);
+    }
+  }, []);
 
   const handleSubmit = async () => {
     event.preventDefault();
@@ -79,12 +126,13 @@ const ItemDialog = () => {
       body: itemBody,
       generateTitle: false,
       isArchived: false,
-      type: itemType,
+      type: determineItemType(itemTitle, itemBody),
     };
 
     dispatch({ type: SET_ITEM_DIALOG_CLOSED });
 
     if (state.item) {
+      payload.type = determineItemType(state.item.title, state.item.body);
       payload.id = state.item.id;
       payload.timestamp = state.item.timestamp;
       await updateItem(payload);
@@ -119,46 +167,18 @@ const ItemDialog = () => {
     dispatch({ type: SET_ITEM_DIALOG_CLOSED });
   };
 
-  const setItemTypeToNote = () => {
-    setItemType(itemTypes.note);
-    setItemTitle("");
-    bodyTextAreaRef.current.focus();
-  };
-
-  const setItemTypeToLink = () => {
-    setItemType(itemTypes.link);
-    setItemTitle("");
-    bodyTextAreaRef.current.focus();
-  };
-
-  const setItemTypeToDiary = () => {
-    setItemType(itemTypes.diary);
-    setItemTitle(generateDiaryTitle());
-    bodyTextAreaRef.current.focus();
-  };
-
   const handleGenerateTitle = async () => {
-    switch (itemType) {
-      case itemTypes.note:
-        setItemTitle(generateNoteTitle());
-        bodyTextAreaRef.current.focus();
-        break;
-
-      case itemTypes.link:
-        if (itemBody !== "") {
-          dispatch({ type: SET_IS_LOADING_ON });
-          let titleFromUrl = await generateLinkTitle(itemBody);
-          setItemTitle(titleFromUrl);
-          dispatch({ type: SET_IS_LOADING_OFF });
-        }
-        bodyTextAreaRef.current.focus();
-        break;
-
-      case itemTypes.diary:
-        setItemTitle(generateDiaryTitle());
-        bodyTextAreaRef.current.focus();
-        break;
+    if (isLinkItem(itemBody)) {
+      dispatch({ type: SET_IS_LOADING_ON });
+      let titleFromUrl = await generateLinkTitle(itemBody);
+      dispatch({ type: SET_IS_LOADING_OFF });
+      setItemTitle(titleFromUrl);
+    } else {
+      setItemTitle(generateDiaryTitle());
     }
+
+    bodyTextAreaRef.current.focus();
+    return;
   };
 
   return (
@@ -170,32 +190,6 @@ const ItemDialog = () => {
           flexShrink={1}
           justifyContent={"space-between"}
         >
-          <Columns space="small">
-            <Column width="fill">
-              <TypeButton
-                active={itemType === itemTypes.note}
-                onClick={setItemTypeToNote}
-                variant={itemTypes.note}
-              />
-            </Column>
-
-            <Column width="fill">
-              <TypeButton
-                active={itemType === itemTypes.link}
-                onClick={setItemTypeToLink}
-                variant={itemTypes.link}
-              />
-            </Column>
-
-            <Column width="fill">
-              <TypeButton
-                active={itemType === itemTypes.diary}
-                onClick={setItemTypeToDiary}
-                variant={itemTypes.diary}
-              />
-            </Column>
-          </Columns>
-
           <Columns space="small">
             <Column width={"fill"}>
               <Input
@@ -216,7 +210,7 @@ const ItemDialog = () => {
             </Column>
           </Columns>
           <TextArea
-            type="body"
+            type="text"
             placeholder="Body"
             onChange={(event) => setItemBody(event.target.value)}
             value={itemBody}
