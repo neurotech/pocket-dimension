@@ -24,6 +24,10 @@ const NoteItem = ({ item, isStale }) => {
     return <CodeBlock {...props} darkMode={state.darkMode} />;
   };
 
+  const renderLink = (props) => {
+    return <a target={"blank"} {...props} />;
+  };
+
   return (
     <ItemCard
       isStale={isStale}
@@ -70,7 +74,7 @@ const NoteItem = ({ item, isStale }) => {
             <Divider />
             <Markdown
               source={item.body}
-              renderers={{ code: renderCodeBlock }}
+              renderers={{ code: renderCodeBlock, link: renderLink }}
             />
           </>
         )}
