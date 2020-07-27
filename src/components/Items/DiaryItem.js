@@ -27,7 +27,6 @@ const DiaryItem = ({ item, isStale }) => {
   return (
     <ItemCard
       isStale={isStale}
-      onClick={toggleExpanded}
       title={resolveTimestamp(item.timestamp)}
       itemType={item.type}
     >
@@ -36,6 +35,7 @@ const DiaryItem = ({ item, isStale }) => {
           collapseMobile
           alignItems="center"
           flow="wrap"
+          onClick={toggleExpanded}
           justifyContent="space-between"
           space="small"
         >
