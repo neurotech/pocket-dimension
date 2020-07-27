@@ -226,10 +226,15 @@ const ItemDialog = () => {
           />
           <Columns space="small">
             <Column width="fill">
-              <CreateButton disabled={state.isLoading} onClick={handleSubmit} />
-            </Column>
-            <Column width="fill">
               <CancelButton disabled={state.isLoading} onClick={handleCancel} />
+            </Column>
+
+            <Column width="fill">
+              <CreateUpdateButton
+                isUpdate={state.item}
+                disabled={state.isLoading}
+                onClick={handleSubmit}
+              />
             </Column>
           </Columns>
         </Stack>

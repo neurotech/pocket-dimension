@@ -35,12 +35,12 @@ const StyledCreateButton = styled.button`
   }
 `;
 
-const CreateButton = ({ disabled, onClick }) => {
+const CreateUpdateButton = ({ disabled, isUpdate, onClick }) => {
   return (
     <StyledCreateButton disabled={disabled} onClick={onClick}>
-      Create
+      {isUpdate ? "Update" : "Create"}
     </StyledCreateButton>
   );
 };
 
-export default CreateButton;
+export default CreateUpdateButton;
