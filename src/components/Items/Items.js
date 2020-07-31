@@ -8,7 +8,6 @@ import {
   FETCH_ARCHIVED_ITEMS_COMPLETE,
   SET_CURRENT_ITEMS,
   SET_IS_LOADING_ON,
-  SET_SCROLL_TO_BOTTOM,
 } from "../../util/actionTypes.js";
 import itemTypes from "../../util/itemTypes.js";
 import { useStore } from "../../util/Store.js";
