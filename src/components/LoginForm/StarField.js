@@ -76,13 +76,14 @@ const StarField = () => {
       var seed = Math.random();
 
       var starWidth = 1 + seed * 100;
+      var starHeight = window.devicePixelRatio < 2 ? 1 : 2;
 
       stars.push({
         x: -Math.abs(starWidth * Math.random() * 100),
         y: Math.round(Math.random() * canvasHeight),
         vx: starWidth * 0.01,
         width: starWidth,
-        height: 1,
+        height: starHeight,
         draw: drawStar,
         despawn: despawnStar,
       });
