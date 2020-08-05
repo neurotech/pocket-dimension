@@ -1,5 +1,7 @@
 import initialState from "./initialState.js";
 import {
+  COLLAPSE_ITEM,
+  EXPAND_ITEM,
   FETCH_ACTIVE_ITEMS_COMPLETE,
   FETCH_ARCHIVED_ITEMS_COMPLETE,
   FILTER_TEXT_CHANGED,
@@ -40,6 +42,18 @@ const upsert = (item, collection) => {
 
 const Reducer = (state, action) => {
   switch (action.type) {
+    case COLLAPSE_ITEM:
+      let updated = state.expandedItems;
+      let itemLocation = state.expandedItems.indexOf(action.payload);
+      updated.splice(itemLocation, 1);
+      return { ...state, updated };
+
+    case EXPAND_ITEM:
+      return {
+        ...state,
+        expandedItems: [...state.expandedItems, action.payload],
+      };
+
     case FETCH_ACTIVE_ITEMS_COMPLETE:
       return {
         ...state,

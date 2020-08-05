@@ -21,15 +21,15 @@ const StarField = () => {
 
     function getOpacity(width) {
       if (width <= 25) {
-        return 80;
+        return 74;
       }
 
       if (width <= 50 && width > 25) {
-        return 87;
+        return 82;
       }
 
       if (width <= 75 && width > 50) {
-        return 95;
+        return 90;
       }
 
       if (width <= 150 && width > 75) {
@@ -75,13 +75,13 @@ const StarField = () => {
     function spawnStar() {
       var seed = Math.random();
 
-      var starWidth = 1 + seed * 100;
+      var starWidth = 20 + seed * 100;
       var starHeight = window.devicePixelRatio < 2 ? 1 : 2;
 
       stars.push({
         x: -Math.abs(starWidth * Math.random() * 100),
         y: Math.round(Math.random() * canvasHeight),
-        vx: starWidth * 0.01,
+        vx: starWidth * 0.016,
         width: starWidth,
         height: starHeight,
         draw: drawStar,

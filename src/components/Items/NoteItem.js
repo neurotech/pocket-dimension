@@ -11,13 +11,21 @@ import ItemCard from "./ItemCard.js";
 import Divider from "../ui/Divider.js";
 import ExpandNoteItemButton from "../ui/IconButtons/ExpandNoteItemButton.js";
 import { useStore } from "../../util/Store.js";
+import { COLLAPSE_ITEM, EXPAND_ITEM } from "../../util/actionTypes.js";
 
 const NoteItem = ({ item, isStale }) => {
-  const { state } = useStore();
-  const [expanded, setExpanded] = useState(false);
+  const { state, dispatch } = useStore();
+
+  const isExpanded = () => {
+    return state.expandedItems.indexOf(item.id) !== -1;
+  };
 
   const toggleExpanded = () => {
-    setExpanded(!expanded);
+    if (isExpanded()) {
+      dispatch({ type: COLLAPSE_ITEM, payload: item.id });
+    } else {
+      dispatch({ type: EXPAND_ITEM, payload: item.id });
+    }
   };
 
   const renderCodeBlock = (props) => {
@@ -31,7 +39,6 @@ const NoteItem = ({ item, isStale }) => {
   return (
     <ItemCard
       isStale={isStale}
-      onClick={toggleExpanded}
       title={resolveTimestamp(item.timestamp)}
       itemType={item.type}
     >
@@ -47,14 +54,14 @@ const NoteItem = ({ item, isStale }) => {
             <Columns alignItems="center" space="small">
               <Column width="content">
                 <ExpandNoteItemButton
-                  expanded={expanded}
+                  expanded={isExpanded()}
                   toggleExpanded={toggleExpanded}
                 />
               </Column>
               <Column width="fill">
                 <Stack space="xxsmall" padLastChild={false}>
                   <Text
-                    cursor="pointer"
+                    cursor="auto"
                     size="large"
                     variant={"heading"}
                     weight="600"
@@ -69,7 +76,7 @@ const NoteItem = ({ item, isStale }) => {
             {!isStale && <ItemControls item={item} />}
           </Column>
         </Columns>
-        {expanded && (
+        {isExpanded() && (
           <>
             <Divider />
             <Markdown

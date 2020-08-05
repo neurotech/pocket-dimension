@@ -5,6 +5,8 @@ const StyledReactMarkdown = styled(ReactMarkdown)`
   font-size: ${({ theme }) => theme.fontSize + 2}px;
   line-height: ${({ theme }) => theme.lineHeight}px;
 
+  cursor: auto;
+
   h1,
   h2,
   h3,
