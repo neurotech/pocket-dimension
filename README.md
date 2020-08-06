@@ -4,4 +4,4 @@ A tiny place to store tiny things.
 
 ## TODO
 
-- Light theme for syntax highlighting
+- Finish light theme for syntax highlighting
