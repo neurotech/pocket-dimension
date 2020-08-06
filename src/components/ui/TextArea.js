@@ -6,7 +6,7 @@ const StyledTextArea = styled.textarea`
   box-sizing: border-box;
   width: 100%;
   height: 100%;
-  user-select: none;
+  user-select: text;
   font-family: ${({ theme }) => theme.fontFamily};
   font-size: ${({ theme }) => theme.inputFontSize}px;
   font-weight: 400;

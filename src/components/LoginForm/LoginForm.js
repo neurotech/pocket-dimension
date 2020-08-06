@@ -10,7 +10,6 @@ import styled from "styled-components";
 import { Input } from "../ui/Input.js";
 import Stack from "../ui/layout/Stack.js";
 import TextButton from "../ui/TextButton.js";
-import StarField from "./StarField.js";
 
 const StyledContainer = styled.div`
   position: fixed;
@@ -108,7 +107,6 @@ const LoginForm = () => {
       <StyledForm
         onSubmit={(event) => handleSubmitLogin(event, username, password)}
       >
-        <StarField />
         <BlueBox isLoading={state.isLoading}>
           <Stack space="small">
             <StyledInput
