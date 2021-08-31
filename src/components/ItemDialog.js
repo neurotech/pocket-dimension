@@ -197,6 +197,7 @@ const ItemDialog = () => {
                 placeholder="Title"
                 onChange={(event) => setItemTitle(event.target.value)}
                 disabled={state.isLoading}
+                tabIndex={0}
                 value={itemTitle}
               />
             </Column>
@@ -217,6 +218,7 @@ const ItemDialog = () => {
             disabled={state.isLoading}
             ref={bodyTextAreaRef}
             stretch
+            tabIndex={1}
           />
           <Columns space="small">
             <Column width="fill">
