@@ -24,6 +24,7 @@ const StyledTextArea = styled.textarea`
   }
 
   &:focus {
+    box-shadow: 0 0 0 3px ${({ theme }) => theme.palette.inputShadowFocus}75;
     border-color: ${({ theme }) => theme.palette.inputBorderFocus};
     & ::placeholder {
       color: transparent;
